@@ -1,9 +1,13 @@
 {
   "name": "portfolio",
   "version": "0.0.0",
-  "license": "MIT",
-  "author": "koger",
+  "license": "UNLICENSED",
   "description": "Portfolio page with content managment interface",
+  "author": {"name": "koger", "email": "kogerr@gmail.com"},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kogerr/portfolio.git"
+  },
   "main": "app.js",
   "scripts": {
     "start": "node app"
