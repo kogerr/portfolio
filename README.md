@@ -4,7 +4,7 @@ Experimental project using MEAN stack.
 
 ### Tasks
 
-- [ ] Static resource shering with express
+- [x] Static resource sharing with express
 - [ ] REST Api
 - [ ] Local JSON storage
 - [ ] File upload
