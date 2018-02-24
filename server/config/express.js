@@ -9,10 +9,10 @@ let appRoot = require('app-root-path');
 let app = express();
 
 app.use(bodyParser.json());
-//app.use('/api', routes);
-routes(app);
-app.get('*.html', (req, res) => {
-    res.sendFile(path.join(appRoot.path, 'dist/index.html'));
+app.use('/api', routes);
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(appRoot.path, 'dist/'));
 });
 
 module.exports = app;

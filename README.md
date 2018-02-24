@@ -5,7 +5,7 @@ Experimental project using MEAN stack.
 ### Tasks
 
 - [x] Static resource sharing with express
-- [ ] REST Api
-- [ ] Local JSON storage
+- [x] REST Api
+- [X] Local JSON storage
 - [ ] File upload
 - [ ] MongoDB backup

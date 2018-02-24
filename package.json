@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "license": "UNLICENSED",
   "description": "Portfolio page with content managment interface",
-  "author": {"name": "koger", "email": "kogerr@gmail.com"},
+  "author": {
+    "name": "koger",
+    "email": "kogerr@gmail.com"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/kogerr/portfolio.git"
