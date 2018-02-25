@@ -1,4 +1,8 @@
-<form method="post" action="/api/images" enctype="multipart/form-data">
-    <input name="cover-image" type="file" accept=".png, .jpg, .jpeg">
+<form #postForm method="post" action="/api/images" enctype="multipart/form-data">
+    <input name="title" type="text" [(ngModel)]="post.title">
+    <input #cover name="cover-image" type="file" accept=".png, .jpg, .jpeg" (change)="test($event)">
     <button>upload</button>
 </form>
+{{postAsJson()}}
+{{cover.files.length}}
+{{postForm}}
