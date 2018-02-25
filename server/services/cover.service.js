@@ -2,7 +2,7 @@ let appRoot = require('app-root-path');
 let fs = require('fs');
 let path = require('path');
 
-const coverDirectory = path.join(appRoot.path, 'local_storage/images/covers/');
+const coverDirectory = path.join(appRoot.path, 'dist/images/covers/');
 
 exports.saveCoverImage = function (buffer, extension) {
     let name = findName(extension);
