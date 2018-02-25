@@ -3,19 +3,19 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { PostComponent } from './post.component';
 import { PageNotFoundComponent } from './not-found.component';
+import { WorkComponent } from './work.component';
+import { EditorComponent } from './editor.component';
 
 const appRoutes: Routes = [
-    { path: 'new-post', component: PostComponent },
-    { path: '', redirectTo: '/new-post', pathMatch: 'full' },
+    { path: 'editor', component: EditorComponent },
+    { path: 'work', component: WorkComponent },
+    { path: '', redirectTo: '/work', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
     imports: [
-        RouterModule.forRoot(
-            appRoutes,
-            { enableTracing: true } // <-- debugging purposes only
-        )
+        RouterModule.forRoot(appRoutes, { enableTracing: false })
     ],
     exports: [
         RouterModule
