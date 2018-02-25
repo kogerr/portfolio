@@ -4,6 +4,6 @@ let imageRoutes = require('./image.route');
 let router = express.Router();
 
 router.use('/posts', postRoutes);
-router.use('/image', imageRoutes);
+router.use('/images', imageRoutes);
 
 module.exports = router;

@@ -11,8 +11,6 @@ let app = express();
 app.use(bodyParser.json());
 app.use('/api', routes);
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(appRoot.path, 'dist/'));
-});
+app.use(express.static('dist'));
 
 module.exports = app;
