@@ -1,8 +1,8 @@
 let persistenceService = require('../services/persistence.service');
 
-exports.create = function(req, res) {
+exports.savePost = function(req, res) {
     console.log(req.body.title);
-    persistenceService.save(req.body);
+    persistenceService.savePost(req.body);
     res.statusCode = 414;
     res.send(req.body);
 };
