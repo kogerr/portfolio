@@ -8,7 +8,16 @@ Experimental project using MEAN stack.
 - [x] REST Api
 - [X] Local JSON storage
 - [x] File upload
+- [x] REST endpoint to serve posts
 - [ ] Post form
-- [ ] Post upload page
+- [ ] Works page component
+- [x] Post upload page chunk
+- [ ] Post CSS
+- [ ] Post upload page CSS
+- [ ] Menu CSS
 - [ ] Make Express work with Angular router
 - [ ] MongoDB backup
+
+#### Notes
+
+- `api/posts/?from=1&to=3` inclusive-exclusive
