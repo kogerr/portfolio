@@ -15,7 +15,7 @@ export class EditorComponent {
     return JSON.stringify(this.post);
   };
 
-  test = function(event): void {
+  uploadCover = function(event): void {
     let URL = 'api/images';
     let file = event.target.files[0];
     let formData = new FormData();
