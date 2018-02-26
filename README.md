@@ -7,5 +7,8 @@ Experimental project using MEAN stack.
 - [x] Static resource sharing with express
 - [x] REST Api
 - [X] Local JSON storage
-- [ ] File upload
+- [x] File upload
+- [ ] Post form
+- [ ] Post upload page
+- [ ] Make Express work with Angular router
 - [ ] MongoDB backup

@@ -12,5 +12,8 @@ app.use(bodyParser.json());
 app.use('/api', routes);
 
 app.use(express.static('dist'));
+app.get('/work', function (req, res) {
+    res.sendFile(path.join(appRoot.path, 'dist/index.html'));
+});
 
 module.exports = app;
