@@ -22,7 +22,7 @@ export class EditorComponent {
     let URL = 'api/images';
     let file = event.target.files[0];
     let formData = new FormData();
-    formData.append('cover-image', file, file.name);
+    formData.append('cover-image', file);
     this.http.post(URL, formData).subscribe(data => this.post.cover = data.name);
   };
 

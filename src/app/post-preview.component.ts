@@ -10,5 +10,8 @@ import { Post } from './post';
 export class PostPreviewComponent {
     @Input()
     post: Post;
-    coverURL = 'images/covers/' + this.post.cover;
+
+    getCoverURL = function(): string {
+      return 'images/covers/' + this.post.cover;
+    };
 }
