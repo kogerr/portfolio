@@ -9,9 +9,11 @@ Experimental project using MEAN stack.
 - [X] Local JSON storage
 - [x] File upload
 - [x] REST endpoint to serve posts
-- [ ] Post form
+- [x] Editor page chunk
+- [x] Add ID to posts
+- [ ] Post-preview component
+- [ ] Post component
 - [ ] Works page component
-- [x] Post upload page chunk
 - [ ] Post CSS
 - [ ] Post upload page CSS
 - [ ] Menu CSS

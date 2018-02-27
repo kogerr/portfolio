@@ -1,3 +1,4 @@
+<div [hidden]="submitted">
 <form #postForm method="post" action="/api/images" enctype="multipart/form-data">
     <div class="form-group">
         <label for="title">Title</label>
@@ -15,6 +16,19 @@
         <label for="title">Cover Image</label>
         <input #cover name="cover-image" type="file" accept=".png, .jpg, .jpeg" (change)="uploadCover($event)">
     </div>
-    <button>upload</button>
+    <button (click)="uploadPost()">upload</button>
 </form>
 {{postAsJson()}} {{cover.files.length}} {{postForm}}
+<p>{{submitted}}</p>
+<p>{{error}}</p>
+</div>
+<div *ngIf="submitted">
+    <div *ngIf="success">
+        <p>Post uploaded</p>
+    </div>
+    <div *ngIf="error">
+        <p>Server responded with error message:</p>
+        <p>{{error}}</p>
+    </div>
+    <p>You will be redirected in {{remaining}} seconds.</p>
+</div>
