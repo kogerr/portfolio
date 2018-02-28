@@ -13,20 +13,31 @@ export class EditorComponent {
   constructor(private http: HttpClient, private router: Router) { }
   post = new Post();
   submitted = false;
+  imagesURL = 'api/images';
 
-  postAsJson = function(): string {
+  postAsJson = function (): string {
     return JSON.stringify(this.post);
   };
 
-  uploadCover = function(event): void {
-    let URL = 'api/images';
+  removeCover = function() {
+    this.removeImage('cover-image', this.post.cover).subscribe(data => delete this.post.cover);
+  };
+
+  uploadCover = function (event): void {
+    if (this.post.cover) {
+      this.removeCover();
+    }
     let file = event.target.files[0];
     let formData = new FormData();
     formData.append('cover-image', file);
-    this.http.post(URL, formData).subscribe(data => this.post.cover = data.name);
+    this.http.post(this.imagesURL, formData).subscribe(data => this.post.cover = data.name);
   };
 
-  uploadPost = function(): void {
+  removeImage = function (fieldname, filename): void {
+    return this.http.delete((this.imagesURL + '/' + fieldname + '/' + filename));
+  };
+
+  uploadPost = function (): void {
     this.post.creationDate = new Date();
     let URL = 'api/posts';
     this.http.post(URL, this.post).subscribe(
@@ -36,7 +47,7 @@ export class EditorComponent {
     this.countdownNavigate();
   };
 
-  countdownNavigate = function(): void {
+  countdownNavigate = function (): void {
     this.remaining = 5;
     let redirect = window.setInterval(() => {
       this.remaining--;

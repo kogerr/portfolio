@@ -31,6 +31,16 @@ let determineFilename = function (req, file, cb) { // TODO: refactor somehow int
     cb(null, filename);
 };
 
+exports.deleteImage = function(fieldname, filename) {
+    let directory = path.join(appRoot.path, fieldMap[fieldname].destination);
+    try {
+        fs.unlinkSync(directory + filename);
+    } catch (err) {
+        return err;
+    }
+    return { status : 'ok' };
+};
+
 exports.storage = multer.diskStorage({
     destination: determineDestination,
     filename: determineFilename

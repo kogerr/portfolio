@@ -7,4 +7,5 @@ let imageCtrl = require('../controllers/image.controller');
 router = express.Router();
 router.route('/')
     .post(upload.single('cover-image'), imageCtrl.returnSavedFileName);
+router.route('/:field/:filename').delete(imageCtrl.deleteImage);
 module.exports = router;

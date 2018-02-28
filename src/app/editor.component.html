@@ -16,6 +16,7 @@
         <label for="title">Cover Image</label>
         <input #cover name="cover-image" type="file" accept=".png, .jpg, .jpeg" (change)="uploadCover($event)">
     </div>
+    <button (click)="removeCover(); cover.value=''">remove cover image</button>
     <button (click)="uploadPost()">upload</button>
 </form>
 {{postAsJson()}} {{cover.files.length}} {{postForm}}

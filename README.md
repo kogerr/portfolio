@@ -11,6 +11,7 @@ Experimental project using MEAN stack.
 - [x] REST endpoint to serve posts
 - [x] Editor page chunk
 - [x] Add ID to posts
+- [x] Remove cover image feature to editor
 - [ ] Post-preview component
 - [ ] Post component
 - [ ] Works page component
