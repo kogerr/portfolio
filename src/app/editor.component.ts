@@ -15,11 +15,7 @@ export class EditorComponent {
   submitted = false;
   imagesURL = 'api/images';
 
-  postAsJson = function (): string {
-    return JSON.stringify(this.post);
-  };
-
-  removeCover = function() {
+  removeCover = function () {
     this.removeImage('cover-image', this.post.cover).subscribe(data => delete this.post.cover);
   };
 
@@ -48,7 +44,7 @@ export class EditorComponent {
   };
 
   countdownNavigate = function (): void {
-    this.remaining = 5;
+    this.remaining = 3;
     let redirect = window.setInterval(() => {
       this.remaining--;
       if (this.remaining <= 0) {

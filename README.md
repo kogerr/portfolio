@@ -12,14 +12,16 @@ Experimental project using MEAN stack.
 - [x] Editor page chunk
 - [x] Add ID to posts
 - [x] Remove cover image feature to editor
-- [ ] Post-preview component
-- [ ] Post component
-- [ ] Works page component
+- [x] Post-preview component
+- [x] Post component
+- [x] Work page component
 - [ ] Post CSS
 - [ ] Post upload page CSS
 - [ ] Menu CSS
 - [ ] Make Express work with Angular router
 - [ ] MongoDB backup
+- [ ] Separate editor
+- [ ] Security
 
 #### Notes
 

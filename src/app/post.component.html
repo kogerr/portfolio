@@ -2,4 +2,6 @@
     <img [src]="'images/covers/' + post.cover" />
     <h1>{{post.title}}</h1>
     <div>{{post.client}}</div>
+    <div>{{post.text}}</div>
+    <img *ngFor="let image of post.images" [src]="'images/content/' + image" />
 </div>

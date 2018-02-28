@@ -16,13 +16,11 @@
         <label for="title">Cover Image</label>
         <input #cover name="cover-image" type="file" accept=".png, .jpg, .jpeg" (change)="uploadCover($event)">
     </div>
-    <button (click)="removeCover(); cover.value=''">remove cover image</button>
-    <button (click)="uploadPost()">upload</button>
+    <button (click)="removeCover(); cover.value=''">Remove cover image</button>
+    <button (click)="uploadPost()">Upload</button>
 </form>
-{{postAsJson()}} {{cover.files.length}} {{postForm}}
-<p>{{submitted}}</p>
-<p>{{error}}</p>
 </div>
+
 <div *ngIf="submitted">
     <div *ngIf="success">
         <p>Post uploaded</p>

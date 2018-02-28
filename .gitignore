@@ -6,6 +6,7 @@
 /tmp
 /out-tsc
 /local_storage
+/src/images
 
 # dependencies
 /node_modules
