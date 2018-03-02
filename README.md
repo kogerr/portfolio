@@ -19,7 +19,7 @@ Experimental project using MEAN stack.
 - [ ] Post CSS
 - [ ] Post upload page CSS
 - [ ] Menu CSS
-- [ ] Make Express work with Angular router
+- [x] Make Express work with Angular router
 - [ ] MongoDB backup
 - [ ] Separate editor
 - [ ] Security
