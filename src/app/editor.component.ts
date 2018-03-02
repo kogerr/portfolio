@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Post } from './post';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-editor',
@@ -13,24 +14,45 @@ export class EditorComponent {
   constructor(private http: HttpClient, private router: Router) { }
   post = new Post();
   submitted = false;
-  imagesURL = 'api/images';
-
-  removeCover = function () {
-    this.removeImage('cover-image', this.post.cover).subscribe(data => delete this.post.cover);
-  };
+  imagesURL = 'api/images/';
 
   uploadCover = function (event): void {
     if (this.post.cover) {
       this.removeCover();
     }
-    let file = event.target.files[0];
-    let formData = new FormData();
-    formData.append('cover-image', file);
-    this.http.post(this.imagesURL, formData).subscribe(data => this.post.cover = data.name);
+    this.postImage('cover', event.target.files[0]).subscribe(data => this.post.cover = data.name);
   };
 
-  removeImage = function (fieldname, filename): void {
-    return this.http.delete((this.imagesURL + '/' + fieldname + '/' + filename));
+  removeCover = function (): void {
+    this.removeImage('cover', this.post.cover).subscribe(data => delete this.post.cover);
+  };
+
+  uploadContentImages = function (event): void {
+    if (this.post.images && this.post.images.length > 0) {
+      this.removeContentImages();
+    } else {
+      this.post.images = new Array<string>();
+    }
+    let files = event.target.files;
+    for (let i = 0; i < files.length; i++) {
+      this.postImage('content', files[i]).subscribe(data => this.post.images.push(data.name));
+    }
+  };
+
+  removeContentImages = function (): void {
+    this.post.images.forEach(element => {
+      this.removeImage('content', element).subscribe(data => this.post.images.splice(this.post.images.indexOf(element)));
+    });
+  };
+
+  postImage = function (imageType: string, file): Observable<any> {
+    let formData = new FormData();
+    formData.append('image', file);
+    return this.http.post(this.imagesURL + imageType, formData);
+  };
+
+  removeImage = function (fieldname, filename): Observable<any> {
+    return this.http.delete((this.imagesURL + fieldname + '/' + filename));
   };
 
   uploadPost = function (): void {

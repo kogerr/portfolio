@@ -2,7 +2,11 @@ let storageService = require('../services/storage.service');
 
 exports.returnSavedFileName = function (req, res, next) {
     let response = { name: req.file.filename };
-    res.statusCode = 201;
+    if (response) {
+        res.statusCode = 201;
+    } else {
+        res.statusCode = 404;
+    }
     res.send(response);
 };
 

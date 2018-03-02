@@ -9,14 +9,19 @@
         <input name="client" id="client" type="text" [(ngModel)]="post.client">
     </div>
     <div class="form-group">
-        <label for="title">Content</label>
-        <textarea rows="4" name="text" id="text" type="text" [(ngModel)]="post.text"></textarea>
+        <label for="content">Content</label>
+        <textarea rows="4" id="text" name="text" type="text" [(ngModel)]="post.text"></textarea>
     </div>
     <div class="form-group">
-        <label for="title">Cover Image</label>
-        <input #cover name="cover-image" type="file" accept=".png, .jpg, .jpeg" (change)="uploadCover($event)">
+        <label for="cover-image">Cover Image</label>
+        <input #cover id="cover-image" type="file" accept=".png, .jpg, .jpeg" (change)="uploadCover($event)">
     </div>
     <button (click)="removeCover(); cover.value=''">Remove cover image</button>
+    <div class="form-group">
+        <label for="content-images">Content Images</label>
+        <input #contentImages name="content-images" type="file" accept=".png, .jpg, .jpeg" (change)="uploadContentImages($event)" multiple>
+    </div>
+    <button (click)="removeContentImages(); contentImages.value=''">Remove content images</button>
     <button (click)="uploadPost()">Upload</button>
 </form>
 </div>

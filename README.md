@@ -15,6 +15,7 @@ Experimental project using MEAN stack.
 - [x] Post-preview component
 - [x] Post component
 - [x] Work page component
+- [x] Content image upload
 - [ ] Post CSS
 - [ ] Post upload page CSS
 - [ ] Menu CSS
