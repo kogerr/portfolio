@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Post } from './post';
@@ -10,11 +10,20 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./editor.component.css']
 })
 
-export class EditorComponent {
+export class EditorComponent implements OnDestroy {
   constructor(private http: HttpClient, private router: Router) { }
   post = new Post();
   submitted = false;
   imagesURL = 'api/images/';
+
+  ngOnDestroy(): void {
+    if (this.post.cover) {
+      this.removeCover();
+    }
+    if (this.post.images && this.post.images.length > 0) {
+      this.removeContentImages();
+    }
+  }
 
   uploadCover = function (event): void {
     if (this.post.cover) {
@@ -24,7 +33,7 @@ export class EditorComponent {
   };
 
   removeCover = function (): void {
-    this.removeImage('cover', this.post.cover).subscribe(data => delete this.post.cover);
+    this.deleteImage('cover', this.post.cover).subscribe(data => delete this.post.cover);
   };
 
   uploadContentImages = function (event): void {
@@ -33,25 +42,32 @@ export class EditorComponent {
     } else {
       this.post.images = new Array<string>();
     }
-    let files = event.target.files;
-    for (let i = 0; i < files.length; i++) {
-      this.postImage('content', files[i]).subscribe(data => this.post.images.push(data.name));
-    }
+    this.uploadRecursively('content', event.target.files, 0);
+  };
+
+  uploadRecursively = function (imageType: string, files: FileList, i: number): void {
+    let self = this;
+    this.postImage(imageType, files[i]).subscribe(function (data) {
+      self.post.images.push(data.name);
+      if (i < files.length - 1) {
+        self.uploadRecursively(imageType, files, i + 1);
+      }
+    });
   };
 
   removeContentImages = function (): void {
     this.post.images.forEach(element => {
-      this.removeImage('content', element).subscribe(data => this.post.images.splice(this.post.images.indexOf(element)));
+      this.deleteImage('content', element).subscribe(data => this.post.images.splice(this.post.images.indexOf(element)));
     });
   };
 
-  postImage = function (imageType: string, file): Observable<any> {
+  postImage = function (imageType: string, file: File): Observable<any> {
     let formData = new FormData();
     formData.append('image', file);
     return this.http.post(this.imagesURL + imageType, formData);
   };
 
-  removeImage = function (fieldname, filename): Observable<any> {
+  deleteImage = function (fieldname: string, filename: string): Observable<any> {
     return this.http.delete((this.imagesURL + fieldname + '/' + filename));
   };
 
@@ -66,13 +82,13 @@ export class EditorComponent {
   };
 
   countdownNavigate = function (): void {
-    this.remaining = 3;
+    this.remaining = 9;
     let redirect = window.setInterval(() => {
       this.remaining--;
       if (this.remaining <= 0) {
         window.clearInterval(redirect);
         this.router.navigate(['/work']);
       }
-    }, 1000);
+    }, 100);
   };
 }
