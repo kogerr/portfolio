@@ -1,40 +1,34 @@
 let mongoose = require('mongoose');
 let Post = require('../models/postModel');
+let Image = require('../models/imageModel');
 
-exports.savePost = function (req, res) {
-    let post = req.body;
+exports.savePost = function (post) {
+    let newPost = new Post(post);
+    newPost.save((err, data) => {
+        if (err) { return err; }
+        return data;
+    });
+};
+
+exports.loadPosts = function () {
     Post.find(function (err, docs) {
-        if (err) { res.send(err); }
-        let max = Math.max(...docs.map(p => parseInt(p.id)).filter(item => item >= 0));
-        console.log(...docs.map(p => parseInt(p.id)));
-        if (max >= 0) {
-            post.id = max + 1;
-        } else {
-            post.id = 0;
-        }
-        let newPost = new Post(post);
-        newPost.save((err, p) => {
-            if (err) { res.send(err); }
-            res.json(p);
-        });
+        if (err) { return err; }
+        return docs.sort((a, b) => b.timestamp - a.timestamp);
     });
 };
 
-exports.loadPosts = function (req, res) {
-    Post.find(function (err, docs) {
-        if (err) { res.send(err); }
-        docs = docs.sort((a, b) => b.timestamp - a.timestamp);
-        res.json(docs);
+exports.getPostById = function (id) {
+    Post.find({ 'id': id }, function (err, docs) {
+        if (err) { return err; }
+        return docs;
     });
 };
 
-exports.getPostById = function (req, res) {
-    Post.find({ id: req.params.id }, function (err, docs) {
-        if (err) { res.send(err); }
-        res.json(docs);
+exports.saveImage = function (file, name, imageType) {
+    let img = { data: file, name: name, imageType: imageType };
+    let newImage = new Image(img);
+    newImage.save((err, data) => {
+        if (err) { return err; }
+        return data;
     });
-};
-
-exports.test = function (data) {
-    res.send('OK');
 };

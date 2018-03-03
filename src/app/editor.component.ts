@@ -17,10 +17,10 @@ export class EditorComponent implements OnDestroy {
   imagesURL = 'api/images/';
 
   ngOnDestroy(): void {
-    if (this.post.cover) {
+    if (!this.submitted && this.post.cover) {
       this.removeCover();
     }
-    if (this.post.images && this.post.images.length > 0) {
+    if (!this.submitted && this.post.images && this.post.images.length > 0) {
       this.removeContentImages();
     }
   }
@@ -73,7 +73,7 @@ export class EditorComponent implements OnDestroy {
 
   uploadPost = function (): void {
     this.post.timestamp = new Date();
-    let URL = 'api/db/posts';
+    let URL = 'api/posts';
     this.http.post(URL, this.post).subscribe(
       data => { this.submitted = true; this.success = true; },
       error => { this.submitted = true; this.error = error; }
