@@ -72,8 +72,8 @@ export class EditorComponent implements OnDestroy {
   };
 
   uploadPost = function (): void {
-    this.post.creationDate = new Date();
-    let URL = 'api/posts';
+    this.post.timestamp = new Date();
+    let URL = 'api/db/posts';
     this.http.post(URL, this.post).subscribe(
       data => { this.submitted = true; this.success = true; },
       error => { this.submitted = true; this.error = error; }

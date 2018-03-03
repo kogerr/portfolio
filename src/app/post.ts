@@ -5,5 +5,5 @@ export class Post {
     text: string;
     cover: string;
     images: Array<string>;
-    creationDate: Date;
+    timestamp: Date;
 }

@@ -13,7 +13,7 @@ export class WorkComponent implements OnInit {
   posts: Post[];
 
   ngOnInit(): void {
-    const postsURL = 'api/posts';
+    const postsURL = 'api/db/posts';
     this.http.get<Post[]>(postsURL).subscribe((data) => { this.posts = data; });
   }
 
