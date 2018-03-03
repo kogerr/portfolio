@@ -1,3 +1,4 @@
+let fs = require('fs');
 let mongoose = require('mongoose');
 let Post = require('../models/postModel');
 let Image = require('../models/imageModel');
@@ -24,11 +25,14 @@ exports.getPostById = function (id) {
     });
 };
 
-exports.saveImage = function (file, name, imageType) {
-    let img = { data: file, name: name, imageType: imageType };
-    let newImage = new Image(img);
+exports.saveImage = function (req, res) {
+    let newImage = new Image();
+    newImage.data = fs.readFileSync(req.file.path);
+    newImage.imageType = req.params.field;
+    newImage.name = req.file.filename;
     newImage.save((err, data) => {
-        if (err) { return err; }
-        return data;
+        if (err) { res.send(err); }
+        res.statusCode = 201;
+        res.send({ name: req.file.filename });
     });
 };

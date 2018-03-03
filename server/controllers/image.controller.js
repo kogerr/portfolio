@@ -2,7 +2,8 @@ let storageService = require('../services/storage.service');
 let dbService = require('../services/db.service');
 
 exports.returnSavedFileName = function (req, res, next) {
-    dbService.saveImage(req.file.buffer, req.file.filename, req.params.field);
+    console.log(req.file.path);
+    //dbService.saveImage(req.file.buffer, req.file.filename, req.params.field);
     let response = { name: req.file.filename };
     if (response.name) {
         res.statusCode = 201;
