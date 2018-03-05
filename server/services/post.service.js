@@ -18,7 +18,7 @@ exports.savePost = function (data) {
 };
 
 savePostLocally = function (post, savedPosts) {
-    let allPosts = [post].concat(post, savedPosts);
+    let allPosts = [post].concat(savedPosts);
     try {
         fs.writeFileSync(localPostsFilePath, JSON.stringify(allPosts));
     } catch (err) {

@@ -4,6 +4,6 @@ export class Post {
     client: string;
     text: string;
     cover: string;
-    images: Array<string>;
+    images: Array<{ name: string, width: string }>;
     timestamp: Date;
 }

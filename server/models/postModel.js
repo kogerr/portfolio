@@ -3,12 +3,16 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let postSchema = new Schema({
+    _id: Number,
     id: Number,
     title: String,
     client: String,
     text: String,
     cover: String,
-    images: [String],
+    images: [new Schema({
+        name: String,
+        width: String
+    }, { _id: false })],
     timestamp: Date
 });
 

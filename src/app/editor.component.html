@@ -26,6 +26,16 @@
     </form>
 </div>
 
+<div>
+    <div *ngFor="let image of post.images">
+        <img [src]="'images/content/' + image.name" />
+        <select [(ngModel)]="image.width" required>
+            <option value="full">Full width</option>
+            <option value="half">Half width</option>
+        </select>
+    </div>
+</div>
+
 <div *ngIf="submitted">
     <div *ngIf="success">
         <p>Post uploaded</p>

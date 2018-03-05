@@ -9,4 +9,7 @@ let server = app.listen(app.get('port'), function () {
 });
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/');
+mongoose.connect('mongodb://localhost/portfolio').then(
+    () => { console.log('Connected to mongodb'); },
+    err => { console.error(err.message); }
+);

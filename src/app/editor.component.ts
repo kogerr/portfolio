@@ -40,7 +40,7 @@ export class EditorComponent implements OnDestroy {
     if (this.post.images && this.post.images.length > 0) {
       this.removeContentImages();
     } else {
-      this.post.images = new Array<string>();
+      this.post.images = new Array<{name: string, width: string}>();
     }
     this.uploadRecursively('content', event.target.files, 0);
   };
@@ -48,7 +48,7 @@ export class EditorComponent implements OnDestroy {
   uploadRecursively = function (imageType: string, files: FileList, i: number): void {
     let self = this;
     this.postImage(imageType, files[i]).subscribe(function (data) {
-      self.post.images.push(data.name);
+      self.post.images.push(data);
       if (i < files.length - 1) {
         self.uploadRecursively(imageType, files, i + 1);
       }
@@ -57,7 +57,7 @@ export class EditorComponent implements OnDestroy {
 
   removeContentImages = function (): void {
     this.post.images.forEach(element => {
-      this.deleteImage('content', element).subscribe(data => this.post.images.splice(this.post.images.indexOf(element)));
+      this.deleteImage('content', element.name).subscribe(data => this.post.images.splice(this.post.images.indexOf(element)));
     });
   };
 
@@ -90,5 +90,9 @@ export class EditorComponent implements OnDestroy {
         this.router.navigate(['/work']);
       }
     }, 100);
+  };
+
+  postAsString = function (): string {
+    return JSON.stringify(this.post);
   };
 }
