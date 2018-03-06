@@ -19,20 +19,20 @@
         </div>
         <div class="form-group">
             <label for="content-images">Content Images</label>
-            <input #contentImages name="content-images" type="file" accept=".png, .jpg, .jpeg" (change)="uploadContentImages($event)" multiple>
+            <input #contentImages name="content-images" type="file" accept=".png, .jpg, .jpeg" (change)="uploadContentImages($event)"
+                multiple>
             <button *ngIf="contentImages.value" (click)="removeContentImages(); contentImages.value=''">Remove content images</button>
         </div>
         <button (click)="uploadPost()">Upload</button>
     </form>
-</div>
-
-<div>
-    <div *ngFor="let image of post.images">
-        <img [src]="'images/content/' + image.name" width="270" height="150"/>
-        <select [(ngModel)]="image.width" required>
-            <option value="full">Full width</option>
-            <option value="half">Half width</option>
-        </select>
+    <div>
+        <div class="preview" *ngFor="let image of post.images">
+            <img [src]="'images/content/' + image.name" />
+            <select [(ngModel)]="image.width" required>
+                <option value="full">Full width</option>
+                <option value="half">Half width</option>
+            </select>
+        </div>
     </div>
 </div>
 

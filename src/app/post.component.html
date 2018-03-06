@@ -1,7 +1,7 @@
 <div *ngIf="post">
-    <img [src]="'images/cover/' + post.cover" />
+    <img [src]="'images/cover/' + post.cover" class="full"/>
     <h1>{{post.title}}</h1>
-    <div>{{post.client}}</div>
-    <div>{{post.text}}</div>
-    <img *ngFor="let image of post.images" [src]="'images/content/' + image.name" />
+    <h3>{{post.client}}</h3>
+    <div id="text">{{post.text}}</div>
+    <img *ngFor="let image of post.images" [src]="'images/content/' + image.name" [class]="image.width"/>
 </div>

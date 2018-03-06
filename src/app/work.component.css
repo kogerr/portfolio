@@ -1,0 +1,15 @@
+post-preview {
+    display: inline-block;
+    max-width: 46%;
+    margin: 0.8%;
+    padding: 1%;
+    background-color: white;
+    border: 1px solid lightgrey;
+    border-radius: 0.5em;
+}
+
+@media all and (max-width: 1024px) {
+    post-preview {
+        max-width: 92%;
+    }
+}
