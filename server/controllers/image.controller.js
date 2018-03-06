@@ -1,16 +1,16 @@
 let storageService = require('../services/storage.service');
 let dbService = require('../services/db.service');
+let resizeService = require('../services/resize.service');
 
 exports.returnSavedFileName = function (req, res, next) {
-    console.log(req.file.path);
-    //dbService.saveImage(req.file.buffer, req.file.filename, req.params.field);
+    dbService.saveImage(req.file.path, req.params.field, req.file.filename);
     let response = { name: req.file.filename };
     if (response.name) {
         res.statusCode = 201;
     } else {
         res.statusCode = 404;
     }
-    res.send(response);
+    resizeService.crop(req.file.path, () => res.send(response));
 };
 
 exports.deleteImage = function (req, res, next) {

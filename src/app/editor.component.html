@@ -28,7 +28,7 @@
 
 <div>
     <div *ngFor="let image of post.images">
-        <img [src]="'images/content/' + image.name" />
+        <img [src]="'images/content/' + image.name" width="270" height="150"/>
         <select [(ngModel)]="image.width" required>
             <option value="full">Full width</option>
             <option value="half">Half width</option>

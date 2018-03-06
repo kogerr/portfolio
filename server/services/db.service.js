@@ -20,20 +20,18 @@ exports.loadPosts = function () {
 };
 
 exports.getPostById = function (id) {
-    Post.findById( id , function (err, docs) {
+    Post.findById(id, function (err, docs) {
         if (err) { return err; }
         return docs;
     });
 };
 
-exports.saveImage = function (req, res) {
-    let newImage = new Image();
-    res.statusCode = 201;
-    res.send({ name: req.file.filename });
-    newImage.data = fs.readFileSync(req.file.path);
-    newImage.imageType = req.params.field;
-    newImage.name = req.file.filename;
-    newImage.save((err, data) => {
+exports.saveImage = function (filePath, imageType, name) {
+    fs.readFile(filePath, function (err, data) {
         if (err) { console.error(err); }
+        let newImage = new Image({ data: data, imageType: imageType, name: name });
+        newImage.save((err, data) => {
+            if (err) { console.error(err); }
+        });
     });
 };
