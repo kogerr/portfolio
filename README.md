@@ -16,14 +16,23 @@ Experimental project using MEAN stack.
 - [x] Post component
 - [x] Work page component
 - [x] Content image upload
+- [x] Make Express work with Angular router
+- [x] MongoDB backup
+- [x] Image resizing
+- [ ] Generate random filenames
+- [ ] Two-phase resizing
 - [ ] Post CSS
 - [ ] Post upload page CSS
 - [ ] Menu CSS
-- [x] Make Express work with Angular router
-- [ ] MongoDB backup
+- [ ] Resizer user interface
 - [ ] Separate editor
 - [ ] Security
+- [ ] Maybe swagger
 
 #### Notes
 
 - `api/posts/?from=1&to=3` inclusive-exclusive
+
+#### Updates to Watch Out For
+- not ready for _TypeScript 2.7.2_ because angular can't handle 2.7 yet
+- angular6 coming in April
