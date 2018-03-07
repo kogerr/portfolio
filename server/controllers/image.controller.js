@@ -3,14 +3,14 @@ let dbService = require('../services/db.service');
 let resizeService = require('../services/resize.service');
 
 exports.returnSavedFileName = function (req, res, next) {
-    dbService.saveImage(req.file.path, req.params.field, req.file.filename);
     let response = { name: req.file.filename };
     if (response.name) {
         res.statusCode = 201;
     } else {
         res.statusCode = 404;
     }
-    resizeService.crop(req.file.path, () => res.send(response));
+    res.send(response);
+    dbService.saveImage(req.file.path, req.params.field, req.file.filename);
 };
 
 exports.deleteImage = function (req, res, next) {
@@ -21,4 +21,8 @@ exports.deleteImage = function (req, res, next) {
         res.statusCode = 200;
     }
     res.send(response);
+};
+
+exports.resizeImage = function (req, res) {
+
 };

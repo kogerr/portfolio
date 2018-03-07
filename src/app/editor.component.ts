@@ -1,8 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Post } from './post';
 import { Observable } from 'rxjs/Observable';
+import { Post } from './post';
+import { ContentImage } from './content-image';
 
 @Component({
   selector: 'app-editor',
@@ -40,19 +41,16 @@ export class EditorComponent implements OnDestroy {
     if (this.post.images && this.post.images.length > 0) {
       this.removeContentImages();
     } else {
-      this.post.images = new Array<{name: string, width: string}>();
+      this.post.images = new Array<ContentImage>();
     }
-    this.uploadRecursively('content', event.target.files, 0);
-  };
-
-  uploadRecursively = function (imageType: string, files: FileList, i: number): void {
+    let files = event.target.files;
     let self = this;
-    this.postImage(imageType, files[i]).subscribe(function (data) {
-      self.post.images.push(data);
-      if (i < files.length - 1) {
-        self.uploadRecursively(imageType, files, i + 1);
-      }
-    });
+    for (let i = 0; i < files.length; i++) {
+      this.postImage('content', files[i]).subscribe(function (data) {
+        self.post.images.push(data);
+        self.resizeImage(data.name, 'content').subscribe(response => self.replaceImage(response, data));
+      });
+    }
   };
 
   removeContentImages = function (): void {
@@ -92,7 +90,12 @@ export class EditorComponent implements OnDestroy {
     }, 100);
   };
 
-  postAsString = function (): string {
-    return JSON.stringify(this.post);
+  resizeImage = function (filename, imageType): void {
+    return this.http.patch(this.imagesURL + imageType + '/' + filename);
+  };
+
+  replaceImage = function (newImage: ContentImage, oldImage: ContentImage): void {
+    this.post.images.splice(this.post.images.indexOf(oldImage), 1, newImage);
+    this.deleteImage('content', oldImage.name).subscribe();
   };
 }

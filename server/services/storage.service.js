@@ -2,6 +2,7 @@ let appRoot = require('app-root-path');
 let fs = require('fs');
 let path = require('path');
 let multer = require('multer');
+let shortid = require('shortid');
 
 const Idlength = 6;
 const imagesDirectory = 'dist/images/';
@@ -12,9 +13,9 @@ let determineDestination = function (req, file, cb) {
 };
 
 let determineFilename = function (req, file, cb) { // TODO: refactor somehow into separate service maybe
-    let extension = file.originalname.substr(file.originalname.lastIndexOf('.'));
-    let imageType = req.params.field;
-    let filename = imageType.padEnd(Idlength + imageType.length, '0') + extension;
+    // let extension = file.originalname.substr(file.originalname.lastIndexOf('.'));
+    let filename = exports.generateFilename(file.originalname);
+    /*let filename = imageType.padEnd(Idlength + imageType.length, '0') + extension;
     let items = fs.readdirSync(path.join(appRoot.path, imagesDirectory + imageType));
     if (items.length > 0) {
         let max = Math.max(...items.map((name) => parseInt(name.substr(imageType.length, Idlength))).filter(item => item >= 0));
@@ -22,9 +23,14 @@ let determineFilename = function (req, file, cb) { // TODO: refactor somehow int
             let id = (max + 1).toString(10).padStart(Idlength, '0');
             filename = imageType + id + extension;
         }
-    }
+    }*/
 
     cb(null, filename);
+};
+
+exports.generateFilename = function(originalname) {
+    let extension = originalname.substr(originalname.lastIndexOf('.'));
+    return shortid.generate() + extension;
 };
 
 exports.deleteImage = function(imageType, filename) {
