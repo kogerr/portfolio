@@ -22,7 +22,3 @@ exports.deleteImage = function (req, res, next) {
     }
     res.send(response);
 };
-
-exports.resizeImage = function (req, res) {
-
-};

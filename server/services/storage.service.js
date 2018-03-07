@@ -13,18 +13,7 @@ let determineDestination = function (req, file, cb) {
 };
 
 let determineFilename = function (req, file, cb) { // TODO: refactor somehow into separate service maybe
-    // let extension = file.originalname.substr(file.originalname.lastIndexOf('.'));
     let filename = exports.generateFilename(file.originalname);
-    /*let filename = imageType.padEnd(Idlength + imageType.length, '0') + extension;
-    let items = fs.readdirSync(path.join(appRoot.path, imagesDirectory + imageType));
-    if (items.length > 0) {
-        let max = Math.max(...items.map((name) => parseInt(name.substr(imageType.length, Idlength))).filter(item => item >= 0));
-        if (max >= 0) { // probably unnecessary to check in production
-            let id = (max + 1).toString(10).padStart(Idlength, '0');
-            filename = imageType + id + extension;
-        }
-    }*/
-
     cb(null, filename);
 };
 

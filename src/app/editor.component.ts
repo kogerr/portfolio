@@ -30,7 +30,12 @@ export class EditorComponent implements OnDestroy {
     if (this.post.cover) {
       this.removeCover();
     }
-    this.postImage('cover', event.target.files[0]).subscribe(data => this.post.cover = data.name);
+    let self = this;
+    this.postImage('cover', event.target.files[0]).subscribe(function (data) {
+      self.resizeImage('cover', data.name).subscribe(function (response) {
+        self.post.cover = response.name;
+      });
+    });
   };
 
   removeCover = function (): void {
@@ -48,7 +53,7 @@ export class EditorComponent implements OnDestroy {
     for (let i = 0; i < files.length; i++) {
       this.postImage('content', files[i]).subscribe(function (data) {
         self.post.images.push(data);
-        self.resizeImage(data.name, 'content').subscribe(response => self.replaceImage(response, data));
+        self.resizeImage('content', data.name).subscribe(response => self.replaceImage(response, data));
       });
     }
   };
@@ -90,7 +95,7 @@ export class EditorComponent implements OnDestroy {
     }, 100);
   };
 
-  resizeImage = function (filename, imageType): void {
+  resizeImage = function (imageType, filename): Observable<ContentImage> {
     return this.http.patch(this.imagesURL + imageType + '/' + filename);
   };
 
