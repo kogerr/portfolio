@@ -21,6 +21,8 @@ Experimental project using MEAN stack.
 - [x] Image resizing
 - [x] Generate random filenames
 - [x] Two-phase resizing
+- [x] Title service for posts
+- [ ] Generate postID from title
 - [ ] Post CSS
 - [ ] Post upload page CSS
 - [ ] Menu CSS
