@@ -1,8 +1,7 @@
-let express = require('express');
-let router = express.Router();
-let dbService = require('../services/db.service');
+let router = require('express').Router();
+let dbController = require('../controllers/db.controller');
 
-router.route('/posts').post(dbService.savePost).get(dbService.loadPosts);
-router.route('/posts/:id').get(dbService.getPostById);
+router.route('/posts').get(dbController.loadPosts);
+router.route('/posts/:id').get(dbController.getPostById);
 
 module.exports = router;

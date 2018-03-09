@@ -22,7 +22,7 @@ Experimental project using MEAN stack.
 - [x] Generate random filenames
 - [x] Two-phase resizing
 - [x] Title service for posts
-- [ ] Generate postID from title
+- [x] Generate postID from title
 - [ ] Post CSS
 - [ ] Post upload page CSS
 - [ ] Menu CSS
@@ -35,6 +35,6 @@ Experimental project using MEAN stack.
 
 - `api/posts/?from=1&to=3` inclusive-exclusive
 
-#### Updates to Watch Out For
+#### Updates to Watch out For
 - not ready for _TypeScript 2.7.2_ because angular can't handle 2.7 yet
 - angular6 coming in April

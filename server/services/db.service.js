@@ -12,17 +12,17 @@ exports.savePost = function (post) {
     });
 };
 
-exports.loadPosts = function () {
+exports.loadPosts = function (errCB, successCB) {
     Post.find(function (err, docs) {
-        if (err) { return err; }
-        return docs.sort((a, b) => b.timestamp - a.timestamp);
+        if (err) { errCB(err); }
+        successCB(docs.sort((a, b) => b.timestamp - a.timestamp));
     });
 };
 
-exports.getPostById = function (id) {
-    Post.findById(id, function (err, docs) {
-        if (err) { return err; }
-        return docs;
+exports.getPostById = function (id, errCB, successCB) {
+    Post.findById(id, function (err, data) {
+        if (err) { errCB(err); }
+        successCB(data);
     });
 };
 
