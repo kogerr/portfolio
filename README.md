@@ -23,6 +23,7 @@ Experimental project using MEAN stack.
 - [x] Two-phase resizing
 - [x] Title service for posts
 - [x] Generate postID from title
+- [ ] Editor page check if titleURL already exists
 - [ ] Post CSS
 - [ ] Post upload page CSS
 - [ ] Menu CSS
