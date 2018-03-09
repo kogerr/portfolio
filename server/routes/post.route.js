@@ -3,5 +3,5 @@ let postCtrl = require('../controllers/post.controller');
 
 router = express.Router();
 router.route('/').post(postCtrl.savePost).get(postCtrl.getPosts);
-router.route('/:id').get(postCtrl.getPostById);
+router.route('/:titleURL').get(postCtrl.getPostByTitleURL);
 module.exports = router;

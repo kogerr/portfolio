@@ -19,7 +19,7 @@ export class WorkComponent implements OnInit {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  redirect = function (id) {
-    this.router.navigate(['/work/' + id]);
+  redirect = function (titleURL) {
+    this.router.navigate(['/work/' + titleURL]);
   };
 }

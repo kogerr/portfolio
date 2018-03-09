@@ -20,8 +20,8 @@ exports.getPosts = function (req, res) {
     res.send(posts);
 };
 
-exports.getPostById = function (req, res) {
-    let post = postService.loadPostById(req.params.id);
+exports.getPostByTitleURL = function (req, res) {
+    let post = postService.loadPostByTitleURL(req.params.titleURL);
     if (post.errno) {
         res.statusCode = 418;
     } else {

@@ -2,8 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { Post } from './post';
-import { ContentImage } from './content-image';
+import { Post, ContentImage } from './post';
 
 @Component({
   selector: 'app-editor',
@@ -102,5 +101,17 @@ export class EditorComponent implements OnDestroy {
   replaceImage = function (newImage: ContentImage, oldImage: ContentImage): void {
     this.post.images.splice(this.post.images.indexOf(oldImage), 1, newImage);
     this.deleteImage('content', oldImage.name).subscribe();
+  };
+
+  generateTitleURL = function (): void {
+    let titleURL = this.post.title.toLowerCase();
+    let vowels = {
+      accented: ['é', 'á', 'ű', 'ő', 'ú', 'ö', 'ü', 'ó', 'í'],
+      normal: ['e', 'a', 'u', 'o', 'u', 'o', 'u', 'o', 'i']
+    };
+    for (let i = 0; i < vowels.accented.length; i++) {
+      titleURL = titleURL.replace(new RegExp(vowels.accented[i], 'g'), vowels.normal[i]);
+    }
+    this.post.titleURL = titleURL.split(' ').map(t => t.replace(/[^\x00-\x7F]/g, '')).filter(t => t).join('-');
   };
 }

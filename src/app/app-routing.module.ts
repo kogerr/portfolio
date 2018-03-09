@@ -9,7 +9,7 @@ import { EditorComponent } from './editor.component';
 const appRoutes: Routes = [
     { path: 'editor', component: EditorComponent },
     { path: 'work', component: WorkComponent },
-    { path: 'work/:id', component: PostComponent },
+    { path: 'work/:titleURL', component: PostComponent },
     { path: '', redirectTo: '/work', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];

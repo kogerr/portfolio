@@ -16,7 +16,7 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
     let self = this;
     this.route.params.subscribe(p => {
-      this.http.get<Post>('api/posts/' + p.id).subscribe(function (data) {
+      this.http.get<Post>('api/posts/' + p.titleURL).subscribe(function (data) {
         self.post = data;
         self.titleService.setTitle(data.title);
       });

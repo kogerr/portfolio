@@ -48,6 +48,6 @@ exports.loadPosts = function (from, to) {
     }
 };
 
-exports.loadPostById = function (id) {
-    return exports.loadPosts().filter(post => post.id == id)[0];
+exports.loadPostByTitleURL = function (titleURL) {
+    return exports.loadPosts().filter(post => post.titleURL == titleURL)[0];
 };
