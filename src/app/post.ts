@@ -1,5 +1,4 @@
 export class Post {
-    id: number;
     title: string;
     titleURL: string;
     client: string;

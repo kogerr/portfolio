@@ -4,7 +4,7 @@ let Post = require('../models/postModel');
 let Image = require('../models/imageModel');
 
 exports.savePost = function (post) {
-    post._id = post.id;
+    post._id = post.titleURL;
     let newPost = new Post(post);
     newPost.save((err, data) => {
         if (err) { return err; }
@@ -15,7 +15,7 @@ exports.savePost = function (post) {
 exports.loadPosts = function () {
     Post.find(function (err, docs) {
         if (err) { return err; }
-        return docs.sort((a, b) => b.timestamp - a.timestamp);
+        return docs.sort((a, b) => b.timestamp - a.timestamp).map(p.titleURL = p._id);
     });
 };
 

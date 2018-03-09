@@ -11,8 +11,6 @@ exports.savePost = function (data) {
     } catch (err) {
         return err;
     }
-    let id = findPostId(savedPosts);
-    data.id = id;
     dbService.savePost(data);
     return savePostLocally(data, savedPosts);
 };
@@ -24,13 +22,7 @@ savePostLocally = function (post, savedPosts) {
     } catch (err) {
         return err;
     }
-    return { 'id': post.id };
-};
-
-findPostId = function(savedPosts) {
-    let max = Math.max(...savedPosts.filter((item) => (typeof item.id === 'number')).map(item => item.id));
-    let id = (max >= 0) ? (max + 1) : 0;
-    return id;
+    return { 'titleURL': post.titleURL };
 };
 
 exports.loadPosts = function (from, to) {

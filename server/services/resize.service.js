@@ -1,6 +1,7 @@
 let Jimp = require("jimp");
 let storageService = require('../services/storage.service');
 const directory = 'dist/images/';
+const proportions = {w: 9, h: 5};
 
 exports.crop = function (req, res) {
     let filePath = directory + req.params.field + '/' + req.params.filename;
@@ -20,9 +21,9 @@ exports.crop = function (req, res) {
 };
 
 calculateSize = function (width, height) {
-    if (width / 9 * 5 > height) {
-        return { width: width, height: width / 9 * 5 };
+    if (width / proportions.w * proportions.h > height) {
+        return { width: width, height: width / proportions.w * proportions.h };
     } else {
-        return { width: height / 5 * 9, height: height };
+        return { width: height / proportions.h * proportions.w, height: height };
     }
 };

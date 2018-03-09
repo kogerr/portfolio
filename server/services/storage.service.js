@@ -4,7 +4,6 @@ let path = require('path');
 let multer = require('multer');
 let shortid = require('shortid');
 
-const Idlength = 6;
 const imagesDirectory = 'dist/images/';
 
 let determineDestination = function (req, file, cb) {
