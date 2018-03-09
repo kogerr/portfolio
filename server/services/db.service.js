@@ -15,7 +15,7 @@ exports.savePost = function (post) {
 exports.loadPosts = function () {
     Post.find(function (err, docs) {
         if (err) { return err; }
-        return docs.sort((a, b) => b.timestamp - a.timestamp).map(p.titleURL = p._id);
+        return docs.sort((a, b) => b.timestamp - a.timestamp);
     });
 };
 
