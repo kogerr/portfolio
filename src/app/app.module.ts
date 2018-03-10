@@ -9,11 +9,12 @@ import { WorkComponent } from './work.component';
 import { EditorComponent } from './editor.component';
 import { PageNotFoundComponent } from './not-found.component';
 import { PostPreviewComponent } from './post-preview.component';
+import { DataService } from './data.service';
 
 @NgModule({
   declarations: [ AppComponent, PostComponent, PageNotFoundComponent, WorkComponent, EditorComponent, PostPreviewComponent ],
   imports: [ BrowserModule, AppRoutingModule, FormsModule, HttpClientModule ],
-  providers: [],
+  providers: [ DataService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

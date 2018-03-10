@@ -22,12 +22,13 @@ exports.getPosts = function (req, res) {
 
 exports.getPostByTitleURL = function (req, res) {
     let post = postService.loadPostByTitleURL(req.params.titleURL);
-    if (post.errno) {
-        res.statusCode = 418;
-    } else {
+    if (post) {
         res.statusCode = 200;
+        res.send(post);
+    } else {
+        res.statusCode = 404;
+        res.send({error: 'Post not found'});
     }
-    res.send(post);
 };
 
 exports.test = function (req, res) {
