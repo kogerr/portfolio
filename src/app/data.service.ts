@@ -14,6 +14,10 @@ export class DataService {
         return this.http.get(postsURL + titleURL);
     };
 
+    checkPost = function (titleURL: string): Observable<{ found: boolean }> {
+        return this.http.get(postsURL + titleURL + '/check');
+    };
+
     postImage = function (imageType: string, file: File): Observable<any> {
         let formData = new FormData();
         formData.append('image', file);

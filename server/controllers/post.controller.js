@@ -27,7 +27,17 @@ exports.getPostByTitleURL = function (req, res) {
         res.send(post);
     } else {
         res.statusCode = 404;
-        res.send({error: 'Post not found'});
+        res.send({ error: 'Post not found' });
+    }
+};
+
+exports.checkPost = function (req, res) {
+    let post = postService.loadPostByTitleURL(req.params.titleURL);
+    res.statusCode = 200;
+    if (post) {
+        res.send({ found: true });
+    } else {
+        res.send({ found: false });
     }
 };
 

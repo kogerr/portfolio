@@ -1,13 +1,13 @@
 <div [hidden]="submitted">
-    <form #form="ngForm" method="post" action="/api/images" enctype="multipart/form-data">
+    <form #uploadForm="ngForm">
         <div class="form-group">
             <label for="title">Title</label>
             <input name="title" id="title" type="text" [(ngModel)]="post.title" (input)="generateTitleURL()">
         </div>
         <div class="form-group">
             <label for="title">Title URL</label>
-            <input #titleURL="ngModel" name="titleURL" id="titleURL" type="text" [(ngModel)]="post.titleURL" validateTitle>
-            <div *ngIf="titleURL.errors"> Title already in use </div>
+            <input #titleURL="ngModel" name="titleURL" id="titleURL" type="text" [(ngModel)]="post.titleURL" validateTitle required>
+            <div *ngIf="titleURL.errors?.occupiedTitle"> Title already in use </div>
         </div>
         <div class="form-group">
             <label for="client">Client</label>
@@ -28,7 +28,7 @@
                 multiple>
             <button *ngIf="contentImages.value" (click)="removeContentImages(); contentImages.value=''">Remove content images</button>
         </div>
-        <button (click)="uploadPost()">Upload</button>
+        <button [disabled]="uploadForm.invalid" (click)="uploadPost()">Upload</button>
     </form>
     <div>
         <div class="preview" *ngFor="let image of post.images">
@@ -49,5 +49,5 @@
         <p>Server responded with error message:</p>
         <p>{{error}}</p>
     </div>
-    <p>You will be redirected in {{remaining}} seconds.</p>
+    <p>You will be redirected in {{remaining}} milliseconds.</p>
 </div>
