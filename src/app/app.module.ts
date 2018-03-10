@@ -10,11 +10,12 @@ import { EditorComponent } from './editor.component';
 import { PageNotFoundComponent } from './not-found.component';
 import { PostPreviewComponent } from './post-preview.component';
 import { DataService } from './data.service';
+import { TitleValidator } from './title.validator';
 
 @NgModule({
-  declarations: [ AppComponent, PostComponent, PageNotFoundComponent, WorkComponent, EditorComponent, PostPreviewComponent ],
-  imports: [ BrowserModule, AppRoutingModule, FormsModule, HttpClientModule ],
-  providers: [ DataService ],
-  bootstrap: [ AppComponent ]
+  declarations: [AppComponent, PostComponent, PageNotFoundComponent, WorkComponent, EditorComponent, PostPreviewComponent, TitleValidator],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  providers: [DataService],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
