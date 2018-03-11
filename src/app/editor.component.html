@@ -32,7 +32,7 @@
     </form>
     <div>
         <div class="preview" *ngFor="let image of post.images">
-            <img [src]="'images/content/' + image.name" />
+            <img [src]="'images/content/' + image.name" class="img-responsive" height="200" style="opacity: 1; display: inline;" />
             <select [(ngModel)]="image.width" required>
                 <option value="full">Full width</option>
                 <option value="half">Half width</option>
