@@ -20,7 +20,7 @@ export class EditorComponent implements OnDestroy {
       this.removeCover();
     }
     if (!this.submitted && this.post.images && this.post.images.length > 0) {
-      this.removeContentImages();
+      this.removeContentImages(this.post.images);
     }
   }
 
@@ -28,10 +28,10 @@ export class EditorComponent implements OnDestroy {
     if (this.post.cover) {
       this.removeCover();
     }
-    let self = this;
-    this.dataService.postImage('cover', event.target.files[0]).subscribe(function (data) {
-      self.dataService.resizeImage('cover', data.name).subscribe(function (response) {
-        self.post.cover = response.name;
+    this.dataService.postImage('cover', event.target.files[0]).subscribe(data => {
+      this.dataService.resizeImage('cover', data.name).subscribe(response => {
+        this.dataService.deleteImage('cover', this.post.cover).subscribe();
+        this.post.cover = response.name;
       });
     });
   };
@@ -42,23 +42,24 @@ export class EditorComponent implements OnDestroy {
 
   uploadContentImages = function (event): void {
     if (this.post.images && this.post.images.length > 0) {
-      this.removeContentImages();
+      this.removeContentImages(this.post.images);
     } else {
       this.post.images = new Array<ContentImage>();
     }
     let files = event.target.files;
-    let self = this;
     for (let i = 0; i < files.length; i++) {
-      this.dataService.postImage('content', files[i]).subscribe(function (data) {
-        self.post.images.push(data);
-        self.dataService.resizeImage('content', data.name).subscribe(response => self.replaceImage(response, data));
+      this.dataService.postImage('content', files[i]).subscribe(data => {
+        this.post.images.push(data);
+        this.dataService.resizeImage('content', data.name).subscribe(response => this.replaceImage(response, data));
       });
     }
   };
 
-  removeContentImages = function (): void {
-    this.post.images.forEach(element => {
-      this.dataService.deleteImage('content', element.name).subscribe(data => this.post.images.splice(this.post.images.indexOf(element)));
+  removeContentImages = function (images: Array<ContentImage>): void {
+    images.forEach(element => {
+      this.dataService.deleteImage('content', element.name).subscribe(data => {
+        this.post.images.splice(this.post.images.indexOf(element), 1);
+      });
     });
   };
 

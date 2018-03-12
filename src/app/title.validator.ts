@@ -6,9 +6,10 @@ import { Observable } from 'rxjs/Observable';
 
 export function titleValidator(dataService: DataService): AsyncValidatorFn {
     return function (control: AbstractControl) {
+        let validationError: ValidationErrors = { 'occupiedTitle': { value: control.value } };
         return new Promise<ValidationErrors>(resolve => {
             dataService.checkPost(control.value).subscribe(
-                data => data.found ? resolve({ 'occupiedTitle': { value: control.value } }) : resolve(null)
+                data => resolve(data.found ? validationError : null)
             );
         });
     };

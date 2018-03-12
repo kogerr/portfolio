@@ -26,9 +26,7 @@ Experimental project using MEAN stack.
 - [x] Editor page check if titleURL already exists
 - [x] Keep 404 errors from console
 - [x] Editor form validation
-- [ ] Post CSS
-- [ ] Post upload page CSS
-- [ ] Menu CSS
+- [x] Bootstrap-header CSS
 - [ ] Resizer user interface
 - [ ] Separate editor
 - [ ] Security
