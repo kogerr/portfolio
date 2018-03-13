@@ -84,6 +84,7 @@ export class EditorComponent implements OnDestroy {
   };
 
   replaceImage = function (newImage: ContentImage, oldImage: ContentImage): void {
+    newImage.width = 'half';
     this.post.images.splice(this.post.images.indexOf(oldImage), 1, newImage);
     this.dataService.deleteImage('content', oldImage.name).subscribe();
   };

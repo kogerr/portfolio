@@ -26,7 +26,7 @@
             <label for="content-images">Content Images</label>
             <input #contentImages name="content-images" type="file" accept=".png, .jpg, .jpeg" (change)="uploadContentImages($event)"
                 multiple>
-            <button *ngIf="contentImages.value" (click)="removeContentImages(post.images); contentImages.value=''">Remove content images</button>
+            <button *ngIf="post.images?.length > 0" (click)="removeContentImages(post.images); contentImages.value=''">Remove content images</button>
         </div>
         <button [disabled]="uploadForm.invalid" (click)="uploadPost()">Upload</button>
     </form>
@@ -40,7 +40,7 @@
             <img [src]="'images/content/' + image.name" class="img-responsive" height="200" style="opacity: 1; display: inline;" />
             <select [(ngModel)]="image.width" required>
                 <option value="full">Full width</option>
-                <option value="half">Half width</option>
+                <option value="half" selected>Half width</option>
             </select>
             <button (click)="removeContentImages([image])">Remove</button>
         </div>
