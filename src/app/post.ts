@@ -6,6 +6,10 @@ export class Post {
     cover: string;
     images: Array<ContentImage>;
     timestamp: Date;
+
+    constructor() {
+        this.images = new Array<ContentImage>();
+    }
 }
 
 export class ContentImage {

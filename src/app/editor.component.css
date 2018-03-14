@@ -9,3 +9,9 @@ button:disabled, button[disabled], input:disabled {
 .preview {
     max-width: 30%;
 }
+
+@media (max-width: 767px) {
+    input, label, textarea {
+        width: 100%;
+    }
+}

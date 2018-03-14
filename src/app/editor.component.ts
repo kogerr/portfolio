@@ -41,11 +41,6 @@ export class EditorComponent implements OnDestroy {
   };
 
   uploadContentImages = function (event): void {
-    if (this.post.images && this.post.images.length > 0) {
-      this.removeContentImages(this.post.images);
-    } else {
-      this.post.images = new Array<ContentImage>();
-    }
     let files = event.target.files;
     for (let i = 0; i < files.length; i++) {
       this.dataService.postImage('content', files[i]).subscribe(data => {
