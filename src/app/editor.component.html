@@ -1,4 +1,4 @@
-<div [hidden]="submitted">
+<div *ngIf="!submitted && post">
     <form #uploadForm="ngForm">
         <div class="col-sm-12 form-group">
             <label for="title" class="col-sm-2">Title</label>

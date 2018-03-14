@@ -1,5 +1,5 @@
-import { Component, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Post, ContentImage } from './post';
 import { DataService } from './data.service';
@@ -10,10 +10,22 @@ import { DataService } from './data.service';
   styleUrls: ['./editor.component.css']
 })
 
-export class EditorComponent implements OnDestroy {
-  constructor(private dataService: DataService, private router: Router) { }
-  post = new Post();
+export class EditorComponent implements OnDestroy, OnInit {
+  constructor(private dataService: DataService, private router: Router, private route: ActivatedRoute) { }
+  post: Post;
   submitted = false;
+
+  ngOnInit(): void {
+    this.route.params.subscribe(p => {
+      if (p.titleURL) {
+        this.dataService.getPost(p.titleURL).subscribe(data => {
+          this.post = data;
+        });
+      } else {
+        this.post = new Post();
+      }
+    });
+  }
 
   ngOnDestroy(): void {
     if (!this.submitted && this.post.cover) {
