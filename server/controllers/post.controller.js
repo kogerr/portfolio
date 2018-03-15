@@ -10,6 +10,16 @@ exports.savePost = function (req, res) {
     res.send(result); // maybe change in production
 };
 
+exports.updatePost = function (req, res) {
+    let result = postService.updatePost(req.body, req.params.titleURL);
+    if (result.errno) {
+        res.statusCode = 418;
+    } else {
+        res.statusCode = 200;
+    }
+    res.send(result); // maybe change in production
+};
+
 exports.getPosts = function (req, res) {
     let posts = postService.loadPosts(req.query.from, req.query.to);
     if (posts.errno) {

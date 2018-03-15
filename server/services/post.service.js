@@ -15,10 +15,32 @@ exports.savePost = function (data) {
     return savePostLocally(data, savedPosts);
 };
 
+exports.updatePost = function (data, titleURL) {
+    let savedPosts;
+    try {
+        savedPosts = JSON.parse(fs.readFileSync(localPostsFilePath));
+    } catch (err) {
+        return err;
+    }
+    dbService.savePost(data);
+    return updatePostLocally(data, savedPosts, titleURL);
+};
+
 savePostLocally = function (post, savedPosts) {
     let allPosts = [post].concat(savedPosts);
     try {
         fs.writeFileSync(localPostsFilePath, JSON.stringify(allPosts));
+    } catch (err) {
+        return err;
+    }
+    return { 'titleURL': post.titleURL };
+};
+
+updatePostLocally = function (post, savedPosts, titleURL) {
+    let postToUpdate = savedPosts.filter(p => p.titleURL == titleURL);
+    savedPosts.splice(savedPosts.indexOf(postToUpdate), 1, post);
+    try {
+        fs.writeFileSync(localPostsFilePath, JSON.stringify(savedPosts));
     } catch (err) {
         return err;
     }

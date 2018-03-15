@@ -32,6 +32,10 @@ export class DataService {
         return this.http.post(postsURL, post);
     };
 
+    updatePost = function (post: Post, titleURL: string): Observable<any> {
+        return this.http.patch(postsURL + titleURL, post);
+    };
+
     resizeImage = function (imageType, filename): Observable<ContentImage> {
         return this.http.patch(imagesURL + imageType + '/' + filename);
     };

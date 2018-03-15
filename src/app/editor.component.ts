@@ -14,15 +14,20 @@ export class EditorComponent implements OnDestroy, OnInit {
   constructor(private dataService: DataService, private router: Router, private route: ActivatedRoute) { }
   post: Post;
   submitted = false;
+  existingPost: boolean;
+  originalTitleURL: string;
 
   ngOnInit(): void {
     this.route.params.subscribe(p => {
       if (p.titleURL) {
         this.dataService.getPost(p.titleURL).subscribe(data => {
           this.post = data;
+          this.existingPost = true;
+          this.originalTitleURL = data.titleURL;
         });
       } else {
         this.post = new Post();
+        this.existingPost = false;
       }
     });
   }
@@ -79,8 +84,16 @@ export class EditorComponent implements OnDestroy, OnInit {
     this.countdownNavigate();
   };
 
+  updatePost = function (): void {
+    this.dataService.updatePost(this.post, this.originalTitleURL).subscribe(
+      data => { this.submitted = true; this.success = true; },
+      error => { this.submitted = true; this.error = error; }
+    );
+    this.countdownNavigate();
+  };
+
   countdownNavigate = function (): void {
-    this.remaining = 9;
+    this.remaining = 20;
     let redirect = window.setInterval(() => {
       this.remaining--;
       if (this.remaining <= 0) {
