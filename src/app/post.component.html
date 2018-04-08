@@ -1,50 +1,7 @@
 <div *ngIf="post">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="full-post-images">
-                <div class="responsive-image-auto" style="padding-bottom: 60%;">
-                    <img [src]="'images/cover/' + post.cover" class="img-responsive" width="3200" height="1920" style="opacity: 1; display: inline;"
-                    />
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row full-post">
-        <div class="col-sm-6 post-details">
-            <h1>{{post.title}}</h1>
-            <div class="hidden-xs">
-                <h3>Client</h3>
-                <p>{{post.client}}</p>
-            </div>
-        </div>
-        <!-- left column -->
-        <div class="col-sm-6 post-content">
-            <div class="project-content">
-                {{post.text}}
-            </div>
-            <div class="post-details visible-xs">
-                <h3>Client</h3>
-                <p>{{post.client}}</p>
-            </div>
-            <div class="share-buttons">
-                <span class="share-title">Share: </span>
-                <!-- Facebook -->
-                <a [href]="'http://www.facebook.com/sharer.php?u=http://localhost:3000/posts/' + post.titleURL" target="_blank">Facebook</a>,
-                <!-- Twitter -->
-                <a href="'http://twitter.com/share?url=http://localhost:3000/posts/' + post.titleURL + '&text=' + post.title" target="_blank">Tweet</a>,
-                <!-- LinkedIn -->
-                <a href="'http://www.linkedin.com/shareArticle?mini=true&url=http://localhost:3000/posts' + post.titleURL" target="_blank">LinkedIn</a>,
-                <!-- Email -->
-                <a href="mailto:?Subject=Annual Report &#038; Accounts 2016/17&Body=I%20saw%20this%20and%20thought%20of%20you!%20 http://www.blast.co.uk/post.titleURL">Email</a>
-            </div>
-        </div>
-    </div>
-    <div class="row full-post-images">
-        <div *ngFor="let image of post.images" [class.col-sm-12]="image.width == 'full'" [class.col-sm-6]="image.width == 'half'">
-            <div class="responsive-image-auto" style="padding-bottom: 60%;">
-                <img [src]="'images/content/' + image.name" class="img-responsive" width="3200" height="1920" style="opacity: 1; display: inline;"/>
-            </div>
-        </div>
-    </div>
+    <img [src]="'images/cover/' + post.cover" class="full"/>
+    <h1>{{post.title}}</h1>
+    <h3>{{post.client}}</h3>
+    <div id="text">{{post.text}}</div>
+    <img *ngFor="let image of post.images" [src]="'images/content/' + image.name" [class]="image.width"/>
 </div>

@@ -1,4 +1,3 @@
-<div class="row movable-items">
-    <post-preview *ngFor="let post of posts" [post]="post" (click)="redirect(post.titleURL)"
-    class="movable-item col-sm-6 visible"></post-preview>
+<div>
+    <post-preview *ngFor="let post of posts" [post]="post" (click)="redirect(post.titleURL)"></post-preview>
 </div>

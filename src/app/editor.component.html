@@ -1,51 +1,51 @@
 <div *ngIf="!submitted && post">
     <form #uploadForm="ngForm">
-        <div class="col-sm-12 form-group">
-            <label for="title" class="col-sm-2">Title</label>
-            <input name="title" id="title" type="text" [(ngModel)]="post.title" (input)="generateTitleURL()" class="col-sm-6 input-sm">
+        <div>
+            <label for="title">Title</label>
+            <input name="title" id="title" type="text" [(ngModel)]="post.title" (input)="generateTitleURL()">
         </div>
-        <div class="col-sm-12 form-group">
-            <label for="title" class="col-sm-2">Title URL</label>
-            <input #titleURL="ngModel" name="titleURL" id="titleURL" type="text" [(ngModel)]="post.titleURL" validateTitle required class="col-sm-6 input-sm">
-            <div *ngIf="!existingPost && titleURL.errors?.occupiedTitle" class="col-sm-12"> Title already in use </div>
+        <div>
+            <label for="title">Title URL</label>
+            <input #titleURL="ngModel" name="titleURL" id="titleURL" type="text" [(ngModel)]="post.titleURL" validateTitle required>
+            <div *ngIf="!existingPost && titleURL.errors?.occupiedTitle"> Title already in use </div>
         </div>
-        <div class="col-sm-12 form-group">
-            <label for="client" class="col-sm-2">Client</label>
-            <input name="client" id="client" type="text" [(ngModel)]="post.client" class="col-sm-6 input-sm">
+        <div>
+            <label for="client">Client</label>
+            <input name="client" id="client" type="text" [(ngModel)]="post.client">
         </div>
-        <div class="col-sm-12 form-group">
-            <label for="content" class="col-sm-2">Content</label>
-            <textarea rows="4" id="text" name="text" type="text" [(ngModel)]="post.text" class="col-sm-6 input-lg"></textarea>
+        <div>
+            <label for="content">Content</label>
+            <textarea rows="4" id="text" name="text" type="text" [(ngModel)]="post.text"></textarea>
         </div>
-        <div class="col-sm-12 form-group">
-            <label for="cover-image" class="col-sm-2">Cover Image</label>
+        <div>
+            <label for="cover-image">Cover Image</label>
             <input #cover id="cover-image" type="file" accept=".png, .jpg, .jpeg" (change)="uploadCover($event)">
             <button *ngIf="post.cover" (click)="removeCover(); cover.value=''">Remove cover image</button>
         </div>
-        <div class="col-sm-12 form-group">
-            <label for="content-images" class="col-sm-2">Content Images</label>
+        <div>
+            <label for="content-images">Content Images</label>
             <input #contentImages name="content-images" type="file" accept=".png, .jpg, .jpeg" (change)="uploadContentImages($event)"
                 multiple>
             <button *ngIf="post.images?.length > 0" (click)="removeContentImages(post.images); contentImages.value=''">Remove content images</button>
         </div>
-        <div *ngIf="!existingPost" class="col-sm-8 form-group">
-            <button [disabled]="uploadForm.invalid" (click)="uploadPost()" class="col-sm-2">Upload</button>
+        <div *ngIf="!existingPost">
+            <button [disabled]="uploadForm.invalid" (click)="uploadPost()">Upload</button>
         </div>
-        <div *ngIf="existingPost" class="col-sm-8 form-group">
-            <button (click)="updatePost()" class="col-sm-2">Update</button>
+        <div *ngIf="existingPost">
+            <button (click)="updatePost()">Update</button>
         </div>
     </form>
-    <div class="col-sm-12">
-        <div *ngIf="post.cover" class="col-md-3">
-            <img [src]="'images/cover/' + post.cover" class="img-responsive form-group" height="200" style="opacity: 1; display: inline;" />
-            <div class="form-group">
+    <div>
+        <div *ngIf="post.cover">
+            <img [src]="'images/cover/' + post.cover" height="200" />
+            <div>
                 <span>Cover Image</span>
                 <button (click)="removeCover()">Remove</button>
             </div>
         </div>
-        <div class="col-md-3" *ngFor="let image of post.images">
-            <img [src]="'images/content/' + image.name" class="img-responsive form-group" height="200" style="opacity: 1; display: inline;" />
-            <div class="form-group">
+        <div *ngFor="let image of post.images">
+            <img [src]="'images/content/' + image.name" height="200" />
+            <div>
                 <select [(ngModel)]="image.width" required>
                     <option value="full">Full width</option>
                     <option value="half" selected>Half width</option>

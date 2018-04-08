@@ -1,0 +1,14 @@
+.half {
+    width: 50%;
+}
+
+.full {
+    width: 100%;
+}
+
+#text {
+    background-color: white;
+    border: 1px solid lightgrey;
+    padding: 1em;
+    margin-bottom: 1em;
+}

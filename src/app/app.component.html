@@ -1,46 +1,26 @@
-<header class="fix-navigation">
+<header>
 
-    <div class="container-fluid">
-        <div class="row">
-            <nav class="col-xs-12">
-                <div class="header-navigation">
-
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-target=".header-navigation">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </button>
-
-                        <a href="http://www.blast.co.uk/">
-                            <img src="http://www.blast.co.uk/wp-content/themes/header-bootstrap/img/blast-logo.svg" alt="" class="brand" height="40">
-                        </a>
-                    </div>
-
-                    <ul class="main-nav">
-                        <li>
-                            <a routerLink="/work" routerLinkActive="active" onclick="$(' .main-nav').removeClass('open');$('.navbar-toggle').removeClass('open');">Work</a>
-                        </li>
-                        <li>
-                            <a routerLink="/editor" routerLinkActive="active" onclick="$(' .main-nav').removeClass('open');$('.navbar-toggle').removeClass('open');">Editor</a>
-                        </li>
-                        <li>
-                            <a routerLink="/not-found" routerLinkActive="active" onclick="$(' .main-nav').removeClass('open');$('.navbar-toggle').removeClass('open');">About</a>
-                        </li>
-                        <li>
-                            <a routerLink="/not-found" routerLinkActive="active" onclick="$(' .main-nav').removeClass('open');$('.navbar-toggle').removeClass('open');">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
+    <div>
+        <a routerLink="/">
+            <img src="http://www.blast.co.uk/wp-content/themes/header-bootstrap/img/blast-logo.svg" alt="" height="40">
+        </a>
     </div>
+
+    <ul>
+        <li>
+            <a routerLink="/work" routerLinkActive="active">Work</a>
+        </li>
+        <li>
+            <a routerLink="/editor" routerLinkActive="active">Editor</a>
+        </li>
+        <li>
+            <a routerLink="/not-found" routerLinkActive="active">About</a>
+        </li>
+        <li>
+            <a routerLink="/not-found" routerLinkActive="active">Contact</a>
+        </li>
+    </ul>
 
 </header>
-<div id="wrapper" style="opacity: 1;">
-    <div class="page-offset" id="page-offset"></div>
-    <div class="container-fluid" id="direction-waypoint">
-        <router-outlet></router-outlet>
-    </div>
-</div>
+
+<router-outlet></router-outlet>

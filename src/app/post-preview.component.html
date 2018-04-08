@@ -1,11 +1,9 @@
-<div *ngIf="post" class="post-item half-page" (mouseenter)="post.opacity = true" (mouseleave)="post.opacity = false">
-    <div class="img-holder responsive-image-10by6">
-        <div id="tint" class="img-overlay white-tint" [style.opacity]="post.opacity ? 1 : 0" style="display: block;">
-            <div class="inner-pad">
-                <span class="caption">{{post.client}}</span>
-                <h2>{{post.title}}</h2>
-            </div>
+<div *ngIf="post">
+    <div id="tint">
+        <div>
+            <span>{{post.client}}</span>
+            <h2>{{post.title}}</h2>
         </div>
-        <img [src]="'images/cover/' + post.cover" class="img-responsive" height="200" style="opacity: 1; display: inline;" />
     </div>
+    <img [src]="'images/cover/' + post.cover" height="200" />
 </div>
