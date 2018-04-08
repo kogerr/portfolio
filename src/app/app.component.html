@@ -1,25 +1,21 @@
 <header>
 
-    <div>
-        <a routerLink="/">
-            <img src="http://www.blast.co.uk/wp-content/themes/header-bootstrap/img/blast-logo.svg" alt="" height="40">
-        </a>
-    </div>
+    <a id="logo-wrap" routerLink="/">
+        <img src="assets/logo.svg" alt="" height="70">
+    </a>
 
-    <ul>
-        <li>
+    <div id="menu">
+        <div id="items">
             <a routerLink="/work" routerLinkActive="active">Work</a>
-        </li>
-        <li>
+            <span>|</span>
             <a routerLink="/editor" routerLinkActive="active">Editor</a>
-        </li>
-        <li>
+            <span>|</span>
             <a routerLink="/not-found" routerLinkActive="active">About</a>
-        </li>
-        <li>
+            <span>|</span>
             <a routerLink="/not-found" routerLinkActive="active">Contact</a>
-        </li>
-    </ul>
+        </div>
+        <div id="line"></div>
+    </div>
 
 </header>
 

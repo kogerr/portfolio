@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0;
+    font-family: San Francisco Text, Helvetica, sans-serif;
+    background: linear-gradient(  #F0F0F0 430px, white 430px);
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+}
+
+@font-face {
+    font-family: San Francisco Text;
+    src: url("assets/SanFranciscoText-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: San Francisco Text;
+    font-weight: bold;
+    src: url("assets/SanFranciscoText-Bold.otf") format("opentype");
+}

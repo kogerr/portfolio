@@ -15,3 +15,7 @@ button:disabled, button[disabled], input:disabled {
         width: 100%;
     }
 }
+
+:host {
+    background: linear-gradient( #F0F0F0, white);
+}
