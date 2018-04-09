@@ -1,7 +1,7 @@
-<header>
+<header [class]="fullHeader ? 'full-header' : 'short-header'" (click)="fullHeader = !fullHeader">
 
     <a id="logo-wrap" routerLink="/">
-        <img src="assets/logo.svg" alt="">
+        <img [src]="fullHeader ? 'assets/logo.svg' : 'assets/logo_small.svg'" alt="">
     </a>
 
     <div class="menu">
@@ -14,20 +14,23 @@
             <span>|</span>
             <a routerLink="/not-found" routerLinkActive="active">Contact</a>
         </div>
-        <div id="line"></div>
+        <div [style.opacity]="fullHeader ? 1 : 0" id="line"></div>
     </div>
 
 </header>
+<div class="header-offset" [class]="fullHeader ? 'full-header' : 'short-header'"></div>
 
 <router-outlet></router-outlet>
 
 <footer>
     <div class="footer-content">
-        <a href="mailto:info@botondvoros.com" class="active">info@botondvoros.com</a>
-        <div class="items">
-            <a routerLink="#" routerLinkActive="active">Behance</a>
+        <div></div>
+        <img src="assets/arrow_up.svg" class="arrow" (click)="scrollUp()"/>
+        <a href="mailto:info@botondvoros.com" class="footer-mail">info@botondvoros.com</a>
+        <div class="footer-items">
+            <a href="https://www.behance.net/botondvoros" target="_blank">Behance</a>
             <span>|</span>
-            <a routerLink="#" routerLinkActive="active">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/botond-v%C3%B6r%C3%B6s-b9b10548/" target="_blank">LinkedIn</a>
         </div>
     </div>
 </footer>

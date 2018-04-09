@@ -6,4 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent { }
+export class AppComponent {
+  fullHeader = true;
+
+  scrollUp = function () {
+    window.scrollTo(0, 0);
+  };
+}

@@ -1,5 +1,5 @@
 #cover {
-    height: 33vw;
+    height: 33.33vw;
     margin: 0 2vw 2vw 2vw;
     background-color: #232323;
     box-sizing: border-box;
@@ -9,12 +9,12 @@
     margin: 2.1vw 2.1vw;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 33vw;
+    grid-auto-rows: 33.33vw;
 }
 
 @media only screen and (max-width: 960px) {
     #works {
         grid-template-columns: 1fr;
-        grid-auto-rows: 66vw;
+        grid-auto-rows: 66.66vw;
     }
 }
