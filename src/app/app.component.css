@@ -1,21 +1,22 @@
 header {
-    height: 120px;
+    height: 6.25vw;
     display: grid;
     grid-template-columns: auto auto;
     margin: 0;
     background-color: #F0F0F0;
-    padding: 0 40px;
+    padding: 0 2.1vw;
 }
 
 img {
-    margin: 25px 0;
+    margin: 1.3vw 0;
+    height: 3.6vw;
 }
 
 ul {
     float: right;
 }
 
-#menu, #menu a:not(.active){
+.menu, .menu a:not(.active){
     color: #969696;
     font-size: 22px;
 }
@@ -25,19 +26,19 @@ a.active {
     color: #232323;
 }
 
-#menu span, #menu a {
-    margin: 0 0 0 25px;
+.menu span, .menu a {
+    margin: 0 0 0 1.3vw;
 }
 
-#menu {
+.menu {
     margin-left: auto;
     margin-right: 0;
     display: grid;
-    grid-template-rows: 30px 20px 40px 30px;
+    grid-template-rows: 3fr 6fr 3fr;
 }
 
-#items {
-    padding-right: 40px;
+.items {
+    padding-right: 2.1vw;
     grid-row-start: 2;
     grid-row-end: 3;
 }
@@ -45,7 +46,26 @@ a.active {
 #line{
     height: 3px;
     width: 560px;
-    margin: auto -40px 0 auto;
+    margin: 0 -40px 0 0;
     background-color: #D9D9D9;
     grid-row: 3;
+}
+
+footer {
+    padding: 0 2.1vw;
+    display: grid;
+    grid-template-rows: 22.5% 22.5% auto;
+    background-color: #F0F0F0;
+    width: 100%;
+    height: 9vw;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-row: 2;
+}
+
+.footer-content .items {
+    grid-column: 3;
 }

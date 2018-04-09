@@ -12,9 +12,9 @@ img {
 .preivew-text {
     position: absolute;
     height: 100%; width: 100%;
-    padding: 0 40px;
+    padding: 0 2.1vw;
     display: grid;
-    grid-template-rows: auto 7.5% 15%;
+    grid-template-rows: auto 6.8% 16.2%;
 }
 
 h3 {
@@ -22,18 +22,18 @@ h3 {
     font-size: 30px;
     color: white;
     font-weight: normal;
-    grid-row: 2;
+    grid-row: 3;
 }
 
 h2 {
     margin: 0;
-    font-size: 30px;
+    font-size: 33px;
     grid-row: 3;
 }
 
 .preivew-text .subtitle {
     color: #929292;
-    grid-row: 3;
+    grid-row: 2;
 }
 
 .subtitle, .client {
@@ -49,11 +49,11 @@ h2 {
     top: 0; left:0;
     background: #FFF000;
     box-sizing: border-box;
-    padding: 0 40px;
+    padding: 0 2.1vw;
     -webkit-transition: opacity 0.5s; /* Safari */
     transition: opacity 0.5s;
     display: grid;
-    grid-template-rows: 15.6% 6.2% 16.4% auto 7.5% 15%;
+    grid-template-rows: 14.8% 7% 16% auto 6.8% 16.2%;
 }
 
 .overlay .subtitle {

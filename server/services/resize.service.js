@@ -1,7 +1,7 @@
 let Jimp = require("jimp");
 let storageService = require('../services/storage.service');
 const directory = 'dist/images/';
-const proportions = {w: 5, h: 3};
+const proportions = {w: 10, h: 7};
 
 exports.crop = function (req, res) {
     let filePath = directory + req.params.field + '/' + req.params.filename;

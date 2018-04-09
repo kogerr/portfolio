@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: San Francisco Text, Helvetica, sans-serif;
-    background: linear-gradient(  #F0F0F0 430px, white 430px);
+    background: linear-gradient(  #F0F0F0 22.5vw, white 22.5vw);
     min-height: 100vh;
 }
 

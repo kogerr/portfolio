@@ -1,11 +1,11 @@
 <header>
 
     <a id="logo-wrap" routerLink="/">
-        <img src="assets/logo.svg" alt="" height="70">
+        <img src="assets/logo.svg" alt="">
     </a>
 
-    <div id="menu">
-        <div id="items">
+    <div class="menu">
+        <div class="items">
             <a routerLink="/work" routerLinkActive="active">Work</a>
             <span>|</span>
             <a routerLink="/editor" routerLinkActive="active">Editor</a>
@@ -20,3 +20,14 @@
 </header>
 
 <router-outlet></router-outlet>
+
+<footer>
+    <div class="footer-content">
+        <a href="mailto:info@botondvoros.com" class="active">info@botondvoros.com</a>
+        <div class="items">
+            <a routerLink="#" routerLinkActive="active">Behance</a>
+            <span>|</span>
+            <a routerLink="#" routerLinkActive="active">LinkedIn</a>
+        </div>
+    </div>
+</footer>

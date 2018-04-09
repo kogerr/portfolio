@@ -27,7 +27,7 @@ exports.updatePost = function (data, titleURL) {
 };
 
 savePostLocally = function (post, savedPosts) {
-    let allPosts = [post].concat(savedPosts);
+    let allPosts = [post, ...savedPosts];
     try {
         fs.writeFileSync(localPostsFilePath, JSON.stringify(allPosts));
     } catch (err) {
@@ -63,5 +63,5 @@ exports.loadPosts = function (from, to) {
 };
 
 exports.loadPostByTitleURL = function (titleURL) {
-    return exports.loadPosts().filter(post => post.titleURL == titleURL)[0];
+    return exports.loadPosts().find(post => post.titleURL == titleURL);
 };
