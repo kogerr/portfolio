@@ -1,6 +1,8 @@
 export class Post {
     title: string;
     titleURL: string;
+    subtitle: string;
+    year: number;
     client: string;
     text: string;
     cover: string;
