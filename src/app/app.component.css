@@ -100,25 +100,31 @@ a.active {
     transition: all 0.5s;
     opacity: 1;
     display: grid;
-    grid-template-rows: 1fr 2fr 3fr;
-    grid-template-columns: 1fr 10fr 1fr;
+    grid-template-rows: 16.6% auto 45%;
+    grid-template-columns: 8.2% auto 12.34%;
 }
 
 .contact-header-hide {
     height: 0;
 }
 
-.contact-header div {
-    transition: opacity, 0.5s;
+.contact-header-hide > .contact-header-content > a, .contact-header-hide > .contact-header-content > span {
+    height: 0;
+    opacity: 0;
 }
+
+.contact-header-content > span, .contact-header-content > a {
+    transition: opacity, 0.8s;
+    transition: height, 0.5s;
+}
+
 
 .contact-header-content {
     grid-column: 2;
     grid-row: 2;
     display: grid;
-    padding: 3.125vw 8vw 8vw 8vw;
-    grid-template-columns: 6fr 6fr 1fr;
-    grid-template-rows: 2fr 1fr 1fr;
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: 40% 1fr 1fr;
 }
 
 .content-background {

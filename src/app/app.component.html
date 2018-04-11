@@ -1,12 +1,10 @@
 <div class="fix-holder">
-    <div class="contact-header" [class.contact-header-hide]="!contactInfo" (transitionstart)="fullHeader = !fullHeader">
-        <div class="contact-header-content" [style.opacity]="contactInfo ? 1 : 0">
+    <div class="contact-header" [class.contact-header-hide]="!contactInfo">
+        <div id="content" class="contact-header-content">
             <span>For new work inquiries, please contact:</span>
-            <span></span>
             <span (click)="switchContactHeader()">X</span>
             <a href="mailto:info@botondvoros.com" class="footer-mail">info@botondvoros.com</a>
             <a href="https://www.behance.net/botondvoros" target="_blank">Behance</a>
-            <span></span>
             <span>+36 70 228 5187</span>
             <a href="https://www.linkedin.com/in/botond-v%C3%B6r%C3%B6s-b9b10548/" target="_blank">LinkedIn</a>
         </div>
