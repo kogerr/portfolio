@@ -11,6 +11,8 @@ import { PageNotFoundComponent } from './not-found.component';
 import { PostPreviewComponent } from './post-preview.component';
 import { DataService } from './data.service';
 import { TitleValidatorDirective } from './title.validator';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { TitleValidatorDirective } from './title.validator';
     WorkComponent,
     EditorComponent,
     PostPreviewComponent,
-    TitleValidatorDirective],
+    TitleValidatorDirective,
+    HeaderComponent,
+    FooterComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [DataService],
   bootstrap: [AppComponent]

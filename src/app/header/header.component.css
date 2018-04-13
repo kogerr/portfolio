@@ -1,0 +1,133 @@
+.fix-holder {
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+}
+
+header {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin: 0;
+    background-color: #F0F0F0;
+    box-sizing: border-box;
+    width: 100%;
+    /*position: fixed;*/
+    -webkit-transition: all 0.5s; /* Safari */
+    transition: all 0.5s;
+}
+
+header img {
+    -webkit-transition: all 0.5s; /* Safari */
+    transition: all 0.5s;
+}
+
+#logo-wrap {
+    grid-row-start: 1;
+    grid-row-end: 4;
+}
+
+.full-header {
+    padding: 0 2.1vw;
+    grid-template-rows: 22.5% 50% auto;
+}
+
+.short-header {
+    padding: 0 2.1vw 0 0;
+    height: 80px;
+    grid-template-rows: 35% auto;
+}
+
+.full-header, .header-offset, .full-header img {
+    height: 120px;
+}
+
+.header-offset-large {
+    height: 480px;
+}
+
+.short-header img {
+    margin: 0;
+    /*width: 4.16vw;*/
+    height: 80px;
+}
+
+.full-header img {
+    margin: 25px 0 auto 0;
+    /* height: 3.65vw; */
+    height: 70px;
+}
+
+a.active {
+    font-weight: bold;
+    color: #232323;
+}
+
+.items {
+    margin-left: auto;
+    margin-right: 0;
+    padding-right: 2.1vw;
+    grid-row: 2;
+    grid-column: 2;
+}
+
+.items, .items a:not(.active), .footer-items a,  .footer-items span{
+    color: #969696;
+    font-size: 24px;
+}
+
+.items span, .items a {
+    margin: 0 0 0 1.3vw;
+}
+
+.line {
+    height: 2px;
+    width: 450px;
+    margin: 0 -2.1vw 0 auto;
+    background-color: #D9D9D9;
+    grid-row: 3;
+    -webkit-transition: width 0.5s; /* Safari */
+    transition: width 0.5s;
+    grid-column: 2;
+}
+
+.line-hide {
+    width: 0;
+}
+
+.contact-header {
+    background: #FFF000;
+    height: 360px;
+    transition: all 0.5s;
+    opacity: 1;
+    display: grid;
+    grid-template-rows: 16.6% auto 45%;
+    grid-template-columns: 8.2% auto calc(100% - 155vh);
+}
+
+.contact-header-hide {
+    height: 0;
+}
+
+.contact-header-hide > .contact-header-content > a, .contact-header-hide > .contact-header-content > span, .contact-header-hide > .contact-header-content > img {
+    height: 0;
+    opacity: 0;
+}
+
+.contact-header-content > span, .contact-header-content > a, .contact-header-content > img {
+    transition: opacity, 0.8s;
+    transition: height, 0.5s;
+}
+
+
+.contact-header-content {
+    grid-column: 2;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: 40% 1fr 1fr;
+}
+
+.closingX {
+    width: 25px;
+    margin: auto auto auto 0;
+}

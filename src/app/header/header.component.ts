@@ -1,14 +1,14 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
-// const breakPoint = 0.182;
+const breakPoint = 0.182;
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css']
 })
-export class AppComponent {
-  /*fullHeader = true;
+export class HeaderComponent {
+  fullHeader = true;
   contactInfo = false;
   ongoingAnimation = false;
 
@@ -36,5 +36,5 @@ export class AppComponent {
     this.scrollLock();
     this.ongoingAnimation = true;
     setTimeout(() => this.ongoingAnimation = false, 1000);
-  };*/
+  };
 }

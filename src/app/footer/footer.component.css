@@ -1,0 +1,36 @@
+footer {
+    padding: 0 2.1vw;
+    display: grid;
+    grid-template-rows: 22.5% 22.5% auto;
+    background-color: #F0F0F0;
+    height: 180px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2.1% 5.7% auto auto;
+    grid-row: 2;
+    font-size: 24pt;
+}
+
+.footer-items {
+    margin: auto 2vw auto auto;
+}
+
+.footer-items a, .footer-items span {
+    margin: auto 0 auto 1.4vw;
+    color: #969696;
+    font-size: 24px;
+}
+
+.footer-mail {
+    margin: auto auto auto 0;
+    font-size: 24px;
+    font-weight: normal;
+    color: #232323;
+}
+
+.arrow {
+    width: 25px;
+    margin: auto auto auto 0;
+}

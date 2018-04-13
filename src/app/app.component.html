@@ -1,47 +1,5 @@
-<div class="fix-holder">
-    <div class="contact-header" [class.contact-header-hide]="!contactInfo">
-        <div id="content" class="contact-header-content">
-            <span>For new work inquiries, please contact:</span>
-            <span (click)="switchContactHeader()">X</span>
-            <a href="mailto:info@botondvoros.com" class="footer-mail">info@botondvoros.com</a>
-            <a href="https://www.behance.net/botondvoros" target="_blank">Behance</a>
-            <span>+36 70 228 5187</span>
-            <a href="https://www.linkedin.com/in/botond-v%C3%B6r%C3%B6s-b9b10548/" target="_blank">LinkedIn</a>
-        </div>
-    </div>
-    <header [class]="fullHeader ? 'full-header' : 'short-header'">
-
-        <a id="logo-wrap" routerLink="/">
-            <img [src]="fullHeader ? 'assets/logo.svg' : 'assets/logo_small.svg'" alt="">
-        </a>
-
-        <div class="items">
-            <a routerLink="/work" routerLinkActive="active">Work</a>
-            <span>|</span>
-            <a routerLink="/editor" routerLinkActive="active">Editor</a>
-            <span>|</span>
-            <a routerLink="/not-found" routerLinkActive="active">About</a>
-            <span>|</span>
-            <span (click)="switchContactHeader()">Contact</span>
-        </div>
-        <div [class.line-hide]="!fullHeader" class="line"></div>
-
-    </header>
-</div>
-<div class="header-offset"></div>
-<div class="contact-header" [class.contact-header-hide]="!contactInfo"></div>
+<app-header></app-header>
 <div class="content-background">
     <router-outlet></router-outlet>
 </div>
-<footer>
-    <div class="footer-content">
-        <div></div>
-        <img src="assets/arrow_up.svg" class="arrow" (click)="scrollUp()" />
-        <a href="mailto:info@botondvoros.com" class="footer-mail">info@botondvoros.com</a>
-        <div class="footer-items">
-            <a href="https://www.behance.net/botondvoros" target="_blank">Behance</a>
-            <span>|</span>
-            <a href="https://www.linkedin.com/in/botond-v%C3%B6r%C3%B6s-b9b10548/" target="_blank">LinkedIn</a>
-        </div>
-    </div>
-</footer>
+<app-footer></app-footer>
