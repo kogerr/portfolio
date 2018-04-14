@@ -20,10 +20,6 @@ export class HeaderComponent {
     }
   };
 
-  scrollUp = function (): void {
-    window.scrollTo(0, 0);
-  };
-
   scrollLock = function (): void {
     let currentY = window.scrollY;
     let stay = () => window.scrollTo(0, currentY);

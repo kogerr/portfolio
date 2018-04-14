@@ -6,5 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
-
+  scrollUp = function (): void {
+    window.scrollTo(0, 0);
+  };
 }
