@@ -1,13 +1,18 @@
 <div class="fix-holder">
     <div class="contact-header" [class.contact-header-hide]="!contactInfo">
         <div id="content" class="contact-header-content">
-            <span>For new work inquiries, please contact:</span>
-            <img src="assets/arrow_up.svg" class="closingX" (click)="switchContactHeader()" />
-            <a href="mailto:info@botondvoros.com" class="footer-mail">info@botondvoros.com</a>
-            <a href="https://www.behance.net/botondvoros" target="_blank">Behance</a>
-            <span>+36 70 228 5187</span>
-            <a href="https://www.linkedin.com/in/botond-v%C3%B6r%C3%B6s-b9b10548/" target="_blank">LinkedIn</a>
+            <span style="text-decoration: underline">For new work inquiries, please contact:</span>
+            <span></span>
+            <div>
+                <a href="mailto:info@botondvoros.com" class="header-mail">info@botondvoros.com</a>
+                <span>+36 70 228 5187</span>
+            </div>
+            <div>
+                <a href="https://www.behance.net/botondvoros" target="_blank" style="text-decoration: underline">Behance</a>
+                <a href="https://www.linkedin.com/in/botond-v%C3%B6r%C3%B6s-b9b10548/" target="_blank" style="text-decoration: underline">LinkedIn</a>
+            </div>
         </div>
+        <img src="assets/x.svg" class="closingX" (click)="switchContactHeader()" />
     </div>
     <header [class]="fullHeader ? 'full-header' : 'short-header'">
 
@@ -28,5 +33,5 @@
 
     </header>
 </div>
-<div class="header-offset"></div>
+<div [class]="fullHeader ? 'full-header' : 'short-header'"></div>
 <div class="contact-header" [class.contact-header-hide]="!contactInfo"></div>

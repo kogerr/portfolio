@@ -100,22 +100,31 @@ a.active {
     transition: all 0.5s;
     opacity: 1;
     display: grid;
-    grid-template-rows: 16.6% auto 45%;
-    grid-template-columns: 8.2% auto calc(100% - 155vh);
+    grid-template-rows: 5fr 40% 13fr;
+    grid-template-columns: 8.33% auto 14.375%;
 }
 
 .contact-header-hide {
     height: 0;
 }
 
-.contact-header-hide > .contact-header-content > a, .contact-header-hide > .contact-header-content > span, .contact-header-hide > .contact-header-content > img {
+.contact-header-hide > .contact-header-content > div, .contact-header-hide > .contact-header-content > span, .contact-header-hide > img {
     height: 0;
     opacity: 0;
 }
 
-.contact-header-content > span, .contact-header-content > a, .contact-header-content > img {
+.contact-header-content > span, .contact-header-content > a, .contact-header > img, .contact-header-content > div {
     transition: opacity, 0.8s;
     transition: height, 0.5s;
+}
+
+.contact-header-content > div {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+a {
+    color: #191919;
 }
 
 
@@ -123,11 +132,25 @@ a.active {
     grid-column: 2;
     grid-row: 2;
     display: grid;
-    grid-template-columns: 3fr 2fr;
-    grid-template-rows: 40% 1fr 1fr;
+    grid-template-columns: 62% 38%;
+    grid-template-rows: 1fr 1fr;
 }
 
 .closingX {
-    width: 25px;
-    margin: auto auto auto 0;
+    width: 36px;
+    grid-column: 3;
+    grid-row: 2;
+    transition: opacity, 0.8s;
+    transition: height, 0.5s;
+    cursor: pointer;
+}
+
+.header-mail {
+    text-decoration: none;
+}
+
+@media (max-width: 600px) {
+    .contact-header-content {
+        grid-template-columns: auto;
+    }
 }
