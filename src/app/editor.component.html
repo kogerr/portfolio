@@ -14,6 +14,14 @@
             <input name="client" id="client" type="text" [(ngModel)]="post.client">
         </div>
         <div>
+            <label for="year">Year</label>
+            <input name="year" id="year" type="number" [(ngModel)]="post.year">
+        </div>
+        <div>
+            <label for="type">Type</label>
+            <input name="type" id="type" type="text" [(ngModel)]="post.type">
+        </div>
+        <div>
             <label for="content">Content</label>
             <textarea rows="4" id="text" name="text" type="text" [(ngModel)]="post.text"></textarea>
         </div>

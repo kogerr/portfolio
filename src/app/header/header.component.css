@@ -11,13 +11,12 @@ header {
     background-color: #F0F0F0;
     box-sizing: border-box;
     width: 100%;
-    /*position: fixed;*/
-    -webkit-transition: all 0.5s; /* Safari */
+    -webkit-transition: all 0.5s;
     transition: all 0.5s;
 }
 
 header img {
-    -webkit-transition: all 0.5s; /* Safari */
+    -webkit-transition: all 0.5s;
     transition: all 0.5s;
 }
 
@@ -47,13 +46,11 @@ header img {
 
 .short-header img {
     margin: 0;
-    /*width: 4.16vw;*/
     height: 80px;
 }
 
 .full-header img {
     margin: 25px 0 auto 0;
-    /* height: 3.65vw; */
     height: 70px;
 }
 
@@ -85,7 +82,7 @@ a.active {
     margin: 0 -2.1vw 0 auto;
     background-color: #D9D9D9;
     grid-row: 3;
-    -webkit-transition: width 0.5s; /* Safari */
+    -webkit-transition: width 0.5s;
     transition: width 0.5s;
     grid-column: 2;
 }
@@ -97,10 +94,11 @@ a.active {
 .contact-header {
     background: #FFF000;
     height: 360px;
+    -webkit-transition: all 0.5s;
     transition: all 0.5s;
     opacity: 1;
     display: grid;
-    grid-template-rows: 5fr 40% 13fr;
+    grid-template-rows: 15.3% 40% auto;
     grid-template-columns: 8.33% auto 14.375%;
 }
 
@@ -108,7 +106,7 @@ a.active {
     height: 0;
 }
 
-.contact-header-hide > .contact-header-content > div, .contact-header-hide > .contact-header-content > span, .contact-header-hide > img {
+.contact-header-hide > .contact-header-content > div, .contact-header-hide > .contact-header-content > span, .contact-header-hide > img, .contact-header-hide > .contact-header-content > div > a {
     height: 0;
     opacity: 0;
 }
@@ -116,6 +114,8 @@ a.active {
 .contact-header-content > span, .contact-header-content > a, .contact-header > img, .contact-header-content > div {
     transition: opacity, 0.8s;
     transition: height, 0.5s;
+    -webkit-transition: opacity, 0.8s;
+    -webkit-transition: height, 0.5s;
 }
 
 .contact-header-content > div {
@@ -134,6 +134,7 @@ a {
     display: grid;
     grid-template-columns: 62% 38%;
     grid-template-rows: 1fr 1fr;
+    font-size: 20px;
 }
 
 .closingX {
@@ -142,6 +143,8 @@ a {
     grid-row: 2;
     transition: opacity, 0.8s;
     transition: height, 0.5s;
+    -webkit-transition: opacity, 0.8s;
+    -webkit-transition: height, 0.5s;
     cursor: pointer;
 }
 
@@ -150,7 +153,11 @@ a {
 }
 
 @media (max-width: 600px) {
+    .contact-header {
+        grid-template-rows: 1fr 4fr 1fr;
+    }
     .contact-header-content {
         grid-template-columns: auto;
+        grid-template-rows: 1fr 0.5fr 2fr 2fr;
     }
 }

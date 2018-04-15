@@ -21,7 +21,7 @@ exports.crop = function (req, res) {
 };
 
 calculateSize = function (width, height) {
-    if (width / proportions.w * proportions.h > height) {
+    if (width / proportions.w * proportions.h < height) {
         return { width: width, height: width / proportions.w * proportions.h };
     } else {
         return { width: height / proportions.h * proportions.w, height: height };

@@ -33,4 +33,5 @@ footer {
 .arrow {
     width: 25px;
     margin: auto auto auto 0;
+    cursor: pointer;
 }

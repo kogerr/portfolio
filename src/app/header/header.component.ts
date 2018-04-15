@@ -14,7 +14,9 @@ export class HeaderComponent {
 
   @HostListener('window:scroll', ['$event'])
   onScroll = function ($event: Event): void {
-    this.fullHeader = window.scrollY < window.innerWidth * breakPoint && window.innerWidth > 560;
+    let breakPointY = window.innerWidth * breakPoint;
+    if (!this.fullHeader) { breakPointY -= 40; }
+    this.fullHeader = window.scrollY < breakPointY && window.innerWidth > 560;
     if (!this.ongoingAnimation && this.contactInfo) {
       this.switchContactHeader();
     }
