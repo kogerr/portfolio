@@ -13,6 +13,7 @@ import { DataService } from './data.service';
 import { TitleValidatorDirective } from './title.validator';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FooterComponent } from './footer/footer.component';
     PostPreviewComponent,
     TitleValidatorDirective,
     HeaderComponent,
-    FooterComponent],
+    FooterComponent,
+    CarouselComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [DataService],
   bootstrap: [AppComponent]
