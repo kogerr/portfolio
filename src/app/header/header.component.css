@@ -28,6 +28,7 @@ header img {
 .full-header {
     padding: 0 2.1vw;
     grid-template-rows: 22.5% 50% auto;
+    background-color: #f0f0f0;
 }
 
 .short-header {

@@ -14,6 +14,7 @@ import { TitleValidatorDirective } from './title.validator';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CarouselComponent } from './carousel/carousel.component';
+import { CarouselSlideComponent } from './carousel-slide/carousel-slide.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CarouselComponent } from './carousel/carousel.component';
     TitleValidatorDirective,
     HeaderComponent,
     FooterComponent,
-    CarouselComponent],
+    CarouselComponent,
+    CarouselSlideComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [DataService],
   bootstrap: [AppComponent]

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Post } from './post';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-work',
@@ -13,11 +14,10 @@ export class WorkComponent implements OnInit {
   posts: Post[];
 
   ngOnInit(): void {
-    const postsURL = 'api/posts';
-    this.http.get<Post[]>(postsURL).subscribe((data) => { this.posts = data; });
+    this.dataService.loadPosts().subscribe((data) => { this.posts = data; });
   }
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private dataService: DataService, private router: Router) { }
 
   redirect = function (titleURL) {
     this.router.navigate(['/work/' + titleURL]);

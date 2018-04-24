@@ -1,4 +1,6 @@
-<div id="cover"></div>
+<div id="cover">
+    <app-carousel></app-carousel>
+</div>
 <div id="works">
     <post-preview *ngFor="let post of posts" [post]="post" (click)="redirect(post.titleURL)"></post-preview>
 </div>

@@ -1,32 +1,27 @@
 export class CircularList<T> {
     constructor(collection?: Array<T>) {
-        if (collection) {
-            this.items = collection;
-        } else {
-            this.items = new Array<T>();
-        }
+        this.items = collection || new Array<T>();
     }
 
     items: Array<T>;
-    index = 0;
+    index = -1;
 
     next = function (): T {
         if (this.index + 1 < this.items.length) {
-            return this.items[this.index++];
+            this.index++;
         } else {
-            let tempIndex = this.index;
             this.index = 0;
-            return this.items[tempIndex];
         }
+        return this.items[this.index];
     };
 
     previous = function (): T {
         if (this.index > 0) {
-            return this.items[this.index--];
+            this.index--;
         } else {
             this.index = this.items.length - 1;
-            return this.items[0];
         }
+        return this.items[this.index];
     };
 
     put = function (element: T): void {

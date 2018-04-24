@@ -1,0 +1,44 @@
+#slide-wrap {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+app-carousel-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /*transition: left 1s, right 1s;*/
+}
+
+/*.next {
+    margin-left: 100%;
+}*/
+
+.transition {
+    transition: left 1s, right 1s;
+}
+
+.carousel-overlay {
+    position: absolute;
+    opacity: 0;
+    width: 10%; height:100%;
+    box-sizing: border-box;
+    -webkit-transition: opacity 100ms;
+    transition: opacity 100ms;
+    cursor: pointer;
+}
+
+.carousel-overlay:hover {
+    opacity: 1;
+}
+
+.carousel-arrow {
+    opacity: inherit;
+    height: 10%;
+    margin: auto;
+    top: 40%;
+    position: relative;
+    display: block;
+}

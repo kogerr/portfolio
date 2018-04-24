@@ -2,13 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Post, ContentImage } from './post';
+import { Slide } from './carousel-slide/slide';
 
 const postsURL = 'api/posts/';
 const imagesURL = 'api/images/';
+const slidesURL = 'api/slides/';
 
 @Injectable()
 export class DataService {
     constructor(private http: HttpClient) { }
+
+    loadPosts = function(): Observable<Post[]> {
+        return this.http.get(postsURL);
+    };
 
     getPost = function (titleURL: string): Observable<Post> {
         return this.http.get(postsURL + titleURL);
@@ -38,5 +44,9 @@ export class DataService {
 
     resizeImage = function (imageType, filename): Observable<ContentImage> {
         return this.http.patch(imagesURL + imageType + '/' + filename);
+    };
+
+    loadSlides = function(): Observable<Slide[]> {
+        return this.http.get(slidesURL);
     };
 }

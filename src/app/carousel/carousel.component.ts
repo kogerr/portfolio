@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Slide } from '../carousel-slide/slide';
+import { CircularList } from './CircularList';
+import { DataService } from '../data.service';
+
+const roundInterval = 3000;
 
 @Component({
   selector: 'app-carousel',
@@ -6,10 +11,60 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./carousel.component.css']
 })
 export class CarouselComponent implements OnInit {
+  slides: CircularList<Slide>;
+  current: Slide;
+  next: Slide;
+  offset = false;
+  transition = false;
+  periodicAnimation: number;
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    this.dataService.loadSlides().subscribe(data => {
+      this.slides = new CircularList(data);
+      this.current = this.slides.next();
+      this.next = this.current;
+      this.setPeriodicAnimation();
+    });
   }
 
+  animateForward = function (): void {
+    this.next = this.slides.next();
+    this.transition = true;
+    this.offset = true;
+    setTimeout(() => {
+      this.transition = false;
+      this.current = this.next;
+      this.offset = false;
+    }, 1000);
+  };
+
+  animateBackward = function (): void {
+    this.next = this.current;
+    this.offset = true;
+    this.current = this.slides.previous();
+    setTimeout(() => { this.transition = true; this.offset = false; }, 50);
+    setTimeout(() => { this.transition = false; }, 1050);
+  };
+
+  setPeriodicAnimation = function (): void {
+    this.periodicAnimation = setInterval(() => this.animateForward(), roundInterval);
+  };
+
+  moveForward = function (): void {
+    if (!this.transition) {
+      clearInterval(this.periodicAnimation);
+      this.animateForward();
+      this.setPeriodicAnimation();
+    }
+  };
+
+  moveBackward = function (): void {
+    if (!this.transition) {
+      clearInterval(this.periodicAnimation);
+      this.animateBackward();
+      this.setPeriodicAnimation();
+    }
+  };
 }
