@@ -16,19 +16,21 @@ let determineFilename = function (req, file, cb) { // TODO: refactor somehow int
     cb(null, filename);
 };
 
-exports.generateFilename = function(originalname) {
+exports.generateFilename = function (originalname) {
     let extension = originalname.substr(originalname.lastIndexOf('.'));
     return shortid.generate() + extension;
 };
 
-exports.deleteImage = function(imageType, filename) {
-    let file = path.join(appRoot.path, imagesDirectory + imageType)  + '/' + filename;
-    try {
-        fs.unlinkSync(file);
-    } catch (err) {
-        return err;
-    }
-    return { status : 'ok' };
+exports.deleteImage = function (imageType, filename) {
+    let file = path.join(appRoot.path, imagesDirectory + imageType) + '/' + filename;
+    return new Promise((resolve, reject) => {
+        fs.unlink(file, (err) => {
+            if (err) {
+                reject(err);
+            }
+            resolve({ status: 'ok' });
+        });
+    });
 };
 
 exports.storage = multer.diskStorage({

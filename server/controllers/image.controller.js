@@ -15,23 +15,24 @@ exports.returnSavedFileName = function (req, res, next) {
 };
 
 exports.deleteImage = function (req, res, next) {
-    let response = storageService.deleteImage(req.params.field, req.params.filename);
-    if (response.errno) {
+    storageService.deleteImage(req.params.field, req.params.filename)
+        .then((data) => {
+            res.statusCode = 200;
+            res.send({ status: 'ok' });
+        }).catch((err) => {
         res.statusCode = 404;
-    } else {
-        res.statusCode = 200;
-    }
-    res.send(response);
+            res.send(err)
+        });
 };
 
-exports.crop = function(req, res) {
+exports.crop = function (req, res) {
     let filePath = directory + req.params.field + '/' + req.params.filename;
     let newName = storageService.generateFilename(req.params.filename);
     let newPath = directory + req.params.field + '/' + newName;
     let proportions = req.body;
     resizeService.crop(filePath, newPath, proportions).then(data => {
         res.statusCode = 200;
-        res.send({name: newName});
+        res.send({ name: newName });
     }).catch((err) => {
         res.statusCode = 501;
         res.send(err);
