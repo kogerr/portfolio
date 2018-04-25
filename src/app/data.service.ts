@@ -42,8 +42,8 @@ export class DataService {
         return this.http.patch(postsURL + titleURL, post);
     };
 
-    resizeImage = function (imageType, filename): Observable<ContentImage> {
-        return this.http.patch(imagesURL + imageType + '/' + filename);
+    resizeImage = function (imageType, filename, proportions): Observable<ContentImage> {
+        return this.http.patch(imagesURL + imageType + '/' + filename, proportions);
     };
 
     loadSlides = function(): Observable<Slide[]> {

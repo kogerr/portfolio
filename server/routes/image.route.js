@@ -7,5 +7,5 @@ let resizeService = require('../services/resize.service');
 
 let router = express.Router();
 router.route('/:field').post(upload.single('image'), imageCtrl.returnSavedFileName);
-router.route('/:field/:filename').delete(imageCtrl.deleteImage).patch(resizeService.crop);
+router.route('/:field/:filename').delete(imageCtrl.deleteImage).patch(imageCtrl.crop);
 module.exports = router;

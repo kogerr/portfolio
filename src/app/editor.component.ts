@@ -46,7 +46,7 @@ export class EditorComponent implements OnDestroy, OnInit {
       this.removeCover();
     }
     this.dataService.postImage('cover', event.target.files[0]).subscribe(data => {
-      this.dataService.resizeImage('cover', data.name).subscribe(response => {
+      this.dataService.resizeImage('cover', data.name, { w: 3, h: 1 }).subscribe(response => {
         this.dataService.deleteImage('cover', this.post.cover).subscribe();
         this.post.cover = response.name;
       });
@@ -62,7 +62,7 @@ export class EditorComponent implements OnDestroy, OnInit {
     for (let i = 0; i < files.length; i++) {
       this.dataService.postImage('content', files[i]).subscribe(data => {
         this.post.images.push(data);
-        this.dataService.resizeImage('content', data.name).subscribe(response => this.replaceImage(response, data));
+        this.dataService.resizeImage('content', data.name, { w: 10, h: 7 }).subscribe(response => this.replaceImage(response, data));
       });
     }
   };
