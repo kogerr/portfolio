@@ -3,9 +3,11 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let postSchema = new Schema({
-    _id: String,
     title: String,
     titleURL: String,
+    type: String,
+    link: String,
+    year: Number,
     client: String,
     text: String,
     cover: String,
