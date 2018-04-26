@@ -3,7 +3,12 @@ let fs = require('fs');
 let path = require('path');
 let localSlidesFilePath = path.join(appRoot.path, 'local_storage/slides.json');
 
-function loadSlides() {
+/**
+ * Not used. DB Service instead.
+ * 
+ */
+
+exports.getSlides = function () {
     return new Promise(function (resolve, reject) {
         fs.readFile(localSlidesFilePath, (err, data) => {
             if (err) {
@@ -14,5 +19,3 @@ function loadSlides() {
         });
     });
 };
-
-exports.loadSlides = loadSlides;

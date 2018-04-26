@@ -1,57 +1,55 @@
-let postService = require('../services/post.service');
+let dbService = require('../services/db.service');
 
 exports.savePost = function (req, res) {
-    let result = postService.savePost(req.body);
-    if (result.errno) {
-        res.statusCode = 418;
-    } else {
-        res.statusCode = 200;
-    }
-    res.send(result); // maybe change in production
+    dbService.savePost(req.body)
+        .then((data) => {
+            res.statusCode = 201;
+            res.send({ success: true });
+        }).catch((err) => {
+            res.statusCode = 500;
+            res.send(err);
+        });
 };
 
 exports.updatePost = function (req, res) {
-    let result = postService.updatePost(req.body, req.params.titleURL);
-    if (result.errno) {
-        res.statusCode = 418;
-    } else {
-        res.statusCode = 200;
-    }
-    res.send(result); // maybe change in production
+    dbService.updatePost(req.body)
+        .then((data) => {
+            res.statusCode = 200;
+            res.send({ success: true });
+        }).catch((err) => {
+            res.statusCode = 500;
+            res.send(err);
+        });
 };
 
 exports.getPosts = function (req, res) {
-    let posts = postService.loadPosts(req.query.from, req.query.to);
-    if (posts.errno) {
-        res.statusCode = 418;
-    } else {
-        res.statusCode = 200;
-    }
-    res.send(posts);
+    dbService.getPosts()
+        .then((data) => {
+            res.statusCode = 200;
+            res.send(data);
+        }).catch((err) => {
+            res.statusCode = 404;
+            res.send(err);
+        });
 };
 
 exports.getPostByTitleURL = function (req, res) {
-    let post = postService.loadPostByTitleURL(req.params.titleURL);
-    if (post) {
-        res.statusCode = 200;
-        res.send(post);
-    } else {
-        res.statusCode = 404;
-        res.send({ error: 'Post not found' });
-    }
+    dbService.getPostByTitleURL(req.params.titleURL)
+        .then((data) => {
+            res.statusCode = 200;
+            res.send(data);
+        }).catch((err) => {
+            res.statusCode = 404;
+            res.send(err);
+        });
 };
 
 exports.checkPost = function (req, res) {
-    let post = postService.loadPostByTitleURL(req.params.titleURL);
     res.statusCode = 200;
-    if (post) {
-        res.send({ found: true });
-    } else {
-        res.send({ found: false });
-    }
-};
-
-exports.test = function (req, res) {
-    res.statusCode = 200;
-    res.send('all righty then!');
+    dbService.getPostByTitleURL(req.params.titleURL)
+        .then((data) => {
+            res.send({ found: true });
+        }).catch((err) => {
+            res.send({ found: false });
+        });
 };

@@ -2,6 +2,6 @@ let express = require('express');
 let slideCtrl = require('../controllers/slide.controller');
 
 router = express.Router();
-router.route('/').get(slideCtrl.getSlides);
+router.route('/').get(slideCtrl.getSlides).post(slideCtrl.saveSlide);
 
 module.exports = router;

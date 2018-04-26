@@ -1,16 +1,10 @@
-let fs = require('fs');
 let mongoose = require('mongoose');
 let Post = require('../models/postModel');
-// let Image = require('../models/imageModel');
+let Slide = require('../models/slideModel');
 
 exports.savePost = function (post) {
     let newPost = new Post(post);
-    return new Promise(((resolve, reject) => {
-        newPost.save((err, data) => {
-            if (err) { reject(err); }
-            resolve({ 'titleURL': post.titleURL });
-        });
-    }));
+    return newPost.save();
 };
 
 exports.updatePost = function (post) {
@@ -20,13 +14,13 @@ exports.updatePost = function (post) {
                 if (err) {
                     reject(err);
                 }
-                resolve({ 'titleURL': post.titleURL });
+                resolve({ titleURL: raw.titleURL });
             }
         );
     });
 };
 
-exports.loadPosts = function () {
+exports.getPosts = function () {
     return new Promise((resolve, reject) => {
         Post.find((err, docs) => {
             if (err) {
@@ -37,9 +31,9 @@ exports.loadPosts = function () {
     });
 };
 
-exports.loadPostByTitleURL = function (titleURL) {
+exports.getPostByTitleURL = function (titleURL) {
     return new Promise((resolve, reject) => {
-        Post.findOne(titleURL, (err, data) => {
+        Post.findOne({ titleURL: titleURL }, (err, data) => {
             if (err) {
                 reject(err);
             }
@@ -48,12 +42,18 @@ exports.loadPostByTitleURL = function (titleURL) {
     });
 };
 
-/*exports.saveImage = function (filePath, imageType, name) {
-    fs.readFile(filePath, function (err, data) {
-        if (err) { console.error(err); }
-        let newImage = new Image({ data: data, imageType: imageType, name: name });
-        newImage.save((err, data) => {
-            if (err) { console.error(err); }
+exports.getSlides = function () {
+    return new Promise((resolve, reject) => {
+        Slide.find((err, docs) => {
+            if (err) {
+                reject(err);
+            }
+            resolve(docs);
         });
     });
-};*/
+};
+
+exports.saveSlide = function (slide) {
+    let newSlide = new Slide(slide);
+    return newSlide.save();
+};
