@@ -13,8 +13,8 @@
   },
   "main": "app.js",
   "scripts": {
-    "start": "ng build && node app",
-    "watch": "nodemon app & ng build -w"
+    "start": "ng build && mongod & node app",
+    "watch": "ng build --watch & mongod & nodemon"
   },
   "private": true,
   "dependencies": {
