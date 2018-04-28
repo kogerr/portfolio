@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { DataService } from './data.service';
-import { Post } from './post';
+import { DataService } from '../data.service';
+import { Post } from '../post';
 
 const origialTitle = 'Portfolio';
 

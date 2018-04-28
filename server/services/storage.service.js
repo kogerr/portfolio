@@ -12,7 +12,7 @@ let determineDestination = function (req, file, cb) {
 };
 
 let determineFilename = function (req, file, cb) { // TODO: refactor somehow into separate service maybe
-    let filename = exports.generateFilename(file.originalname);
+    let filename = generateFilename(file.originalname);
     cb(null, filename);
 };
 

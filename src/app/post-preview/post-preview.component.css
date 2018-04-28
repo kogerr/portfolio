@@ -11,7 +11,7 @@ img {
 
 .preivew-text {
     position: absolute;
-    height: 100%; width: 100%;
+    height: 100%;
     padding: 0 2.1vw;
     display: grid;
     grid-template-rows: auto 7% 15.625%;

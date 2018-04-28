@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Post } from './post';
-import { DataService } from './data.service';
+import { Post } from '../post';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-work',

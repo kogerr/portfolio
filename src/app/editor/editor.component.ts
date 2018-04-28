@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { Post, ContentImage } from './post';
-import { DataService } from './data.service';
+import { Post, ContentImage } from '../post';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-editor',
