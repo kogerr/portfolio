@@ -50,8 +50,8 @@ h2 {
     background: #FFF000;
     box-sizing: border-box;
     padding: 0 2.1vw;
-    -webkit-transition: opacity 0.5s;
     transition: opacity 0.5s;
+    -webkit-transition: opacity 0.5s;
     display: grid;
     grid-template-rows: 14.625% 7% 15.625% auto 7% 15.625%;
     cursor: pointer;

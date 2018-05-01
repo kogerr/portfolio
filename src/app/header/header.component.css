@@ -11,13 +11,13 @@ header {
     background-color: #F0F0F0;
     box-sizing: border-box;
     width: 100%;
-    -webkit-transition: all 0.5s;
     transition: all 0.5s;
+    -webkit-transition: all 0.5s;
 }
 
 header img {
-    -webkit-transition: all 0.5s;
     transition: all 0.5s;
+    -webkit-transition: all 0.5s;
 }
 
 #logo-wrap {
@@ -83,8 +83,8 @@ a.active {
     margin: 0 -2.1vw 0 auto;
     background-color: #D9D9D9;
     grid-row: 3;
-    -webkit-transition: width 0.5s;
     transition: width 0.5s;
+    -webkit-transition: width 0.5s;
     grid-column: 2;
 }
 
@@ -95,8 +95,8 @@ a.active {
 .contact-header {
     background: #FFF000;
     height: 360px;
-    -webkit-transition: all 0.5s;
     transition: all 0.5s;
+    -webkit-transition: all 0.5s;
     opacity: 1;
     display: grid;
     grid-template-rows: 15.3% 40% auto;
@@ -114,8 +114,8 @@ a.active {
 
 .contact-header-content > span, .contact-header-content > a, .contact-header > img, .contact-header-content > div {
     transition: opacity, 0.8s;
-    transition: height, 0.5s;
     -webkit-transition: opacity, 0.8s;
+    transition: height, 0.5s;
     -webkit-transition: height, 0.5s;
 }
 
@@ -143,8 +143,8 @@ a {
     grid-column: 3;
     grid-row: 2;
     transition: opacity, 0.8s;
-    transition: height, 0.5s;
     -webkit-transition: opacity, 0.8s;
+    transition: height, 0.5s;
     -webkit-transition: height, 0.5s;
     cursor: pointer;
 }

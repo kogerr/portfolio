@@ -1,7 +1,33 @@
 <div *ngIf="post">
-    <img [src]="'images/cover/' + post.cover" class="full"/>
-    <h1>{{post.title}}</h1>
-    <h3>{{post.client}}</h3>
-    <div id="text">{{post.text}}</div>
-    <img *ngFor="let image of post.images" [src]="'images/content/' + image.name" [class]="image.width"/>
+    <div class="post-info text-area">
+        <div>
+            <h2>{{post.title}}</h2>
+            <div class="subtitle">{{post.type}}</div>
+        </div>
+        <div class="columned-text">
+            <div class="text">{{post.text}}</div>
+            <div class="details">
+                Client<span class="spacer">|</span><span class="highlighted-info">{{post.client}}</span>
+                <br>Year<span class="spacer">|</span><span class="highlighted-info">{{post.year}}</span>
+                <br>
+                <br>
+                <a [href]="post.link" class="highlighted-info" style="text-decoration: underline">visit link</a>
+            </div>
+        </div>
+
+    </div>
+    <a [href]="post.link" class="dropdown">
+        <img src="assets/v-shape.svg">
+    </a>
+    <img [src]="'images/cover/' + post.cover" class="cover" />
+    <img *ngFor="let image of post.images" [src]="'images/content/' + image.name" [class]="image.width" />
+    <div class="concept text-area">
+        <span class="subtitle">concept</span>
+        <div class="columned-text">{{post.text}}</div>
+    </div>
+    <div class="post-footer">
+        <img src="assets/arrow_left_black.svg">
+        <div class="more">More Work</div>
+        <img src="assets/arrow_right_black.svg">
+    </div>
 </div>
