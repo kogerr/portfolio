@@ -16,7 +16,7 @@ export class CarouselComponent implements OnInit {
   next: Slide;
   offset = false;
   transition = false;
-  periodicAnimation: number;
+  periodicAnimation: NodeJS.Timer;
 
   constructor(private dataService: DataService) { }
 
@@ -29,7 +29,7 @@ export class CarouselComponent implements OnInit {
     });
   }
 
-  animateForward = function (): void {
+  animateForward(): void {
     this.next = this.slides.next();
     this.transition = true;
     this.offset = true;
@@ -38,33 +38,33 @@ export class CarouselComponent implements OnInit {
       this.current = this.next;
       this.offset = false;
     }, 1000);
-  };
+  }
 
-  animateBackward = function (): void {
+  animateBackward(): void {
     this.next = this.current;
     this.offset = true;
     this.current = this.slides.previous();
     setTimeout(() => { this.transition = true; this.offset = false; }, 50);
     setTimeout(() => { this.transition = false; }, 1050);
-  };
+  }
 
-  setPeriodicAnimation = function (): void {
+  setPeriodicAnimation(): void {
     this.periodicAnimation = setInterval(() => this.animateForward(), roundInterval);
-  };
+  }
 
-  moveForward = function (): void {
+  moveForward(): void {
     if (!this.transition) {
       clearInterval(this.periodicAnimation);
       this.animateForward();
       this.setPeriodicAnimation();
     }
-  };
+  }
 
-  moveBackward = function (): void {
+  moveBackward(): void {
     if (!this.transition) {
       clearInterval(this.periodicAnimation);
       this.animateBackward();
       this.setPeriodicAnimation();
     }
-  };
+  }
 }

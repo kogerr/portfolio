@@ -13,26 +13,26 @@ export class HeaderComponent {
   ongoingAnimation = false;
 
   @HostListener('window:scroll', ['$event'])
-  onScroll = function ($event: Event): void {
+  onScroll($event: Event): void {
     let breakPointY = window.innerWidth * breakPoint;
     if (!this.fullHeader) { breakPointY -= 40; }
     this.fullHeader = window.scrollY < breakPointY && window.innerWidth > 560;
     if (!this.ongoingAnimation && this.contactInfo) {
       this.switchContactHeader();
     }
-  };
+  }
 
-  scrollLock = function (): void {
+  scrollLock(): void {
     let currentY = window.scrollY;
     let stay = () => window.scrollTo(0, currentY);
     window.addEventListener('scroll', stay);
     setTimeout(() => window.removeEventListener('scroll', stay), 1000);
-  };
+  }
 
-  switchContactHeader = function (): void {
+  switchContactHeader(): void {
     this.contactInfo = !this.contactInfo;
     this.scrollLock();
     this.ongoingAnimation = true;
     setTimeout(() => this.ongoingAnimation = false, 1000);
-  };
+  }
 }

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Post, ContentImage } from '../post';
 import { DataService } from '../data.service';
 
@@ -16,6 +16,7 @@ export class EditorComponent implements OnDestroy, OnInit {
   submitted = false;
   existingPost: boolean;
   originalTitleURL: string;
+  error = false;
 
   ngOnInit(): void {
     this.route.params.subscribe(p => {
@@ -41,7 +42,7 @@ export class EditorComponent implements OnDestroy, OnInit {
     }
   }
 
-  uploadCover = function (event): void {
+  uploadCover(event): void {
     if (this.post.cover) {
       this.removeCover();
     }
@@ -51,13 +52,13 @@ export class EditorComponent implements OnDestroy, OnInit {
         this.post.cover = response.name;
       });
     });
-  };
+  }
 
-  removeCover = function (): void {
+  removeCover(): void {
     this.dataService.deleteImage('cover', this.post.cover).subscribe(data => delete this.post.cover);
-  };
+  }
 
-  uploadContentImages = function (event): void {
+  uploadContentImages(event): void {
     let files = event.target.files;
     for (let i = 0; i < files.length; i++) {
       this.dataService.postImage('content', files[i]).subscribe(data => {
@@ -65,51 +66,51 @@ export class EditorComponent implements OnDestroy, OnInit {
         this.dataService.resizeImage('content', data.name, { w: 10, h: 7 }).subscribe(response => this.replaceImage(response, data));
       });
     }
-  };
+  }
 
-  removeContentImages = function (images: Array<ContentImage>): void {
+  removeContentImages(images: Array<ContentImage>): void {
     images.forEach(element => {
       this.dataService.deleteImage('content', element.name).subscribe(data => {
         this.post.images.splice(this.post.images.indexOf(element), 1);
       });
     });
-  };
+  }
 
-  uploadPost = function (): void {
+  uploadPost(): void {
     this.post.timestamp = new Date();
     this.dataService.uploadPost(this.post).subscribe(
-      data => { this.submitted = true; this.success = true; },
+      data => { this.submitted = true; },
       error => { this.submitted = true; this.error = error; }
     );
     this.countdownNavigate();
-  };
+  }
 
-  updatePost = function (): void {
+  updatePost(): void {
     this.dataService.updatePost(this.post, this.originalTitleURL).subscribe(
-      data => { this.submitted = true; this.success = true; },
+      data => { this.submitted = true; },
       error => { this.submitted = true; this.error = error; }
     );
     this.countdownNavigate();
-  };
+  }
 
-  countdownNavigate = function (): void {
-    this.remaining = 20;
+  countdownNavigate(): void {
+    let remaining = 20;
     let redirect = window.setInterval(() => {
-      this.remaining--;
-      if (this.remaining <= 0) {
+      remaining--;
+      if (remaining <= 0) {
         window.clearInterval(redirect);
         this.router.navigate(['/work']);
       }
     }, 100);
-  };
+  }
 
-  replaceImage = function (newImage: ContentImage, oldImage: ContentImage): void {
+  replaceImage(newImage: ContentImage, oldImage: ContentImage): void {
     newImage.width = 'half';
     this.post.images.splice(this.post.images.indexOf(oldImage), 1, newImage);
     this.dataService.deleteImage('content', oldImage.name).subscribe();
-  };
+  }
 
-  generateTitleURL = function (): void {
+  generateTitleURL(): void {
     let titleURL = this.post.title.toLowerCase();
     let vowels = {
       accented: ['é', 'á', 'ű', 'ő', 'ú', 'ö', 'ü', 'ó', 'í'],
@@ -119,5 +120,5 @@ export class EditorComponent implements OnDestroy, OnInit {
       titleURL = titleURL.replace(new RegExp(vowels.accented[i], 'g'), vowels.normal[i]);
     }
     this.post.titleURL = titleURL.split(' ').map(t => t.replace(/[^\x00-\x7F]/g, '')).filter(t => t).join('-');
-  };
+  }
 }
