@@ -53,7 +53,7 @@ exports.getPreviousPostTitleUrl = function (titleURL) {
             if (!targetPost) {
                 targetPost = postsSorted[0];
             }
-            resolve(targetPost.titleURL);
+            resolve({ titleURL: targetPost.titleURL });
         });
     });
 };

@@ -32,8 +32,8 @@ export class DataService {
         return this.http.patch(postsURL + titleURL, post);
     }
 
-    getPreviousPostTitleUrl(titleURL: string): Observable<string> {
-        return this.http.get<string>(postsURL + titleURL + '/previous');
+    getPreviousPostTitleUrl(titleURL: string): Observable<{titleURL: string}> {
+        return this.http.get<{titleURL: string}>(postsURL + titleURL + '/previous');
     }
 
     getNextPostTitleUrl(titleURL: string): Observable<{titleURL: string}> {
