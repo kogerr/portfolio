@@ -27,7 +27,7 @@
             <span>|</span>
             <a routerLink="/not-found" routerLinkActive="active">About</a>
             <span>|</span>
-            <a routerLink="" (click)="switchContactHeader()">Contact</a>
+            <a [routerLink]="" (click)="switchContactHeader()">Contact</a>
         </div>
         <div [class.line-hide]="!fullHeader" class="line"></div>
 

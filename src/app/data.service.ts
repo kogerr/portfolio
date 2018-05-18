@@ -24,6 +24,22 @@ export class DataService {
         return this.http.get<{ found: boolean }>(postsURL + titleURL + '/check');
     }
 
+    uploadPost(post: Post): Observable<any> {
+        return this.http.post(postsURL, post);
+    }
+
+    updatePost(post: Post, titleURL: string): Observable<any> {
+        return this.http.patch(postsURL + titleURL, post);
+    }
+
+    getPreviousPostTitleUrl(titleURL: string): Observable<string> {
+        return this.http.get<string>(postsURL + titleURL + '/previous');
+    }
+
+    getNextPostTitleUrl(titleURL: string): Observable<{titleURL: string}> {
+        return this.http.get<{titleURL: string}>(postsURL + titleURL + '/next');
+    }
+
     postImage(imageType: string, file: File): Observable<any> {
         let formData = new FormData();
         formData.append('image', file);
@@ -32,14 +48,6 @@ export class DataService {
 
     deleteImage(fieldname: string, filename: string): Observable<any> {
         return this.http.delete((imagesURL + fieldname + '/' + filename));
-    }
-
-    uploadPost(post: Post): Observable<any> {
-        return this.http.post(postsURL, post);
-    }
-
-    updatePost(post: Post, titleURL: string): Observable<any> {
-        return this.http.patch(postsURL + titleURL, post);
     }
 
     resizeImage(imageType, filename, proportions): Observable<ContentImage> {

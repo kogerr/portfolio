@@ -42,6 +42,37 @@ exports.getPostByTitleURL = function (titleURL) {
     });
 };
 
+exports.getPreviousPostTitleUrl = function (titleURL) {
+    return new Promise((resolve, reject) => {
+        Post.find((err, docs) => {
+            if (err) {
+                reject(err);
+            }
+            let postsSorted = docs.sort((a, b) => b.timestamp - a.timestamp);
+            let targetPost = postsSorted[postsSorted.findIndex(e => e.titleURL === titleURL) + 1];
+            if (!targetPost) {
+                targetPost = postsSorted[0];
+            }
+            resolve(targetPost.titleURL);
+        });
+    });
+};
+exports.getNextPostTitleUrl = function (titleURL) {
+    return new Promise((resolve, reject) => {
+        Post.find((err, docs) => {
+            if (err) {
+                reject(err);
+            }
+            let postsSorted = docs.sort((a, b) => b.timestamp - a.timestamp);
+            let targetPost = postsSorted[postsSorted.findIndex(e => e.titleURL === titleURL) - 1];
+            if (!targetPost) {
+                targetPost = postsSorted[postsSorted.length - 1];
+            }
+            resolve({ titleURL: targetPost.titleURL });
+        });
+    });
+};
+
 exports.getSlides = function () {
     return new Promise((resolve, reject) => {
         Slide.find((err, docs) => {

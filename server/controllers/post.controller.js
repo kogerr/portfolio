@@ -53,3 +53,25 @@ exports.checkPost = function (req, res) {
             res.send({ found: false });
         });
 };
+
+exports.getPreviousPostTitleUrl = function (req, res) {
+    dbService.getPreviousPostTitleUrl(req.params.titleURL)
+        .then((data) => {
+            res.statusCode = 200;
+            res.send(data);
+        }).catch((err) => {
+            res.statusCode = 404;
+            res.send(err);
+        });
+};
+
+exports.getNextPostTitleUrl = function (req, res) {
+    dbService.getNextPostTitleUrl(req.params.titleURL)
+        .then((data) => {
+            res.statusCode = 200;
+            res.send(data);
+        }).catch((err) => {
+            res.statusCode = 404;
+            res.send(err);
+        });
+};

@@ -26,8 +26,8 @@
         <div class="columned-text">{{post.text}}</div>
     </div>
     <div class="post-footer">
-        <img src="assets/arrow_left_black.svg">
-        <div class="more">More Work</div>
-        <img src="assets/arrow_right_black.svg">
+        <img src="assets/arrow_left_black.svg" (click)="redirectPrevious()">
+        <div (click)="redirectWork()" class="more">More Work</div>
+        <img src="assets/arrow_right_black.svg" (click)="redirectNext()">
     </div>
 </div>

@@ -19,7 +19,7 @@ exports.deleteImage = function (req, res, next) {
             res.send({ status: 'ok' });
         }).catch((err) => {
         res.statusCode = 404;
-            res.send(err)
+            res.send(err);
         });
 };
 
