@@ -26,21 +26,19 @@ export class PostComponent implements OnInit, OnDestroy {
 
   redirectNext(): void {
     this.dataService.getNextPostTitleUrl(this.post.titleURL).subscribe(data => {
-      window.scrollTo(0, 0);
-      this.router.navigate(['/work/' + data.titleURL]);
+      this.redirect(data.titleURL);
     });
   }
 
   redirectPrevious(): void {
     this.dataService.getPreviousPostTitleUrl(this.post.titleURL).subscribe(data => {
-      window.scrollTo(0, 0);
-      this.router.navigate(['/work/' + data.titleURL]);
+      this.redirect(data.titleURL);
     });
   }
 
-  redirectWork(): void {
-    window.scrollTo(0, 0);
-    this.router.navigate(['/work']);
+  redirect(titleUrl: string = ''): void {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    this.router.navigate(['/work/' + titleUrl]);
   }
 
   ngOnDestroy(): void {

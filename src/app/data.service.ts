@@ -24,20 +24,20 @@ export class DataService {
         return this.http.get<{ found: boolean }>(postsURL + titleURL + '/check');
     }
 
-    uploadPost(post: Post): Observable<any> {
-        return this.http.post(postsURL, post);
+    uploadPost(post: Post): Observable<{ success: boolean }> {
+        return this.http.post<{ success: boolean }>(postsURL, post);
     }
 
-    updatePost(post: Post, titleURL: string): Observable<any> {
-        return this.http.patch(postsURL + titleURL, post);
+    updatePost(post: Post, titleURL: string): Observable<{ success: boolean }> {
+        return this.http.patch<{ success: boolean }>(postsURL + titleURL, post);
     }
 
-    getPreviousPostTitleUrl(titleURL: string): Observable<{titleURL: string}> {
-        return this.http.get<{titleURL: string}>(postsURL + titleURL + '/previous');
+    getPreviousPostTitleUrl(titleURL: string): Observable<{ titleURL: string }> {
+        return this.http.get<{ titleURL: string }>(postsURL + titleURL + '/previous');
     }
 
-    getNextPostTitleUrl(titleURL: string): Observable<{titleURL: string}> {
-        return this.http.get<{titleURL: string}>(postsURL + titleURL + '/next');
+    getNextPostTitleUrl(titleURL: string): Observable<{ titleURL: string }> {
+        return this.http.get<{ titleURL: string }>(postsURL + titleURL + '/next');
     }
 
     postImage(imageType: string, file: File): Observable<any> {
@@ -46,8 +46,8 @@ export class DataService {
         return this.http.post(imagesURL + imageType, formData);
     }
 
-    deleteImage(fieldname: string, filename: string): Observable<any> {
-        return this.http.delete((imagesURL + fieldname + '/' + filename));
+    deleteImage(fieldname: string, filename: string): Observable<{ success: boolean }> {
+        return this.http.delete<{ success: boolean }>(imagesURL + fieldname + '/' + filename);
     }
 
     resizeImage(imageType, filename, proportions): Observable<ContentImage> {

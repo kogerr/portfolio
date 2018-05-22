@@ -16,9 +16,9 @@ exports.deleteImage = function (req, res, next) {
     storageService.deleteImage(req.params.field, req.params.filename)
         .then((data) => {
             res.statusCode = 200;
-            res.send({ status: 'ok' });
+            res.send({ success: true });
         }).catch((err) => {
-        res.statusCode = 404;
+            res.statusCode = 404;
             res.send(err);
         });
 };
