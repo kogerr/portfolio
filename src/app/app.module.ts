@@ -15,6 +15,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { CarouselSlideComponent } from './carousel-slide/carousel-slide.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CarouselSlideComponent } from './carousel-slide/carousel-slide.componen
     HeaderComponent,
     FooterComponent,
     CarouselComponent,
-    CarouselSlideComponent],
+    CarouselSlideComponent,
+    AboutComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [DataService],
   bootstrap: [AppComponent]

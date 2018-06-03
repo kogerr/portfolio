@@ -11,12 +11,12 @@
                 <br>Year<span class="spacer">|</span><span class="highlighted-info">{{post.year}}</span>
                 <br>
                 <br>
-                <a [href]="post.link" class="highlighted-info" style="text-decoration: underline">visit link</a>
+                <a [routerLink]="post.link" class="highlighted-info" style="text-decoration: underline">visit link</a>
             </div>
         </div>
 
     </div>
-    <a [href]="post.link" class="dropdown">
+    <a [routerLink]="post.link" class="dropdown">
         <img src="assets/v-shape.svg">
     </a>
     <img [src]="'images/cover/' + post.cover" class="cover" />

@@ -1,0 +1,46 @@
+<div class="margin-wrapper">
+  <div class="full-box"></div>
+  <div class="text-area">
+    <div class="ars-poetica column2">
+      <div>{{arsPoetica1}}</div>
+      <div>{{arsPoetica2}}</div>
+    </div>
+    <h2>Clients</h2>
+    <div class="clients">
+      <div *ngFor="let client of clients">{{client}}</div>
+    </div>
+  </div>
+  <div class="full-box"></div>
+  <div class="text-area">
+    <h2>Awards</h2>
+    <div class="awards">
+      <div *ngFor="let award of awards">
+        <div>{{award.title}}</div>
+        <div *ngFor="let line of award.lines">{{line}}</div>
+        <div></div>
+      </div>
+    </div>
+
+    <h2>Publications</h2>
+    <div class="publications column2">
+      <div>
+        <div class="subtitle">print</div>
+        <div *ngFor="let publication of printPublications" [class.clickable]="publication.link">
+          {{publication}}
+        </div>
+      </div>
+      <div>
+        <div class="subtitle">online</div>
+        <div *ngFor="let publication of onlinePublications" [class.clickable]="publication.link">
+          {{publication}}
+        </div>
+      </div>
+
+      <h2>Exhibitions</h2>
+      <div class="exhibitions column2">
+        <div *ngFor="let exhibition of exhibitions" [class.clickable]="exhibition.link">
+          {{exhibition}}
+        </div>
+      </div>
+    </div>
+  </div>

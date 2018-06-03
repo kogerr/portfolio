@@ -5,12 +5,14 @@ import { PostComponent } from './post/post.component';
 import { PageNotFoundComponent } from './not-found.component';
 import { WorkComponent } from './work/work.component';
 import { EditorComponent } from './editor/editor.component';
+import { AboutComponent } from './about/about.component';
 
 const appRoutes: Routes = [
     { path: 'editor', component: EditorComponent },
     { path: 'editor/:titleURL', component: EditorComponent },
     { path: 'work', component: WorkComponent },
     { path: 'work/:titleURL', component: PostComponent },
+    { path: 'about', component: AboutComponent },
     { path: '', redirectTo: '/work', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];

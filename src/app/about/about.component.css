@@ -1,0 +1,25 @@
+.margin-wrapper {
+    margin: 0 2.1vw;
+}
+
+.full-box {
+    width: 100%;
+    height: 33.33vw;
+    background-color: #232323;
+}
+
+.text-area {
+    width: 95.83%;
+    margin: auto;
+    background-color: white;
+    box-sizing: border-box;
+    color: #929292;
+    font-size: 20px;
+    line-height: 180%;
+}
+
+h2 {
+    font-size: 33px;
+    color: #232323;
+    margin: 3px 0;
+}
