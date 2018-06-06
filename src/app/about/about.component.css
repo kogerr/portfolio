@@ -9,17 +9,37 @@
 }
 
 .text-area {
-    width: 95.83%;
-    margin: auto;
+    margin: 0 6.25vw;
     background-color: white;
     box-sizing: border-box;
     color: #929292;
     font-size: 20px;
     line-height: 180%;
+    padding-bottom: 6.25vw;
+    font-size: 24px;
 }
 
 h2 {
     font-size: 33px;
     color: #232323;
     margin: 3px 0;
+    padding-bottom: 46px;
+}
+
+.clients {
+    display: grid;
+    grid-template-columns: 30.65% 30.65% 1fr;
+}
+
+.column2 {
+    display: grid;
+    grid-template-columns: 45% 45%;
+    column-gap: 6.25vw;
+    justify-items: start;
+}
+
+.subtitle {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #232323;
 }
