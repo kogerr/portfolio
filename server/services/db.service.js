@@ -1,6 +1,7 @@
 let mongoose = require('mongoose');
 let Post = require('../models/postModel');
 let Slide = require('../models/slideModel');
+let About = require('../models/aboutModel');
 
 exports.savePost = function (post) {
     let newPost = new Post(post);
@@ -87,4 +88,28 @@ exports.getSlides = function () {
 exports.saveSlide = function (slide) {
     let newSlide = new Slide(slide);
     return newSlide.save();
+};
+
+exports.getAbout = function () {
+    return new Promise((resolve, reject) => {
+        About.findOne((err, docs) => {
+            if (err) {
+                reject(err);
+            }
+            resolve(docs);
+        });
+    });
+};
+
+exports.updateAbout = function (about) {
+    return new Promise((resolve, reject) => {
+        About.update({}, about,
+            (err, raw) => {
+                if (err) {
+                    reject(err);
+                }
+                resolve({ data: raw });
+            }
+        );
+    });
 };

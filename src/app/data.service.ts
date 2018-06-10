@@ -1,12 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Post, ContentImage } from './post';
+import { Post, ContentImage } from './structures/post';
 import { Slide } from './carousel-slide/slide';
+import { About } from './structures/about.interface';
 
 const postsURL = 'api/posts/';
 const imagesURL = 'api/images/';
 const slidesURL = 'api/slides/';
+const aboutURL = 'api/about/';
 
 @Injectable()
 export class DataService {
@@ -56,5 +58,9 @@ export class DataService {
 
     loadSlides(): Observable<Slide[]> {
         return this.http.get<Slide[]>(slidesURL);
+    }
+
+    getAbout(): Observable<About> {
+        return this.http.get<About>(aboutURL);
     }
 }

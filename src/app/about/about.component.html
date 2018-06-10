@@ -3,15 +3,15 @@
 
   <div class="text-area">
     <div class="ars-poetica column2">
-      <div>{{arsPoetica1}}</div>
-      <div>{{arsPoetica2}}</div>
+      <div>{{content.arsPoetica1}}</div>
+      <div>{{content.arsPoetica2}}</div>
     </div>
   </div>
 
   <div class="text-area">
     <h2>Clients</h2>
     <div class="clients">
-      <div *ngFor="let client of clients">{{client}}</div>
+      <div *ngFor="let client of clients">{{content.client}}</div>
     </div>
   </div>
   <div class="full-box"></div>
@@ -19,7 +19,7 @@
   <div class="text-area">
     <h2>Awards</h2>
     <div class="awards column2">
-      <div *ngFor="let award of awards" [style.grid-row]="'span ' + (award.lines.length + 2)">
+      <div *ngFor="let award of content.awards" [style.grid-row]="'span ' + (award.lines.length + 2)">
         <div>{{award.title | uppercase }}</div>
         <div *ngFor="let line of award.lines">{{line}}</div>
         <div style="white-space: pre-wrap;">{{' '}}</div>
@@ -32,7 +32,7 @@
     <div class="publications column2">
       <div>
         <div class="subtitle">print</div>
-        <div *ngFor="let publication of printPublications">
+        <div *ngFor="let publication of content.printPublications">
           <a *ngIf="publication.url" [href]="publication.url">
             {{publication.text}}
           </a>
@@ -41,7 +41,7 @@
       </div>
       <div>
         <div class="subtitle">online</div>
-        <div *ngFor="let publication of printPublications">
+        <div *ngFor="let publication of content.onlinePublications">
           <a *ngIf="publication.url" [href]="publication.url">
             {{publication.text}}
           </a>
@@ -55,7 +55,7 @@
   <div class="text-area">
     <h2>Exhibitions</h2>
     <div class="exhibitions column2">
-      <div *ngFor="let exhibition of exhibitions" [class.clickable]="exhibition.link">
+      <div *ngFor="let exhibition of content.exhibitions" [class.clickable]="exhibition.link">
         {{exhibition}}
       </div>
     </div>
