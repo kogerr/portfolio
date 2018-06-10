@@ -9,21 +9,19 @@
 }
 
 .text-area {
-    margin: 0 6.25vw;
     background-color: white;
     box-sizing: border-box;
     color: #929292;
-    font-size: 20px;
     line-height: 180%;
-    padding-bottom: 6.25vw;
-    font-size: 24px;
+    margin: 6.25vw;
+    font-size: 23px;
 }
 
 h2 {
     font-size: 33px;
     color: #232323;
     margin: 3px 0;
-    padding-bottom: 46px;
+    padding-bottom: 33px;
 }
 
 .clients {
@@ -40,6 +38,17 @@ h2 {
 
 .subtitle {
     text-transform: uppercase;
-    font-weight: bold;
     color: #232323;
+}
+
+.ars-poetica {
+    font-size: 30px;
+    font-weight: bold;
+    color: #191919;
+    padding-top: 4.16vw;
+}
+
+a {
+    color: #929292;
+    text-decoration: underline;
 }
