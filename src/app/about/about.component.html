@@ -1,4 +1,4 @@
-<div class="margin-wrapper">
+<div *ngIf="content" class="margin-wrapper">
   <div class="full-box"></div>
 
   <div class="text-area">
@@ -10,15 +10,15 @@
 
   <div class="text-area">
     <h2>Clients</h2>
-    <div class="clients">
-      <div *ngFor="let client of clients">{{content.client}}</div>
+    <div class="clients spaceylines">
+      <div *ngFor="let client of content.clients">{{client}}</div>
     </div>
   </div>
   <div class="full-box"></div>
 
   <div class="text-area">
     <h2>Awards</h2>
-    <div class="awards column2">
+    <div class="column2 spaceylines">
       <div *ngFor="let award of content.awards" [style.grid-row]="'span ' + (award.lines.length + 2)">
         <div>{{award.title | uppercase }}</div>
         <div *ngFor="let line of award.lines">{{line}}</div>
@@ -29,7 +29,7 @@
 
   <div class="text-area">
     <h2>Publications</h2>
-    <div class="publications column2">
+    <div class="column2 spaceylines">
       <div>
         <div class="subtitle">print</div>
         <div *ngFor="let publication of content.printPublications">
@@ -54,7 +54,7 @@
 
   <div class="text-area">
     <h2>Exhibitions</h2>
-    <div class="exhibitions column2">
+    <div class="column2 spaceylines">
       <div *ngFor="let exhibition of content.exhibitions" [class.clickable]="exhibition.link">
         {{exhibition}}
       </div>

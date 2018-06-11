@@ -29,6 +29,10 @@ h2 {
     grid-template-columns: 30.65% 30.65% 1fr;
 }
 
+.spaceylines {
+    line-height: 2.1em;
+}
+
 .column2 {
     display: grid;
     grid-template-columns: 45% 45%;

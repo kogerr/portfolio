@@ -10,3 +10,14 @@ exports.getAbout = function (req, res) {
             res.send(err);
         });
 };
+
+exports.updateAbout = function (req, res) {
+    dbService.updateAbout(req.body)
+        .then((data) => {
+            res.statusCode = 200;
+            res.send({ success: true });
+        }).catch((err) => {
+            res.statusCode = 500;
+            res.send(err);
+        });
+};

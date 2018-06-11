@@ -11,7 +11,7 @@ let determineDestination = function (req, file, cb) {
     cb(null, destination);
 };
 
-let determineFilename = function (req, file, cb) { // TODO: refactor somehow into separate service maybe
+let determineFilename = function (req, file, cb) {
     let filename = exports.generateFilename(file.originalname);
     cb(null, filename);
 };

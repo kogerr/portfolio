@@ -63,4 +63,8 @@ export class DataService {
     getAbout(): Observable<About> {
         return this.http.get<About>(aboutURL);
     }
+
+    updateAbout(aboutContent: About): Observable<{ success: boolean }> {
+        return this.http.post<{ success: boolean }>(aboutURL, aboutContent);
+    }
 }

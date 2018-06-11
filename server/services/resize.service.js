@@ -18,7 +18,7 @@ exports.crop = function (filePath, newPath, proportions) {
     });
 };
 
-calculateSize = function (width, height, proportions) {
+let calculateSize = function (width, height, proportions) {
     if (width / proportions.w * proportions.h < height) {
         return { width: width, height: width / proportions.w * proportions.h };
     } else {
