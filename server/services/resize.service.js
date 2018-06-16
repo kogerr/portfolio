@@ -1,5 +1,4 @@
 let Jimp = require("jimp");
-let storageService = require('../services/storage.service');
 
 exports.crop = function (filePath, newPath, proportions) {
     return new Promise((resolve, reject) => {
