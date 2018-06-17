@@ -16,6 +16,8 @@ import { FooterComponent } from './footer/footer.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { CarouselSlideComponent } from './carousel-slide/carousel-slide.component';
 import { AboutComponent } from './about/about.component';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -30,9 +32,10 @@ import { AboutComponent } from './about/about.component';
     FooterComponent,
     CarouselComponent,
     CarouselSlideComponent,
-    AboutComponent],
+    AboutComponent,
+    LoginComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
-  providers: [DataService],
+  providers: [DataService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Post, ContentImage } from './structures/post';
@@ -9,6 +9,7 @@ const postsURL = 'api/posts/';
 const imagesURL = 'api/images/';
 const slidesURL = 'api/slides/';
 const aboutURL = 'api/about/';
+const loginURL = 'api/login/';
 
 @Injectable()
 export class DataService {
@@ -26,11 +27,13 @@ export class DataService {
         return this.http.get<{ found: boolean }>(postsURL + titleURL + '/check');
     }
 
-    uploadPost(post: Post): Observable<{ success: boolean }> {
-        return this.http.post<{ success: boolean }>(postsURL, post);
+    uploadPost(post: Post, token: string): Observable<{ success: boolean }> {
+        let httpOptions = { headers: new HttpHeaders({ 'Authorization': 'Bearer' + token }) };
+        return this.http.post<{ success: boolean }>(postsURL, post, httpOptions);
     }
 
-    updatePost(post: Post, titleURL: string): Observable<{ success: boolean }> {
+    updatePost(post: Post, titleURL: string, token: string): Observable<{ success: boolean }> {
+        let httpOptions = { headers: new HttpHeaders({ 'Authorization': 'Bearer' + token }) };
         return this.http.patch<{ success: boolean }>(postsURL + titleURL, post);
     }
 
@@ -66,5 +69,9 @@ export class DataService {
 
     updateAbout(aboutContent: About): Observable<{ success: boolean }> {
         return this.http.post<{ success: boolean }>(aboutURL, aboutContent);
+    }
+
+    login(email: string, password: string): Observable<LoginResponse> {
+        return this.http.post<LoginResponse>(loginURL, { email, password });
     }
 }

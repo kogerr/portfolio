@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 import { Post, ContentImage } from '../structures/post';
 import { DataService } from '../data.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-editor',
@@ -11,7 +11,7 @@ import { DataService } from '../data.service';
 })
 
 export class EditorComponent implements OnDestroy, OnInit {
-  constructor(private dataService: DataService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private dataService: DataService, private router: Router, private route: ActivatedRoute, private authService: AuthService) { }
   post: Post;
   submitted = false;
   existingPost: boolean;
@@ -19,6 +19,8 @@ export class EditorComponent implements OnDestroy, OnInit {
   error = false;
 
   ngOnInit(): void {
+
+    if (!this.authService.isLoggedIn()) { this.router.navigate(['/login']); }
     this.route.params.subscribe(p => {
       if (p.titleURL) {
         this.dataService.getPost(p.titleURL).subscribe(data => {
@@ -78,7 +80,8 @@ export class EditorComponent implements OnDestroy, OnInit {
 
   uploadPost(): void {
     this.post.timestamp = new Date();
-    this.dataService.uploadPost(this.post).subscribe(
+    let token = this.authService.getToken();
+    this.dataService.uploadPost(this.post, token).subscribe(
       data => { this.submitted = true; },
       error => { this.submitted = true; this.error = error; }
     );
@@ -86,7 +89,8 @@ export class EditorComponent implements OnDestroy, OnInit {
   }
 
   updatePost(): void {
-    this.dataService.updatePost(this.post, this.originalTitleURL).subscribe(
+    let token = this.authService.getToken();
+    this.dataService.updatePost(this.post, this.originalTitleURL, token).subscribe(
       data => { this.submitted = true; },
       error => { this.submitted = true; this.error = error; }
     );

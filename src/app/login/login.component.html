@@ -1,0 +1,15 @@
+<div *ngIf="error">{{error}}</div>
+<div>
+  <legend>Login</legend>
+  <div class="form-field">
+    <label>Email:</label>
+    <input type="email" [(ngModel)]="email">
+  </div>
+  <div class="form-field">
+    <label>Password:</label>
+    <input type="password" [(ngModel)]="password">
+  </div>
+  <div class="form-buttons">
+    <button class="button button-primary" (click)="login()">Login</button>
+  </div>
+</div>
