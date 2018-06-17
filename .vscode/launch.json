@@ -7,14 +7,21 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome on Ng Serve",
+            "name": "Launch Chrome on http port",
+            "url": "http://localhost",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome on port 4200",
             "url": "http://localhost:4200",
             "webRoot": "${workspaceFolder}"
         },
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Launch Node",
             "program": "${workspaceFolder}\\app.js"
         }
     ]

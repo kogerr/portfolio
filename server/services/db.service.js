@@ -1,7 +1,7 @@
-let mongoose = require('mongoose');
 let Post = require('../models/postModel');
 let Slide = require('../models/slideModel');
 let About = require('../models/aboutModel');
+let User = require('../models/userModel');
 
 exports.savePost = function (post) {
     let newPost = new Post(post);
@@ -111,5 +111,20 @@ exports.updateAbout = function (about) {
                 resolve({ data: raw });
             }
         );
+    });
+};
+
+exports.checkUser = function (email, password) {
+    return new Promise((resolve, reject) => {
+        User.find({ email, password }, (err, docs) => {
+            if (err) {
+                reject(err);
+            }
+            if (docs.length) {
+                resolve({ found: true });
+            } else {
+                resolve({ found: false });
+            }
+        });
     });
 };

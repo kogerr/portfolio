@@ -21,11 +21,10 @@ export class AuthService {
     }
 
     private setSession(token: string): void {
-        let expiresIn = (decode(token) as { expiresIn: number }).expiresIn;
-        let expiresAt = new Date(Date.now() + expiresIn * 60000);
+        let expiresAt = decode(token).exp * 1000;
 
         localStorage.setItem('id_token', token);
-        localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+        localStorage.setItem('expires_at', JSON.stringify(expiresAt));
     }
 
     logout(): void {
@@ -34,16 +33,11 @@ export class AuthService {
     }
 
     public isLoggedIn(): boolean {
-        return this.getToken() && Date.now() < this.getExpiration().valueOf();
+        return Date.now() < this.getExpiration();
     }
 
-    isLoggedOut(): boolean {
-        return !this.isLoggedIn();
-    }
-
-    getExpiration(): Date {
-        const expiration = localStorage.getItem('expires_at');
-        const expiresAt = new Date(JSON.parse(expiration));
+    getExpiration(): number {
+        let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
         return expiresAt;
     }
 
