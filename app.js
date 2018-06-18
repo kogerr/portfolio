@@ -1,10 +1,21 @@
 let app = require('./server/config/express');
+let fs = require('fs');
+const http = require('http');
+const https = require('https');
 let mongoose = require('mongoose');
 
-app.set('port', 80);
+let options = {
+    key: fs.readFileSync('./server/keys/sslkey.pem', 'utf8'),
+    cert: fs.readFileSync('./server/keys/sslcert.pem', 'utf8')
+};
 
-let server = app.listen(app.get('port'), function () {
-    let port = server.address().port;
+let httpsServer = https.createServer(options, app).listen(443, () => {
+    let port = httpsServer.address().port;
+    console.log('Listening on port ' + port);
+});
+
+let httpServer = http.createServer(app).listen(80, () => {
+    let port = httpServer.address().port;
     console.log('Listening on port ' + port);
 });
 
