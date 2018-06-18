@@ -48,7 +48,7 @@ exports.checkPost = function (req, res) {
     res.statusCode = 200;
     dbService.getPostByTitleURL(req.params.titleURL)
         .then((data) => {
-            res.send({ found: true });
+            res.send({ found: (data !== null) });
         }).catch((err) => {
             res.send({ found: false });
         });

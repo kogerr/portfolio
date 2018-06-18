@@ -28,13 +28,13 @@ export class DataService {
     }
 
     uploadPost(post: Post, token: string): Observable<{ success: boolean }> {
-        let httpOptions = { headers: new HttpHeaders({ 'Authorization': 'Bearer' + token }) };
+        let httpOptions = { headers: new HttpHeaders({ 'Authorization': 'Bearer ' + token }) };
         return this.http.post<{ success: boolean }>(postsURL, post, httpOptions);
     }
 
     updatePost(post: Post, titleURL: string, token: string): Observable<{ success: boolean }> {
-        let httpOptions = { headers: new HttpHeaders({ 'Authorization': 'Bearer' + token }) };
-        return this.http.patch<{ success: boolean }>(postsURL + titleURL, post);
+        let httpOptions = { headers: new HttpHeaders({ 'Authorization': 'Bearer ' + token }) };
+        return this.http.patch<{ success: boolean }>(postsURL + titleURL, post, httpOptions);
     }
 
     getPreviousPostTitleUrl(titleURL: string): Observable<{ titleURL: string }> {

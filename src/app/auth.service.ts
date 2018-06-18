@@ -21,10 +21,12 @@ export class AuthService {
     }
 
     private setSession(token: string): void {
-        let expiresAt = decode(token).exp * 1000;
+        let decodedToken: DecodedToken = decode(token);
+        let expiresAt = decodedToken.exp * 1000;
 
         localStorage.setItem('id_token', token);
-        localStorage.setItem('expires_at', JSON.stringify(expiresAt));
+        localStorage.setItem('expires_at', expiresAt.toString());
+        localStorage.setItem('email_address', decodedToken.sub);
     }
 
     logout(): void {
@@ -44,4 +46,10 @@ export class AuthService {
     getToken(): string {
         return localStorage.getItem('id_token');
     }
+}
+
+interface DecodedToken {
+    iat: number;
+    exp: number;
+    sub: string;
 }

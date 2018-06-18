@@ -1,11 +1,11 @@
 let dbService = require('../services/db.service');
 let tokenService = require('../services/token.service');
-
-const dummyToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtvZ2VyckBob3RtYWlsLmNvbSIsImV4cGlyZXNJbiI6MTIwfQ.RuH2nHLYO_btIYuxrPfLrIaZAJlGkhQvzSmbYxYxaG4';
+let hasher = require('../services/hasher.service');
 
 exports.login = function (req, res) {
     res.statusCode = 200;
-    dbService.checkUser(req.body.email, req.body.password).then(data => {
+    let hashedPassword = hasher.hash(req.body.password);
+    dbService.checkUser(req.body.email, hashedPassword).then(data => {
         if (data.found === true) {
             let token = tokenService.issueToken(req.body.email);
             res.send({ success: true, token: token });

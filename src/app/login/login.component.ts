@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  email = 'asdf';
+  email: string;
   password: string;
   error: string;
 
@@ -25,6 +25,8 @@ export class LoginComponent {
             this.password = undefined;
           }
         });
+    } else {
+      this.error = 'Please enter email and password.';
     }
   }
 
