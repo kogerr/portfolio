@@ -1,5 +1,5 @@
 .wrapper {
-    height: calc(100vh - 300px);
+    min-height: calc(100vh - 300px);
     background-color: #F0F0F0;
     overflow: hidden;
     padding: calc((100vh - 800px) * 2 / 3) 2.1vw 0 2.1vw;

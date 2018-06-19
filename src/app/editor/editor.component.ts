@@ -17,6 +17,7 @@ export class EditorComponent implements OnDestroy, OnInit {
   existingPost: boolean;
   originalTitleURL: string;
   error = false;
+  remaining: number;
 
   ngOnInit(): void {
 
@@ -98,10 +99,10 @@ export class EditorComponent implements OnDestroy, OnInit {
   }
 
   countdownNavigate(): void {
-    let remaining = 20;
+    this.remaining = 20;
     let redirect = window.setInterval(() => {
-      remaining--;
-      if (remaining <= 0) {
+      this.remaining--;
+      if (this.remaining <= 0) {
         window.clearInterval(redirect);
         this.router.navigate(['/work']);
       }

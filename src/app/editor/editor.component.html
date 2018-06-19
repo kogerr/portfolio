@@ -1,4 +1,4 @@
-<div *ngIf="!submitted && post">
+<div *ngIf="!submitted && post" class="wrapper">
     <form #uploadForm="ngForm">
         <div>
             <label for="title">Title</label>
@@ -7,7 +7,7 @@
         <div>
             <label for="title">Title URL</label>
             <input #titleURL="ngModel" name="titleURL" id="titleURL" type="text" [(ngModel)]="post.titleURL" validateTitle required>
-            <div *ngIf="!existingPost && titleURL.errors?.occupiedTitle"> Title already in use </div>
+            <div *ngIf="!existingPost && titleURL.errors?.occupiedTitle" class="error"> Title already in use </div>
         </div>
         <div>
             <label for="client">Client</label>
@@ -22,13 +22,13 @@
             <input name="type" id="type" type="text" [(ngModel)]="post.type">
         </div>
         <div>
-            <label for="content">Content</label>
-            <textarea rows="4" id="text" name="text" type="text" [(ngModel)]="post.text"></textarea>
-        </div>
-        <div>
             <label for="cover-image">Cover Image</label>
             <input #cover id="cover-image" type="file" accept=".png, .jpg, .jpeg" (change)="uploadCover($event)">
             <button *ngIf="post.cover" (click)="removeCover(); cover.value=''">Remove cover image</button>
+        </div>
+        <div>
+            <label for="content">Content</label>
+            <textarea rows="4" id="text" name="text" type="text" [(ngModel)]="post.text"></textarea>
         </div>
         <div>
             <label for="content-images">Content Images</label>
@@ -48,7 +48,7 @@
             <img [src]="'images/cover/' + post.cover" height="200" />
             <div>
                 <span>Cover Image</span>
-                <button (click)="removeCover()">Remove</button>
+                <button (click)="removeCover(); cover.value=''">Remove</button>
             </div>
         </div>
         <div *ngFor="let image of post.images">
@@ -67,10 +67,10 @@
 <div *ngIf="submitted">
     <div *ngIf="!error">
         <p>Post uploaded</p>
+        <p>You will be redirected in {{remaining}} milliseconds.</p>
     </div>
     <div *ngIf="error">
         <p>Server responded with error message:</p>
         <p>{{error | json}}</p>
     </div>
-    <p>You will be redirected in {{remaining}} milliseconds.</p>
 </div>

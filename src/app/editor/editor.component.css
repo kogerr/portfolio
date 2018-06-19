@@ -1,9 +1,77 @@
-button {
-    color: black;
+.wrapper {
+    min-height: calc(100vh - 300px);
+    background-color: white;
+    overflow: hidden;
+    margin: 0 2vw;
+    padding: 2.1vw 6.25vw;
+    box-sizing: border-box;
+    color: #929292;
 }
 
-button:disabled, button[disabled], input:disabled {
-    color: lightgray;
+form {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+    grid-column-gap: 6.25vw;
+}
+
+button {
+    background-color: #fff000;
+    padding: 0.5em 1em;
+    margin: 1em 0 0 0;
+    border: none;
+    font: inherit;
+    color: #232323;
+}
+
+button:hover {
+    outline-style: auto;
+    outline-width: 5px;
+    outline-color:  #969696;
+}
+
+button:disabled, button[disabled] {
+    background-color: #F0F0F0;
+    color: #969696;
+}
+
+input:disabled {
+    color: #F0F0F0;
+}
+
+button:active {
+    background-color: #F0F0F0;
+}
+
+::-webkit-file-upload-button {
+    background-color: #fff000;
+    padding: 0.5em 1em;
+    border: none;
+    font: inherit;
+    color: #232323;
+}
+
+input, textarea {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0.5em 0;
+    font: inherit;
+    padding: 0.5em;
+    color: #232323;
+    background-color: #F0F0F0;
+    border: none;
+}
+
+input:focus {
+    outline-color: #232323;
+}
+
+.error {
+    margin: 0.2em 0;
+    box-sizing: border-box;
+    max-width: 90vw;
+    padding: 1em;
+    color: #232323;
+    background-color: #fff000;
 }
 
 .preview {
@@ -14,8 +82,4 @@ button:disabled, button[disabled], input:disabled {
     input, label, textarea {
         width: 100%;
     }
-}
-
-:host {
-    background: linear-gradient( #F0F0F0, white);
 }
