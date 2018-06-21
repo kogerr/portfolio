@@ -1,4 +1,4 @@
-<div *ngIf="!submitted && post" class="wrapper">
+<div *ngIf="!submitted" class="wrapper">
     <form #uploadForm="ngForm">
         <div>
             <label for="title">Title</label>
@@ -15,31 +15,49 @@
         </div>
         <div>
             <label for="year">Year</label>
-            <input name="year" id="year" type="number" [(ngModel)]="post.year">
+            <input name="year" id="year" type="number" [(ngModel)]="post.year" min="1986">
         </div>
         <div>
             <label for="type">Type</label>
             <input name="type" id="type" type="text" [(ngModel)]="post.type">
         </div>
         <div>
+            <label for="link">Link</label>
+            <input name="link" id="link" type="text" [(ngModel)]="post.link">
+        </div>
+        <div>
+            <label for="intro">Intro</label>
+            <textarea id="intro" name="intro" type="text" [(ngModel)]="post.intro"></textarea>
+        </div>
+        <div>
             <label for="cover-image">Cover Image</label>
             <input #cover id="cover-image" type="file" accept=".png, .jpg, .jpeg" (change)="uploadCover($event)">
             <button *ngIf="post.cover" (click)="removeCover(); cover.value=''">Remove cover image</button>
         </div>
-        <div>
-            <label for="content">Content</label>
-            <textarea rows="4" id="text" name="text" type="text" [(ngModel)]="post.text"></textarea>
-        </div>
-        <div>
+        <div style="display: none">
             <label for="content-images">Content Images</label>
             <input #contentImages name="content-images" type="file" accept=".png, .jpg, .jpeg" (change)="uploadContentImages($event)"
                 multiple>
             <button *ngIf="post.images?.length > 0" (click)="removeContentImages(post.images); contentImages.value=''">Remove content images</button>
         </div>
-        <div *ngIf="!existingPost">
+        <div class="control-bar full-width">
+            <div class="control-item">
+                <img src="assets/plus.svg" class="plus" alt="+">
+                <div>Text</div>
+            </div>
+            <div class="control-item" (click)="contentImages.click()">
+                <img src="assets/plus.svg" class="plus" alt="+">
+                <div>Image</div>
+            </div>
+            <div class="control-item">
+                <img src="assets/plus.svg" class="plus" alt="+">
+                <div>Video</div>
+            </div>
+        </div>
+        <div *ngIf="!existingPost" class="full-width">
             <button [disabled]="uploadForm.invalid" (click)="uploadPost()">Upload</button>
         </div>
-        <div *ngIf="existingPost">
+        <div *ngIf="existingPost" class="full-width">
             <button (click)="updatePost()">Update</button>
         </div>
     </form>

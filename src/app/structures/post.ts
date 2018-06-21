@@ -5,17 +5,21 @@ export class Post {
     link: string;
     year: number;
     client: string;
-    text: string;
+    intro: string;
     cover: string;
     images: Array<ContentImage>;
     timestamp: Date;
 
     constructor() {
-        this.images = new Array<ContentImage>();
+        this.images = new Array();
     }
 }
 
-export class ContentImage {
+export interface ContentImage {
     name: string;
-    width: string;
+    width: number;
+}
+
+export interface TextContent {
+    text: string;
 }
