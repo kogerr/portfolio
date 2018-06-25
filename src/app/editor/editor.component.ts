@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Post, ContentImage } from '../structures/post';
+import { Post, ContentImage, ContentElement, ContentType } from '../models/post';
 import { DataService } from '../data.service';
 import { AuthService } from '../auth.service';
 
@@ -40,8 +40,8 @@ export class EditorComponent implements OnDestroy, OnInit {
     if (!this.submitted && this.post.cover) {
       this.removeCover();
     }
-    if (!this.submitted && this.post.images && this.post.images.length > 0) {
-      this.removeContentImages(this.post.images);
+    if (!this.submitted && this.post.contents && this.post.contents.length > 0) {
+      this.removeContentImages((this.post.contents.filter(e => e.type === ContentType.image) as ContentImage[]));
     }
   }
 
@@ -65,7 +65,7 @@ export class EditorComponent implements OnDestroy, OnInit {
     let files = event.target.files;
     for (let i = 0; i < files.length; i++) {
       this.dataService.postImage('content', files[i]).subscribe(data => {
-        this.post.images.push(data);
+        this.post.contents.push(data);
         this.dataService.resizeImage('content', data.name, { w: 10, h: 7 }).subscribe(response => this.replaceImage(response, data));
       });
     }
@@ -74,7 +74,7 @@ export class EditorComponent implements OnDestroy, OnInit {
   removeContentImages(images: Array<ContentImage>): void {
     images.forEach(element => {
       this.dataService.deleteImage('content', element.name).subscribe(data => {
-        this.post.images.splice(this.post.images.indexOf(element), 1);
+        this.post.contents.splice(this.post.contents.indexOf(element), 1);
       });
     });
   }
@@ -110,8 +110,8 @@ export class EditorComponent implements OnDestroy, OnInit {
   }
 
   replaceImage(newImage: ContentImage, oldImage: ContentImage): void {
-    newImage.width = 'half';
-    this.post.images.splice(this.post.images.indexOf(oldImage), 1, newImage);
+    newImage.width = 50;
+    this.post.contents.splice(this.post.contents.indexOf(oldImage), 1, newImage);
     this.dataService.deleteImage('content', oldImage.name).subscribe();
   }
 

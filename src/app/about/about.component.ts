@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { About } from '../structures/about.interface';
+import { About } from '../models/about.interface';
 
 @Component({
   selector: 'app-about',

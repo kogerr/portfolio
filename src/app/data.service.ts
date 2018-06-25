@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Post, ContentImage } from './structures/post';
+import { Post, ContentImage } from './models/post';
 import { Slide } from './carousel-slide/slide';
-import { About } from './structures/about.interface';
+import { About } from './models/about.interface';
 
 const postsURL = 'api/posts/';
 const imagesURL = 'api/images/';

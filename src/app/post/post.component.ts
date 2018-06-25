@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { DataService } from '../data.service';
-import { Post } from '../structures/post';
+import { Post } from '../models/post';
 
 const origialTitle = 'Portfolio';
 
