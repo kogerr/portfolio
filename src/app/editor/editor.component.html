@@ -40,8 +40,20 @@
                 multiple>
             <button *ngIf="post.images?.length > 0" (click)="removeContentImages(post.images); contentImages.value=''">Remove content images</button>
         </div>
+
+        <div *ngFor="let element of post.contents" class="contentElementWrap">
+            <img *ngIf="element.type == 'image'" [src]="'images/content/' + element.name" />
+            <div *ngIf="element.type == 'text'" [innerHTML]="element.text"></div>
+        </div>
+
+        <div *ngIf="openTextElement">
+            <label for="openTextElement">New Text Element</label>
+            <textarea #openTextElement id="openTextElement" name="openTextElement" type="text" (submit)="saveTextElement()"></textarea>
+            <button (click)="saveTextElement(openTextElement.value)">Save</button>
+        </div>
+
         <div class="control-bar full-width">
-            <div class="control-item">
+            <div class="control-item" (click)="openTextEditor()">
                 <img src="assets/plus.svg" class="plus" alt="+">
                 <div>Text</div>
             </div>

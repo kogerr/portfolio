@@ -18,6 +18,7 @@ export class EditorComponent implements OnDestroy, OnInit {
   originalTitleURL: string;
   error = false;
   remaining: number;
+  openTextElement = false;
 
   ngOnInit(): void {
 
@@ -65,8 +66,9 @@ export class EditorComponent implements OnDestroy, OnInit {
     let files = event.target.files;
     for (let i = 0; i < files.length; i++) {
       this.dataService.postImage('content', files[i]).subscribe(data => {
+        data.type = 'image';
         this.post.contents.push(data);
-        this.dataService.resizeImage('content', data.name, { w: 10, h: 7 }).subscribe(response => this.replaceImage(response, data));
+        // this.dataService.resizeImage('content', data.name, { w: 10, h: 7 }).subscribe(response => this.replaceImage(response, data));
       });
     }
   }
@@ -125,5 +127,16 @@ export class EditorComponent implements OnDestroy, OnInit {
       titleURL = titleURL.replace(new RegExp(vowels.accented[i], 'g'), vowels.normal[i]);
     }
     this.post.titleURL = titleURL.split(' ').map(t => t.replace(/[^\x00-\x7F]/g, '')).filter(t => t).join('-');
+  }
+
+  openTextEditor(): void {
+    this.openTextElement = true;
+  }
+
+  saveTextElement(text: string): void {
+    text = text.replace(/\n/g, '<br/>');
+    let textElement = { text, type: 'text' };
+    this.post.contents.push(textElement);
+    this.openTextElement = false;
   }
 }

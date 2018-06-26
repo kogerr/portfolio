@@ -12,6 +12,7 @@ form {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
     grid-column-gap: 6.25vw;
+    grid-row-gap: 1em;
 }
 
 button {
@@ -66,7 +67,7 @@ input:focus {
 
 textarea {
     resize: none;
-    height: 7em;
+    height: 17em;
 }
 
 .error {
@@ -110,6 +111,17 @@ textarea {
     height:1em;
     background-color: #fff000;
     padding: 8px;
+}
+
+.contentElementWrap {
+    overflow: scroll;
+    height: 17em;
+    background-color: #F0F0F0;
+    padding: 1em;
+}
+
+.contentElementWrap > img {
+    width: 100%;
 }
 
 @media (max-width: 767px) {
