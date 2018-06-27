@@ -21,12 +21,12 @@ export interface ContentElement {
 }
 
 export enum ContentType {
-    text,
-    image,
-    video
+    text = 'text',
+    image = 'image',
+    video = 'video'
 }
 
-interface TextContent extends ContentElement {
+export interface TextContent extends ContentElement {
     text: string;
 }
 

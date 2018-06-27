@@ -114,14 +114,37 @@ textarea {
 }
 
 .contentElementWrap {
-    overflow: scroll;
-    height: 17em;
     background-color: #F0F0F0;
-    padding: 1em;
+    padding: 0.5em 1em;
 }
 
-.contentElementWrap > img {
+.elementPreview {
+    margin: 0.5em 0;
+    height: 17em;
+    overflow-y: scroll;
+}
+
+.imagePreview {
     width: 100%;
+}
+
+.elementControls {
+    width: min-content;
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    grid-column-gap: 1em;
+    align-items: center;
+}
+
+.image-controls {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-column-gap: 1em;
+    align-items: center;
+}
+
+.icon {
+    height: 1em;
 }
 
 @media (max-width: 767px) {

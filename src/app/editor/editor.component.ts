@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Post, ContentImage, ContentElement, ContentType } from '../models/post';
+import { Post, ContentImage, ContentType, TextContent } from '../models/post';
 import { DataService } from '../data.service';
 import { AuthService } from '../auth.service';
 
@@ -51,10 +51,7 @@ export class EditorComponent implements OnDestroy, OnInit {
       this.removeCover();
     }
     this.dataService.postImage('cover', event.target.files[0]).subscribe(data => {
-      this.dataService.resizeImage('cover', data.name, { w: 3, h: 1 }).subscribe(response => {
-        this.dataService.deleteImage('cover', this.post.cover).subscribe();
-        this.post.cover = response.name;
-      });
+      this.post.cover = data.name;
     });
   }
 
@@ -67,6 +64,7 @@ export class EditorComponent implements OnDestroy, OnInit {
     for (let i = 0; i < files.length; i++) {
       this.dataService.postImage('content', files[i]).subscribe(data => {
         data.type = 'image';
+        data.width = 100;
         this.post.contents.push(data);
         // this.dataService.resizeImage('content', data.name, { w: 10, h: 7 }).subscribe(response => this.replaceImage(response, data));
       });
@@ -83,6 +81,7 @@ export class EditorComponent implements OnDestroy, OnInit {
 
   uploadPost(): void {
     this.post.timestamp = new Date();
+    this.post.intro = this.post.intro.replace(/\n/g, '<br/>');
     let token = this.authService.getToken();
     this.dataService.uploadPost(this.post, token).subscribe(
       data => { this.submitted = true; },
@@ -135,8 +134,39 @@ export class EditorComponent implements OnDestroy, OnInit {
 
   saveTextElement(text: string): void {
     text = text.replace(/\n/g, '<br/>');
-    let textElement = { text, type: 'text' };
+    let textElement = { text, type: ContentType.text };
     this.post.contents.push(textElement);
     this.openTextElement = false;
+  }
+
+  removeElement(index: number) {
+    if (this.post.contents[index].type === ContentType.image) {
+      let name = (this.post.contents[index] as ContentImage).name;
+      this.dataService.deleteImage('content', name).subscribe(data => { });
+    }
+    this.post.contents.splice(index, 1);
+  }
+
+  moveElementUp(index: number) {
+    if (index > 0) {
+      let previous = this.post.contents[index - 1];
+      this.post.contents[index - 1] = this.post.contents[index];
+      this.post.contents[index] = previous;
+    }
+  }
+
+  moveElementDown(index: number) {
+    if (index < this.post.contents.length - 1) {
+      let next = this.post.contents[index + 1];
+      this.post.contents[index + 1] = this.post.contents[index];
+      this.post.contents[index] = next;
+    }
+  }
+
+  editElement(index: number) {
+    let text = (this.post.contents[index] as TextContent).text.replace(/<br\/>/g, '\n');
+    this.openTextEditor();
+    setTimeout(() => textEditor.value = text, 0);
+    this.removeElement(index);
   }
 }

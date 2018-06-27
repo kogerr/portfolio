@@ -31,8 +31,11 @@
         </div>
         <div>
             <label for="cover-image">Cover Image</label>
-            <input #cover id="cover-image" type="file" accept=".png, .jpg, .jpeg" (change)="uploadCover($event)">
-            <button *ngIf="post.cover" (click)="removeCover(); cover.value=''">Remove cover image</button>
+            <input *ngIf="!post.cover" #cover id="cover-image" type="file" accept=".png, .jpg, .jpeg" (change)="uploadCover($event)">
+            <div *ngIf="post.cover" class="elementPreview">
+                <img [src]="'images/cover/' + post.cover" class="imagePreview"/>
+            </div>
+            <button *ngIf="post.cover" (click)="removeCover()">Remove cover image</button>
         </div>
         <div style="display: none">
             <label for="content-images">Content Images</label>
@@ -41,15 +44,29 @@
             <button *ngIf="post.images?.length > 0" (click)="removeContentImages(post.images); contentImages.value=''">Remove content images</button>
         </div>
 
-        <div *ngFor="let element of post.contents" class="contentElementWrap">
-            <img *ngIf="element.type == 'image'" [src]="'images/content/' + element.name" />
-            <div *ngIf="element.type == 'text'" [innerHTML]="element.text"></div>
+        <div *ngFor="let element of post.contents; index as i" class="contentElementWrap">
+            <div class="elementPreview">
+                <img *ngIf="element.type == 'image'" [src]="'images/content/' + element.name"  class="imagePreview" />
+                <div *ngIf="element.type == 'text'" [innerHTML]="element.text"></div>
+            </div>
+            <div class="elementControls">
+                <span>{{i | number:'2.0-0'}}</span>
+                <button (click)="removeElement(i)">Delete</button>
+                <button *ngIf="element.type == 'text'" (click)="editElement(i)">Edit</button>
+                <button><img src="assets/arrow_up.svg" class="icon" alt="up" (click)="moveElementUp(i)"></button>
+                <button><img src="assets/arrow_down.svg" class="icon" alt="down" (click)="moveElementDown(i)"></button>
+                <div *ngIf="element.type == 'image'" class="image-controls">
+                    <span>Width</span>
+                    <input name="width" type="range" min="1" max="100" [(ngModel)]="element.width" style="width:9em">
+                    <span>{{element.width}}%</span>
+                </div>
+            </div>
         </div>
 
         <div *ngIf="openTextElement">
-            <label for="openTextElement">New Text Element</label>
-            <textarea #openTextElement id="openTextElement" name="openTextElement" type="text" (submit)="saveTextElement()"></textarea>
-            <button (click)="saveTextElement(openTextElement.value)">Save</button>
+            <label for="textEditor">New Text Element</label>
+            <textarea #textEditor id="textEditor" name="textEditor" type="text" (submit)="saveTextElement()"></textarea>
+            <button (click)="saveTextElement(textEditor.value)">Save</button>
         </div>
 
         <div class="control-bar full-width">
@@ -73,25 +90,7 @@
             <button (click)="updatePost()">Update</button>
         </div>
     </form>
-    <div>
-        <div *ngIf="post.cover">
-            <img [src]="'images/cover/' + post.cover" height="200" />
-            <div>
-                <span>Cover Image</span>
-                <button (click)="removeCover(); cover.value=''">Remove</button>
-            </div>
-        </div>
-        <div *ngFor="let image of post.images">
-            <img [src]="'images/content/' + image.name" height="200" />
-            <div>
-                <select [(ngModel)]="image.width" required>
-                    <option value="full">Full width</option>
-                    <option value="half" selected>Half width</option>
-                </select>
-                <button (click)="removeContentImages([image])">Remove</button>
-            </div>
-        </div>
-    </div>
+    
 </div>
 
 <div *ngIf="submitted">
