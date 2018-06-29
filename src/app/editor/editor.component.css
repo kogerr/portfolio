@@ -10,7 +10,7 @@
 
 form {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     grid-column-gap: 6.25vw;
     grid-row-gap: 1em;
 }
@@ -87,6 +87,7 @@ textarea {
     display: grid;
     background-color: #F0F0F0;
     grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
 }
 
 .full-width {
@@ -96,15 +97,11 @@ textarea {
 }
 
 .control-item {
-    justify-self: center;
     display: grid;
     grid-template-columns: auto auto;
     grid-column-gap: 0.5em;
     cursor: pointer;
-}
-
-.control-item > div {
-    align-self: center;
+    align-items: center;
 }
 
 .plus {
