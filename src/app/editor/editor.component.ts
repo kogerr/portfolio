@@ -19,6 +19,7 @@ export class EditorComponent implements OnDestroy, OnInit {
   error = false;
   remaining: number;
   openTextElement = false;
+  textUnderEdition: string;
 
   ngOnInit(): void {
 
@@ -132,11 +133,12 @@ export class EditorComponent implements OnDestroy, OnInit {
     this.openTextElement = true;
   }
 
-  saveTextElement(text: string): void {
-    text = text.replace(/\n/g, '<br/>');
+  saveTextElement(): void {
+    let text = this.textUnderEdition.replace(/\n/g, '<br/>');
     let textElement = { text, type: ContentType.text };
     this.post.contents.push(textElement);
     this.openTextElement = false;
+    this.textUnderEdition = '';
   }
 
   removeElement(index: number) {
@@ -164,9 +166,8 @@ export class EditorComponent implements OnDestroy, OnInit {
   }
 
   editElement(index: number) {
-    let text = (this.post.contents[index] as TextContent).text.replace(/<br\/>/g, '\n');
+    this.textUnderEdition = (this.post.contents[index] as TextContent).text.replace(/<br\/>/g, '\n');
     this.openTextEditor();
-    setTimeout(() => textEditor.value = text, 0);
     this.removeElement(index);
   }
 }

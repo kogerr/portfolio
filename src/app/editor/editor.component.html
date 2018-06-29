@@ -57,16 +57,19 @@
                 <button><img src="assets/arrow_down.svg" class="icon" alt="down" (click)="moveElementDown(i)"></button>
                 <div *ngIf="element.type == 'image'" class="image-controls">
                     <span>Width</span>
-                    <input name="width" type="range" min="1" max="100" [(ngModel)]="element.width" style="width:9em">
+                    <input name="width" type="range" min="1" max="100" [(ngModel)]="element.width" style="width:4vw">
                     <span>{{element.width}}%</span>
                 </div>
             </div>
         </div>
-
+        
         <div *ngIf="openTextElement">
             <label for="textEditor">New Text Element</label>
-            <textarea #textEditor id="textEditor" name="textEditor" type="text" (submit)="saveTextElement()"></textarea>
-            <button (click)="saveTextElement(textEditor.value)">Save</button>
+            <textarea [(ngModel)]="textUnderEdition" id="textEditor" name="textEditor" type="text" (submit)="saveTextElement()"></textarea>
+            <div class="elementControls">
+                <button (click)="saveTextElement()">Save</button>
+                <button (click)="openTextElement = false">Cancel</button>
+            </div>
         </div>
 
         <div class="control-bar full-width">
