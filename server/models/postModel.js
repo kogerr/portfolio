@@ -9,12 +9,9 @@ let postSchema = new Schema({
     link: String,
     year: Number,
     client: String,
-    text: String,
+    intro: String,
     cover: String,
-    images: [new Schema({
-        name: String,
-        width: String
-    }, { _id: false })],
+    contents: [],
     timestamp: Date
 });
 

@@ -33,9 +33,14 @@ h2 {
     line-height: 2.1em;
 }
 
-.column2 {
+.column2-grid {
     display: grid;
     grid-template-columns: 45% 45%;
+    column-gap: 6.25vw;
+}
+
+.column2 {
+    column-count: 2;
     column-gap: 6.25vw;
     justify-items: start;
 }

@@ -3,8 +3,8 @@
 
   <div class="text-area">
     <div class="ars-poetica column2">
-      <div>{{content.arsPoetica1}}</div>
-      <div>{{content.arsPoetica2}}</div>
+      {{content.arsPoetica1}}
+      {{content.arsPoetica2}}
     </div>
   </div>
 
@@ -18,7 +18,7 @@
 
   <div class="text-area">
     <h2>Awards</h2>
-    <div class="column2 spaceylines">
+    <div class="column2-grid spaceylines">
       <div *ngFor="let award of content.awards" [style.grid-row]="'span ' + (award.lines.length + 2)">
         <div>{{award.title | uppercase }}</div>
         <div *ngFor="let line of award.lines">{{line}}</div>

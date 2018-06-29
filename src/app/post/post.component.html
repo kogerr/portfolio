@@ -5,13 +5,17 @@
             <div class="subtitle">{{post.type}}</div>
         </div>
         <div class="columned-text">
-            <div class="text">{{post.intro}}</div>
+            <div class="text" [innerHTML]="post.intro"></div>
             <div class="details">
-                Client<span class="spacer">|</span><span class="highlighted-info">{{post.client}}</span>
-                <br>Year<span class="spacer">|</span><span class="highlighted-info">{{post.year}}</span>
+                Client
+                <span class="spacer">|</span>
+                <span class="highlighted-info">{{post.client}}</span>
+                <br>Year
+                <span class="spacer">|</span>
+                <span class="highlighted-info">{{post.year}}</span>
                 <br>
                 <br>
-                <a [routerLink]="post.link" class="highlighted-info" style="text-decoration: underline">visit link</a>
+                <a [href]="post.link" target="_blank" class="highlighted-info" style="text-decoration: underline">visit link</a>
             </div>
         </div>
 
@@ -23,8 +27,7 @@
     <div *ngFor="let element of post.contents" [style.display]="element.type == 'text' ? 'block' : 'inline'">
         <img *ngIf="element.type == 'image'" [src]="'images/content/' + element.name" [style.width]="element.width + '%'" />
         <div *ngIf="element.type == 'text'" class="concept text-area">
-            <span class="subtitle">concept</span>
-            <div class="columned-text">{{element.text}}</div>
+            <div class="columned-text" [innerHTML]="element.text"></div>
         </div>
     </div>
     <div class="post-footer">

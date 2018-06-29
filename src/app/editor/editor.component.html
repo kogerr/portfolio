@@ -51,15 +51,13 @@
             </div>
             <div class="elementControls">
                 <span>{{i | number:'2.0-0'}}</span>
-                <button (click)="removeElement(i)">Delete</button>
+                <button (click)="removeElement(i)"><img src="assets/x.svg" class="icon" alt="delete"></button>
                 <button *ngIf="element.type == 'text'" (click)="editElement(i)">Edit</button>
                 <button><img src="assets/arrow_up.svg" class="icon" alt="up" (click)="moveElementUp(i)"></button>
                 <button><img src="assets/arrow_down.svg" class="icon" alt="down" (click)="moveElementDown(i)"></button>
-                <div *ngIf="element.type == 'image'" class="image-controls">
-                    <span>Width</span>
-                    <input name="width" type="range" min="1" max="100" [(ngModel)]="element.width" style="width:4vw">
-                    <span>{{element.width}}%</span>
-                </div>
+                <span *ngIf="element.type == 'image'">Width</span>
+                <input *ngIf="element.type == 'image'" name="width" type="range" min="1" max="100" [(ngModel)]="element.width" style="width:100%">
+                <span *ngIf="element.type == 'image'">{{element.width}}%</span>
             </div>
         </div>
         
