@@ -4,8 +4,8 @@
             <h2>{{post.title}}</h2>
             <div class="subtitle">{{post.type}}</div>
         </div>
-        <div class="columned-text">
-            <div class="text" [innerHTML]="post.intro"></div>
+        <div class="column2-grid">
+            <div [innerHTML]="post.intro"></div>
             <div class="details">
                 Client
                 <span class="spacer">|</span>
@@ -27,7 +27,7 @@
     <div *ngFor="let element of post.contents" [style.display]="element.type == 'text' ? 'block' : 'inline'">
         <img *ngIf="element.type == 'image'" [src]="'images/content/' + element.name" [style.width]="element.width + '%'" />
         <div *ngIf="element.type == 'text'" class="concept text-area">
-            <div class="columned-text" [innerHTML]="element.text"></div>
+            <div class="column2-grid" [innerHTML]="element.text"></div>
         </div>
     </div>
     <div class="post-footer">

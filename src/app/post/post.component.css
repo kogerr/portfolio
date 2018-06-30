@@ -1,7 +1,7 @@
 .post-info {
     display: grid;
     grid-template-rows: 32% auto;
-    padding: 10.7vw 6.25vw 6.25vw 6.25vw;
+    padding: 10.7vw 0 6.25vw 6.25vw
 }
 
 .text-area {
@@ -25,10 +25,10 @@ h2 {
     text-transform: uppercase;
 }
 
-.columned-text {
+.column2-grid {
     display: grid;
-    grid-template-columns: 45% 42.5%;
-    justify-content: space-between;	
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 6.25vw;
 }
 
 .spacer {
@@ -96,8 +96,4 @@ h2 {
 
 .image {
     display: inline;
-}
-
-.text {
-
 }
