@@ -14,10 +14,10 @@ export class MetatagService {
     }
 
     private clearMetaData(): void {
-        this.meta.removeTag('name=\'og:url\'');
-        this.meta.removeTag('name=\'og:title\'');
-        this.meta.removeTag('name=\'og:description\'');
-        this.meta.removeTag('name=\'og:image\'');
+        this.meta.removeTag('property=\'og:url\'');
+        this.meta.removeTag('property=\'og:title\'');
+        this.meta.removeTag('property=\'og:description\'');
+        this.meta.removeTag('property=\'og:image\'');
     }
 
     private tranformData(metatagInfo: MetatagInfo): MetatagInfo {
@@ -29,11 +29,11 @@ export class MetatagService {
 
     private setMetaData(metatagInfo: MetatagInfo): void {
         this.meta.addTags([
-            {name: 'og:url', content: metatagInfo.url},
-            {name: 'og:title', content: metatagInfo.title},
-            {name: 'og:description', content: metatagInfo.description},
-            {name: 'og:image', content: metatagInfo.image},
-            {name: 'og:type', content: 'article'}
+            {property: 'og:url', content: metatagInfo.url},
+            {property: 'og:title', content: metatagInfo.title},
+            {property: 'og:description', content: metatagInfo.description},
+            {property: 'og:image', content: metatagInfo.image},
+            {property: 'og:type', content: 'article'}
         ], false);
     }
 
