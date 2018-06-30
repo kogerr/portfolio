@@ -41,7 +41,6 @@
             <label for="content-images">Content Images</label>
             <input #contentImages name="content-images" type="file" accept=".png, .jpg, .jpeg" (change)="uploadContentImages($event)"
                 multiple>
-            <button *ngIf="post.images?.length > 0" (click)="removeContentImages(post.images); contentImages.value=''">Remove content images</button>
         </div>
 
         <div *ngFor="let element of post.contents; index as i" class="contentElementWrap">

@@ -2,10 +2,7 @@
   <div class="full-box"></div>
 
   <div class="text-area">
-    <div class="ars-poetica column2">
-      {{content.arsPoetica1}}
-      {{content.arsPoetica2}}
-    </div>
+    <div class="ars-poetica column2" [innerHTML]="content.intro"></div>
   </div>
 
   <div class="text-area">
@@ -29,7 +26,7 @@
 
   <div class="text-area">
     <h2>Publications</h2>
-    <div class="column2 spaceylines">
+    <div class="column2-grid spaceylines">
       <div>
         <div class="subtitle">print</div>
         <div *ngFor="let publication of content.printPublications">
@@ -54,7 +51,7 @@
 
   <div class="text-area">
     <h2>Exhibitions</h2>
-    <div class="column2 spaceylines">
+    <div class="column2-grid spaceylines">
       <div *ngFor="let exhibition of content.exhibitions" [class.clickable]="exhibition.link">
         {{exhibition}}
       </div>

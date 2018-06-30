@@ -1,12 +1,18 @@
-import { PossiblyClickable } from './possibly-clickable';
-import { TitledLines } from './titled-lines';
-
 export interface About {
-    arsPoetica1: string;
-    arsPoetica2: string;
+    intro: string;
     exhibitions: string[];
     clients: string[];
     printPublications: PossiblyClickable[];
     onlinePublications: PossiblyClickable[];
     awards: TitledLines[];
+}
+
+export interface TitledLines {
+    title: string;
+    lines: string[];
+}
+
+export interface PossiblyClickable {
+    text: string;
+    url?: string;
 }
