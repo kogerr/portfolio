@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { DataService } from '../data.service';
 import { Post } from '../models/post';
+import { MetatagService } from '../metatag.service';
 
 const origialTitle = 'Portfolio';
 
@@ -13,13 +14,15 @@ const origialTitle = 'Portfolio';
 export class PostComponent implements OnInit, OnDestroy {
   post: Post;
 
-  constructor(private dataService: DataService, private route: ActivatedRoute, private titleService: Title, private router: Router) { }
+  constructor(private dataService: DataService, private route: ActivatedRoute,
+    private titleService: Title, private router: Router, private metatagService: MetatagService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(p => {
       this.dataService.getPost(p.titleURL).subscribe(data => {
         this.post = data;
         this.titleService.setTitle(data.title);
+        this.metatagService.update({title: data.title, url: data.titleURL, description: data.intro, image: data.cover});
       });
     });
   }

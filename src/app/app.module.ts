@@ -18,6 +18,7 @@ import { CarouselSlideComponent } from './carousel-slide/carousel-slide.componen
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
+import { MetatagService } from './metatag.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { AuthService } from './auth.service';
     AboutComponent,
     LoginComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
-  providers: [DataService, AuthService],
+  providers: [DataService, AuthService, MetatagService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
