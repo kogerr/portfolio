@@ -15,14 +15,30 @@ const loginURL = 'api/login/';
 export class DataService {
     constructor(private http: HttpClient) { }
 
+    /**
+     * Loads all the posts.
+     *
+     * @returns an array of the posts
+     */
     loadPosts(): Observable<Post[]> {
         return this.http.get<Post[]>(postsURL);
     }
 
+    /**
+     * Gets one post by the titleURL.
+     *
+     * @param titleURL title URL
+     */
     getPost(titleURL: string): Observable<Post> {
         return this.http.get<Post>(postsURL + titleURL);
     }
 
+    /**
+     * Returns a boolean wether a post by the given title URL already exists.
+     *
+     * @param titleURL title URL
+     * @returns found:true if the post exists
+     */
     checkPost(titleURL: string): Observable<{ found: boolean }> {
         return this.http.get<{ found: boolean }>(postsURL + titleURL + '/check');
     }

@@ -2,7 +2,7 @@ let storageService = require('../services/storage.service');
 let resizeService = require('../services/resize.service');
 const directory = 'dist/images/';
 
-exports.returnSavedFileName = function (req, res, next) {
+exports.returnSavedFileName = function (req, res) {
     let response = { name: req.file.filename };
     if (response.name) {
         res.statusCode = 201;
@@ -12,9 +12,9 @@ exports.returnSavedFileName = function (req, res, next) {
     res.send(response);
 };
 
-exports.deleteImage = function (req, res, next) {
+exports.deleteImage = function (req, res) {
     storageService.deleteImage(req.params.filename)
-        .then((data) => {
+        .then(() => {
             res.statusCode = 200;
             res.send({ success: true });
         }).catch((err) => {
@@ -28,7 +28,7 @@ exports.crop = function (req, res) {
     let newName = storageService.generateFilename(req.params.filename);
     let newPath = directory + '/' + newName;
     let proportions = req.body;
-    resizeService.crop(filePath, newPath, proportions).then(data => {
+    resizeService.crop(filePath, newPath, proportions).then(() => {
         res.statusCode = 200;
         res.send({ name: newName });
     }).catch((err) => {

@@ -1,3 +1,5 @@
+/*eslint no-unused-vars: 'off'*/
+
 let template = require('./template.json');
 
 const workBaseURL = 'http://199.247.23.37/work/';

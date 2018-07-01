@@ -7,7 +7,7 @@
         <div>
             <label for="title">Title URL</label>
             <input #titleURL="ngModel" name="titleURL" id="titleURL" type="text" [(ngModel)]="post.titleURL" validateTitle required>
-            <div *ngIf="!existingPost && titleURL.errors?.occupiedTitle" class="error"> Title already in use </div>
+            <div *ngIf="!existingPost && titleURL?.errors?.occupiedTitle" class="error"> Title already in use </div>
         </div>
         <div>
             <label for="client">Client</label>
