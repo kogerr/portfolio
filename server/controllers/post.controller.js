@@ -1,10 +1,12 @@
 let dbService = require('../services/db.service');
+let responseCacher = require('../services/metadata/response-cacher');
 
 exports.savePost = function (req, res) {
     dbService.savePost(req.body)
         .then((data) => {
             res.statusCode = 201;
             res.send({ success: true });
+            responseCacher.saveResponse(req.body);
         }).catch((err) => {
             res.statusCode = 500;
             res.send(err);
@@ -74,4 +76,10 @@ exports.getNextPostTitleUrl = function (req, res) {
             res.statusCode = 404;
             res.send(err);
         });
+};
+
+exports.saveMetaData  = function (req, res) {
+    responseCacher.saveResponse(req.body);
+    res.statusCode = 200;
+    res.send(responseCacher.getResponse(req.body.titleURL));
 };
