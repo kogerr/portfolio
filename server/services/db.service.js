@@ -3,6 +3,12 @@ let Slide = require('../models/slideModel');
 let About = require('../models/aboutModel');
 let User = require('../models/userModel');
 
+function deleteID(doc) {
+    let response = doc.toObject();
+    delete response['_id'];
+    return response;
+}
+
 exports.savePost = function (post) {
     let newPost = new Post(post);
     return newPost.save();
@@ -27,7 +33,8 @@ exports.getPosts = function () {
             if (err) {
                 reject(err);
             }
-            resolve(docs.sort((a, b) => b.timestamp - a.timestamp));
+            resolve(docs.sort((a, b) => b.timestamp - a.timestamp)
+                .map((post) => deleteID(post)));
         });
     });
 };
@@ -38,7 +45,7 @@ exports.getPostByTitleURL = function (titleURL) {
             if (err) {
                 reject(err);
             }
-            resolve(data);
+            resolve(deleteID(data));
         });
     });
 };
@@ -58,6 +65,7 @@ exports.getPreviousPostTitleUrl = function (titleURL) {
         });
     });
 };
+
 exports.getNextPostTitleUrl = function (titleURL) {
     return new Promise((resolve, reject) => {
         Post.find((err, docs) => {
@@ -80,6 +88,7 @@ exports.getSlides = function () {
             if (err) {
                 reject(err);
             }
+            docs.map(slide => deleteID(slide));
             resolve(docs);
         });
     });
@@ -96,7 +105,7 @@ exports.getAbout = function () {
             if (err) {
                 reject(err);
             }
-            resolve(docs);
+            resolve(deleteID(docs));
         });
     });
 };

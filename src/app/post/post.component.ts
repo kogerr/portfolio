@@ -22,7 +22,8 @@ export class PostComponent implements OnInit, OnDestroy {
       this.dataService.getPost(p.titleURL).subscribe(data => {
         this.post = data;
         this.titleService.setTitle(data.title);
-        this.metatagService.update({title: data.title, url: data.titleURL, description: data.intro, image: data.cover});
+        this.metatagService.update({ title: data.title, url: data.titleURL,
+            description: data.facebookDescription, image: data.facebookImage });
       });
     });
   }
