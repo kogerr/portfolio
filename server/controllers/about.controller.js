@@ -13,7 +13,7 @@ exports.getAbout = function (req, res) {
 
 exports.updateAbout = function (req, res) {
     dbService.updateAbout(req.body)
-        .then((data) => {
+        .then(() => {
             res.statusCode = 200;
             res.send({ success: true });
         }).catch((err) => {

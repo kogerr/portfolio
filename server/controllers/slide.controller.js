@@ -13,7 +13,7 @@ exports.getSlides = function (req, res) {
 
 exports.saveSlide = function (req, res) {
     dbService.saveSlide(req.body)
-        .then(data => {
+        .then(() => {
             res.statusCode = 200;
             res.send({ success: true });
         }).catch(error => {

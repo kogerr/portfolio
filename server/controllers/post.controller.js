@@ -4,7 +4,7 @@ let postCacher = require('../services/cache/post.cacher');
 
 exports.savePost = function (req, res) {
     dbService.savePost(req.body)
-        .then((data) => {
+        .then(() => {
             res.statusCode = 201;
             res.send({ success: true });
             responseCacher.saveMetaData(req.body);
@@ -17,7 +17,7 @@ exports.savePost = function (req, res) {
 
 exports.updatePost = function (req, res) {
     dbService.updatePost(req.body)
-        .then((data) => {
+        .then(() => {
             res.statusCode = 200;
             res.send({ success: true });
             responseCacher.updateMetaData(req.body);
@@ -66,8 +66,8 @@ exports.checkPost = function (req, res) {
     res.statusCode = 200;
     dbService.getPostByTitleURL(req.params.titleURL)
         .then((data) => {
-            res.send({ found: (data !== null) });
-        }).catch((err) => {
+            res.send({ found: data !== null });
+        }).catch(() => {
             res.send({ found: false });
         });
 };
@@ -101,17 +101,18 @@ exports.saveMetaData = function (req, res) {
 };
 
 exports.cacherTest = function (req, res) {
-    console.time('cache');
-    let cachedPosts = postCacher.getPosts();
-    console.timeEnd('cache');
-    console.time('db');
+    let cacheStart = process.hrtime();
+    postCacher.getPosts();
+    let cacheTime = process.hrtime(cacheStart)[1];
+    let dbStart = process.hrtime();
     dbService.getPosts()
-        .then((data) => {
-            console.timeEnd('db');
+        .then(() => {
+            let dbTime = process.hrtime(dbStart)[1];
+            let difference = dbTime - cacheTime;
             res.statusCode = 200;
-            res.send(data);
+            res.send({ cacheTime, dbTime, difference });
         }).catch((err) => {
             res.statusCode = 404;
             res.send(err);
         });
-}
+};

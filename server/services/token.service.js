@@ -1,4 +1,3 @@
-let fs = require('fs');
 let jwt = require('jsonwebtoken');
 let expressJwt = require('express-jwt');
 let keys = require('../keys/keys.json');

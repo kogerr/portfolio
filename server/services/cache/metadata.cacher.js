@@ -18,12 +18,12 @@ exports.saveMetaData = function (post) {
 };
 
 exports.updateMetaData = function (post) {
-    let index = metaDataTemplateCache.findIndex((e) => e.titleURL == post.titleURL);
+    let index = metaDataTemplateCache.findIndex((e) => e.titleURL === post.titleURL);
     let metaDataTemplate = templateGenerator.assembleTemplate(post);
     metaDataTemplateCache[index] = { titleURL: post.titleURL, template: metaDataTemplate };
 };
 
 exports.getMetaData = function (titleURL) {
-    let metaDataTemplateObject = metaDataTemplateCache.find((e) => e.titleURL == titleURL);
+    let metaDataTemplateObject = metaDataTemplateCache.find((e) => e.titleURL === titleURL);
     return metaDataTemplateObject === undefined ? false : metaDataTemplateObject.template;
 }

@@ -10,7 +10,7 @@ let generateFromDb = function (titleURL) {
             let response = templateGenerator.assembleTemplate(post);
             metaDataCacher.saveMetaData(post);
             resolve(response);
-        });
+        }).catch(err => reject(err));
     });
 }
 
@@ -20,7 +20,9 @@ exports.getResponse = function (req, res) {
     let titleURL = req.url.match(workRegex)[1];
     let response = metaDataCacher.getMetaData(titleURL);
     if (!response) {
-        generateFromDb(titleURL).then((data) => { res.send(data); });
+        generateFromDb(titleURL)
+            .then(data => { res.send(data); })
+            .catch(err => res.send(err));
     } else {
         res.send(metaDataCacher.getMetaData(titleURL));
     }

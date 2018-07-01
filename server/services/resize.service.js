@@ -7,7 +7,7 @@ exports.crop = function (filePath, newPath, proportions) {
                 reject(err);
             }
             let newSize = calculateSize(image.bitmap.width, image.bitmap.height, proportions);
-            image.cover(newSize.width, newSize.height).write(newPath, (err, image) => {
+            image.cover(newSize.width, newSize.height).write(newPath, (err) => {
                 if (err) {
                     reject(err);
                 }
