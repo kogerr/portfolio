@@ -8,6 +8,8 @@ export class Post {
     intro: string;
     cover: string;
     contents: Array<ContentElement>;
+    facebookDescription: string;
+    facebookImage: string;
     timestamp: Date;
 
     constructor() {

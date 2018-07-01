@@ -23,9 +23,9 @@
     <a [routerLink]="post.link" class="dropdown">
         <img src="assets/v-shape.svg">
     </a>
-    <img [src]="'images/cover/' + post.cover" class="cover" />
+    <img [src]="'images/' + post.cover" class="cover" />
     <div *ngFor="let element of post.contents" [style.display]="element.type == 'text' ? 'block' : 'inline'">
-        <img *ngIf="element.type == 'image'" [src]="'images/content/' + element.name" [style.width]="element.width + '%'" />
+        <img *ngIf="element.type == 'image'" [src]="'images/' + element.name" [style.width]="element.width + '%'" />
         <div *ngIf="element.type == 'text'" class="concept text-area">
             <div class="column2-grid" [innerHTML]="element.text"></div>
         </div>

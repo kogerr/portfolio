@@ -30,12 +30,25 @@
             <textarea id="intro" name="intro" type="text" [(ngModel)]="post.intro"></textarea>
         </div>
         <div>
+            <label for="fb-description">Facebook Description</label>
+            <textarea id="fb-description" name="fb-description" type="text" [(ngModel)]="post.facebookDescription"></textarea>
+        </div>
+        <div>
             <label for="cover-image">Cover Image</label>
             <input *ngIf="!post.cover" #cover id="cover-image" type="file" accept=".png, .jpg, .jpeg" (change)="uploadCover($event)">
             <div *ngIf="post.cover" class="elementPreview">
-                <img [src]="'images/cover/' + post.cover" class="imagePreview"/>
+                <img [src]="'images/' + post.cover" class="imagePreview"/>
             </div>
-            <button *ngIf="post.cover" (click)="removeCover()">Remove cover image</button>
+            <button *ngIf="post.cover" (click)="removeImage('cover', 'cover')">Remove cover image</button>
+        </div>
+        <div>
+            <label for="facebook-image">Facebook Image</label>
+            <input *ngIf="!post.facebookImage" #facebookImage name="facebook-image" type="file" accept=".png, .jpg, .jpeg" (change)="uploadFacebookImage($event)">
+            <div *ngIf="!post.facebookImage">Best ratio: 23x12. At least 552 px X 288 px</div>
+            <div *ngIf="post.facebookImage" class="elementPreview">
+                <img [src]="'images/' + post.facebookImage" class="imagePreview"/>
+            </div>
+            <button *ngIf="post.facebookImage" (click)="removeImage('facebookImage', 'content')">Remove facebook image</button>
         </div>
         <div style="display: none">
             <label for="content-images">Content Images</label>
@@ -45,7 +58,7 @@
 
         <div *ngFor="let element of post.contents; index as i" class="contentElementWrap">
             <div class="elementPreview">
-                <img *ngIf="element.type == 'image'" [src]="'images/content/' + element.name"  class="imagePreview" />
+                <img *ngIf="element.type == 'image'" [src]="'images/' + element.name"  class="imagePreview" />
                 <div *ngIf="element.type == 'text'" [innerHTML]="element.text"></div>
             </div>
             <div class="elementControls">

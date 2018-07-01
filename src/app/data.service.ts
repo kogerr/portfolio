@@ -45,18 +45,24 @@ export class DataService {
         return this.http.get<{ titleURL: string }>(postsURL + titleURL + '/next');
     }
 
-    postImage(imageType: string, file: File): Observable<any> {
+    /**
+     * Uploads a file to the images directory.
+     *
+     * @param file image file to upload
+     * @returns the name of the uploaded file
+     */
+    postImage(file: File): Observable<{ name: string }> {
         let formData = new FormData();
         formData.append('image', file);
-        return this.http.post(imagesURL + imageType, formData);
+        return this.http.post<{ name: string }>(imagesURL, formData);
     }
 
-    deleteImage(fieldname: string, filename: string): Observable<{ success: boolean }> {
-        return this.http.delete<{ success: boolean }>(imagesURL + fieldname + '/' + filename);
+    deleteImage(filename: string): Observable<{ success: boolean }> {
+        return this.http.delete<{ success: boolean }>(imagesURL + filename);
     }
 
-    resizeImage(imageType, filename, proportions): Observable<ContentImage> {
-        return this.http.patch<ContentImage>(imagesURL + imageType + '/' + filename, proportions);
+    resizeImage(filename, proportions): Observable<ContentImage> {
+        return this.http.patch<ContentImage>(imagesURL + filename, proportions);
     }
 
     loadSlides(): Observable<Slide[]> {

@@ -7,8 +7,7 @@ let shortid = require('shortid');
 const imagesDirectory = 'dist/images/';
 
 let determineDestination = function (req, file, cb) {
-    let destination = imagesDirectory + req.params.field;
-    cb(null, destination);
+    cb(null, imagesDirectory);
 };
 
 let determineFilename = function (req, file, cb) {
@@ -21,8 +20,8 @@ exports.generateFilename = function (originalname) {
     return shortid.generate() + extension;
 };
 
-exports.deleteImage = function (imageType, filename) {
-    let file = path.join(appRoot.path, imagesDirectory + imageType) + '/' + filename;
+exports.deleteImage = function (filename) {
+    let file = path.join(appRoot.path, imagesDirectory) + '/' + filename;
     return new Promise((resolve, reject) => {
         fs.unlink(file, (err) => {
             if (err) {

@@ -13,7 +13,7 @@ exports.returnSavedFileName = function (req, res, next) {
 };
 
 exports.deleteImage = function (req, res, next) {
-    storageService.deleteImage(req.params.field, req.params.filename)
+    storageService.deleteImage(req.params.filename)
         .then((data) => {
             res.statusCode = 200;
             res.send({ success: true });
@@ -24,9 +24,9 @@ exports.deleteImage = function (req, res, next) {
 };
 
 exports.crop = function (req, res) {
-    let filePath = directory + req.params.field + '/' + req.params.filename;
+    let filePath = directory + '/' + req.params.filename;
     let newName = storageService.generateFilename(req.params.filename);
-    let newPath = directory + req.params.field + '/' + newName;
+    let newPath = directory + '/' + newName;
     let proportions = req.body;
     resizeService.crop(filePath, newPath, proportions).then(data => {
         res.statusCode = 200;

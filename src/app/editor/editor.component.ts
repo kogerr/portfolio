@@ -40,7 +40,7 @@ export class EditorComponent implements OnDestroy, OnInit {
 
   ngOnDestroy(): void {
     if (!this.submitted && this.post.cover) {
-      this.removeCover();
+      this.removeImage('cover');
     }
     if (!this.submitted && this.post.contents && this.post.contents.length > 0) {
       this.removeContentImages((this.post.contents.filter(e => e.type === ContentType.image) as ContentImage[]));
@@ -49,24 +49,34 @@ export class EditorComponent implements OnDestroy, OnInit {
 
   uploadCover(event): void {
     if (this.post.cover) {
-      this.removeCover();
+      this.removeImage('cover');
     }
-    this.dataService.postImage('cover', event.target.files[0]).subscribe(data => {
+    this.dataService.postImage(event.target.files[0]).subscribe(data => {
       this.post.cover = data.name;
     });
   }
 
-  removeCover(): void {
-    this.dataService.deleteImage('cover', this.post.cover).subscribe(data => delete this.post.cover);
+  uploadFacebookImage(event): void {
+    if (this.post.facebookImage) {
+      this.dataService.deleteImage(this.post.facebookImage).subscribe(data => {
+        this.post.facebookImage = '';
+      });
+    }
+    this.dataService.postImage(event.target.files[0]).subscribe(data => {
+      this.post.facebookImage = data.name;
+    });
+  }
+
+  removeImage(image): void {
+    this.dataService.deleteImage(this.post[image]).subscribe(data => delete this.post[image]);
   }
 
   uploadContentImages(event): void {
     let files = event.target.files;
     for (let i = 0; i < files.length; i++) {
-      this.dataService.postImage('content', files[i]).subscribe(data => {
-        data.type = 'image';
-        data.width = 100;
-        this.post.contents.push(data);
+      this.dataService.postImage(files[i]).subscribe(data => {
+        let image = { name: data.name, type: ContentType.image, width: 100 };
+        this.post.contents.push(image);
         // this.dataService.resizeImage('content', data.name, { w: 10, h: 7 }).subscribe(response => this.replaceImage(response, data));
       });
     }
@@ -74,7 +84,7 @@ export class EditorComponent implements OnDestroy, OnInit {
 
   removeContentImages(images: Array<ContentImage>): void {
     images.forEach(element => {
-      this.dataService.deleteImage('content', element.name).subscribe(data => {
+      this.dataService.deleteImage(element.name).subscribe(data => {
         this.post.contents.splice(this.post.contents.indexOf(element), 1);
       });
     });
@@ -114,7 +124,7 @@ export class EditorComponent implements OnDestroy, OnInit {
   replaceImage(newImage: ContentImage, oldImage: ContentImage): void {
     newImage.width = 50;
     this.post.contents.splice(this.post.contents.indexOf(oldImage), 1, newImage);
-    this.dataService.deleteImage('content', oldImage.name).subscribe();
+    this.dataService.deleteImage(oldImage.name).subscribe();
   }
 
   generateTitleURL(): void {
@@ -144,7 +154,7 @@ export class EditorComponent implements OnDestroy, OnInit {
   removeElement(index: number) {
     if (this.post.contents[index].type === ContentType.image) {
       let name = (this.post.contents[index] as ContentImage).name;
-      this.dataService.deleteImage('content', name).subscribe(data => { });
+      this.dataService.deleteImage(name).subscribe(data => { });
     }
     this.post.contents.splice(index, 1);
   }

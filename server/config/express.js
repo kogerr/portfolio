@@ -8,7 +8,7 @@ let appRoot = require('app-root-path');
 let metaDataCtrl = require('../services/metadata/metadata-interceptor.service');
 
 const indexPath = 'dist/index.html';
-const fbUserAgent = 'facebookexternalhit';
+const fbUserAgent = 'Mozilla';
 
 let app = express();
 
