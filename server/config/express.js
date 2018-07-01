@@ -8,7 +8,7 @@ let appRoot = require('app-root-path');
 let metaDataCtrl = require('../services/metadata/metadata-interceptor.service');
 
 const indexPath = 'dist/index.html';
-const fbUserAgent = 'Mozilla';
+const fbUserAgent = 'facebookexternalhit';
 
 let app = express();
 
@@ -20,7 +20,7 @@ app.use(express.static('dist'));
 app.get('/work/*', function (req, res) {
     let forFacebook = function (req) {
         return req.headers['user-agent'].startsWith(fbUserAgent);
-    }
+    };
     if (forFacebook(req)) {
         metaDataCtrl.getResponse(req, res);
     } else {

@@ -24,7 +24,7 @@ exports.updatePost = function (post) {
 exports.getPost = function (titleURL) {
     let post = postCache.find((e) => e.titleURL === titleURL);
     return post === undefined ? false : post;
-}
+};
 
 exports.getPosts = function () {
     return postCache;
