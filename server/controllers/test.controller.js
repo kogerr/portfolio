@@ -31,5 +31,6 @@ exports.logHeaders = function (req, res) {
     console.log(headers);
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/html');
-    res.send(assembleResponse(JSON.stringify(headers)));
+    let description = JSON.stringify(headers).replace(/\"/g,'\'');
+    res.send(assembleResponse(description));
 };
