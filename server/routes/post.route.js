@@ -9,4 +9,5 @@ router.route('/:titleURL/check').get(postCtrl.checkPost);
 router.route('/:titleURL/previous').get(postCtrl.getPreviousPostTitleUrl);
 router.route('/:titleURL/next').get(postCtrl.getNextPostTitleUrl);
 router.route('/metadata/').post(postCtrl.saveMetaData);
+router.route('/cache/test').get(postCtrl.cacherTest);
 module.exports = router;
