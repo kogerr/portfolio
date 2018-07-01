@@ -4,8 +4,10 @@ let imageRoutes = require('./image.route');
 let slideRoutes = require('./slide.route');
 let aboutRoutes = require('./about.route');
 let loginRoutes = require('./login.route');
+let testRoutes = require('./test.route');
 let router = express.Router();
 
+router.use('/test', testRoutes);
 router.use('/posts', postRoutes);
 router.use('/images', imageRoutes);
 router.use('/slides', slideRoutes);
