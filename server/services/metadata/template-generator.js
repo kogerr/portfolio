@@ -1,4 +1,4 @@
-/*eslint no-unused-vars: 'off'*/
+/* eslint no-unused-vars: 'off' */
 
 let template = require('./template.json');
 

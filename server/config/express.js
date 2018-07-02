@@ -17,8 +17,8 @@ app.use('/api', routes);
 
 app.use(express.static('dist'));
 
-app.get('/work/*', function (req, res) {
-    let forFacebook = function (req) {
+app.get('/work/*', function(req, res) {
+    let forFacebook = function(req) {
         return req.headers['user-agent'].startsWith(fbUserAgent);
     };
     if (forFacebook(req)) {
@@ -28,7 +28,7 @@ app.get('/work/*', function (req, res) {
     }
 });
 
-app.get('/*', function (req, res) {
+app.get('/*', function(req, res) {
     res.sendFile(path.join(appRoot.path, indexPath));
 });
 

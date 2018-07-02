@@ -5,7 +5,7 @@ let Schema = mongoose.Schema;
 let slideSchema = new Schema({
     title: String,
     imageUrl: String,
-    link: String
+    link: String,
 });
 
 module.exports = mongoose.model('slide', slideSchema);

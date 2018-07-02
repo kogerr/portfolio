@@ -14,7 +14,7 @@ let postSchema = new Schema({
     contents: [],
     facebookDescription: String,
     facebookImage: String,
-    timestamp: Date
+    timestamp: Date,
 });
 
 module.exports = mongoose.model('post', postSchema);

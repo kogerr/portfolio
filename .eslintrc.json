@@ -7,13 +7,12 @@
         "no-undef": 1,
         "no-unused-vars": 1,
         "eqeqeq": "warn",
-        "no-console": "warn",
-        "no-multi-spaces": "warn",
         "camelcase": "error",
         "eol-last": ["error", "always"],
         "no-tabs": "error",
         "no-multiple-empty-lines": "error",
-        "no-extra-parens": "warn"
+        "no-extra-parens": "warn",
+        "new-cap": ["error", { "capIsNewExceptions": ["express.Router"] }]
     },
     "env": {
         "amd": true,

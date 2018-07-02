@@ -1,22 +1,22 @@
 let dbService = require('../services/db.service');
 
-exports.getSlides = function (req, res) {
+exports.getSlides = function(req, res) {
     dbService.getSlides()
-        .then(data => {
+        .then((data) => {
             res.statusCode = 200;
             res.send(data);
-        }).catch(error => {
+        }).catch((error) => {
             res.statusCode = 404;
             res.send(error);
         });
 };
 
-exports.saveSlide = function (req, res) {
+exports.saveSlide = function(req, res) {
     dbService.saveSlide(req.body)
         .then(() => {
             res.statusCode = 200;
-            res.send({ success: true });
-        }).catch(error => {
+            res.send({success: true});
+        }).catch((error) => {
             res.statusCode = 500;
             res.send(error);
         });
