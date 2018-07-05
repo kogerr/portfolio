@@ -23,6 +23,21 @@
             "request": "launch",
             "name": "Launch Node",
             "program": "${workspaceFolder}\\app.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch current file w/ ts-node",
+            "protocol": "inspector",
+            "args": [
+                "${relativeFile}"
+            ],
+            "cwd": "${workspaceRoot}",
+            "runtimeArgs": [
+                "-r",
+                "ts-node/register"
+            ],
+            "internalConsoleOptions": "openOnSessionStart"
         }
     ]
 }
