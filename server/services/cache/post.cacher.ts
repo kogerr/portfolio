@@ -1,7 +1,7 @@
 import * as dbService from '../db.service';
 import Post from '../../models/Post';
 
-let postCache;
+let postCache: Array<Post>;
 fillPostCache();
 
 /**
@@ -16,20 +16,20 @@ function fillPostCache(): void {
     });
 }
 
-export let savePost = (post: Post): void => {
+export function savePost(post: Post): void {
     postCache.push(post);
-};
+}
 
-export let updatePost = (post: Post): void => {
+export function updatePost(post: Post): void {
     let postIndex = postCache.findIndex((e) => e.titleURL === post.titleURL);
     postCache[postIndex] = post;
-};
+}
 
-export let getPost = (titleURL: string): Post | boolean => {
+export function getPost(titleURL: string): Post | boolean {
     let post = postCache.find((e) => e.titleURL === titleURL);
     return post === undefined ? false : post;
-};
+}
 
-export let getPosts = (): Array<Post> => {
+export function getPosts(): Array<Post> {
     return postCache;
-};
+}

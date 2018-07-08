@@ -5,7 +5,7 @@ import slideRoutes from './slide.route';
 import aboutRoutes from './about.route';
 import loginRoutes from './login.route';
 
-let router = express.Router();
+let router: express.Router = express.Router();
 
 router.use('/posts', postRoutes);
 router.use('/images', imageRoutes);

@@ -21,18 +21,18 @@ function sortPostsByTime(posts: Array<PostDocument>): Array<PostDocument> {
     try {
         sortedPosts = posts.sort((a, b) => b.timestamp.valueOf() - a.timestamp.valueOf());
     } catch (err) {
-        console.log(err);
+        console.error(err);
         sortedPosts = posts;
     }
     return sortedPosts;
 }
 
-export let savePost = (post: Post): Promise<PostDocument> => {
+export function savePost(post: Post): Promise<PostDocument> {
     let newPost = new PostModel(post);
     return newPost.save();
-};
+}
 
-export let updatePost = (post: Post): Promise<{ titleURL: string }> => {
+export function updatePost(post: Post): Promise<{ titleURL: string }> {
     return new Promise((resolve, reject) => {
         PostModel.update({ titleURL: post.titleURL }, post,
             (err, raw) => {
@@ -43,9 +43,9 @@ export let updatePost = (post: Post): Promise<{ titleURL: string }> => {
             }
         );
     });
-};
+}
 
-export let getPosts = (): Promise<Array<PostDocument>> => {
+export function getPosts(): Promise<Array<PostDocument>> {
     return new Promise((resolve, reject) => {
         PostModel.find((err, docs) => {
             if (err) {
@@ -54,9 +54,9 @@ export let getPosts = (): Promise<Array<PostDocument>> => {
             resolve(sortPostsByTime(docs).map((post) => deleteID(post)));
         });
     });
-};
+}
 
-export let getPostByTitleURL = (titleURL: string): Promise<PostDocument> => {
+export function getPostByTitleURL(titleURL: string): Promise<PostDocument> {
     return new Promise((resolve, reject) => {
         PostModel.findOne({ titleURL: titleURL }, (err, data) => {
             if (err) {
@@ -65,9 +65,9 @@ export let getPostByTitleURL = (titleURL: string): Promise<PostDocument> => {
             resolve(deleteID(data));
         });
     });
-};
+}
 
-export let getPreviousPostTitleUrl = (titleURL: string): Promise<{ titleURL: string }> => {
+export function getPreviousPostTitleUrl(titleURL: string): Promise<{ titleURL: string }> {
     return new Promise((resolve, reject) => {
         PostModel.find((err, docs) => {
             if (err) {
@@ -82,9 +82,9 @@ export let getPreviousPostTitleUrl = (titleURL: string): Promise<{ titleURL: str
             resolve({ titleURL: targetPost.titleURL });
         });
     });
-};
+}
 
-export let getNextPostTitleUrl = (titleURL: string): Promise<{ titleURL: string }> => {
+export function getNextPostTitleUrl(titleURL: string): Promise<{ titleURL: string }> {
     return new Promise((resolve, reject) => {
         PostModel.find((err, docs) => {
             if (err) {
@@ -99,9 +99,9 @@ export let getNextPostTitleUrl = (titleURL: string): Promise<{ titleURL: string 
             resolve({ titleURL: targetPost.titleURL });
         });
     });
-};
+}
 
-export let getSlides = (): Promise<Array<Document>> => {
+export function getSlides(): Promise<Array<Document>> {
     return new Promise((resolve, reject) => {
         SlideModel.find((err, docs) => {
             if (err) {
@@ -111,14 +111,14 @@ export let getSlides = (): Promise<Array<Document>> => {
             resolve(docs);
         });
     });
-};
+}
 
-export let saveSlide = (slide): Promise<Document> => {
+export function saveSlide(slide: any): Promise<Document> {
     let newSlide = new SlideModel(slide);
     return newSlide.save();
-};
+}
 
-export let getAbout = (): Promise<Document> => {
+export function getAbout(): Promise<Document> {
     return new Promise((resolve, reject) => {
         AboutModel.findOne((err, docs) => {
             if (err) {
@@ -127,9 +127,9 @@ export let getAbout = (): Promise<Document> => {
             resolve(deleteID(docs));
         });
     });
-};
+}
 
-export let updateAbout = (about): Promise<{ data: any }> => {
+export function updateAbout(about: any): Promise<{ data: any }> {
     return new Promise((resolve, reject) => {
         AboutModel.update({}, about,
             (err, raw) => {
@@ -140,9 +140,9 @@ export let updateAbout = (about): Promise<{ data: any }> => {
             }
         );
     });
-};
+}
 
-export let checkUser = (email: string, password: string): Promise<{ found: boolean }> => {
+export function checkUser(email: string, password: string): Promise<{ found: boolean }> {
     return new Promise((resolve, reject) => {
         UserModel.find({ email, password }, (err, docs) => {
             if (err) {
@@ -155,4 +155,4 @@ export let checkUser = (email: string, password: string): Promise<{ found: boole
             }
         });
     });
-};
+}

@@ -7,23 +7,23 @@ import { Request, Express } from 'express';
 
 const imagesDirectory = 'dist/images/';
 
-let determineDestination = (req: Request, file: Express.Multer.File,
-    callback: (error: Error | null, destination: string) => void): void => {
+function determineDestination(req: Request, file: Express.Multer.File,
+    callback: (error: Error | null, destination: string) => void): void {
     callback(null, imagesDirectory);
-};
+}
 
-let determineFilename = (req: Request, file: Express.Multer.File,
-    callback: (error: Error | null, destination: string) => void): void => {
+function determineFilename(req: Request, file: Express.Multer.File,
+    callback: (error: Error | null, destination: string) => void): void {
     let filename = exports.generateFilename(file.originalname);
     callback(null, filename);
-};
+}
 
-export let generateFilename = (originalname: string): string => {
+export function generateFilename(originalname: string): string {
     let extension = originalname.substr(originalname.lastIndexOf('.'));
     return shortid.generate() + extension;
-};
+}
 
-export let deleteImage = (filename: string): Promise<{ success: boolean }> => {
+export function deleteImage(filename: string): Promise<{ success: boolean }> {
     let file = path.join(appRoot.path, imagesDirectory) + '/' + filename;
     return new Promise((resolve, reject) => {
         fs.unlink(file, (err) => {
@@ -33,9 +33,9 @@ export let deleteImage = (filename: string): Promise<{ success: boolean }> => {
             resolve({ success: true });
         });
     });
-};
+}
 
-export let storage = multer.diskStorage({
+export let storage: multer.StorageEngine = multer.diskStorage({
     destination: determineDestination,
     filename: determineFilename,
 });

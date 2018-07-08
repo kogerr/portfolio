@@ -1,5 +1,5 @@
-/* eslint no-unused-vars: 'off' */
 /* tslint:disable:no-eval */
+/* tslint:disable:no-unused-variable */
 
 import * as fs from 'fs';
 import Post from '../../models/Post';
@@ -16,11 +16,11 @@ fs.readFile('./server/services/metadata/template.json', (err, data) => {
     }
 });
 
-export default (post: Post): string => {
+export default function(post: Post): string {
     let title = post.title;
     let description = post.facebookDescription;
     let fullImageURL = imagesBaseURL + post.facebookImage;
     let fullTitleURL = workBaseURL + post.titleURL;
     let metaDatatemplate = eval(templateText);
     return metaDatatemplate;
-};
+}

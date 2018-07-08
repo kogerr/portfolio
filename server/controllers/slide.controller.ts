@@ -1,7 +1,7 @@
 import * as dbService from '../services/db.service';
 import { Request, Response } from 'express';
 
-export let getSlides = (req: Request, res: Response): void => {
+export function getSlides(req: Request, res: Response): void {
     dbService.getSlides()
         .then((data) => {
             res.statusCode = 200;
@@ -10,9 +10,9 @@ export let getSlides = (req: Request, res: Response): void => {
             res.statusCode = 404;
             res.send(error);
         });
-};
+}
 
-export let saveSlide = (req: Request, res: Response): void => {
+export function saveSlide(req: Request, res: Response): void {
     dbService.saveSlide(req.body)
         .then(() => {
             res.statusCode = 200;
@@ -21,4 +21,4 @@ export let saveSlide = (req: Request, res: Response): void => {
             res.statusCode = 500;
             res.send(error);
         });
-};
+}

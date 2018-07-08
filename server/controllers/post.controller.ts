@@ -3,7 +3,7 @@ import * as responseCacher from '../services/cache/metadata.cacher';
 import * as postCacher from '../services/cache/post.cacher';
 import { Request, Response } from 'express';
 
-export let savePost = (req: Request, res: Response): void => {
+export function savePost(req: Request, res: Response): void {
     dbService.savePost(req.body)
         .then(() => {
             res.statusCode = 201;
@@ -14,9 +14,9 @@ export let savePost = (req: Request, res: Response): void => {
             res.statusCode = 500;
             res.send(err);
         });
-};
+}
 
-export let updatePost = (req: Request, res: Response): void => {
+export function updatePost(req: Request, res: Response): void {
     dbService.updatePost(req.body)
         .then(() => {
             res.statusCode = 200;
@@ -27,9 +27,9 @@ export let updatePost = (req: Request, res: Response): void => {
             res.statusCode = 500;
             res.send(err);
         });
-};
+}
 
-export let getPosts = (req: Request, res: Response): void => {
+export function getPosts(req: Request, res: Response): void {
     let cachedPosts = postCacher.getPosts();
     if (cachedPosts.length) {
         res.statusCode = 200;
@@ -44,9 +44,9 @@ export let getPosts = (req: Request, res: Response): void => {
                 res.send(err);
             });
     }
-};
+}
 
-export let getPostByTitleURL = (req: Request, res: Response): void => {
+export function getPostByTitleURL(req: Request, res: Response): void {
     let cachedPost = postCacher.getPost(req.params.titleURL);
     if (cachedPost) {
         res.statusCode = 200;
@@ -61,9 +61,9 @@ export let getPostByTitleURL = (req: Request, res: Response): void => {
                 res.send(err);
             });
     }
-};
+}
 
-export let checkPost = (req: Request, res: Response): void => {
+export function checkPost(req: Request, res: Response): void {
     res.statusCode = 200;
     dbService.getPostByTitleURL(req.params.titleURL)
         .then((data) => {
@@ -71,9 +71,9 @@ export let checkPost = (req: Request, res: Response): void => {
         }).catch(() => {
             res.send({ found: false });
         });
-};
+}
 
-export let getPreviousPostTitleUrl = (req: Request, res: Response): void => {
+export function getPreviousPostTitleUrl(req: Request, res: Response): void {
     dbService.getPreviousPostTitleUrl(req.params.titleURL)
         .then((data) => {
             res.statusCode = 200;
@@ -82,9 +82,9 @@ export let getPreviousPostTitleUrl = (req: Request, res: Response): void => {
             res.statusCode = 404;
             res.send(err);
         });
-};
+}
 
-export let getNextPostTitleUrl = (req: Request, res: Response): void => {
+export function getNextPostTitleUrl(req: Request, res: Response): void {
     dbService.getNextPostTitleUrl(req.params.titleURL)
         .then((data) => {
             res.statusCode = 200;
@@ -93,18 +93,19 @@ export let getNextPostTitleUrl = (req: Request, res: Response): void => {
             res.statusCode = 404;
             res.send(err);
         });
-};
+}
 
-export let saveMetaData = (req: Request, res: Response): void => {
+export function saveMetaData(req: Request, res: Response): void {
     responseCacher.saveMetaData(req.body);
     res.statusCode = 200;
     res.send(responseCacher.getMetaData(req.body.titleURL));
-};
+}
 
-export let cacherTest = (req: Request, res: Response): void => {
+export function cacherTest(req: Request, res: Response): void {
     let cacheStart = process.hrtime();
     postCacher.getPosts();
     let cacheTime = process.hrtime(cacheStart)[1];
+
     let dbStart = process.hrtime();
     dbService.getPosts()
         .then(() => {
@@ -116,4 +117,4 @@ export let cacherTest = (req: Request, res: Response): void => {
             res.statusCode = 404;
             res.send(err);
         });
-};
+}

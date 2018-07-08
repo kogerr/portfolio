@@ -7,13 +7,13 @@ let keys = JSON.parse(fs.readFileSync('./server/keys/keys.json').toString());
 const algorithm = 'RS256';
 const expiresIn = 7200;
 
-export let issueToken = (email: string): string => {
+export function issueToken(email: string): string {
     return jwt.sign({}, keys.private, {
         algorithm,
         expiresIn,
         subject: email,
     });
-};
+}
 
 export let checkToken: expressJwt.RequestHandler = expressJwt({
     secret: keys.public,

@@ -15,7 +15,7 @@ let generateFromDb = (titleURL: string): Promise<string> => {
     });
 };
 
-export default (req: Request, res: Response): void => {
+export default function(req: Request, res: Response): void {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/html');
     let titleURL = req.url.match(workRegex)[1];
@@ -27,4 +27,4 @@ export default (req: Request, res: Response): void => {
     } else {
         res.send(metaDataCacher.getMetaData(titleURL));
     }
-};
+}

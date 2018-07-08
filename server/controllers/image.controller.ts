@@ -3,7 +3,7 @@ import resize from '../services/resize.service';
 import { Request, Response } from 'express';
 const directory = 'dist/images/';
 
-export let returnSavedFileName = (req: Request, res: Response): void => {
+export function returnSavedFileName(req: Request, res: Response): void {
     let response = { name: req.file.filename };
     if (response.name) {
         res.statusCode = 201;
@@ -11,9 +11,9 @@ export let returnSavedFileName = (req: Request, res: Response): void => {
         res.statusCode = 404;
     }
     res.send(response);
-};
+}
 
-export let deleteImage = (req: Request, res: Response): void => {
+export function deleteImage(req: Request, res: Response): void {
     storageService.deleteImage(req.params.filename)
         .then(() => {
             res.statusCode = 200;
@@ -22,9 +22,9 @@ export let deleteImage = (req: Request, res: Response): void => {
             res.statusCode = 404;
             res.send(err);
         });
-};
+}
 
-export let crop = (req: Request, res: Response): void => {
+export function crop(req: Request, res: Response): void {
     let filePath = directory + '/' + req.params.filename;
     let newName = storageService.generateFilename(req.params.filename);
     let newPath = directory + '/' + newName;
@@ -36,4 +36,4 @@ export let crop = (req: Request, res: Response): void => {
         res.statusCode = 501;
         res.send(err);
     });
-};
+}
