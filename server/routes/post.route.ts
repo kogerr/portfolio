@@ -1,6 +1,6 @@
-let express = require('express');
-let postCtrl = require('../controllers/post.controller');
-let tokenService = require('../services/token.service');
+import * as express from 'express';
+import * as postCtrl from '../controllers/post.controller';
+import * as tokenService from '../services/token.service';
 
 let router = express.Router();
 router.route('/')
@@ -19,4 +19,5 @@ router.route('/metadata/')
     .post(postCtrl.saveMetaData);
 router.route('/cache/test')
     .get(postCtrl.cacherTest);
-module.exports = router;
+
+export default router;

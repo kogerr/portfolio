@@ -1,20 +1,21 @@
-let dbService = require('../db.service');
-let metaDataCacher = require('../cache/metadata.cacher');
-let templateGenerator = require('./template-generator');
+import * as dbService from '../db.service';
+import * as metaDataCacher from '../cache/metadata.cacher';
+import generateTemplate from './template-generator';
+import { Request, Response } from 'express';
 
 const workRegex = /\/work\/(.*)/;
 
-let generateFromDb = function(titleURL) {
+let generateFromDb = (titleURL: string): Promise<string> => {
     return new Promise((resolve, reject) => {
         dbService.getPostByTitleURL(titleURL).then((post) => {
-            let response = templateGenerator.assembleTemplate(post);
+            let response = generateTemplate(post);
             metaDataCacher.saveMetaData(post);
             resolve(response);
         }).catch((err) => reject(err));
     });
 };
 
-exports.getResponse = function(req, res) {
+export default (req: Request, res: Response): void => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/html');
     let titleURL = req.url.match(workRegex)[1];

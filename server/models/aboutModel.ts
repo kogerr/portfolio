@@ -1,15 +1,17 @@
 'use strict';
-let mongoose = require('mongoose');
+import * as mongoose from 'mongoose';
 let Schema = mongoose.Schema;
 
 let possiblyClickable = new Schema({
     text: String,
-    url: String}, {_id: false}
+    url: String
+}, { _id: false }
 );
 
 let titledLines = new Schema({
     title: String,
-    lines: [String]}, {_id: false}
+    lines: [String]
+}, { _id: false }
 );
 
 let aboutSchema = new Schema({
@@ -18,7 +20,8 @@ let aboutSchema = new Schema({
     exhibitions: [String],
     printPublications: [possiblyClickable],
     onlinePublications: [possiblyClickable],
-    awards: [titledLines]}
+    awards: [titledLines]
+}
 );
 
-module.exports = mongoose.model('about', aboutSchema);
+export default mongoose.model('about', aboutSchema);

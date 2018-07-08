@@ -1,5 +1,5 @@
 'use strict';
-let mongoose = require('mongoose');
+import * as mongoose from 'mongoose';
 let Schema = mongoose.Schema;
 
 let userSchema = new Schema({
@@ -7,4 +7,4 @@ let userSchema = new Schema({
     password: String,
 });
 
-module.exports = mongoose.model('user', userSchema);
+export default mongoose.model('user', userSchema);

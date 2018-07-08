@@ -1,4 +1,4 @@
-let crypto = require('crypto');
+import * as crypto from 'crypto';
 const salt = 'portfolio';
 const algorithm = 'sha256';
 
@@ -7,10 +7,8 @@ const algorithm = 'sha256';
  * @param {*} data data to be hashed
  * @return {*} hashed data
  */
-function hash(data) {
+export default (data: string): string => {
     let hmac = crypto.createHmac(algorithm, salt);
     hmac.update(data);
     return hmac.digest('hex');
-}
-
-exports.hash = hash;
+};

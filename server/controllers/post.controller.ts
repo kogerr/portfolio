@@ -1,12 +1,13 @@
-let dbService = require('../services/db.service');
-let responseCacher = require('../services/cache/metadata.cacher');
-let postCacher = require('../services/cache/post.cacher');
+import * as dbService from '../services/db.service';
+import * as responseCacher from '../services/cache/metadata.cacher';
+import * as postCacher from '../services/cache/post.cacher';
+import { Request, Response } from 'express';
 
-exports.savePost = function(req, res) {
+export let savePost = (req: Request, res: Response): void => {
     dbService.savePost(req.body)
         .then(() => {
             res.statusCode = 201;
-            res.send({success: true});
+            res.send({ success: true });
             responseCacher.saveMetaData(req.body);
             postCacher.savePost(req.body);
         }).catch((err) => {
@@ -15,12 +16,12 @@ exports.savePost = function(req, res) {
         });
 };
 
-exports.updatePost = function(req, res) {
+export let updatePost = (req: Request, res: Response): void => {
     dbService.updatePost(req.body)
         .then(() => {
             res.statusCode = 200;
-            res.send({success: true});
-            responseCacher.updateMetaData(req.body);
+            res.send({ success: true });
+            responseCacher.saveMetaData(req.body);
             postCacher.updatePost(req.body);
         }).catch((err) => {
             res.statusCode = 500;
@@ -28,7 +29,7 @@ exports.updatePost = function(req, res) {
         });
 };
 
-exports.getPosts = function(req, res) {
+export let getPosts = (req: Request, res: Response): void => {
     let cachedPosts = postCacher.getPosts();
     if (cachedPosts.length) {
         res.statusCode = 200;
@@ -45,8 +46,8 @@ exports.getPosts = function(req, res) {
     }
 };
 
-exports.getPostByTitleURL = function(req, res) {
-    let cachedPost = postCacher.getPost({titleURL: req.params.titleURL});
+export let getPostByTitleURL = (req: Request, res: Response): void => {
+    let cachedPost = postCacher.getPost(req.params.titleURL);
     if (cachedPost) {
         res.statusCode = 200;
         res.send(cachedPost);
@@ -62,17 +63,17 @@ exports.getPostByTitleURL = function(req, res) {
     }
 };
 
-exports.checkPost = function(req, res) {
+export let checkPost = (req: Request, res: Response): void => {
     res.statusCode = 200;
     dbService.getPostByTitleURL(req.params.titleURL)
         .then((data) => {
-            res.send({found: data !== null});
+            res.send({ found: data !== null });
         }).catch(() => {
-            res.send({found: false});
+            res.send({ found: false });
         });
 };
 
-exports.getPreviousPostTitleUrl = function(req, res) {
+export let getPreviousPostTitleUrl = (req: Request, res: Response): void => {
     dbService.getPreviousPostTitleUrl(req.params.titleURL)
         .then((data) => {
             res.statusCode = 200;
@@ -83,7 +84,7 @@ exports.getPreviousPostTitleUrl = function(req, res) {
         });
 };
 
-exports.getNextPostTitleUrl = function(req, res) {
+export let getNextPostTitleUrl = (req: Request, res: Response): void => {
     dbService.getNextPostTitleUrl(req.params.titleURL)
         .then((data) => {
             res.statusCode = 200;
@@ -94,13 +95,13 @@ exports.getNextPostTitleUrl = function(req, res) {
         });
 };
 
-exports.saveMetaData = function(req, res) {
+export let saveMetaData = (req: Request, res: Response): void => {
     responseCacher.saveMetaData(req.body);
     res.statusCode = 200;
     res.send(responseCacher.getMetaData(req.body.titleURL));
 };
 
-exports.cacherTest = function(req, res) {
+export let cacherTest = (req: Request, res: Response): void => {
     let cacheStart = process.hrtime();
     postCacher.getPosts();
     let cacheTime = process.hrtime(cacheStart)[1];
@@ -110,7 +111,7 @@ exports.cacherTest = function(req, res) {
             let dbTime = process.hrtime(dbStart)[1];
             let difference = dbTime - cacheTime;
             res.statusCode = 200;
-            res.send({cacheTime, dbTime, difference});
+            res.send({ cacheTime, dbTime, difference });
         }).catch((err) => {
             res.statusCode = 404;
             res.send(err);

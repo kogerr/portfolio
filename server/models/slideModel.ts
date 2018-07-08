@@ -1,5 +1,5 @@
 'use strict';
-let mongoose = require('mongoose');
+import * as mongoose from 'mongoose';
 let Schema = mongoose.Schema;
 
 let slideSchema = new Schema({
@@ -8,4 +8,4 @@ let slideSchema = new Schema({
     link: String,
 });
 
-module.exports = mongoose.model('slide', slideSchema);
+export default mongoose.model('slide', slideSchema);

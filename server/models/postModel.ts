@@ -1,5 +1,6 @@
 'use strict';
-let mongoose = require('mongoose');
+import * as mongoose from 'mongoose';
+import Post from './Post';
 let Schema = mongoose.Schema;
 
 let postSchema = new Schema({
@@ -17,4 +18,7 @@ let postSchema = new Schema({
     timestamp: Date,
 });
 
-module.exports = mongoose.model('post', postSchema);
+export interface PostDocument extends Post, mongoose.Document {
+}
+
+export default mongoose.model<PostDocument>('post', postSchema);

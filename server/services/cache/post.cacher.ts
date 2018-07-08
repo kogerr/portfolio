@@ -1,4 +1,5 @@
-let dbService = require('../db.service');
+import * as dbService from '../db.service';
+import Post from '../../models/Post';
 
 let postCache;
 fillPostCache();
@@ -6,31 +7,29 @@ fillPostCache();
 /**
  * Fills the Post cache with Posts from database on init.
  */
-function fillPostCache() {
-    postCache = [];
+function fillPostCache(): void {
+    postCache = new Array<Post>();
     dbService.getPosts().then((data) => {
-        data.forEach((post) => exports.savePost(post));
+        data.forEach((post) => savePost(post));
     }).catch((err) => {
         console.log(err);
     });
 }
 
-exports.savePost = function(post) {
+export let savePost = (post: Post): void => {
     postCache.push(post);
 };
 
-exports.updatePost = function(post) {
+export let updatePost = (post: Post): void => {
     let postIndex = postCache.findIndex((e) => e.titleURL === post.titleURL);
     postCache[postIndex] = post;
 };
 
-exports.getPost = function(titleURL) {
+export let getPost = (titleURL: string): Post | boolean => {
     let post = postCache.find((e) => e.titleURL === titleURL);
     return post === undefined ? false : post;
 };
 
-exports.getPosts = function() {
+export let getPosts = (): Array<Post> => {
     return postCache;
 };
-
-exports.fillPostCache = fillPostCache;

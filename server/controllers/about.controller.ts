@@ -1,6 +1,7 @@
-let dbService = require('../services/db.service');
+import * as dbService from '../services/db.service';
+import { Request, Response } from 'express';
 
-exports.getAbout = function(req, res) {
+export let getAbout = (req: Request, res: Response): void => {
     dbService.getAbout()
         .then((data) => {
             res.statusCode = 200;
@@ -11,11 +12,11 @@ exports.getAbout = function(req, res) {
         });
 };
 
-exports.updateAbout = function(req, res) {
+export let updateAbout = (req: Request, res: Response): void => {
     dbService.updateAbout(req.body)
         .then(() => {
             res.statusCode = 200;
-            res.send({success: true});
+            res.send({ success: true });
         }).catch((err) => {
             res.statusCode = 500;
             res.send(err);
