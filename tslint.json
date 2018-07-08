@@ -102,7 +102,6 @@
       "call-signature",
       "parameter",
       "property-declaration",
-      "member-variable-declaration",
       "object-destructuring",
       "array-destructuring"
     ],

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { ActivatedRoute } from '@angular/router';
-import { Title } from '@angular/platform-browser';
 import { About } from '../models/about.interface';
 
 @Component({
@@ -12,9 +10,9 @@ import { About } from '../models/about.interface';
 export class AboutComponent implements OnInit {
   content: About;
 
-  constructor(private dataService: DataService, private route: ActivatedRoute, private titleService: Title) { }
+  constructor(private dataService: DataService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.dataService.getAbout().subscribe((data) => {
       this.content = data;
     });

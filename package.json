@@ -14,7 +14,8 @@
   "main": "app.js",
   "scripts": {
     "start": "ng build && mongod & node app",
-    "watch": "ng build --watch & mongod & nodemon app"
+    "watch": "ng build --watch & mongod & nodemon app",
+    "tslint": "tslint -c tslint.json -p tsconfig.json"
   },
   "private": true,
   "dependencies": {

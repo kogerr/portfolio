@@ -4,6 +4,10 @@ import { Post, ContentImage, ContentType, TextContent } from '../models/post';
 import { DataService } from '../data.service';
 import { AuthService } from '../auth.service';
 
+interface HTMLInputEvent extends Event {
+  target: HTMLInputElement & EventTarget;
+}
+
 @Component({
   selector: 'app-editor',
   templateUrl: './editor.component.html',
@@ -47,7 +51,7 @@ export class EditorComponent implements OnDestroy, OnInit {
     }
   }
 
-  uploadCover(event): void {
+  uploadCover(event: HTMLInputEvent): void {
     if (this.post.cover) {
       this.removeImage('cover');
     }
@@ -56,7 +60,7 @@ export class EditorComponent implements OnDestroy, OnInit {
     });
   }
 
-  uploadFacebookImage(event): void {
+  uploadFacebookImage(event: HTMLInputEvent): void {
     if (this.post.facebookImage) {
       this.dataService.deleteImage(this.post.facebookImage).subscribe(data => {
         this.post.facebookImage = '';
@@ -67,11 +71,11 @@ export class EditorComponent implements OnDestroy, OnInit {
     });
   }
 
-  removeImage(image): void {
+  removeImage(image: string): void {
     this.dataService.deleteImage(this.post[image]).subscribe(data => delete this.post[image]);
   }
 
-  uploadContentImages(event): void {
+  uploadContentImages(event: HTMLInputEvent): void {
     let files = event.target.files;
     for (let i = 0; i < files.length; i++) {
       this.dataService.postImage(files[i]).subscribe(data => {
@@ -151,7 +155,7 @@ export class EditorComponent implements OnDestroy, OnInit {
     this.textUnderEdition = '';
   }
 
-  removeElement(index: number) {
+  removeElement(index: number): void {
     if (this.post.contents[index].type === ContentType.image) {
       let name = (this.post.contents[index] as ContentImage).name;
       this.dataService.deleteImage(name).subscribe(data => { });
@@ -159,7 +163,7 @@ export class EditorComponent implements OnDestroy, OnInit {
     this.post.contents.splice(index, 1);
   }
 
-  moveElementUp(index: number) {
+  moveElementUp(index: number): void {
     if (index > 0) {
       let previous = this.post.contents[index - 1];
       this.post.contents[index - 1] = this.post.contents[index];
@@ -167,7 +171,7 @@ export class EditorComponent implements OnDestroy, OnInit {
     }
   }
 
-  moveElementDown(index: number) {
+  moveElementDown(index: number): void {
     if (index < this.post.contents.length - 1) {
       let next = this.post.contents[index + 1];
       this.post.contents[index + 1] = this.post.contents[index];
@@ -175,7 +179,7 @@ export class EditorComponent implements OnDestroy, OnInit {
     }
   }
 
-  editElement(index: number) {
+  editElement(index: number): void {
     this.textUnderEdition = (this.post.contents[index] as TextContent).text.replace(/<br\/>/g, '\n');
     this.openTextEditor();
     this.removeElement(index);

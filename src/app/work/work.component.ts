@@ -18,7 +18,7 @@ export class WorkComponent implements OnInit {
 
   constructor(private dataService: DataService, private router: Router) { }
 
-  redirect(titleURL): void {
+  redirect(titleURL: string): void {
     this.router.navigate(['/work/' + titleURL]);
   }
 }

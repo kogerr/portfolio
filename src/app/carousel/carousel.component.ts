@@ -20,7 +20,7 @@ export class CarouselComponent implements OnInit {
 
   constructor(private dataService: DataService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.dataService.loadSlides().subscribe(data => {
       this.slides = new CircularList(data);
       this.current = this.slides.next();
