@@ -4,12 +4,14 @@ import { Observable } from 'rxjs';
 import { Post, ContentImage } from './models/post';
 import { Slide } from './carousel-slide/slide';
 import { About } from './models/about.interface';
+import { LoginResponse } from './models/login-response';
 
 const postsURL = 'api/posts/';
 const imagesURL = 'api/images/';
 const slidesURL = 'api/slides/';
 const aboutURL = 'api/about/';
 const loginURL = 'api/login/';
+const logURL = 'api/log/';
 
 @Injectable()
 export class DataService {
@@ -43,13 +45,13 @@ export class DataService {
         return this.http.get<{ found: boolean }>(postsURL + titleURL + '/check');
     }
 
-    uploadPost(post: Post, token: string): Observable<{ success: boolean }> {
-        let httpOptions = { headers: new HttpHeaders({ 'Authorization': 'Bearer ' + token }) };
+    uploadPost(post: Post): Observable<{ success: boolean }> {
+        let httpOptions = { headers: new HttpHeaders({ 'Authorization': 'Bearer ' + this.getToken() }) };
         return this.http.post<{ success: boolean }>(postsURL, post, httpOptions);
     }
 
-    updatePost(post: Post, titleURL: string, token: string): Observable<{ success: boolean }> {
-        let httpOptions = { headers: new HttpHeaders({ 'Authorization': 'Bearer ' + token }) };
+    updatePost(post: Post, titleURL: string): Observable<{ success: boolean }> {
+        let httpOptions = { headers: new HttpHeaders({ 'Authorization': 'Bearer ' + this.getToken() }) };
         return this.http.patch<{ success: boolean }>(postsURL + titleURL, post, httpOptions);
     }
 
@@ -95,5 +97,14 @@ export class DataService {
 
     login(email: string, password: string): Observable<LoginResponse> {
         return this.http.post<LoginResponse>(loginURL, { email, password });
+    }
+
+    getLogs(): Observable<Array<any>> {
+        let httpOptions = { headers: new HttpHeaders({ 'Authorization': 'Bearer ' + this.getToken() }) };
+        return this.http.get<Array<any>>(logURL, httpOptions);
+    }
+
+    getToken(): string {
+        return localStorage.getItem('id_token');
     }
 }

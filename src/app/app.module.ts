@@ -19,6 +19,7 @@ import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
 import { MetatagService } from './metatag.service';
+import { LogComponent } from './log/log.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { MetatagService } from './metatag.service';
     CarouselComponent,
     CarouselSlideComponent,
     AboutComponent,
-    LoginComponent],
+    LoginComponent,
+    LogComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [DataService, AuthService, MetatagService],
   bootstrap: [AppComponent]

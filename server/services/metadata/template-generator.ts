@@ -3,6 +3,7 @@
 
 import * as fs from 'fs';
 import Post from '../../models/Post';
+import * as logger from '../logger';
 
 const workBaseURL = 'http://199.247.23.37/work/';
 const imagesBaseURL = 'http://199.247.23.37/images/';
@@ -10,7 +11,7 @@ let templateText: string;
 
 fs.readFile('./server/services/metadata/template.json', (err, data) => {
     if (err) {
-        console.log(err);
+        logger.error(err);
     } else {
         templateText = JSON.parse(data.toString()).text;
     }

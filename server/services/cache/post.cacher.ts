@@ -1,5 +1,6 @@
 import * as dbService from '../db.service';
 import Post from '../../models/Post';
+import * as logger from '../logger';
 
 let postCache: Array<Post>;
 fillPostCache();
@@ -12,7 +13,7 @@ function fillPostCache(): void {
     dbService.getPosts().then((data) => {
         data.forEach((post) => savePost(post));
     }).catch((err) => {
-        console.log(err);
+        logger.error(err);
     });
 }
 

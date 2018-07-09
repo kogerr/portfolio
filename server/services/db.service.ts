@@ -4,6 +4,7 @@ import AboutModel from '../models/aboutModel';
 import UserModel from '../models/userModel';
 import Post from '../models/Post';
 import { Document } from 'mongoose';
+import * as logger from './logger';
 
 /**
  * Deletes the _id from documents before letting them out.
@@ -11,8 +12,13 @@ import { Document } from 'mongoose';
  * @return {*} document without id
  */
 function deleteID<T extends Document>(doc: T): T {
-    let response = doc.toObject();
-    delete response['_id'];
+    let response: T;
+    try {
+        response = doc.toObject();
+        delete response['_id'];
+    } catch (error) {
+        logger.error(error);
+    }
     return response;
 }
 
@@ -21,7 +27,7 @@ function sortPostsByTime(posts: Array<PostDocument>): Array<PostDocument> {
     try {
         sortedPosts = posts.sort((a, b) => b.timestamp.valueOf() - a.timestamp.valueOf());
     } catch (err) {
-        console.error(err);
+        logger.error(err);
         sortedPosts = posts;
     }
     return sortedPosts;
@@ -63,6 +69,18 @@ export function getPostByTitleURL(titleURL: string): Promise<PostDocument> {
                 reject(err);
             }
             resolve(deleteID(data));
+        });
+    });
+}
+
+export function checkPostByTitleURL(titleURL: string): Promise<{ found: boolean }> {
+    return new Promise((resolve, reject) => {
+        PostModel.findOne({ titleURL: titleURL }, (err, data) => {
+            if (err || !data) {
+                resolve({ found: false });
+            } else {
+                resolve({ found: true });
+            }
         });
     });
 }

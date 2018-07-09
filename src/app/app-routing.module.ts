@@ -7,6 +7,7 @@ import { WorkComponent } from './work/work.component';
 import { EditorComponent } from './editor/editor.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
+import { LogComponent } from './log/log.component';
 
 const appRoutes: Routes = [
     { path: 'editor', component: EditorComponent },
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
     { path: 'work/:titleURL', component: PostComponent },
     { path: 'about', component: AboutComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'log', component: LogComponent },
     { path: '', redirectTo: '/work', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];

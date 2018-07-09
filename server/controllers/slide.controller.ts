@@ -1,4 +1,5 @@
 import * as dbService from '../services/db.service';
+import * as logger from '../services/logger';
 import { Request, Response } from 'express';
 
 export function getSlides(req: Request, res: Response): void {
@@ -6,9 +7,10 @@ export function getSlides(req: Request, res: Response): void {
         .then((data) => {
             res.statusCode = 200;
             res.send(data);
-        }).catch((error) => {
+        }).catch((err) => {
+            logger.error(err);
             res.statusCode = 404;
-            res.send(error);
+            res.send(err);
         });
 }
 
@@ -17,8 +19,9 @@ export function saveSlide(req: Request, res: Response): void {
         .then(() => {
             res.statusCode = 200;
             res.send({ success: true });
-        }).catch((error) => {
+        }).catch((err) => {
+            logger.error(err);
             res.statusCode = 500;
-            res.send(error);
+            res.send(err);
         });
 }

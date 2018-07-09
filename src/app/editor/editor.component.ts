@@ -97,8 +97,7 @@ export class EditorComponent implements OnDestroy, OnInit {
   uploadPost(): void {
     this.post.timestamp = new Date();
     this.post.intro = this.post.intro.replace(/\n/g, '<br/>');
-    let token = this.authService.getToken();
-    this.dataService.uploadPost(this.post, token).subscribe(
+    this.dataService.uploadPost(this.post).subscribe(
       data => { this.submitted = true; },
       error => { this.submitted = true; this.error = error; }
     );
@@ -106,8 +105,7 @@ export class EditorComponent implements OnDestroy, OnInit {
   }
 
   updatePost(): void {
-    let token = this.authService.getToken();
-    this.dataService.updatePost(this.post, this.originalTitleURL, token).subscribe(
+    this.dataService.updatePost(this.post, this.originalTitleURL).subscribe(
       data => { this.submitted = true; },
       error => { this.submitted = true; this.error = error; }
     );

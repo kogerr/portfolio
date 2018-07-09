@@ -4,6 +4,7 @@ import * as http from 'http';
 import * as https from 'https';
 import * as mongoose from 'mongoose';
 import { AddressInfo } from 'net';
+import * as logger from './server/services/logger';
 
 let options: https.ServerOptions = {
     key: fs.readFileSync('./server/keys/sslkey.pem', 'utf8'),
@@ -23,5 +24,5 @@ let httpServer: http.Server = http.createServer(app).listen(80, () => {
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/portfolio').then(
     () => { console.log('Connected to mongodb'); },
-    err => { console.error(err.message); }
+    err => { logger.error(err.message); }
 );

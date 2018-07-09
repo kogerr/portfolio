@@ -1,6 +1,7 @@
 import * as dbService from '../db.service';
 import generateTemplate from '../metadata/template-generator';
 import Post from '../../models/Post';
+import * as logger from '../logger';
 
 let metaDataTemplateCache: Map<string, string>;
 fillMetaDataTemplateCache();
@@ -13,7 +14,7 @@ function fillMetaDataTemplateCache(): void {
     dbService.getPosts().then((data) => {
         data.forEach((post) => saveMetaData(post));
     }).catch((err) => {
-        console.log(err);
+        logger.error(err);
     });
 }
 
