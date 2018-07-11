@@ -79,7 +79,7 @@ export class DataService {
         return this.http.delete<{ success: boolean }>(imagesURL + filename);
     }
 
-    resizeImage(filename: string, proportions: {w: number, h: number}): Observable<ContentImage> {
+    resizeImage(filename: string, proportions: { w: number, h: number }): Observable<ContentImage> {
         return this.http.patch<ContentImage>(imagesURL + filename, proportions);
     }
 

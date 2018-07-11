@@ -1,3 +1,4 @@
+/* tslint:disable:no-console */
 import app from './server/config/express';
 import * as fs from 'fs';
 import * as http from 'http';

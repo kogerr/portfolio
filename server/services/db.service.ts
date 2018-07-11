@@ -15,7 +15,7 @@ function deleteID<T extends Document>(doc: T): T {
     let response: T;
     try {
         response = doc.toObject();
-        delete response['_id'];
+        delete response._id;
     } catch (error) {
         logger.error(error);
     }
@@ -64,7 +64,7 @@ export function getPosts(): Promise<Array<PostDocument>> {
 
 export function getPostByTitleURL(titleURL: string): Promise<PostDocument> {
     return new Promise((resolve, reject) => {
-        PostModel.findOne({ titleURL: titleURL }, (err, data) => {
+        PostModel.findOne({ titleURL }, (err, data) => {
             if (err) {
                 reject(err);
             }
@@ -75,7 +75,7 @@ export function getPostByTitleURL(titleURL: string): Promise<PostDocument> {
 
 export function checkPostByTitleURL(titleURL: string): Promise<{ found: boolean }> {
     return new Promise((resolve, reject) => {
-        PostModel.findOne({ titleURL: titleURL }, (err, data) => {
+        PostModel.findOne({ titleURL }, (err, data) => {
             if (err || !data) {
                 resolve({ found: false });
             } else {

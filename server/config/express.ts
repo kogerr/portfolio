@@ -19,9 +19,8 @@ app.use('/api', routes);
 app.use(express.static('dist'));
 
 app.get('/work/*', (req: Request, res: Response): void => {
-    let isForFacebook = (request: Request): boolean => {
-        return (request.headers['user-agent'] as string).startsWith(fbUserAgent);
-    };
+    let isForFacebook = (request: Request): boolean =>
+        (request.headers['user-agent'] as string).startsWith(fbUserAgent);
     if (isForFacebook(req)) {
         addMetaData(req, res);
     } else {

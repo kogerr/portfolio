@@ -1,3 +1,4 @@
+/* tslint:disable:no-console */
 let errorLogCache = [];
 
 export function error(message?: any, ...optionalParams: any[]): void {

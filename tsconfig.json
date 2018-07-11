@@ -19,6 +19,7 @@
   },
   "include": [
     "app.ts",
-    "server-tsc/**/*.ts"
+    "server-tsc/**/*.ts",
+    "src/**/*.ts"
   ]
 }

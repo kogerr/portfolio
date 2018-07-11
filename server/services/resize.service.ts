@@ -3,9 +3,9 @@ import * as Jimp from 'jimp';
 function calculateSize(width: number, height: number, proportions: { w: number, h: number })
     : { width: number, height: number } {
     if (width / proportions.w * proportions.h < height) {
-        return { width: width, height: width / proportions.w * proportions.h };
+        return { width, height: width / proportions.w * proportions.h };
     } else {
-        return { width: height / proportions.h * proportions.w, height: height };
+        return { width: height / proportions.h * proportions.w, height };
     }
 }
 

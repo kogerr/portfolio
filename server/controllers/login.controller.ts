@@ -10,9 +10,11 @@ export function login(req: Request, res: Response): void {
     dbService.checkUser(req.body.email, hashedPassword).then((data) => {
         if (data.found === true) {
             let token = tokenService.issueToken(req.body.email);
-            res.send({ success: true, token: token });
+            res.send({ success: true, token });
         } else {
             res.send({ success: false });
         }
+    }).catch((err) => {
+        res.send({ success: false });
     });
 }

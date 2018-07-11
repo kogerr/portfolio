@@ -3,7 +3,6 @@ import { Directive, Injectable } from '@angular/core';
 import { DataService } from './data.service';
 import { Observable } from 'rxjs';
 
-
 export function titleValidator(dataService: DataService): AsyncValidatorFn {
     return function (control: AbstractControl): Promise<ValidationErrors> {
         let validationError: ValidationErrors = { 'occupiedTitle': { value: control.value } };

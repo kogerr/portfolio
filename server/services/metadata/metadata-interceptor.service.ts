@@ -5,7 +5,7 @@ import { Request, Response } from 'express';
 
 const workRegex = /\/work\/(.*)/;
 
-let generateFromDb = (titleURL: string): Promise<string> => {
+function generateFromDb(titleURL: string): Promise<string> {
     return new Promise((resolve, reject) => {
         dbService.getPostByTitleURL(titleURL).then((post) => {
             let response = generateTemplate(post);
@@ -13,7 +13,7 @@ let generateFromDb = (titleURL: string): Promise<string> => {
             resolve(response);
         }).catch((err) => reject(err));
     });
-};
+}
 
 export default function(req: Request, res: Response): void {
     res.statusCode = 200;

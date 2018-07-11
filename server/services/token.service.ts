@@ -2,7 +2,6 @@ import * as jwt from 'jsonwebtoken';
 import * as expressJwt from 'express-jwt';
 import * as fs from 'fs';
 
-
 let keys = JSON.parse(fs.readFileSync('./server/keys/keys.json').toString());
 const algorithm = 'RS256';
 const expiresIn = 7200;
