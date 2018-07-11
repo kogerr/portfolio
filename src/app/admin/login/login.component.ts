@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
+const editorRoute = '/admin/editor';
+
 @Component({
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
@@ -18,7 +20,7 @@ export class LoginComponent {
       this.authService.login(this.email, this.password)
         .then((res) => {
           if (res.success) {
-            this.router.navigate(['/editor']);
+            this.router.navigate([editorRoute]);
           } else {
             this.error = 'Failure on authentication. Please try again.';
             this.email = undefined;

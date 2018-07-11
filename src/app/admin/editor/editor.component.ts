@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Post, ContentImage, ContentType, TextContent } from '../models/post';
-import { DataService } from '../data.service';
+import { Post, ContentImage, ContentType, TextContent } from '../../models/post';
+import { DataService } from '../../data.service';
 import { AuthService } from '../auth.service';
 
 interface HTMLInputEvent extends Event {
@@ -27,7 +27,7 @@ export class EditorComponent implements OnDestroy, OnInit {
 
   ngOnInit(): void {
 
-    if (!this.authService.isLoggedIn()) { this.router.navigate(['/login']); }
+    if (!this.authService.isLoggedIn()) { this.router.navigate(['/admin/login']); }
     this.route.params.subscribe(p => {
       if (p.titleURL) {
         this.dataService.getPost(p.titleURL).subscribe(data => {

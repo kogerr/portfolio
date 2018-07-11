@@ -4,19 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { PostComponent } from './post/post.component';
 import { PageNotFoundComponent } from './not-found.component';
 import { WorkComponent } from './work/work.component';
-import { EditorComponent } from './editor/editor.component';
 import { AboutComponent } from './about/about.component';
-import { LoginComponent } from './login/login.component';
-import { LogComponent } from './log/log.component';
 
 const appRoutes: Routes = [
-    { path: 'editor', component: EditorComponent },
-    { path: 'editor/:titleURL', component: EditorComponent },
+    { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule' },
     { path: 'work', component: WorkComponent },
     { path: 'work/:titleURL', component: PostComponent },
     { path: 'about', component: AboutComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'log', component: LogComponent },
     { path: '', redirectTo: '/work', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];
