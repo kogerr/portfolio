@@ -2,6 +2,8 @@
 
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+import * as compression from 'compression';
+import * as minify from 'express-minify';
 import routes from '../routes/index.route';
 import * as path from 'path';
 import * as appRoot from 'app-root-path';
@@ -15,6 +17,8 @@ let app: Express = express();
 
 app.use(bodyParser.json());
 app.use('/api', routes);
+app.use(compression());
+app.use(minify());
 
 app.use(express.static('dist'));
 
