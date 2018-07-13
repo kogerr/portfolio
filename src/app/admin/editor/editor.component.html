@@ -113,6 +113,7 @@
     </div>
     <div *ngIf="error">
         <p>Server responded with error message:</p>
-        <p>{{error | json}}</p>
+        <p>{{error}}</p>
+        <p>You will be redirected in {{remaining}} milliseconds.</p>
     </div>
 </div>

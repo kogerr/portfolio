@@ -8,7 +8,6 @@ import { WorkComponent } from './work/work.component';
 import { PageNotFoundComponent } from './not-found.component';
 import { PostPreviewComponent } from './post-preview/post-preview.component';
 import { DataService } from './data.service';
-import { TitleValidatorDirective } from './title.validator';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CarouselComponent } from './carousel/carousel.component';
@@ -23,7 +22,6 @@ import { MetatagService } from './metatag.service';
     PageNotFoundComponent,
     WorkComponent,
     PostPreviewComponent,
-    TitleValidatorDirective,
     HeaderComponent,
     FooterComponent,
     CarouselComponent,

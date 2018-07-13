@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { DataService } from '../data.service';
+import { AdminDataService } from './data.service';
 import * as decode from 'jwt-decode';
 
 @Injectable()
 export class AuthService {
 
-    constructor(private dataService: DataService) { }
+    constructor(private dataService: AdminDataService) { }
 
     login(email: string, password: string): Promise<{ 'success': boolean, error?: any }> {
         return new Promise((resolve, reject) => {

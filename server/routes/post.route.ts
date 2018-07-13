@@ -4,8 +4,8 @@ import * as tokenService from '../services/token.service';
 
 let router: express.Router = express.Router();
 router.route('/')
-    .post(tokenService.checkToken, postCtrl.savePost)
-    .get(postCtrl.getPosts);
+    .get(postCtrl.getPosts)
+    .post(tokenService.checkToken, postCtrl.savePost);
 router.route('/:titleURL')
     .get(postCtrl.getPostByTitleURL)
     .patch(tokenService.checkToken, postCtrl.updatePost);

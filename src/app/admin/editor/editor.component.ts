@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Post, ContentImage, ContentType, TextContent } from '../../models/post';
-import { DataService } from '../../data.service';
+import { AdminDataService } from '../data.service';
+import { DataService as CommonDataService } from '../../data.service';
 import { AuthService } from '../auth.service';
 
 interface HTMLInputEvent extends Event {
@@ -15,7 +16,8 @@ interface HTMLInputEvent extends Event {
 })
 
 export class EditorComponent implements OnDestroy, OnInit {
-  constructor(private dataService: DataService, private router: Router, private route: ActivatedRoute, private authService: AuthService) { }
+  constructor(private dataService: AdminDataService, private commonDataService: CommonDataService,
+    private router: Router, private route: ActivatedRoute, private authService: AuthService) { }
   post: Post;
   submitted = false;
   existingPost: boolean;
@@ -30,7 +32,7 @@ export class EditorComponent implements OnDestroy, OnInit {
     if (!this.authService.isLoggedIn()) { this.router.navigate(['/admin/login']); }
     this.route.params.subscribe(p => {
       if (p.titleURL) {
-        this.dataService.getPost(p.titleURL).subscribe(data => {
+        this.commonDataService.getPost(p.titleURL).subscribe(data => {
           this.post = data;
           this.existingPost = true;
           this.originalTitleURL = data.titleURL;
@@ -96,17 +98,19 @@ export class EditorComponent implements OnDestroy, OnInit {
 
   uploadPost(): void {
     this.post.timestamp = new Date();
-    this.post.intro = this.post.intro.replace(/\n/g, '<br/>');
+    if (this.post.intro && this.post.intro.length > 0) {
+      this.post.intro = this.post.intro.replace(/\n/g, '<br/>');
+    }
     this.dataService.uploadPost(this.post).subscribe(
-      data => { this.submitted = true; },
-      error => { this.submitted = true; this.error = error; }
+      data => { this.submitted = data.success; },
+      error => { this.submitted = true; this.error = error.message; }
     );
     this.countdownNavigate();
   }
 
   updatePost(): void {
     this.dataService.updatePost(this.post, this.originalTitleURL).subscribe(
-      data => { this.submitted = true; },
+      data => { this.submitted = data.success; },
       error => { this.submitted = true; this.error = error; }
     );
     this.countdownNavigate();

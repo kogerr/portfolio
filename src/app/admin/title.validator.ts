@@ -1,9 +1,9 @@
 import { AsyncValidator, AbstractControl, NG_ASYNC_VALIDATORS, AsyncValidatorFn, ValidationErrors, } from '@angular/forms';
 import { Directive, Injectable } from '@angular/core';
-import { DataService } from './data.service';
+import { AdminDataService } from './data.service';
 import { Observable } from 'rxjs';
 
-export function titleValidator(dataService: DataService): AsyncValidatorFn {
+export function titleValidator(dataService: AdminDataService): AsyncValidatorFn {
     return function (control: AbstractControl): Promise<ValidationErrors> {
         let validationError: ValidationErrors = { 'occupiedTitle': { value: control.value } };
         return new Promise<ValidationErrors>(resolve => {
@@ -24,7 +24,7 @@ export function titleValidator(dataService: DataService): AsyncValidatorFn {
 })
 @Injectable()
 export class TitleValidatorDirective implements AsyncValidator {
-    constructor(private dataService: DataService) { }
+    constructor(private dataService: AdminDataService) { }
 
     validate(control: AbstractControl): Promise<ValidationErrors> | Observable<ValidationErrors> {
         return titleValidator(this.dataService)(control);

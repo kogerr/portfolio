@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Slide } from '../carousel-slide/slide';
+import { Slide } from '../models/slide';
 import { CircularList } from './CircularList';
 import { DataService } from '../data.service';
 

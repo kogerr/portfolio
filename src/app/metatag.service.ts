@@ -22,9 +22,8 @@ export class MetatagService {
 
     private tranformData(metatagInfo: MetatagInfo): MetatagInfo {
         let url = workBaseURL + metatagInfo.url;
-        let description = metatagInfo.description.substring(0, metatagInfo.description.indexOf('.') + 1);
         let image = coverBaseURL + metatagInfo.image;
-        return { title: metatagInfo.title, url, description, image };
+        return { title: metatagInfo.title, url, description: metatagInfo.description, image };
     }
 
     private setMetaData(metatagInfo: MetatagInfo): void {

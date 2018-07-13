@@ -5,23 +5,27 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminRoutingModule } from './admin-routing.module';
 import { EditorComponent } from './editor/editor.component';
 import { LoginComponent } from './login/login.component';
-import { TokenInterceptor } from './token.interceptor';
+import { AuthenticationInterceptor } from './auth.interceptor';
 import { DataService } from '../data.service';
+import { AdminDataService } from './data.service';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { LogComponent } from './log/log.component';
+import { TitleValidatorDirective } from './title.validator';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     AdminRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  declarations: [EditorComponent, LoginComponent, LogComponent],
+  declarations: [EditorComponent, LoginComponent, LogComponent, TitleValidatorDirective],
   providers: [{
     provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptor,
+    useClass: AuthenticationInterceptor,
     multi: true
-  }, DataService, AuthService]
+  }, DataService, AuthService, AdminDataService]
 })
 export class AdminModule { }

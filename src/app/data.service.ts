@@ -1,17 +1,13 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Post, ContentImage } from './models/post';
-import { Slide } from './carousel-slide/slide';
+import { Post } from './models/post';
+import { Slide } from './models/slide';
 import { About } from './models/about.interface';
-import { LoginResponse } from './models/login-response';
 
 const postsURL = 'api/posts/';
-const imagesURL = 'api/images/';
 const slidesURL = 'api/slides/';
 const aboutURL = 'api/about/';
-const loginURL = 'api/login/';
-const logURL = 'api/log/';
 
 @Injectable()
 export class DataService {
@@ -36,75 +32,34 @@ export class DataService {
     }
 
     /**
-     * Returns a boolean wether a post by the given title URL already exists.
+     * Finds the previous post based on titleURL.
      *
-     * @param titleURL title URL
-     * @returns found:true if the post exists
+     * @param titleURL The titleURL of the current post.
      */
-    checkPost(titleURL: string): Observable<{ found: boolean }> {
-        return this.http.get<{ found: boolean }>(postsURL + titleURL + '/check');
-    }
-
-    uploadPost(post: Post): Observable<{ success: boolean }> {
-        let httpOptions = { headers: new HttpHeaders({ 'Authorization': 'Bearer ' + this.getToken() }) };
-        return this.http.post<{ success: boolean }>(postsURL, post, httpOptions);
-    }
-
-    updatePost(post: Post, titleURL: string): Observable<{ success: boolean }> {
-        let httpOptions = { headers: new HttpHeaders({ 'Authorization': 'Bearer ' + this.getToken() }) };
-        return this.http.patch<{ success: boolean }>(postsURL + titleURL, post, httpOptions);
-    }
-
     getPreviousPostTitleUrl(titleURL: string): Observable<{ titleURL: string }> {
         return this.http.get<{ titleURL: string }>(postsURL + titleURL + '/previous');
     }
 
+    /**
+     * Finds the next post based on titleURL.
+     *
+     * @param titleURL The titleURL of the current post.
+     */
     getNextPostTitleUrl(titleURL: string): Observable<{ titleURL: string }> {
         return this.http.get<{ titleURL: string }>(postsURL + titleURL + '/next');
     }
 
     /**
-     * Uploads a file to the images directory.
-     *
-     * @param file image file to upload
-     * @returns the name of the uploaded file
+     * Loads the slides.
      */
-    postImage(file: File): Observable<{ name: string }> {
-        let formData = new FormData();
-        formData.append('image', file);
-        return this.http.post<{ name: string }>(imagesURL, formData);
-    }
-
-    deleteImage(filename: string): Observable<{ success: boolean }> {
-        return this.http.delete<{ success: boolean }>(imagesURL + filename);
-    }
-
-    resizeImage(filename: string, proportions: { w: number, h: number }): Observable<ContentImage> {
-        return this.http.patch<ContentImage>(imagesURL + filename, proportions);
-    }
-
     loadSlides(): Observable<Slide[]> {
         return this.http.get<Slide[]>(slidesURL);
     }
 
+    /**
+     * Loads the contents of the about page.
+     */
     getAbout(): Observable<About> {
         return this.http.get<About>(aboutURL);
-    }
-
-    updateAbout(aboutContent: About): Observable<{ success: boolean }> {
-        return this.http.post<{ success: boolean }>(aboutURL, aboutContent);
-    }
-
-    login(email: string, password: string): Observable<LoginResponse> {
-        return this.http.post<LoginResponse>(loginURL, { email, password });
-    }
-
-    getLogs(): Observable<Array<any>> {
-        let httpOptions = { headers: new HttpHeaders({ 'Authorization': 'Bearer ' + this.getToken() }) };
-        return this.http.get<Array<any>>(logURL, httpOptions);
-    }
-
-    getToken(): string {
-        return localStorage.getItem('id_token');
     }
 }

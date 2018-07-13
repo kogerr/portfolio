@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../data.service';
+import { AdminDataService } from '../data.service';
 
 @Component({
   selector: 'app-log',
@@ -8,7 +8,7 @@ import { DataService } from '../../data.service';
 })
 export class LogComponent implements OnInit {
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: AdminDataService) { }
 
   logs: Array<any>;
 
