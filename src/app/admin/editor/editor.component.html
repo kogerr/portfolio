@@ -106,14 +106,13 @@
     
 </div>
 
-<div *ngIf="submitted">
+<div *ngIf="submitted" class="wrapper">
     <div *ngIf="!error">
-        <p>Post uploaded</p>
-        <p>You will be redirected in {{remaining}} milliseconds.</p>
+        <h1>Post uploaded</h1>
     </div>
     <div *ngIf="error">
-        <p>Server responded with error message:</p>
-        <p>{{error}}</p>
-        <p>You will be redirected in {{remaining}} milliseconds.</p>
+        <h1>{{error.status}} {{error.statusText}}</h1>
+        <p>{{error.message}}</p>
     </div>
+    <div>You will be redirected in <strong>{{remaining}}</strong> milliseconds.</div>
 </div>

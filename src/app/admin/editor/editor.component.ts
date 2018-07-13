@@ -83,7 +83,6 @@ export class EditorComponent implements OnDestroy, OnInit {
       this.dataService.postImage(files[i]).subscribe(data => {
         let image = { name: data.name, type: ContentType.image, width: 100 };
         this.post.contents.push(image);
-        // this.dataService.resizeImage('content', data.name, { w: 10, h: 7 }).subscribe(response => this.replaceImage(response, data));
       });
     }
   }
@@ -102,22 +101,20 @@ export class EditorComponent implements OnDestroy, OnInit {
       this.post.intro = this.post.intro.replace(/\n/g, '<br/>');
     }
     this.dataService.uploadPost(this.post).subscribe(
-      data => { this.submitted = data.success; },
-      error => { this.submitted = true; this.error = error.message; }
+      data => { this.submitted = data.success; this.countdownNavigate(20); },
+      error => { this.submitted = true; this.error = error; this.countdownNavigate(50); }
     );
-    this.countdownNavigate();
   }
 
   updatePost(): void {
     this.dataService.updatePost(this.post, this.originalTitleURL).subscribe(
-      data => { this.submitted = data.success; },
-      error => { this.submitted = true; this.error = error; }
+      data => { this.submitted = data.success; this.countdownNavigate(20); },
+      error => { this.submitted = true; this.error = error; this.countdownNavigate(50); }
     );
-    this.countdownNavigate();
   }
 
-  countdownNavigate(): void {
-    this.remaining = 20;
+  countdownNavigate(milliseconds: number): void {
+    this.remaining = milliseconds;
     let redirect = window.setInterval(() => {
       this.remaining--;
       if (this.remaining <= 0) {
