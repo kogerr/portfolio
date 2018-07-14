@@ -3,7 +3,7 @@ import resize from '../services/resize.service';
 import { Request, Response } from 'express';
 import * as logger from '../services/logger';
 
-const directory = 'dist/images/';
+const directory = 'images/';
 
 export function returnSavedFileName(req: Request, res: Response): void {
     let response = { name: req.file.filename };

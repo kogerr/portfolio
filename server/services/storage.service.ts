@@ -5,7 +5,7 @@ import * as multer from 'multer';
 import * as shortid from 'shortid';
 import { Request, Express } from 'express';
 
-const imagesDirectory = 'dist/images/';
+const imagesDirectory = 'images/';
 
 function determineDestination(req: Request, file: Express.Multer.File,
     callback: (error: Error | null, destination: string) => void): void {

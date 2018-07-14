@@ -21,6 +21,7 @@ app.use(compression());
 app.use(minify());
 
 app.use(express.static('dist'));
+app.use('/images', express.static('images'));
 
 app.get('/work/*', (req: Request, res: Response): void => {
     let isForFacebook = (request: Request): boolean =>
