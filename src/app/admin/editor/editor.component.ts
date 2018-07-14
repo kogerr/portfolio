@@ -17,7 +17,7 @@ interface HTMLInputEvent extends Event {
 
 export class EditorComponent implements OnDestroy, OnInit {
   constructor(private dataService: AdminDataService, private commonDataService: CommonDataService,
-    private router: Router, private route: ActivatedRoute, private authService: AuthService) { }
+    private router: Router, private route: ActivatedRoute) { }
   post: Post;
   submitted = false;
   existingPost: boolean;
@@ -29,7 +29,6 @@ export class EditorComponent implements OnDestroy, OnInit {
 
   ngOnInit(): void {
 
-    if (!this.authService.isLoggedIn()) { this.router.navigate(['/admin/login']); }
     this.route.params.subscribe(p => {
       if (p.titleURL) {
         this.commonDataService.getPost(p.titleURL).subscribe(data => {

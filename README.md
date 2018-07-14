@@ -15,10 +15,11 @@ Experimental project using MEAN stack.
 - [x] Caching
 - [ ] MongoDB - Node security
 - [ ] Editor for About, Contact, Post deletion...
-- [ ] Set order of posts, maybe filter
+- [x] Set order of posts
+- [ ] Maybe filter posts
 - [ ] Preview picture
 - [ ] Mobile CSS
-- [ ] Separate admin interface to lazy loading module
+- [x] Separate admin interface to lazy loading module
 - [ ] Temporary registration page
 - [ ] Set email error notification
 - [ ] Set resource expiration

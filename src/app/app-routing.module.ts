@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { PostComponent } from './post/post.component';
-import { PageNotFoundComponent } from './not-found.component';
+import { PageNotFoundComponent } from './not-found/not-found.component';
 import { WorkComponent } from './work/work.component';
 import { AboutComponent } from './about/about.component';
 

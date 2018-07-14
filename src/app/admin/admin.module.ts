@@ -15,6 +15,7 @@ import { TitleValidatorDirective } from './title.validator';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuComponent } from './menu/menu.component';
 import { PostlistComponent } from './postlist/postlist.component';
+import { AuthGuard } from './auth-guard.service';
 
 @NgModule({
   imports: [
@@ -28,6 +29,6 @@ import { PostlistComponent } from './postlist/postlist.component';
     provide: HTTP_INTERCEPTORS,
     useClass: AuthenticationInterceptor,
     multi: true
-  }, DataService, AuthService, AdminDataService]
+  }, DataService, AuthService, AuthGuard, AdminDataService]
 })
 export class AdminModule { }

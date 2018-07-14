@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  template: '<h2>Under Construction</h2>'
+  templateUrl: './not-found.component.html',
+  styleUrls: ['./not-found.component.css']
 })
 export class PageNotFoundComponent {}

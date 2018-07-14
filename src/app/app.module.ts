@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
 import { WorkComponent } from './work/work.component';
-import { PageNotFoundComponent } from './not-found.component';
+import { PageNotFoundComponent } from './not-found/not-found.component';
 import { PostPreviewComponent } from './post-preview/post-preview.component';
 import { DataService } from './data.service';
 import { HeaderComponent } from './header/header.component';
