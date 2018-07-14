@@ -4,6 +4,7 @@ import Post from './Post';
 let Schema = mongoose.Schema;
 
 let postSchema = new Schema({
+    index: Number,
     title: String,
     titleURL: String,
     type: String,

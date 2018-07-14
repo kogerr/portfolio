@@ -9,8 +9,7 @@ export function savePost(req: Request, res: Response): void {
         .then(() => {
             res.statusCode = 201;
             res.send({ success: true });
-            responseCacher.saveMetaData(req.body);
-            postCacher.savePost(req.body);
+            updateCache();
         }).catch((err) => {
             logger.error(err);
             res.statusCode = 500;
@@ -23,8 +22,20 @@ export function updatePost(req: Request, res: Response): void {
         .then(() => {
             res.statusCode = 200;
             res.send({ success: true });
-            responseCacher.saveMetaData(req.body);
-            postCacher.updatePost(req.body);
+            updateCache();
+        }).catch((err) => {
+            logger.error(err);
+            res.statusCode = 500;
+            res.send(err);
+        });
+}
+
+export function updateIndices(req: Request, res: Response): void {
+    dbService.updateIndices(req.body)
+        .then(() => {
+            res.statusCode = 200;
+            res.send({ success: true });
+            updateCache();
         }).catch((err) => {
             logger.error(err);
             res.statusCode = 500;
@@ -66,6 +77,19 @@ export function getPostByTitleURL(req: Request, res: Response): void {
                 res.send(err);
             });
     }
+}
+
+export function deletePostByTitleURL(req: Request, res: Response): void {
+    dbService.deletePostByTitleURL(req.params.titleURL)
+        .then((data) => {
+            res.statusCode = 200;
+            res.send(data);
+            updateCache();
+        }).catch((err) => {
+            logger.error(err);
+            res.statusCode = 404;
+            res.send(err);
+        });
 }
 
 export function checkPost(req: Request, res: Response): void {
@@ -121,4 +145,9 @@ export function cacherTest(req: Request, res: Response): void {
             res.statusCode = 404;
             res.send(err);
         });
+}
+
+function updateCache(): void {
+    responseCacher.update();
+    postCacher.update();
 }

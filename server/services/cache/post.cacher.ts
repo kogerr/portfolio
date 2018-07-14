@@ -34,3 +34,7 @@ export function getPost(titleURL: string): Post | boolean {
 export function getPosts(): Array<Post> {
     return postCache;
 }
+
+export function update(): void {
+    fillPostCache();
+}

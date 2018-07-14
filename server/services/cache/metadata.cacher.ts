@@ -27,3 +27,7 @@ export function getMetaData(titleURL: string): string | boolean {
     let template = metaDataTemplateCache.get(titleURL);
     return template === undefined ? false : template;
 }
+
+export function update(): void {
+    fillMetaDataTemplateCache();
+}

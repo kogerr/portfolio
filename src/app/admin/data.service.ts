@@ -7,11 +7,16 @@ import { About } from '../models/about.interface';
 import { LoginResponse } from '../models/login-response';
 
 const postsURL = 'api/posts/';
+const indicesURL = 'api/posts/indices';
 const imagesURL = 'api/images/';
 const slidesURL = 'api/slides/';
 const aboutURL = 'api/about/';
 const loginURL = 'api/login/';
 const logURL = 'api/log/';
+
+interface SuccessFlag {
+    success: boolean;
+}
 
 @Injectable()
 export class AdminDataService {
@@ -27,12 +32,12 @@ export class AdminDataService {
         return this.http.get<{ found: boolean }>(postsURL + titleURL + '/check');
     }
 
-    uploadPost(post: Post): Observable<{ success: boolean }> {
-        return this.http.post<{ success: boolean }>(postsURL, post);
+    uploadPost(post: Post): Observable<SuccessFlag> {
+        return this.http.put<SuccessFlag>(postsURL, post);
     }
 
-    updatePost(post: Post, titleURL: string): Observable<{ success: boolean }> {
-        return this.http.patch<{ success: boolean }>(postsURL + titleURL, post);
+    updatePost(post: Post, titleURL: string): Observable<SuccessFlag> {
+        return this.http.patch<SuccessFlag>(postsURL + titleURL, post);
     }
 
     /**
@@ -47,16 +52,16 @@ export class AdminDataService {
         return this.http.post<{ name: string }>(imagesURL, formData);
     }
 
-    deleteImage(filename: string): Observable<{ success: boolean }> {
-        return this.http.delete<{ success: boolean }>(imagesURL + filename);
+    deleteImage(filename: string): Observable<SuccessFlag> {
+        return this.http.delete<SuccessFlag>(imagesURL + filename);
     }
 
     resizeImage(filename: string, proportions: { w: number, h: number }): Observable<ContentImage> {
         return this.http.patch<ContentImage>(imagesURL + filename, proportions);
     }
 
-    updateAbout(aboutContent: About): Observable<{ success: boolean }> {
-        return this.http.post<{ success: boolean }>(aboutURL, aboutContent);
+    updateAbout(aboutContent: About): Observable<SuccessFlag> {
+        return this.http.post<SuccessFlag>(aboutURL, aboutContent);
     }
 
     login(email: string, password: string): Observable<LoginResponse> {
@@ -65,5 +70,13 @@ export class AdminDataService {
 
     getLogs(): Observable<Array<any>> {
         return this.http.get<Array<any>>(logURL);
+    }
+
+    updateIndices(indexPairs: { index: number, titleURL: string }[]): Observable<SuccessFlag> {
+        return this.http.post<SuccessFlag>(indicesURL, indexPairs);
+    }
+
+    deletePost(titleURL: string): Observable<SuccessFlag> {
+        return this.http.delete<SuccessFlag>(postsURL + titleURL);
     }
 }

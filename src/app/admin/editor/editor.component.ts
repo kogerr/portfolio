@@ -45,10 +45,10 @@ export class EditorComponent implements OnDestroy, OnInit {
   }
 
   ngOnDestroy(): void {
-    if (!this.submitted && this.post.cover) {
+    if (!this.submitted && !this.existingPost && this.post.cover) {
       this.removeImage('cover');
     }
-    if (!this.submitted && this.post.contents && this.post.contents.length > 0) {
+    if (!this.submitted && !this.existingPost && this.post.contents && this.post.contents.length > 0) {
       this.removeContentImages((this.post.contents.filter(e => e.type === ContentType.image) as ContentImage[]));
     }
   }
@@ -64,7 +64,7 @@ export class EditorComponent implements OnDestroy, OnInit {
 
   uploadFacebookImage(event: HTMLInputEvent): void {
     if (this.post.facebookImage) {
-      this.dataService.deleteImage(this.post.facebookImage).subscribe(data => {
+      this.dataService.deleteImage(this.post.facebookImage).subscribe(() => {
         this.post.facebookImage = '';
       });
     }
@@ -74,7 +74,7 @@ export class EditorComponent implements OnDestroy, OnInit {
   }
 
   removeImage(image: string): void {
-    this.dataService.deleteImage(this.post[image]).subscribe(data => delete this.post[image]);
+    this.dataService.deleteImage(this.post[image]).subscribe(() => delete this.post[image]);
   }
 
   uploadContentImages(event: HTMLInputEvent): void {
@@ -89,7 +89,7 @@ export class EditorComponent implements OnDestroy, OnInit {
 
   removeContentImages(images: Array<ContentImage>): void {
     images.forEach(element => {
-      this.dataService.deleteImage(element.name).subscribe(data => {
+      this.dataService.deleteImage(element.name).subscribe(() => {
         this.post.contents.splice(this.post.contents.indexOf(element), 1);
       });
     });
@@ -119,7 +119,7 @@ export class EditorComponent implements OnDestroy, OnInit {
       this.remaining--;
       if (this.remaining <= 0) {
         window.clearInterval(redirect);
-        this.router.navigate(['/work']);
+        this.router.navigate(['/admin/postlist']);
       }
     }, 100);
   }
@@ -157,7 +157,7 @@ export class EditorComponent implements OnDestroy, OnInit {
   removeElement(index: number): void {
     if (this.post.contents[index].type === ContentType.image) {
       let name = (this.post.contents[index] as ContentImage).name;
-      this.dataService.deleteImage(name).subscribe(data => { });
+      this.dataService.deleteImage(name).subscribe(() => { });
     }
     this.post.contents.splice(index, 1);
   }

@@ -1,0 +1,29 @@
+<div class="wrapper">
+  <div *ngFor="let post of posts; index as i" class="postPreviewWrap">
+    <div class="clickable">{{post.title}}</div>
+    <div [routerLink]="'/admin/editor/' + post.titleURL" routerLinkActive="active" class="postPreview clickable">
+      <img [src]="'images/' + post.cover" class="imagePreview" />
+    </div>
+    <div class="controls">
+      <span>{{i | number:'2.0-0'}}</span>
+      <button (click)="removePost(i)">
+        <img src="assets/x.svg" class="icon" alt="delete">
+      </button>
+      <button>
+        <img src="assets/arrow_up.svg" class="icon" alt="up" (click)="movePostUp(i)">
+      </button>
+      <button>
+        <img src="assets/arrow_down.svg" class="icon" alt="down" (click)="movePostDown(i)">
+      </button>
+      <button>
+        <div class="icon" alt="down" [routerLink]="'/work/' + post.titleURL" routerLinkActive="active" style="height: auto">Check</div>
+      </button>
+    </div>
+  </div>
+
+  <div class="addButton">
+      <button>
+        <div class="icon" alt="down" routerLink="/admin/editor" routerLinkActive="active" class="icon">Add new post</div>
+      </button>
+  </div>
+</div>

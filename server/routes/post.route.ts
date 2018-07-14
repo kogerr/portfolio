@@ -5,10 +5,13 @@ import * as tokenService from '../services/token.service';
 let router: express.Router = express.Router();
 router.route('/')
     .get(postCtrl.getPosts)
-    .post(tokenService.checkToken, postCtrl.savePost);
+    .put(tokenService.checkToken, postCtrl.savePost);
+router.route('/indices')
+    .post(tokenService.checkToken, postCtrl.updateIndices);
 router.route('/:titleURL')
     .get(postCtrl.getPostByTitleURL)
-    .patch(tokenService.checkToken, postCtrl.updatePost);
+    .patch(tokenService.checkToken, postCtrl.updatePost)
+    .delete(tokenService.checkToken, postCtrl.deletePostByTitleURL);
 router.route('/:titleURL/check')
     .get(postCtrl.checkPost);
 router.route('/:titleURL/previous')

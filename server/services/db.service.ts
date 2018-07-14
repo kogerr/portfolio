@@ -33,9 +33,35 @@ function sortPostsByTime(posts: Array<PostDocument>): Array<PostDocument> {
     return sortedPosts;
 }
 
+function sortPostsByIndex(posts: Array<PostDocument>): Array<PostDocument> {
+    let sortedPosts: Array<PostDocument>;
+    try {
+        sortedPosts = posts.sort((a, b) => a.index - b.index);
+    } catch (err) {
+        logger.error(err);
+        sortedPosts = posts;
+    }
+    return sortedPosts;
+}
+
 export function savePost(post: Post): Promise<PostDocument> {
-    let newPost = new PostModel(post);
-    return newPost.save();
+    return new Promise((resolve, reject) => {
+        PostModel.count({}, (err, count) => {
+            if (err) {
+                logger.error(err);
+            } else {
+                post.index = count;
+            }
+            let newPost = new PostModel(post);
+            newPost.save((error, product) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(deleteID(product));
+                }
+            });
+        });
+    });
 }
 
 export function updatePost(post: Post): Promise<{ titleURL: string }> {
@@ -51,7 +77,28 @@ export function updatePost(post: Post): Promise<{ titleURL: string }> {
     });
 }
 
+export function updateIndices(indexPairs: { index: number, titleURL: string }[]): Promise<Array<any>> {
+    let promises = new Array<Promise<any>>();
+    indexPairs.forEach(e => {
+        promises.push(
+            PostModel.update({ titleURL: e.titleURL }, {index: e.index}).exec()
+        );
+    });
+    return Promise.all(promises);
+}
+
 export function getPosts(): Promise<Array<PostDocument>> {
+    return new Promise((resolve, reject) => {
+        PostModel.find((err, docs) => {
+            if (err) {
+                reject(err);
+            }
+            resolve(sortPostsByIndex(docs.map((post) => deleteID(post))));
+        });
+    });
+}
+
+export function getPostsSorted(): Promise<Array<PostDocument>> {
     return new Promise((resolve, reject) => {
         PostModel.find((err, docs) => {
             if (err) {
@@ -69,6 +116,18 @@ export function getPostByTitleURL(titleURL: string): Promise<PostDocument> {
                 reject(err);
             }
             resolve(deleteID(data));
+        });
+    });
+}
+
+export function deletePostByTitleURL(titleURL: string): Promise<{ deleted: boolean }> {
+    return new Promise((resolve, reject) => {
+        PostModel.deleteOne({ titleURL }, err => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve({ deleted: true });
+            }
         });
     });
 }
@@ -91,7 +150,7 @@ export function getPreviousPostTitleUrl(titleURL: string): Promise<{ titleURL: s
             if (err) {
                 reject(err);
             }
-            let postsSorted = sortPostsByTime(docs);
+            let postsSorted = sortPostsByIndex(docs);
             let i = postsSorted.findIndex((e) => e.titleURL === titleURL) + 1;
             let targetPost = postsSorted[i];
             if (!targetPost) {
@@ -108,7 +167,7 @@ export function getNextPostTitleUrl(titleURL: string): Promise<{ titleURL: strin
             if (err) {
                 reject(err);
             }
-            let postsSorted = sortPostsByTime(docs);
+            let postsSorted = sortPostsByIndex(docs);
             let i = postsSorted.findIndex((e) => e.titleURL === titleURL) - 1;
             let targetPost = postsSorted[i];
             if (!targetPost) {

@@ -1,4 +1,5 @@
 export default interface Post {
+    index: number;
     title: string;
     titleURL: string;
     type: string;
