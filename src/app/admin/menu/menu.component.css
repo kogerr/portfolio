@@ -1,0 +1,31 @@
+.wrapper {
+    min-height: calc(100vh - 300px);
+    background-color: #F0F0F0;
+    overflow: hidden;
+    padding: calc((100vh - 800px) * 2 / 3) 2.1vw 0 2.1vw;
+    box-sizing: border-box;
+}
+
+.menu {
+    display: grid;
+    grid-gap: 1em;
+    background-color: white;
+    margin: auto;
+    width: min-content;
+    padding: 2em;
+}
+
+.item {
+    width: 12em;
+    max-width: 60vw;
+    background-color: #F0F0F0;
+    color: #232323;
+    padding: 1em;
+    text-align: center;
+    font-size: 24px;
+}
+
+.item:hover {
+    background-color: #fff000;
+    cursor: pointer;
+}

@@ -13,6 +13,7 @@ import { AuthService } from './auth.service';
 import { LogComponent } from './log/log.component';
 import { TitleValidatorDirective } from './title.validator';
 import { HttpClientModule } from '@angular/common/http';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  declarations: [EditorComponent, LoginComponent, LogComponent, TitleValidatorDirective],
+  declarations: [EditorComponent, LoginComponent, LogComponent, TitleValidatorDirective, MenuComponent],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthenticationInterceptor,
