@@ -26,13 +26,13 @@ header img {
 }
 
 .full-header {
-    padding: 0 2.1vw;
+    padding: 0 2.083vw;
     grid-template-rows: 22.5% 50% auto;
     background-color: #f0f0f0;
 }
 
 .short-header {
-    padding: 0 2.1vw 0 0;
+    padding: 0 2.083vw 0 0;
     height: 80px;
     grid-template-rows: 35% auto;
 }
@@ -63,7 +63,7 @@ a.active {
 .items {
     margin-left: auto;
     margin-right: 0;
-    padding-right: 2.1vw;
+    padding-right: 2.083vw;
     grid-row: 2;
     grid-column: 2;
 }
@@ -80,7 +80,7 @@ a.active {
 .line {
     height: 2px;
     width: 480px;
-    margin: 0 -2.1vw 0 auto;
+    margin: 0 -2.083vw 0 auto;
     background-color: #969696;
     opacity: 0.25;
     grid-row: 3;

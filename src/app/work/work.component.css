@@ -1,12 +1,12 @@
 #cover {
     height: 33.33vw;
-    margin: 0 2vw 2vw 2vw;
+    margin: 0 2.083vw 2.083vw 2.083vw;
     background-color: #232323;
     box-sizing: border-box;
 }
 
 #works {
-    margin: 2.1vw 2.1vw;
+    margin: 2.083vw 2.083vw;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-auto-rows: 33.33vw;
