@@ -2,7 +2,6 @@
     min-height: calc(100vh - 300px);
     background-color: #F0F0F0;
     overflow: hidden;
-    padding: calc((100vh - 800px) * 2 / 3) 2.083vw 0 2.083vw;
     box-sizing: border-box;
 }
 
