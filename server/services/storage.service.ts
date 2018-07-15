@@ -24,7 +24,7 @@ export function generateFilename(originalname: string): string {
 }
 
 export function deleteImage(filename: string): Promise<{ success: boolean }> {
-    let file = path.join(appRoot.path, imagesDirectory) + '/' + filename;
+    let file = path.join(appRoot.path, imagesDirectory) + filename;
     return new Promise((resolve, reject) => {
         fs.unlink(file, (err) => {
             if (err) {

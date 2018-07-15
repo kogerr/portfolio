@@ -28,9 +28,9 @@ export function deleteImage(req: Request, res: Response): void {
 }
 
 export function crop(req: Request, res: Response): void {
-    let filePath = directory + '/' + req.params.filename;
+    let filePath = directory + req.params.filename;
     let newName = storageService.generateFilename(req.params.filename);
-    let newPath = directory + '/' + newName;
+    let newPath = directory + newName;
     let proportions = req.body;
     resize(filePath, newPath, proportions).then(() => {
         res.statusCode = 200;
