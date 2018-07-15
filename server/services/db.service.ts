@@ -2,7 +2,9 @@ import PostModel, { PostDocument } from '../models/postModel';
 import SlideModel from '../models/slideModel';
 import AboutModel from '../models/aboutModel';
 import UserModel from '../models/userModel';
+import { Promise as MongoosePromise } from 'mongoose';
 import Post from '../models/Post';
+import Slide from '../models/Slide';
 import { Document } from 'mongoose';
 import * as logger from './logger';
 
@@ -33,15 +35,21 @@ function sortPostsByTime(posts: Array<PostDocument>): Array<PostDocument> {
     return sortedPosts;
 }
 
-function sortPostsByIndex(posts: Array<PostDocument>): Array<PostDocument> {
-    let sortedPosts: Array<PostDocument>;
+function sortByIndex<T extends {index: number}>(docs: Array<T>): Array<T> {
+    let sortedDocs;
     try {
-        sortedPosts = posts.sort((a, b) => a.index - b.index);
+        sortedDocs = docs.sort((a, b) => a.index - b.index);
     } catch (err) {
         logger.error(err);
-        sortedPosts = posts;
+        sortedDocs = docs;
     }
-    return sortedPosts;
+    return sortedDocs;
+}
+
+function castMongoosePromise<T>(mongoosePromise: MongoosePromise<T>): Promise<T> {
+    return new Promise((resolve, reject) => {
+        mongoosePromise.then(data => resolve(data), err => reject(err));
+    });
 }
 
 export function savePost(post: Post): Promise<PostDocument> {
@@ -81,7 +89,7 @@ export function updateIndices(indexPairs: { index: number, titleURL: string }[])
     let promises = new Array<Promise<any>>();
     indexPairs.forEach(e => {
         promises.push(
-            PostModel.update({ titleURL: e.titleURL }, {index: e.index}).exec()
+            castMongoosePromise(PostModel.update({ titleURL: e.titleURL }, { index: e.index }).exec())
         );
     });
     return Promise.all(promises);
@@ -93,7 +101,7 @@ export function getPosts(): Promise<Array<PostDocument>> {
             if (err) {
                 reject(err);
             }
-            resolve(sortPostsByIndex(docs.map((post) => deleteID(post))));
+            resolve(sortByIndex(docs.map((post) => deleteID(post))));
         });
     });
 }
@@ -150,7 +158,7 @@ export function getPreviousPostTitleUrl(titleURL: string): Promise<{ titleURL: s
             if (err) {
                 reject(err);
             }
-            let postsSorted = sortPostsByIndex(docs);
+            let postsSorted = sortByIndex(docs);
             let i = postsSorted.findIndex((e) => e.titleURL === titleURL) + 1;
             let targetPost = postsSorted[i];
             if (!targetPost) {
@@ -167,7 +175,7 @@ export function getNextPostTitleUrl(titleURL: string): Promise<{ titleURL: strin
             if (err) {
                 reject(err);
             }
-            let postsSorted = sortPostsByIndex(docs);
+            let postsSorted = sortByIndex(docs);
             let i = postsSorted.findIndex((e) => e.titleURL === titleURL) - 1;
             let targetPost = postsSorted[i];
             if (!targetPost) {
@@ -178,21 +186,43 @@ export function getNextPostTitleUrl(titleURL: string): Promise<{ titleURL: strin
     });
 }
 
-export function getSlides(): Promise<Array<Document>> {
+export function getSlides(): Promise<Array<Slide>> {
     return new Promise((resolve, reject) => {
         SlideModel.find((err, docs) => {
             if (err) {
                 reject(err);
             }
-            docs.map((slide) => deleteID(slide));
-            resolve(docs);
+            resolve(sortByIndex(docs.map((slide) => deleteID(slide))));
         });
     });
 }
 
-export function saveSlide(slide: any): Promise<Document> {
-    let newSlide = new SlideModel(slide);
-    return newSlide.save();
+export function saveSlide(slide: Slide): Promise<Document> {
+    return new Promise((resolve, reject) => {
+        SlideModel.count({}, (err, count) => {
+            if (err) {
+                logger.error(err);
+            } else {
+                slide.index = count;
+            }
+            let newSlide = new SlideModel(slide);
+            newSlide.save((error, product) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(deleteID(product));
+                }
+            });
+        });
+    });
+}
+
+export function updateSlide(imageURL: string, update: any): Promise<Document> {
+    return castMongoosePromise(SlideModel.update({ imageURL }, update).exec());
+}
+
+export function deleteSlide(imageURL: string): Promise<Document> {
+    return castMongoosePromise(SlideModel.deleteOne({ imageURL }).exec());
 }
 
 export function getAbout(): Promise<Document> {

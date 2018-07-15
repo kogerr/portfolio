@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
-const editorRoute = '/admin/editor';
-
 @Component({
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']

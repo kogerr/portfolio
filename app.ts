@@ -22,7 +22,7 @@ let httpServer: http.Server = http.createServer(app).listen(80, () => {
     console.log('Listening on port ' + port);
 });
 
-mongoose.Promise = global.Promise;
+(<any>mongoose).Promise = global.Promise;
 mongoose.connect('mongodb://localhost/portfolio').then(
     () => { console.log('Connected to mongodb'); },
     err => { logger.error(err.message); }

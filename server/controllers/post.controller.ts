@@ -45,7 +45,7 @@ export function updateIndices(req: Request, res: Response): void {
 
 export function getPosts(req: Request, res: Response): void {
     let cachedPosts = postCacher.getPosts();
-    if (cachedPosts.length) {
+    if (cachedPosts && cachedPosts.length) {
         res.statusCode = 200;
         res.send(cachedPosts);
     } else {

@@ -1,4 +1,4 @@
-export interface Slide {
+export default interface Slide {
     index: number;
     title: string;
     imageURL: string;

@@ -20,6 +20,7 @@ interface SuccessFlag {
 
 @Injectable()
 export class AdminDataService {
+
     constructor(private http: HttpClient) { }
 
     /**
@@ -72,11 +73,27 @@ export class AdminDataService {
         return this.http.get<Array<any>>(logURL);
     }
 
-    updateIndices(indexPairs: { index: number, titleURL: string }[]): Observable<SuccessFlag> {
+    updatePostIndices(indexPairs: { index: number, titleURL: string }[]): Observable<SuccessFlag> {
         return this.http.post<SuccessFlag>(indicesURL, indexPairs);
     }
 
     deletePost(titleURL: string): Observable<SuccessFlag> {
         return this.http.delete<SuccessFlag>(postsURL + titleURL);
+    }
+
+    updateSlideIndices(indexPairs: { index: number, imageURL: string }[]): Observable<SuccessFlag> {
+        return this.http.post<SuccessFlag>(indicesURL, indexPairs);
+    }
+
+    deleteSlide(imageURL: string): Observable<SuccessFlag> {
+        return this.http.delete<SuccessFlag>(slidesURL + imageURL);
+    }
+
+    updateSlide(imageURL: string, update: any): Observable<SuccessFlag> {
+        return this.http.patch<SuccessFlag>(slidesURL + imageURL, update);
+    }
+
+    newSlide(imageURL: string): Observable<Slide> {
+        return this.http.post<Slide>(slidesURL, { imageURL });
     }
 }

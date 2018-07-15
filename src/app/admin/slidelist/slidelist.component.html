@@ -1,0 +1,38 @@
+<div class="wrapper">
+  <div *ngFor="let slide of slides; index as i" class="previewWrap">
+    <div>{{slide.link}}</div>
+    <div class="preview clickable">
+      <img [src]="'images/' + slide.imageURL" class="imagePreview" (click)="openInNewTab('images/' + slide.imageURL)" />
+    </div>
+    <div class="controls">
+      <span>{{i | number:'2.0-0'}}</span>
+      <button>
+        <img src="assets/x.svg" class="icon" alt="delete" (click)="removeSlide(i)">
+      </button>
+      <button>
+        <img src="assets/arrow_up.svg" class="icon" alt="up" (click)="moveSlideUp(i)">
+      </button>
+      <button>
+        <img src="assets/arrow_down.svg" class="icon" alt="down" (click)="moveSlideDown(i)">
+      </button>
+      <button>
+        <div class="icon" alt="check" (click)="openInNewTab('images/' + slide.imageURL)" style="height: auto">Check</div>
+      </button>
+    </div>
+    <div>
+      <select [(ngModel)]="slide.title" (change)="changeLink(i)">
+        <option *ngFor="let post of posts" [value]="post.title">{{post.title}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="addButton">
+    <button>
+      <div class="icon" alt="add slide" class="icon" (click)="imageInput.click()">Add new slide</div>
+    </button>
+  </div>
+
+  <div style="display: none">
+    <input #imageInput name="image-input" type="file" accept=".png, .jpg, .jpeg" (change)="newSlide($event)">
+  </div>
+</div>

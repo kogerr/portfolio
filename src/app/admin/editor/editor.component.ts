@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Post, ContentImage, ContentType, TextContent } from '../../models/post';
 import { AdminDataService } from '../data.service';
 import { DataService as CommonDataService } from '../../data.service';
-import { AuthService } from '../auth.service';
 
 interface HTMLInputEvent extends Event {
   target: HTMLInputElement & EventTarget;

@@ -6,8 +6,8 @@
     </div>
     <div class="controls">
       <span>{{i | number:'2.0-0'}}</span>
-      <button (click)="removePost(i)">
-        <img src="assets/x.svg" class="icon" alt="delete">
+      <button>
+        <img src="assets/x.svg" class="icon" alt="delete" (click)="removePost(i)">
       </button>
       <button>
         <img src="assets/arrow_up.svg" class="icon" alt="up" (click)="movePostUp(i)">

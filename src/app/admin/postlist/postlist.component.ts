@@ -20,6 +20,7 @@ export class PostlistComponent implements OnInit {
   removePost(index: number): void {
     this.dataService.deletePost(this.posts[index].titleURL).subscribe(() => {
       this.posts.splice(index, 1);
+      this.shiftIndices(index);
     });
   }
 
@@ -50,7 +51,16 @@ export class PostlistComponent implements OnInit {
     index.forEach(i => {
       indexPairs.push({ index: this.posts[i].index, titleURL: this.posts[i].titleURL });
     });
-    this.dataService.updateIndices(indexPairs).subscribe(() => { });
+    this.dataService.updatePostIndices(indexPairs).subscribe(() => { });
+  }
+
+  shiftIndices(from: number): void {
+    let indexPairs = new Array<{ index: number, titleURL: string }>();
+    for (let i = from; i < this.posts.length; i++) {
+      this.posts[i].index--;
+      indexPairs.push({ index: this.posts[i].index, titleURL: this.posts[i].titleURL });
+    }
+    this.dataService.updatePostIndices(indexPairs).subscribe(() => { });
   }
 
 }

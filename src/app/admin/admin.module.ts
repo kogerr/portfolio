@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MenuComponent } from './menu/menu.component';
 import { PostlistComponent } from './postlist/postlist.component';
 import { AuthGuard } from './auth-guard.service';
+import { SlidelistComponent } from './slidelist/slidelist.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { AuthGuard } from './auth-guard.service';
     FormsModule,
     HttpClientModule
   ],
-  declarations: [EditorComponent, LoginComponent, LogComponent, TitleValidatorDirective, MenuComponent, PostlistComponent],
+  declarations: [EditorComponent, LoginComponent, LogComponent,
+    TitleValidatorDirective, MenuComponent, PostlistComponent, SlidelistComponent],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthenticationInterceptor,
