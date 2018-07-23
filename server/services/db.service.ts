@@ -1,6 +1,7 @@
 import PostModel, { PostDocument } from '../models/postModel';
 import SlideModel, { SlideDocument } from '../models/slideModel';
 import AboutModel, { AboutDocument } from '../models/aboutModel';
+import ContactModel, { ContactDocument } from '../models/contactModel';
 import UserModel from '../models/userModel';
 import { Promise as MongoosePromise } from 'mongoose';
 import { Post } from '../models/frontModels';
@@ -227,11 +228,11 @@ export function saveSlide(slide: Slide): Promise<SlideDocument> {
     });
 }
 
-export function updateSlide(imageURL: string, update: any): Promise<Document> {
+export function updateSlide(imageURL: string, update: any): Promise<UpdateResponse> {
     return castMongoosePromise(SlideModel.update({ imageURL }, update).exec());
 }
 
-export function deleteSlide(imageURL: string): Promise<Document> {
+export function deleteSlide(imageURL: string): Promise<UpdateResponse> {
     return castMongoosePromise(SlideModel.deleteOne({ imageURL }).exec());
 }
 
@@ -248,6 +249,21 @@ export function getAbout(): Promise<AboutDocument> {
 
 export function updateAbout(update: any): Promise<UpdateResponse> {
     return castMongoosePromise(AboutModel.updateOne({ }, update).exec());
+}
+
+export function getContact(): Promise<ContactDocument> {
+    return new Promise((resolve, reject) => {
+        ContactModel.findOne((err, docs) => {
+            if (err) {
+                reject(err);
+            }
+            resolve(deleteID(docs));
+        });
+    });
+}
+
+export function updateContact(update: any): Promise<UpdateResponse> {
+    return castMongoosePromise(ContactModel.updateOne({ }, update).exec());
 }
 
 export function checkUser(email: string, password: string): Promise<{ found: boolean }> {

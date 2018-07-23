@@ -4,12 +4,12 @@
             <span style="text-decoration: underline">For new work inquiries, please contact:</span>
             <span></span>
             <div>
-                <a href="mailto:info@botondvoros.com" class="header-mail">info@botondvoros.com</a>
-                <span>+36 70 228 5187</span>
+                <a [href]="'mailto:' + content.mail" class="header-mail">{{content.mail}}</a>
+                <a [href]="'tel:' + content.phone" class="header-mail">{{content.phone}}</a>
             </div>
             <div>
-                <a href="https://www.behance.net/botondvoros" target="_blank" style="text-decoration: underline">Behance</a>
-                <a href="https://www.linkedin.com/in/botond-v%C3%B6r%C3%B6s-b9b10548/" target="_blank" style="text-decoration: underline">LinkedIn</a>
+                <a [href]="content.behance" target="_blank" style="text-decoration: underline">Behance</a>
+                <a [href]="content.linkedIn" target="_blank" style="text-decoration: underline">LinkedIn</a>
             </div>
         </div>
         <img src="assets/x.svg" class="closingX" (click)="switchContactHeader()" />

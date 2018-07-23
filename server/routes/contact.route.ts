@@ -1,10 +1,10 @@
 import * as express from 'express';
-import * as aboutCtrl from '../controllers/about.controller';
+import * as contactCtrl from '../controllers/contact.controller';
 import * as tokenService from '../services/token.service';
 
 let router: express.Router = express.Router();
 router.route('/')
-    .get(aboutCtrl.getAbout)
-    .post(tokenService.checkToken, aboutCtrl.updateAbout);
+    .get(contactCtrl.getContact)
+    .post(tokenService.checkToken, contactCtrl.updateContact);
 
 export default router;

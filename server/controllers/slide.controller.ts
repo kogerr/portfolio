@@ -36,9 +36,10 @@ export function saveSlide(req: Request, res: Response): void {
 
 export function updateSlide(req: Request, res: Response): void {
     dbService.updateSlide(req.params.imageURL, req.body)
-        .then(() => {
+        .then(data => {
+            let success = data.ok === 1;
             res.statusCode = 200;
-            res.send({ success: true });
+            res.send({ success });
             slideCacher.update();
         }).catch((err) => {
             logger.error(err);
@@ -49,9 +50,10 @@ export function updateSlide(req: Request, res: Response): void {
 
 export function deleteSlide(req: Request, res: Response): void {
     dbService.deleteSlide(req.params.imageURL)
-        .then(() => {
+        .then(data => {
+            let success = data.ok === 1;
             res.statusCode = 200;
-            res.send({ success: true });
+            res.send({ success });
             slideCacher.update();
         }).catch((err) => {
             logger.error(err);

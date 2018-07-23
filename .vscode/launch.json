@@ -23,7 +23,7 @@
             "name": "Debug ts-node",
             "protocol": "inspector",
             "args": [
-                "${workspaceFolder}\\app.ts"
+                "app.ts"
             ],
             "cwd": "${workspaceRoot}",
             "runtimeArgs": [

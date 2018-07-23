@@ -4,10 +4,12 @@ import { Observable } from 'rxjs';
 import { Post } from './models/post';
 import { Slide } from './models/slide';
 import { About } from './models/about.interface';
+import { Contact } from './models/contact';
 
 const postsURL = 'api/posts/';
 const slidesURL = 'api/slides/';
 const aboutURL = 'api/about/';
+const contactURL = 'api/contact/';
 
 @Injectable()
 export class DataService {
@@ -61,5 +63,12 @@ export class DataService {
      */
     getAbout(): Observable<About> {
         return this.http.get<About>(aboutURL);
+    }
+
+    /**
+     * Loads the contact information.
+     */
+    getContact(): Observable<Contact> {
+        return this.http.get<Contact>(contactURL);
     }
 }
