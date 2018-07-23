@@ -16,9 +16,10 @@ export function getAbout(req: Request, res: Response): void {
 
 export function updateAbout(req: Request, res: Response): void {
     dbService.updateAbout(req.body)
-        .then(() => {
+        .then(data => {
+            let success = data.ok === 1;
             res.statusCode = 200;
-            res.send({ success: true });
+            res.send({ success });
         }).catch((err) => {
             logger.error(err);
             res.statusCode = 500;

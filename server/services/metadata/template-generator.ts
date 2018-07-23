@@ -2,7 +2,7 @@
 /* tslint:disable:no-unused-variable */
 
 import * as fs from 'fs';
-import Post from '../../models/Post';
+import { Post } from '../../models/frontModels';
 import * as logger from '../logger';
 
 const workBaseURL = 'http://199.247.23.37/work/';

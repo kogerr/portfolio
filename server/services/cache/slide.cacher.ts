@@ -1,5 +1,5 @@
 import * as dbService from '../db.service';
-import Slide from '../../models/Slide';
+import { Slide } from '../../models/frontModels';
 import * as logger from '../logger';
 
 let slideCache: Array<Slide>;

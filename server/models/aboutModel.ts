@@ -1,5 +1,6 @@
 'use strict';
 import * as mongoose from 'mongoose';
+import { About } from './frontModels';
 let Schema = mongoose.Schema;
 
 let possiblyClickable = new Schema({
@@ -24,4 +25,7 @@ let aboutSchema = new Schema({
 }
 );
 
-export default mongoose.model('about', aboutSchema);
+export interface AboutDocument extends About, mongoose.Document {
+}
+
+export default mongoose.model<AboutDocument>('about', aboutSchema);

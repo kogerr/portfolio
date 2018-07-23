@@ -12,17 +12,25 @@
             "webRoot": "${workspaceFolder}"
         },
         {
-            "type": "chrome",
+            "type": "node",
             "request": "launch",
-            "name": "Launch Chrome on port 4200",
-            "url": "http://localhost:4200",
-            "webRoot": "${workspaceFolder}"
+            "name": "Debug Node",
+            "program": "${workspaceFolder}\\app.js"
         },
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Node",
-            "program": "${workspaceFolder}\\app.js"
+            "name": "Debug ts-node",
+            "protocol": "inspector",
+            "args": [
+                "${workspaceFolder}\\app.ts"
+            ],
+            "cwd": "${workspaceRoot}",
+            "runtimeArgs": [
+                "-r",
+                "ts-node/register"
+            ],
+            "internalConsoleOptions": "openOnSessionStart"
         },
         {
             "type": "node",

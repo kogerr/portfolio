@@ -1,6 +1,6 @@
 import * as dbService from '../db.service';
 import generateTemplate from '../metadata/template-generator';
-import Post from '../../models/Post';
+import { Post } from '../../models/frontModels';
 import * as logger from '../logger';
 
 let metaDataTemplateCache: Map<string, string>;

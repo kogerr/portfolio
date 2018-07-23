@@ -1,6 +1,6 @@
 'use strict';
 import * as mongoose from 'mongoose';
-import Slide from './Slide';
+import { Slide } from './frontModels';
 let Schema = mongoose.Schema;
 
 let slideSchema = new Schema({

@@ -32,9 +32,10 @@ export function updatePost(req: Request, res: Response): void {
 
 export function updateIndices(req: Request, res: Response): void {
     dbService.updateIndices(req.body)
-        .then(() => {
+        .then(data => {
+            let success = data.every(e => e.ok === 1);
             res.statusCode = 200;
-            res.send({ success: true });
+            res.send({ success });
             updateCache();
         }).catch((err) => {
             logger.error(err);

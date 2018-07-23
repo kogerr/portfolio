@@ -1,5 +1,5 @@
 import * as dbService from '../db.service';
-import Post from '../../models/Post';
+import { Post } from '../../models/frontModels';
 import * as logger from '../logger';
 
 let postCache: Array<Post>;

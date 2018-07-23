@@ -1,15 +1,21 @@
 import PostModel, { PostDocument } from '../models/postModel';
-import SlideModel from '../models/slideModel';
-import AboutModel from '../models/aboutModel';
+import SlideModel, { SlideDocument } from '../models/slideModel';
+import AboutModel, { AboutDocument } from '../models/aboutModel';
 import UserModel from '../models/userModel';
 import { Promise as MongoosePromise } from 'mongoose';
-import Post from '../models/Post';
-import Slide from '../models/Slide';
+import { Post } from '../models/frontModels';
+import { Slide } from '../models/frontModels';
 import { Document } from 'mongoose';
 import * as logger from './logger';
 
 interface IndexedDocument extends Document {
     index: number;
+}
+
+interface UpdateResponse {
+    n: number;
+    nModified: number;
+    ok: number;
 }
 
 /**
@@ -89,8 +95,8 @@ export function updatePost(post: Post): Promise<{ titleURL: string }> {
     });
 }
 
-export function updateIndices(indexPairs: { index: number, titleURL: string }[]): Promise<Array<any>> {
-    let promises = new Array<Promise<any>>();
+export function updateIndices(indexPairs: { index: number, titleURL: string }[]): Promise<Array<UpdateResponse>> {
+    let promises = new Array<Promise<UpdateResponse>>();
     indexPairs.forEach(e => {
         promises.push(
             castMongoosePromise(PostModel.update({ titleURL: e.titleURL }, { index: e.index }).exec())
@@ -190,7 +196,7 @@ export function getNextPostTitleUrl(titleURL: string): Promise<{ titleURL: strin
     });
 }
 
-export function getSlides(): Promise<Array<Slide>> {
+export function getSlides(): Promise<Array<SlideDocument>> {
     return new Promise((resolve, reject) => {
         SlideModel.find((err, docs) => {
             if (err) {
@@ -201,7 +207,7 @@ export function getSlides(): Promise<Array<Slide>> {
     });
 }
 
-export function saveSlide(slide: Slide): Promise<Document> {
+export function saveSlide(slide: Slide): Promise<SlideDocument> {
     return new Promise((resolve, reject) => {
         SlideModel.count({}, (err, count) => {
             if (err) {
@@ -229,7 +235,7 @@ export function deleteSlide(imageURL: string): Promise<Document> {
     return castMongoosePromise(SlideModel.deleteOne({ imageURL }).exec());
 }
 
-export function getAbout(): Promise<Document> {
+export function getAbout(): Promise<AboutDocument> {
     return new Promise((resolve, reject) => {
         AboutModel.findOne((err, docs) => {
             if (err) {
@@ -240,17 +246,8 @@ export function getAbout(): Promise<Document> {
     });
 }
 
-export function updateAbout(about: any): Promise<{ data: any }> {
-    return new Promise((resolve, reject) => {
-        AboutModel.update({}, about,
-            (err, raw) => {
-                if (err) {
-                    reject(err);
-                }
-                resolve({ data: raw });
-            }
-        );
-    });
+export function updateAbout(update: any): Promise<UpdateResponse> {
+    return castMongoosePromise(AboutModel.updateOne({ }, update).exec());
 }
 
 export function checkUser(email: string, password: string): Promise<{ found: boolean }> {
