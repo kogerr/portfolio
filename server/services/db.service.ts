@@ -8,6 +8,10 @@ import Slide from '../models/Slide';
 import { Document } from 'mongoose';
 import * as logger from './logger';
 
+interface IndexedDocument extends Document {
+    index: number;
+}
+
 /**
  * Deletes the _id from documents before letting them out.
  * @param {mongoose.Document} doc document read from database
@@ -35,7 +39,7 @@ function sortPostsByTime(posts: Array<PostDocument>): Array<PostDocument> {
     return sortedPosts;
 }
 
-function sortByIndex<T extends {index: number}>(docs: Array<T>): Array<T> {
+function sortByIndex<T extends IndexedDocument>(docs: Array<T>): Array<T> {
     let sortedDocs;
     try {
         sortedDocs = docs.sort((a, b) => a.index - b.index);
