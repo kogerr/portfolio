@@ -11,6 +11,7 @@ const indicesURL = 'api/posts/indices';
 const imagesURL = 'api/images/';
 const slidesURL = 'api/slides/';
 const aboutURL = 'api/about/';
+const contactURL = 'api/contact/';
 const loginURL = 'api/login/';
 const logURL = 'api/log/';
 
@@ -63,6 +64,10 @@ export class AdminDataService {
 
     updateAbout(aboutContent: About): Observable<SuccessFlag> {
         return this.http.post<SuccessFlag>(aboutURL, aboutContent);
+    }
+
+    updateContact(update: any): Observable<SuccessFlag> {
+        return this.http.post<SuccessFlag>(contactURL, update);
     }
 
     login(email: string, password: string): Observable<LoginResponse> {

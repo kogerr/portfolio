@@ -1,0 +1,45 @@
+.wrapper {
+    min-height: calc(100vh - 300px);
+    background-color: #F0F0F0;
+    overflow: hidden;
+    padding: calc((100vh - 800px) * 2 / 3) 2.083vw 0 2.083vw;
+    box-sizing: border-box;
+}
+
+legend {
+    font-size: 33px;
+    color: #232323;
+    font-weight: bold;
+    padding: 0 0 0.5em 0;
+}
+
+label {
+    display: block;
+    margin: 0.5em 0;
+}
+
+form {
+    color: #929292;
+    background-color: white;
+    margin: 0 auto;
+    box-sizing: border-box;
+    width: 480px;
+    max-width: 90vw;
+    padding: 2em;
+    line-height: 180%;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0.5em 0;
+    font: inherit;
+    padding: 0.5em;
+    color: #232323;
+    background-color: #F0F0F0;
+    border: none;
+}
+
+input:focus {
+    outline-color: #232323;
+}

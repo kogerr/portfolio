@@ -17,6 +17,7 @@ import { MenuComponent } from './menu/menu.component';
 import { PostlistComponent } from './postlist/postlist.component';
 import { AuthGuard } from './auth-guard.service';
 import { SlidelistComponent } from './slidelist/slidelist.component';
+import { ContactEditorComponent } from './contact-editor/contact-editor.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,7 @@ import { SlidelistComponent } from './slidelist/slidelist.component';
     HttpClientModule
   ],
   declarations: [EditorComponent, LoginComponent, LogComponent,
-    TitleValidatorDirective, MenuComponent, PostlistComponent, SlidelistComponent],
+    TitleValidatorDirective, MenuComponent, PostlistComponent, SlidelistComponent, ContactEditorComponent],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthenticationInterceptor,
