@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <form>
+  <form *ngIf="content">
     <label for="mail">Email</label>
     <input type="email" [value]="content.mail" name="mail" (input)="initChange($event.target.value, 'mail')">
     <label for="phone">Phone</label>

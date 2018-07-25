@@ -1,5 +1,5 @@
 <div class="fix-holder">
-    <div class="contact-header" [class.contact-header-hide]="!contactInfo">
+    <div *ngIf="content" class="contact-header" [class.contact-header-hide]="!contactInfo">
         <div id="content" class="contact-header-content">
             <span style="text-decoration: underline">For new work inquiries, please contact:</span>
             <span></span>
