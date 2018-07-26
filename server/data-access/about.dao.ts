@@ -1,6 +1,6 @@
 import AboutModel, { AboutDocument } from '../models/aboutModel';
 import { castMongoosePromise, deleteID, UpdateResponse } from './dao_utils';
-import { About, PossiblyClickable, TitledLines } from '../models/frontModels';
+import { PossiblyClickable, TitledLines } from '../models/frontModels';
 
 export function getAbout(): Promise<AboutDocument> {
     return new Promise((resolve, reject) => {

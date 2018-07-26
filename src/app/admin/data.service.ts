@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Post, ContentImage } from '../models/post';
 import { Slide } from '../models/slide';
-import { About, TitledLines, PossiblyClickable } from '../models/about.interface';
+import { TitledLines, PossiblyClickable } from '../models/about.interface';
 import { LoginResponse } from '../models/login-response';
 
 const postsURL = 'api/posts/';
@@ -62,8 +62,8 @@ export class AdminDataService {
         return this.http.patch<ContentImage>(imagesURL + filename, proportions);
     }
 
-    updateAbout(aboutContent: About): Observable<SuccessFlag> {
-        return this.http.post<SuccessFlag>(aboutURL, aboutContent);
+    updateAbout(update: any): Observable<SuccessFlag> {
+        return this.http.post<SuccessFlag>(aboutURL, update);
     }
 
     addAboutElement(element: {[type: string]: string | PossiblyClickable | TitledLines}): Observable<SuccessFlag> {

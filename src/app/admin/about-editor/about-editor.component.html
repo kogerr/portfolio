@@ -1,0 +1,8 @@
+<div *ngIf="content" class="wrapper">
+
+  <h2>Intro</h2>
+    <div class="intro-wrap">
+      <div contenteditable #intro class="intro" [innerHTML]="content.intro"></div>
+      <button (click)="saveIntro(intro.innerHTML)">Save</button>
+    </div>
+</div>

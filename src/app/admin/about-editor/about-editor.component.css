@@ -1,0 +1,70 @@
+.wrapper {
+    min-height: calc(100vh - 300px);
+    background-color: #F0F0F0;
+    color: #929292;
+    overflow: hidden;
+    padding: 2.083vw;
+    box-sizing: border-box;
+}
+
+
+h2 {
+    font-size: 33px;
+    color: #232323;
+    margin: 3px 0;
+}
+
+.element {
+    background-color: white;
+    padding: 1em;
+    /* width: min-content; */
+}
+
+.intro-wrap {
+    background-color: white;
+    padding: 2em 8.33vw 2em 6.25vw;
+}
+
+.intro {
+    font-size: 30px;
+    font-weight: bold;
+    color: #191919;
+    column-count: 2;
+    column-gap: 6.25vw;
+    line-height: 180%;
+}
+
+input, textarea {
+    width: 100%;
+    box-sizing: border-box;
+    font: inherit;
+    padding: 0.5em;
+    color: #232323;
+    background-color: #F0F0F0;
+    border: none;
+}
+
+input:focus {
+    outline-color: #232323;
+}
+
+textarea {
+    resize: none;
+    height: min-content;
+    width: 34em;
+}
+
+button {
+    background-color: #fff000;
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    border: none;
+    font: inherit;
+    color: #232323;
+}
+
+button:hover {
+    outline-style: auto;
+    outline-width: 5px;
+    outline-color:  #969696;
+}

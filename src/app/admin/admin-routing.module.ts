@@ -8,9 +8,11 @@ import { PostlistComponent } from './postlist/postlist.component';
 import { AuthGuard } from './auth-guard.service';
 import { SlidelistComponent } from './slidelist/slidelist.component';
 import { ContactEditorComponent } from './contact-editor/contact-editor.component';
+import { AboutEditorComponent } from './about-editor/about-editor.component';
 
 const routes: Routes = [
   { path: '', component: MenuComponent, canActivate: [AuthGuard] },
+  { path: 'about-editor', component: AboutEditorComponent, canActivate: [AuthGuard]},
   { path: 'contact-editor', component: ContactEditorComponent, canActivate: [AuthGuard]},
   { path: 'editor', component: EditorComponent, canActivate: [AuthGuard]},
   { path: 'editor/:titleURL', component: EditorComponent, canActivate: [AuthGuard] },
