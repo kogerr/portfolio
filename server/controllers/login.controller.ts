@@ -1,4 +1,4 @@
-import * as dbService from '../services/db.service';
+import * as userDao from '../data-access/user.dao';
 import * as tokenService from '../services/token.service';
 import hash from '../services/hasher.service';
 import { Request, Response } from 'express';
@@ -7,7 +7,7 @@ export function login(req: Request, res: Response): void {
     res.statusCode = 200;
     let hashedPassword = hash(req.body.password);
 
-    dbService.checkUser(req.body.email, hashedPassword).then((data) => {
+    userDao.checkUser(req.body.email, hashedPassword).then((data) => {
         if (data.found === true) {
             let token = tokenService.issueToken(req.body.email);
             res.send({ success: true, token });

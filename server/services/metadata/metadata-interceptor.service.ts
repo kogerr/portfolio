@@ -1,4 +1,4 @@
-import * as dbService from '../db.service';
+import * as postDao from '../../data-access/post.dao';
 import * as metaDataCacher from '../cache/metadata.cacher';
 import generateTemplate from './template-generator';
 import { Request, Response } from 'express';
@@ -7,7 +7,7 @@ const workRegex = /\/work\/(.*)/;
 
 function generateFromDb(titleURL: string): Promise<string> {
     return new Promise((resolve, reject) => {
-        dbService.getPostByTitleURL(titleURL).then((post) => {
+        postDao.getPostByTitleURL(titleURL).then((post) => {
             let response = generateTemplate(post);
             metaDataCacher.saveMetaData(post);
             resolve(response);

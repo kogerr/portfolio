@@ -1,5 +1,5 @@
 import * as contactCacher from '../services/cache/contact.cacher';
-import * as dbService from '../services/db.service';
+import * as contactDao from '../data-access/contact.dao';
 import { Request, Response } from 'express';
 import * as logger from '../services/logger';
 
@@ -9,7 +9,7 @@ export function getContact(req: Request, res: Response): void {
         res.statusCode = 200;
         res.send(cachedContact);
     } else {
-        dbService.getContact()
+        contactDao.getContact()
             .then((data) => {
                 res.statusCode = 200;
                 res.send(data);
@@ -22,7 +22,7 @@ export function getContact(req: Request, res: Response): void {
 }
 
 export function updateContact(req: Request, res: Response): void {
-    dbService.updateContact(req.body)
+    contactDao.updateContact(req.body)
         .then(data => {
             let success = data.ok === 1;
             res.statusCode = 200;

@@ -1,4 +1,4 @@
-import * as dbService from '../db.service';
+import * as aboutDao from '../../data-access/about.dao';
 import { About } from '../../models/frontModels';
 import * as logger from '../logger';
 
@@ -9,7 +9,7 @@ update();
  * Fills the About cache with About from database.
  */
 export function update(): void {
-    dbService.getAbout().then(data =>
+    aboutDao.getAbout().then(data =>
         aboutCache = data
     ).catch((err) => {
         logger.error(err);

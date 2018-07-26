@@ -7,4 +7,9 @@ let userSchema = new Schema({
     password: String,
 });
 
-export default mongoose.model('user', userSchema);
+export interface UserDocument extends mongoose.Document {
+    email: string;
+    password: string;
+}
+
+export default mongoose.model<UserDocument>('user', userSchema);

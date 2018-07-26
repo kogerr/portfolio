@@ -1,4 +1,4 @@
-import * as dbService from '../services/db.service';
+import * as slideDao from '../data-access/slide.dao';
 import * as logger from '../services/logger';
 import * as slideCacher from '../services/cache/slide.cacher';
 import { Request, Response } from 'express';
@@ -9,7 +9,7 @@ export function getSlides(req: Request, res: Response): void {
         res.statusCode = 200;
         res.send(cachedPosts);
     } else {
-        dbService.getSlides()
+        slideDao.getSlides()
             .then((data) => {
                 res.statusCode = 200;
                 res.send(data);
@@ -22,7 +22,7 @@ export function getSlides(req: Request, res: Response): void {
 }
 
 export function saveSlide(req: Request, res: Response): void {
-    dbService.saveSlide(req.body)
+    slideDao.saveSlide(req.body)
         .then(data => {
             res.statusCode = 200;
             res.send(data);
@@ -35,7 +35,7 @@ export function saveSlide(req: Request, res: Response): void {
 }
 
 export function updateSlide(req: Request, res: Response): void {
-    dbService.updateSlide(req.params.imageURL, req.body)
+    slideDao.updateSlide(req.params.imageURL, req.body)
         .then(data => {
             let success = data.ok === 1;
             res.statusCode = 200;
@@ -49,7 +49,7 @@ export function updateSlide(req: Request, res: Response): void {
 }
 
 export function deleteSlide(req: Request, res: Response): void {
-    dbService.deleteSlide(req.params.imageURL)
+    slideDao.deleteSlide(req.params.imageURL)
         .then(data => {
             let success = data.ok === 1;
             res.statusCode = 200;

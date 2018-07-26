@@ -1,11 +1,11 @@
-import * as dbService from '../services/db.service';
+import * as postDao from '../data-access/post.dao';
 import * as responseCacher from '../services/cache/metadata.cacher';
 import * as postCacher from '../services/cache/post.cacher';
 import * as logger from '../services/logger';
 import { Request, Response } from 'express';
 
 export function savePost(req: Request, res: Response): void {
-    dbService.savePost(req.body)
+    postDao.savePost(req.body)
         .then(() => {
             res.statusCode = 201;
             res.send({ success: true });
@@ -18,7 +18,7 @@ export function savePost(req: Request, res: Response): void {
 }
 
 export function updatePost(req: Request, res: Response): void {
-    dbService.updatePost(req.body)
+    postDao.updatePost(req.body)
         .then(() => {
             res.statusCode = 200;
             res.send({ success: true });
@@ -31,7 +31,7 @@ export function updatePost(req: Request, res: Response): void {
 }
 
 export function updateIndices(req: Request, res: Response): void {
-    dbService.updateIndices(req.body)
+    postDao.updateIndices(req.body)
         .then(data => {
             let success = data.every(e => e.ok === 1);
             res.statusCode = 200;
@@ -50,7 +50,7 @@ export function getPosts(req: Request, res: Response): void {
         res.statusCode = 200;
         res.send(cachedPosts);
     } else {
-        dbService.getPosts()
+        postDao.getPosts()
             .then((data) => {
                 res.statusCode = 200;
                 res.send(data);
@@ -68,7 +68,7 @@ export function getPostByTitleURL(req: Request, res: Response): void {
         res.statusCode = 200;
         res.send(cachedPost);
     } else {
-        dbService.getPostByTitleURL(req.params.titleURL)
+        postDao.getPostByTitleURL(req.params.titleURL)
             .then((data) => {
                 res.statusCode = 200;
                 res.send(data);
@@ -81,7 +81,7 @@ export function getPostByTitleURL(req: Request, res: Response): void {
 }
 
 export function deletePostByTitleURL(req: Request, res: Response): void {
-    dbService.deletePostByTitleURL(req.params.titleURL)
+    postDao.deletePostByTitleURL(req.params.titleURL)
         .then((data) => {
             res.statusCode = 200;
             res.send(data);
@@ -95,12 +95,12 @@ export function deletePostByTitleURL(req: Request, res: Response): void {
 
 export function checkPost(req: Request, res: Response): void {
     res.statusCode = 200;
-    dbService.checkPostByTitleURL(req.params.titleURL)
+    postDao.checkPostByTitleURL(req.params.titleURL)
         .then((data) => res.send(data));
 }
 
 export function getPreviousPostTitleUrl(req: Request, res: Response): void {
-    dbService.getPreviousPostTitleUrl(req.params.titleURL)
+    postDao.getPreviousPostTitleUrl(req.params.titleURL)
         .then((data) => {
             res.statusCode = 200;
             res.send(data);
@@ -112,7 +112,7 @@ export function getPreviousPostTitleUrl(req: Request, res: Response): void {
 }
 
 export function getNextPostTitleUrl(req: Request, res: Response): void {
-    dbService.getNextPostTitleUrl(req.params.titleURL)
+    postDao.getNextPostTitleUrl(req.params.titleURL)
         .then((data) => {
             res.statusCode = 200;
             res.send(data);
@@ -135,7 +135,7 @@ export function cacherTest(req: Request, res: Response): void {
     let cacheTime = process.hrtime(cacheStart)[1];
 
     let dbStart = process.hrtime();
-    dbService.getPosts()
+    postDao.getPosts()
         .then(() => {
             let dbTime = process.hrtime(dbStart)[1];
             let difference = dbTime - cacheTime;

@@ -1,4 +1,4 @@
-import * as dbService from '../db.service';
+import * as contactDao from '../../data-access/contact.dao';
 import { Contact } from '../../models/frontModels';
 import * as logger from '../logger';
 
@@ -9,7 +9,7 @@ update();
  * Fills the Contact cache with Contact from database.
  */
 export function update(): void {
-    dbService.getContact().then(data =>
+    contactDao.getContact().then(data =>
         contactCache = data
     ).catch((err) => {
         logger.error(err);

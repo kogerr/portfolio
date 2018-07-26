@@ -1,4 +1,4 @@
-import * as dbService from '../db.service';
+import * as postDao from '../../data-access/post.dao';
 import generateTemplate from '../metadata/template-generator';
 import { Post } from '../../models/frontModels';
 import * as logger from '../logger';
@@ -11,7 +11,7 @@ fillMetaDataTemplateCache();
  */
 function fillMetaDataTemplateCache(): void {
     metaDataTemplateCache = new Map<string, string>();
-    dbService.getPosts().then((data) => {
+    postDao.getPosts().then((data) => {
         data.forEach((post) => saveMetaData(post));
     }).catch((err) => {
         logger.error(err);

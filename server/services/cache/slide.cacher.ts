@@ -1,4 +1,4 @@
-import * as dbService from '../db.service';
+import * as slideDao from '../../data-access/slide.dao';
 import { Slide } from '../../models/frontModels';
 import * as logger from '../logger';
 
@@ -10,7 +10,7 @@ update();
  */
 export function update(): void {
     slideCache = new Array<Slide>();
-    dbService.getSlides().then((data) => {
+    slideDao.getSlides().then((data) => {
         data.forEach(slide => slideCache.push(slide));
     }).catch((err) => {
         logger.error(err);

@@ -1,4 +1,4 @@
-import * as dbService from '../db.service';
+import * as postDao from '../../data-access/post.dao';
 import { Post } from '../../models/frontModels';
 import * as logger from '../logger';
 
@@ -10,7 +10,7 @@ fillPostCache();
  */
 function fillPostCache(): void {
     postCache = new Array<Post>();
-    dbService.getPosts().then((data) => {
+    postDao.getPosts().then((data) => {
         data.forEach((post) => savePost(post));
     }).catch((err) => {
         logger.error(err);

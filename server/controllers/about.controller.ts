@@ -1,5 +1,5 @@
 import * as aboutCacher from '../services/cache/about.cacher';
-import * as dbService from '../services/db.service';
+import * as aboutDao from '../data-access/about.dao';
 import { Request, Response } from 'express';
 import * as logger from '../services/logger';
 
@@ -9,7 +9,7 @@ export function getAbout(req: Request, res: Response): void {
         res.statusCode = 200;
         res.send(cachedAbout);
     } else {
-        dbService.getAbout()
+        aboutDao.getAbout()
             .then((data) => {
                 res.statusCode = 200;
                 res.send(data);
@@ -22,7 +22,7 @@ export function getAbout(req: Request, res: Response): void {
 }
 
 export function updateAbout(req: Request, res: Response): void {
-    dbService.updateAbout(req.body)
+    aboutDao.updateAbout(req.body)
         .then(data => {
             let success = data.ok === 1;
             res.statusCode = 200;
