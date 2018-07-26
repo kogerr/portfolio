@@ -17,14 +17,10 @@ export function updateAbout(update: any): Promise<UpdateResponse> {
     return castMongoosePromise(AboutModel.updateOne({}, update).exec());
 }
 
-export function addElement(type: string, element: string | PossiblyClickable | TitledLines): Promise<UpdateResponse> {
-    let update = {};
-    update[type] = element;
+export function addElement(update: {[type: string]: string | PossiblyClickable | TitledLines}): Promise<UpdateResponse> {
     return castMongoosePromise(AboutModel.updateOne({}, { $push: update }).exec());
 }
 
-export function removeElement(type: string, element: string | PossiblyClickable | TitledLines): Promise<UpdateResponse> {
-    let update = {};
-    update[type] = element;
+export function removeElement(update: {[type: string]: string | PossiblyClickable | TitledLines}): Promise<UpdateResponse> {
     return castMongoosePromise(AboutModel.updateOne({}, { $pull: update }).exec());
 }

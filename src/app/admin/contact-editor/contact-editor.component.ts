@@ -53,7 +53,7 @@ export class ContactEditorComponent implements OnInit {
     let coordinates = 'x: ' + event.x + ' y: ' + event.y;
     this.displaySuccess('coordinates', coordinates);
     // TODO: delete
-    this.dataService.addAboutElement('client', coordinates).subscribe(() => {});
+    this.dataService.addAboutElement({clients: coordinates}).subscribe(() => {});
     event.preventDefault();
   }
 }

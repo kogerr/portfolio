@@ -66,14 +66,8 @@ export class AdminDataService {
         return this.http.post<SuccessFlag>(aboutURL, aboutContent);
     }
 
-    addAboutElement(type: string, element: string | TitledLines | PossiblyClickable): Observable<SuccessFlag> {
-        let update: any;
-        if (typeof element === 'string') {
-            update = { plaintext: element };
-        } else {
-            update = element;
-        }
-        return this.http.put<SuccessFlag>(aboutURL + type, update);
+    addAboutElement(element: {[type: string]: string | PossiblyClickable | TitledLines}): Observable<SuccessFlag> {
+        return this.http.put<SuccessFlag>(aboutURL, element);
     }
 
     updateContact(update: any): Observable<SuccessFlag> {

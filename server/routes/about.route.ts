@@ -5,8 +5,7 @@ import * as tokenService from '../services/token.service';
 let router: express.Router = express.Router();
 router.route('/')
     .get(aboutCtrl.getAbout)
-    .post(tokenService.checkToken, aboutCtrl.updateAbout);
-router.route('/:type')
+    .post(tokenService.checkToken, aboutCtrl.updateAbout)
     .put(tokenService.checkToken, aboutCtrl.addElement)
     .delete(tokenService.checkToken, aboutCtrl.removeElement);
 
