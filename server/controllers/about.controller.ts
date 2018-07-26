@@ -34,3 +34,37 @@ export function updateAbout(req: Request, res: Response): void {
             res.send(err);
         });
 }
+
+export function addElement(req: Request, res: Response): void {
+    let update;
+    if (req.body.plaintext) {
+        update = req.body.plaintext;
+    } else {
+        update = req.body;
+    }
+    aboutDao.addElement(req.params.type, update)
+        .then(data => {
+            let success = data.ok === 1;
+            res.statusCode = 200;
+            res.send({ success });
+            aboutCacher.update();
+        }).catch((err) => {
+            logger.error(err);
+            res.statusCode = 500;
+            res.send(err);
+        });
+}
+
+export function removeElement(req: Request, res: Response): void {
+    aboutDao.removeElement(req.params.type, req.body)
+        .then(data => {
+            let success = data.ok === 1;
+            res.statusCode = 200;
+            res.send({ success });
+            aboutCacher.update();
+        }).catch((err) => {
+            logger.error(err);
+            res.statusCode = 500;
+            res.send(err);
+        });
+}

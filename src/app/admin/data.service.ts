@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Post, ContentImage } from '../models/post';
 import { Slide } from '../models/slide';
-import { About } from '../models/about.interface';
+import { About, TitledLines, PossiblyClickable } from '../models/about.interface';
 import { LoginResponse } from '../models/login-response';
 
 const postsURL = 'api/posts/';
@@ -64,6 +64,16 @@ export class AdminDataService {
 
     updateAbout(aboutContent: About): Observable<SuccessFlag> {
         return this.http.post<SuccessFlag>(aboutURL, aboutContent);
+    }
+
+    addAboutElement(type: string, element: string | TitledLines | PossiblyClickable): Observable<SuccessFlag> {
+        let update: any;
+        if (typeof element === 'string') {
+            update = { plaintext: element };
+        } else {
+            update = element;
+        }
+        return this.http.put<SuccessFlag>(aboutURL + type, update);
     }
 
     updateContact(update: any): Observable<SuccessFlag> {
