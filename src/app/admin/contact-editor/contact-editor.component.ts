@@ -1,11 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { AdminDataService } from '../data.service';
 import { DataService as CommonDataService } from '../../data.service';
 import { Contact } from '../../models/contact';
-
-interface HTMLInputEvent extends Event {
-  target: HTMLInputElement & EventTarget;
-}
 
 @Component({
   templateUrl: './contact-editor.component.html',
@@ -13,7 +9,7 @@ interface HTMLInputEvent extends Event {
 })
 export class ContactEditorComponent implements OnInit {
   content: Contact;
-  update: { value: string, field: string };
+  update: { field: string, value: string };
   timer: NodeJS.Timer;
   opacity = 1;
 
@@ -23,25 +19,39 @@ export class ContactEditorComponent implements OnInit {
     this.commonDataService.getContact().subscribe(data => this.content = data);
   }
 
-  initChange(value: string, field: string): void {
+  initChange(field: string, value: string): void {
     clearInterval(this.timer);
-    this.timer = setTimeout(() => this.sendChange(value, field), 1000);
+    this.timer = setTimeout(() => this.sendChange(field, value), 1000);
   }
 
-  sendChange(value: string, field: string): void {
+  sendChange(field: string, value: string): void {
     let update = {};
     update[field] = value;
     this.dataService.updateContact(update).subscribe(data => {
       if (data.success) {
-        this.displaySuccess(value, field);
+        this.displaySuccess(field, value);
       }
     });
   }
 
-  displaySuccess(value: string, field: string): void {
-    this.update = { value, field };
+  displaySuccess(field: string, value: string): void {
+    this.update = { field, value };
     this.opacity = 1;
     setTimeout(() => this.opacity = 0, 1000);
     setTimeout(() => delete this.update, 2000);
+  }
+
+  @HostListener('window:copy', ['$event'])
+  preventCopy(event: ClipboardEvent): void {
+    event.clipboardData.setData('text/plain', 'botondvoros.hu');
+    event.clipboardData.setData('text/html', '<b>botondvoros.hu</b>');
+    event.preventDefault();
+  }
+
+  @HostListener('window:contextmenu', ['$event'])
+  preventRightClick(event: MouseEvent): void {
+    let coordinates = 'x: ' + event.x + ' y: ' + event.y;
+    this.displaySuccess('coordinates', coordinates);
+    event.preventDefault();
   }
 }

@@ -1,13 +1,13 @@
 <div class="wrapper">
   <form *ngIf="content">
     <label for="mail">Email</label>
-    <input type="email" [value]="content.mail" name="mail" (input)="initChange($event.target.value, 'mail')">
+    <input type="email" [value]="content.mail" name="mail" (input)="initChange('mail', $event.target.value)">
     <label for="phone">Phone</label>
-    <input type="tel" [value]="content.phone" name="phone" (input)="initChange($event.target.value, 'phone')">
+    <input type="tel" [value]="content.phone" name="phone" (input)="initChange('phone', $event.target.value)">
     <label for="behance">Behance</label>
-    <input type="url" [value]="content.behance" name="behance" (input)="initChange($event.target.value, 'behance')">
+    <input type="url" [value]="content.behance" name="behance" (input)="initChange('behance', $event.target.value)">
     <label for="linkedIn">LinkedIn</label>
-    <input type="url" [value]="content.linkedIn" name="linkedIn" (input)="initChange($event.target.value, 'linkedIn')">
+    <input type="url" [value]="content.linkedIn" name="linkedIn" (input)="initChange('linkedIn', $event.target.value)">
 
   </form>
   <div *ngIf="update" class="error" [style.opacity]="opacity">{{update.field}} updated: {{update.value}}</div>
