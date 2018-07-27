@@ -95,5 +95,14 @@ button:hover {
 
 .icon {
     padding: 0.5em 1em;
-    height: 1em;
+    height: 1em;    
+}
+
+
+.addButton {
+    display: grid;
+    place-items: center;
+    outline-style: dashed;
+    outline-width: 1px;
+    outline-color:  #969696;
 }

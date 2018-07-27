@@ -50,8 +50,6 @@ export class ContactEditorComponent implements OnInit {
   preventRightClick(event: MouseEvent): void {
     let coordinates = 'x: ' + event.x + ' y: ' + event.y;
     this.displaySuccess('coordinates', coordinates);
-    // TODO: delete
-    this.dataService.addAboutElement({clients: coordinates}).subscribe(() => {});
     event.preventDefault();
   }
 }

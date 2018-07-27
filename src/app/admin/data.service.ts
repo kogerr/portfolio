@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Post, ContentImage } from '../models/post';
 import { Slide } from '../models/slide';
-import { TitledLines, PossiblyClickable } from '../models/about.interface';
+import { TitledLines, PossiblyClickable, IndexedText } from '../models/about.interface';
 import { LoginResponse } from '../models/login-response';
 
 const postsURL = 'api/posts/';
@@ -66,11 +66,11 @@ export class AdminDataService {
         return this.http.post<SuccessFlag>(aboutURL, update);
     }
 
-    addAboutElement(element: { [type: string]: string | PossiblyClickable | TitledLines }): Observable<SuccessFlag> {
+    addAboutElement(element: { [type: string]: IndexedText | PossiblyClickable | TitledLines }): Observable<SuccessFlag> {
         return this.http.put<SuccessFlag>(aboutURL, element);
     }
 
-    removeAboutElement(element: { [type: string]: string | PossiblyClickable | TitledLines }): Observable<SuccessFlag> {
+    removeAboutElement(element: { [type: string]: IndexedText | PossiblyClickable | TitledLines }): Observable<SuccessFlag> {
         let httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' }), body: element
         };

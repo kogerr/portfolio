@@ -2,29 +2,39 @@
 
   <h3>Intro</h3>
   <div class="intro-wrap">
-    <!-- <h2>Intro</h2> -->
     <div contenteditable #intro class="intro" [innerHTML]="content.intro"></div>
-    <button><div class="icon" (click)="saveIntro(intro.innerHTML)">Save</div></button>
+    <button>
+      <div class="icon" (click)="saveIntro(intro.innerHTML)">Save</div>
+    </button>
   </div>
   <h3>Clients</h3>
   <div class="editor-section">
     <div *ngFor="let element of content.clients; index as i" class="element">
-      <div>{{element.text}}</div>
+      <div *ngIf="!element.edit" (click)="element.edit = true" style="padding: 0.5em;color: #232323">{{element.text}}</div>
+      <input *ngIf="element.edit" type="text" [(ngModel)]="element.text">
       <div class="controls">
-          <span>{{i | number:'2.0-0'}}</span>
-          <button>
-            <img src="assets/x.svg" class="icon" alt="delete" (click)="removeElement('clients', element)">
-          </button>
-          <button>
-            <img src="assets/arrow_up.svg" class="icon" alt="up" (click)="swapElements('clients', i - 1, i)">
-          </button>
-          <button>
-            <img src="assets/arrow_down.svg" class="icon" alt="down" (click)="swapElements('clients', i, i + 1)">
-          </button>
-          <button>
-            <div class="icon" alt="edit" (click)="openInNewTab('images/' + slide.imageURL)" style="height: auto">Edit</div>
-          </button>
-        </div>
+        <span>{{i | number:'2.0-0'}}</span>
+        <button>
+          <img src="assets/x.svg" class="icon" alt="delete" (click)="removeElement('clients', element)">
+        </button>
+        <button>
+          <img src="assets/arrow_up.svg" class="icon" alt="up" (click)="swapElements('clients', i - 1, i)">
+        </button>
+        <button>
+          <img src="assets/arrow_down.svg" class="icon" alt="down" (click)="swapElements('clients', i, i + 1)">
+        </button>
+        <button *ngIf="!element.edit">
+          <div class="icon" alt="edit" (click)="element.edit = true" style="height: auto">Edit</div>
+        </button>
+        <button *ngIf="element.edit">
+          <div class="icon" alt="edit" (click)="removeEdit(element);updateElement('clients', element)" style="height: auto">Save</div>
+        </button>
+      </div>
+    </div>
+    <div *ngIf="!newClient" class="addButton" style="height: 95px;" (click)="content.clients.push({index: content.clients.length, edit: true})">
+      <button>
+        <div class="icon">Add new</div>
+      </button>
     </div>
   </div>
 </div>

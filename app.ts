@@ -23,7 +23,7 @@ let httpServer: http.Server = http.createServer(app).listen(80, () => {
 });
 
 (<any>mongoose).Promise = global.Promise;
-mongoose.connect('mongodb://localhost/portfolio').then(
+mongoose.connect('mongodb://localhost:27017/portfolio', { useNewUrlParser: true }).then(
     () => { console.log('Connected to mongodb'); },
     err => { logger.error(err.message); }
 );
