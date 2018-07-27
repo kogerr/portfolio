@@ -25,9 +25,7 @@ export class ContactEditorComponent implements OnInit {
   }
 
   sendChange(field: string, value: string): void {
-    let update = {};
-    update[field] = value;
-    this.dataService.updateContact(update).subscribe(data => {
+    this.dataService.updateContact({[field]: value}).subscribe(data => {
       if (data.success) {
         this.displaySuccess(field, value);
       }

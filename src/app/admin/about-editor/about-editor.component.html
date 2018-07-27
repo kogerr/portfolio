@@ -1,8 +1,30 @@
 <div *ngIf="content" class="wrapper">
 
-  <h2>Intro</h2>
-    <div class="intro-wrap">
-      <div contenteditable #intro class="intro" [innerHTML]="content.intro"></div>
-      <button (click)="saveIntro(intro.innerHTML)">Save</button>
+  <h3>Intro</h3>
+  <div class="intro-wrap">
+    <!-- <h2>Intro</h2> -->
+    <div contenteditable #intro class="intro" [innerHTML]="content.intro"></div>
+    <button><div class="icon" (click)="saveIntro(intro.innerHTML)">Save</div></button>
+  </div>
+  <h3>Clients</h3>
+  <div class="editor-section">
+    <div *ngFor="let element of content.clients; index as i" class="element">
+      <div>{{element.text}}</div>
+      <div class="controls">
+          <span>{{i | number:'2.0-0'}}</span>
+          <button>
+            <img src="assets/x.svg" class="icon" alt="delete" (click)="removeElement('clients', element)">
+          </button>
+          <button>
+            <img src="assets/arrow_up.svg" class="icon" alt="up" (click)="swapElements('clients', i - 1, i)">
+          </button>
+          <button>
+            <img src="assets/arrow_down.svg" class="icon" alt="down" (click)="swapElements('clients', i, i + 1)">
+          </button>
+          <button>
+            <div class="icon" alt="edit" (click)="openInNewTab('images/' + slide.imageURL)" style="height: auto">Edit</div>
+          </button>
+        </div>
     </div>
+  </div>
 </div>

@@ -14,10 +14,18 @@ h2 {
     margin: 3px 0;
 }
 
+h3 {
+    color: #969696;
+    font-size: 24px;
+    font-weight: normal;
+}
+
 .element {
     background-color: white;
-    padding: 1em;
-    /* width: min-content; */
+    padding: 0.5em 1em;
+    height: min-content;
+    display: grid;
+    grid-row-gap: 0.5em;
 }
 
 .intro-wrap {
@@ -56,8 +64,7 @@ textarea {
 
 button {
     background-color: #fff000;
-    margin: 1em 0;
-    padding: 0.5em 1em;
+    padding: 0;
     border: none;
     font: inherit;
     color: #232323;
@@ -67,4 +74,26 @@ button:hover {
     outline-style: auto;
     outline-width: 5px;
     outline-color:  #969696;
+}
+
+.editor-section {
+    display: grid;
+    /* -ms-grid-columns: (320px)[auto-fill]; */
+    grid-template-columns: repeat(auto-fill, 274px);
+    grid-gap: 1em;
+    justify-content: space-between;
+}
+
+.controls {
+    width: 100%;
+    display: grid;
+    grid-template-columns: min-content min-content min-content min-content min-content;
+    grid-column-gap: 0.5em;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.icon {
+    padding: 0.5em 1em;
+    height: 1em;
 }

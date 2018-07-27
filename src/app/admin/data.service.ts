@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Post, ContentImage } from '../models/post';
@@ -66,8 +66,15 @@ export class AdminDataService {
         return this.http.post<SuccessFlag>(aboutURL, update);
     }
 
-    addAboutElement(element: {[type: string]: string | PossiblyClickable | TitledLines}): Observable<SuccessFlag> {
+    addAboutElement(element: { [type: string]: string | PossiblyClickable | TitledLines }): Observable<SuccessFlag> {
         return this.http.put<SuccessFlag>(aboutURL, element);
+    }
+
+    removeAboutElement(element: { [type: string]: string | PossiblyClickable | TitledLines }): Observable<SuccessFlag> {
+        let httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' }), body: element
+        };
+        return this.http.delete<SuccessFlag>(aboutURL, httpOptions);
     }
 
     updateContact(update: any): Observable<SuccessFlag> {

@@ -15,9 +15,15 @@ let titledLines = new Schema({
 }, { _id: false }
 );
 
+let indexedText = new Schema({
+    index: Number,
+    text: String
+}, { _id: false }
+);
+
 let aboutSchema = new Schema({
     intro: String,
-    clients: [String],
+    clients: [indexedText],
     exhibitions: [String],
     printPublications: [possiblyClickable],
     onlinePublications: [possiblyClickable],

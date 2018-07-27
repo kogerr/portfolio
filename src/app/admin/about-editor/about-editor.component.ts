@@ -14,6 +14,10 @@ export class AboutEditorComponent implements OnInit {
   constructor(private dataService: AdminDataService, private commonDataService: CommonDataService) { }
 
   ngOnInit(): void {
+    this.update();
+  }
+
+  update(): void {
     this.commonDataService.getAbout().subscribe(data => this.content = data);
   }
 
@@ -25,8 +29,29 @@ export class AboutEditorComponent implements OnInit {
     let cleanedText = text.replace(/<div><br><\/div>/g, '<br>').replace(/<div>/g, '<br>').replace(/<\/div>/g, '');
     this.dataService.updateAbout({ intro: cleanedText }).subscribe(data => {
       if (data.success) {
-        this.content.intro = cleanedText;
+        this.update();
       }
     });
+  }
+
+  removeElement(field: string, value: string): void {
+    this.dataService.removeAboutElement({ [field]: value }).subscribe(data => {
+      if (data.success) {
+        this.update();
+      }
+    });
+  }
+
+  swapElements(field: string, first: number, second: number): void {
+    if (this.content[field][first] && this.content[field][second]) {
+      let previousIndex = this.content[field][first].index;
+      this.content[field][first].index = this.content[field][second].index;
+      this.content[field][second].index = previousIndex;
+      this.dataService.updateAbout({ [field]: this.content[field] }).subscribe(data => {
+        if (data.success) {
+          this.update();
+        }
+      });
+    }
   }
 }
