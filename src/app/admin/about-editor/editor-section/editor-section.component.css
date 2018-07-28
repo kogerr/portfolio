@@ -1,0 +1,57 @@
+:host {
+    display: grid;
+    /* -ms-grid-columns: (320px)[auto-fill]; */
+    grid-template-columns: repeat(auto-fill, 290px);
+    grid-gap: 1em;
+    justify-content: space-between;
+}
+
+.element {
+    background-color: white;
+    padding: 0.5em 1em;
+    height: min-content;
+    display: grid;
+    grid-row-gap: 0.5em;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box;
+    font: inherit;
+    padding: 0.5em;
+    color: #232323;
+    background-color: #F0F0F0;
+    border: none;
+}
+
+input:focus {
+    outline-color: #232323;
+}
+
+button {
+    background-color: #fff000;
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: #232323;
+}
+
+button:hover {
+    outline-style: auto;
+    outline-width: 5px;
+    outline-color:  #969696;
+}
+
+.controls {
+    width: 100%;
+    display: grid;
+    grid-template-columns: min-content min-content min-content min-content min-content;
+    grid-column-gap: 0.5em;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.icon {
+    padding: 0.5em 1em;
+    height: 1em;    
+}

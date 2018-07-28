@@ -1,23 +1,23 @@
 export interface About {
     intro: string;
-    exhibitions: string[];
+    exhibitions: IndexedText[];
     clients: IndexedText[];
     printPublications: PossiblyClickable[];
     onlinePublications: PossiblyClickable[];
     awards: TitledLines[];
 }
 
+export interface IndexedText {
+    index: number;
+    text: string;
+}
+
 export interface PossiblyClickable extends IndexedText {
-    url?: string;
+    url: string;
 }
 
 export interface TitledLines {
     index: number;
     title: string;
     lines: string[];
-}
-
-export interface IndexedText {
-    index: number;
-    text: string;
 }

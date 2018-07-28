@@ -8,7 +8,7 @@
   <div class="text-area">
     <h2>Clients</h2>
     <div class="clients spaceylines">
-      <div *ngFor="let client of content.clients">{{client}}</div>
+      <div *ngFor="let client of content.clients">{{client.text}}</div>
     </div>
   </div>
   <div class="full-box"></div>
@@ -53,7 +53,7 @@
     <h2>Exhibitions</h2>
     <div class="column2-grid spaceylines">
       <div *ngFor="let exhibition of content.exhibitions" [class.clickable]="exhibition.link">
-        {{exhibition}}
+        {{exhibition.text}}
       </div>
     </div>
   </div>

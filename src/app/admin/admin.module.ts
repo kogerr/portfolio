@@ -20,6 +20,7 @@ import { SlidelistComponent } from './slidelist/slidelist.component';
 import { ContactEditorComponent } from './contact-editor/contact-editor.component';
 import { AboutEditorComponent } from './about-editor/about-editor.component';
 import { AddElementComponent } from './add-element/add-element.component';
+import { EditorSectionComponent } from './about-editor/editor-section/editor-section.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,7 @@ import { AddElementComponent } from './add-element/add-element.component';
   ],
   declarations: [EditorComponent, LoginComponent, LogComponent,
     TitleValidatorDirective, MenuComponent, PostlistComponent, SlidelistComponent,
-    ContactEditorComponent, AboutEditorComponent, AddElementComponent],
+    ContactEditorComponent, AboutEditorComponent, AddElementComponent, EditorSectionComponent],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthenticationInterceptor,

@@ -24,7 +24,7 @@ let indexedText = new Schema({
 let aboutSchema = new Schema({
     intro: String,
     clients: [indexedText],
-    exhibitions: [String],
+    exhibitions: [indexedText],
     printPublications: [possiblyClickable],
     onlinePublications: [possiblyClickable],
     awards: [titledLines]

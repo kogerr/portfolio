@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ViewEncapsulation } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'add-element',

@@ -1,0 +1,25 @@
+<div *ngFor="let element of content; index as i" class="element">
+  <div *ngFor="let property of properties(element)">
+    <div *ngIf="!element.edit" (click)="element.edit = true" style="padding: 0.5em;color: #232323">{{element[property]}}</div>
+    <input *ngIf="element.edit" type="text" [(ngModel)]="element[property]">
+  </div>
+  <div class="controls">
+    <span>{{i | number:'2.0-0'}}</span>
+    <button>
+      <img src="assets/x.svg" class="icon" alt="delete" (click)="removeElement(element)">
+    </button>
+    <button>
+      <img src="assets/arrow_up.svg" class="icon" alt="up" (click)="swapElements(i - 1, i)">
+    </button>
+    <button>
+      <img src="assets/arrow_down.svg" class="icon" alt="down" (click)="swapElements(i, i + 1)">
+    </button>
+    <button *ngIf="!element.edit">
+      <div class="icon" alt="edit" (click)="element.edit = true" style="height: auto">Edit</div>
+    </button>
+    <button *ngIf="element.edit">
+      <div class="icon" alt="edit" (click)="removeEdit(element);updateElements()" style="height: auto">Save</div>
+    </button>
+  </div>
+</div>
+<add-element style="height: 95px;" (click)="content.push(newElement())"></add-element>
