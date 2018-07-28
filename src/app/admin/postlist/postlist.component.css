@@ -64,12 +64,3 @@ button:disabled, button[disabled] {
 .clickable {
     cursor: pointer;
 }
-
-.addButton {
-    height: 287px;
-    display: grid;
-    place-items: center;
-    outline-style: dashed;
-    outline-width: 1px;
-    outline-color:  #969696;
-}

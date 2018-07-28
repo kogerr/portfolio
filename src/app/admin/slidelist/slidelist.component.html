@@ -26,11 +26,7 @@
     </div>
   </div>
 
-  <div class="addButton">
-    <button>
-      <div class="icon" alt="add slide" class="icon" (click)="imageInput.click()">Add new slide</div>
-    </button>
-  </div>
+  <add-element elementType="slide" style="height:240px;" (click)="imageInput.click()"></add-element>
 
   <div style="display: none">
     <input #imageInput name="image-input" type="file" accept=".png, .jpg, .jpeg" (change)="newSlide($event)">

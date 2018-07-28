@@ -1,0 +1,31 @@
+:host {
+    display: grid;
+    place-items: center;
+    outline-style: dashed;
+    outline-width: 1px;
+    outline-color:  #969696;
+    transition: background-color 1s;
+}
+
+:host:hover {
+    background-color:white;
+}
+
+button {
+    background-color: #fff000;
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: #232323;
+}
+
+button:hover {
+    outline-style: auto;
+    outline-width: 5px;
+    outline-color:  #969696;
+}
+
+.icon {
+    padding: 0.5em 1em;
+    height: 1em;
+}

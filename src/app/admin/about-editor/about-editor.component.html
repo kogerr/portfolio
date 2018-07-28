@@ -31,10 +31,6 @@
         </button>
       </div>
     </div>
-    <div *ngIf="!newClient" class="addButton" style="height: 95px;" (click)="content.clients.push({index: content.clients.length, edit: true})">
-      <button>
-        <div class="icon">Add new</div>
-      </button>
-    </div>
+    <add-element style="height: 95px;" (click)="content.clients.push({index: content.clients.length, edit: true})"></add-element>
   </div>
 </div>
