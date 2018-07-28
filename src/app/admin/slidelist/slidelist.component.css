@@ -19,6 +19,12 @@ button {
     color: #232323;
 }
 
+button:hover {	
+    outline-style: auto;	
+    outline-width: 5px;	
+    outline-color:  #969696;	
+}	
+
 button:disabled, button[disabled] {
     background-color: #F0F0F0;
     color: #969696;

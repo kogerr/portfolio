@@ -41,21 +41,19 @@ export class AboutEditorComponent implements OnInit {
       let previousIndex = this.content[field][first].index;
       this.content[field][first].index = this.content[field][second].index;
       this.content[field][second].index = previousIndex;
-      this.dataService.updateAbout({ [field]: this.content[field] }).subscribe(this.updateIfSuccess);
+      this.updateElement(field);
     }
   }
 
   updateElement(field: string): void {
+    this.content[field].forEach(e => delete e.edit);
     this.dataService.updateAbout({ [field]: this.content[field] }).subscribe(this.updateIfSuccess);
   }
 
-  addElement(field: string, value: {text: string}): void {
+  addElement(field: string, value: { text: string }): void {
     let index: number = this.content[field].length;
-    let update = Object.assign({index}, value);
-    this.dataService.addAboutElement({[field]: update}).subscribe(this.updateIfSuccess);
+    let update = Object.assign({ index }, value);
+    this.dataService.addAboutElement({ [field]: update }).subscribe(this.updateIfSuccess);
   }
 
-  removeEdit(element: {edit: boolean}): void {
-    delete element.edit;
-  }
 }

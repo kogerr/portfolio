@@ -42,7 +42,7 @@ h3 {
     line-height: 180%;
 }
 
-input, textarea {
+input {
     width: 100%;
     box-sizing: border-box;
     font: inherit;
@@ -54,12 +54,6 @@ input, textarea {
 
 input:focus {
     outline-color: #232323;
-}
-
-textarea {
-    resize: none;
-    height: min-content;
-    width: 34em;
 }
 
 button {
