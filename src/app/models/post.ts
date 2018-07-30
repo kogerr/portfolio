@@ -9,6 +9,7 @@ export class Post {
     intro: string;
     cover: string;
     contents: Array<ContentElement>;
+    previewImage: string;
     facebookDescription: string;
     facebookImage: string;
     timestamp: Date;

@@ -14,6 +14,7 @@ let postSchema = new Schema({
     intro: String,
     cover: String,
     contents: [],
+    previewImage: String,
     facebookDescription: String,
     facebookImage: String,
     timestamp: Date,

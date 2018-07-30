@@ -15,7 +15,7 @@
                 <span class="highlighted-info">{{post.year}}</span>
                 <br>
                 <br>
-                <a [href]="post.link" target="_blank" class="highlighted-info" style="text-decoration: underline">visit link</a>
+                <a *ngIf="post.link" [href]="post.link" target="_blank" class="highlighted-info" style="text-decoration: underline">visit link</a>
             </div>
         </div>
 
