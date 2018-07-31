@@ -1,7 +1,13 @@
 <div *ngFor="let element of content; index as i" class="element">
   <div *ngFor="let property of properties(element)">
-    <div *ngIf="!element.edit" (click)="element.edit = true" style="padding: 0.5em;color: #232323">{{element[property]}}</div>
-    <input *ngIf="element.edit" type="text" [(ngModel)]="element[property]">
+    <div *ngIf="!element.edit && !isArray(element[property])" (click)="element.edit = true" class="field">{{element[property]}}</div>
+    <input *ngIf="element.edit && !isArray(element[property])" type="text" [(ngModel)]="element[property]">
+    <div *ngIf="!element.edit && isArray(element[property])">
+      <div *ngFor="let member of element[property]; index as i" (click)="element.edit = true" style="padding:0 0.5em">{{member}}</div>
+    </div>
+    <div *ngIf="element.edit && isArray(element[property])">
+      <input *ngFor="let member of element[property]; index as i" type="text" [(ngModel)]="element[property][i]">
+    </div>
   </div>
   <div class="controls">
     <span>{{i | number:'2.0-0'}}</span>

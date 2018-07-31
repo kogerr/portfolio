@@ -1,6 +1,6 @@
 import AboutModel, { AboutDocument } from '../models/aboutModel';
 import { castMongoosePromise, deleteID, UpdateResponse } from './dao_utils';
-import { PossiblyClickable, TitledLines, IndexedText } from '../models/frontModels';
+import { PossiblyClickable, HeaderAndLines, IndexedText } from '../models/frontModels';
 
 export function getAbout(): Promise<AboutDocument> {
     return new Promise((resolve, reject) => {
@@ -17,7 +17,7 @@ export function updateAbout(update: any): Promise<UpdateResponse> | Promise<Upda
     return castMongoosePromise(AboutModel.updateOne({}, update).exec());
 }
 
-export function addElement(update: { [type: string]: IndexedText | PossiblyClickable | TitledLines }): Promise<UpdateResponse> {
+export function addElement(update: { [type: string]: IndexedText | PossiblyClickable | HeaderAndLines }): Promise<UpdateResponse> {
     let field = Object.keys(update)[0];
     if (update[field].index) {
         return castMongoosePromise(AboutModel.updateOne({},
@@ -27,7 +27,7 @@ export function addElement(update: { [type: string]: IndexedText | PossiblyClick
     }
 }
 
-export function removeElement(update: { [type: string]: string | PossiblyClickable | TitledLines }): Promise<UpdateResponse> {
+export function removeElement(update: { [type: string]: string | PossiblyClickable | HeaderAndLines }): Promise<UpdateResponse> {
     return castMongoosePromise(AboutModel.updateOne({}, { $pull: update }).exec());
 }
 

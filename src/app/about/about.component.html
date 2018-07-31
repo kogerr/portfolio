@@ -17,7 +17,7 @@
     <h2>Awards</h2>
     <div class="column2-grid spaceylines">
       <div *ngFor="let award of content.awards" [style.grid-row]="'span ' + (award.lines.length + 2)">
-        <div>{{award.title | uppercase }}</div>
+        <div>{{award.header | uppercase }}</div>
         <div *ngFor="let line of award.lines">{{line}}</div>
         <div style="white-space: pre-wrap;">{{' '}}</div>
       </div>

@@ -9,8 +9,9 @@ let possiblyClickable = new Schema({
 }, { _id: false }
 );
 
-let titledLines = new Schema({
-    title: String,
+let headerAndLines = new Schema({
+    index: Number,
+    header: String,
     lines: [String]
 }, { _id: false }
 );
@@ -27,7 +28,7 @@ let aboutSchema = new Schema({
     exhibitions: [indexedText],
     printPublications: [possiblyClickable],
     onlinePublications: [possiblyClickable],
-    awards: [titledLines]
+    awards: [headerAndLines]
 }
 );
 

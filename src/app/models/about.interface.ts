@@ -4,7 +4,7 @@ export interface About {
     clients: IndexedText[];
     printPublications: PossiblyClickable[];
     onlinePublications: PossiblyClickable[];
-    awards: TitledLines[];
+    awards: HeaderAndLines[];
 }
 
 export interface IndexedText {
@@ -16,8 +16,8 @@ export interface PossiblyClickable extends IndexedText {
     url: string;
 }
 
-export interface TitledLines {
+export interface HeaderAndLines {
     index: number;
-    title: string;
+    header: string;
     lines: string[];
 }
