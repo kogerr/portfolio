@@ -51,28 +51,19 @@ export class EditorComponent implements OnDestroy, OnInit {
     }
   }
 
-  uploadCover(event: HTMLInputEvent): void {
-    if (this.post.cover) {
-      this.removeImage('cover');
+  uploadImage(event: HTMLInputEvent, field: string): void {
+    if (this.post[field]) {
+      this.removeImage(field);
     }
     this.dataService.postImage(event.target.files[0]).subscribe(data => {
-      this.post.cover = data.name;
-    });
-  }
-
-  uploadFacebookImage(event: HTMLInputEvent): void {
-    if (this.post.facebookImage) {
-      this.dataService.deleteImage(this.post.facebookImage).subscribe(() => {
-        this.post.facebookImage = '';
-      });
-    }
-    this.dataService.postImage(event.target.files[0]).subscribe(data => {
-      this.post.facebookImage = data.name;
+      this.post[field] = data.name;
     });
   }
 
   removeImage(image: string): void {
-    this.dataService.deleteImage(this.post[image]).subscribe(() => delete this.post[image]);
+    this.dataService.deleteImage(this.post[image]).subscribe(
+      () => delete this.post[image],
+      err => { delete this.post[image]; this.error = err; });
   }
 
   uploadContentImages(event: HTMLInputEvent): void {
@@ -98,6 +89,9 @@ export class EditorComponent implements OnDestroy, OnInit {
     if (this.post.intro && this.post.intro.length > 0) {
       this.post.intro = this.post.intro.replace(/\n/g, '<br/>');
     }
+    if (!this.post.previewImage) {
+      this.post.previewImage = this.post.cover;
+    }
     this.dataService.uploadPost(this.post).subscribe(
       data => { this.submitted = data.success; this.countdownNavigate(20); },
       error => { this.submitted = true; this.error = error; this.countdownNavigate(50); }
@@ -105,6 +99,9 @@ export class EditorComponent implements OnDestroy, OnInit {
   }
 
   updatePost(): void {
+    if (!this.post.previewImage) {
+      this.post.previewImage = this.post.cover;
+    }
     this.dataService.updatePost(this.post, this.originalTitleURL).subscribe(
       data => { this.submitted = data.success; this.countdownNavigate(20); },
       error => { this.submitted = true; this.error = error; this.countdownNavigate(50); }

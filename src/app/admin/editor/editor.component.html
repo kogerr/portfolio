@@ -35,24 +35,33 @@
         </div>
         <div>
             <label for="cover-image">Cover Image</label>
-            <input *ngIf="!post.cover" #cover id="cover-image" type="file" accept=".png, .jpg, .jpeg" (change)="uploadCover($event)">
+            <input *ngIf="!post.cover" #cover id="cover-image" type="file" accept=".png, .jpg, .jpeg, .svg" (change)="uploadImage($event, 'cover')">
             <div *ngIf="post.cover" class="elementPreview">
                 <img [src]="'images/' + post.cover" class="imagePreview"/>
             </div>
-            <button *ngIf="post.cover" (click)="removeImage('cover', 'cover')">Remove cover image</button>
+            <button *ngIf="post.cover" (click)="removeImage('cover')">Remove cover image</button>
         </div>
         <div>
             <label for="facebook-image">Facebook Image</label>
-            <input *ngIf="!post.facebookImage" #facebookImage name="facebook-image" type="file" accept=".png, .jpg, .jpeg" (change)="uploadFacebookImage($event)">
+            <input *ngIf="!post.facebookImage" #facebookImage name="facebook-image" type="file" accept=".png, .jpg, .jpeg, .svg" (change)="uploadImage($event, 'facebookImage')">
             <div *ngIf="!post.facebookImage">Best ratio: 23x12. At least 552 px X 288 px</div>
             <div *ngIf="post.facebookImage" class="elementPreview">
                 <img [src]="'images/' + post.facebookImage" class="imagePreview"/>
             </div>
-            <button *ngIf="post.facebookImage" (click)="removeImage('facebookImage', 'content')">Remove facebook image</button>
+            <button *ngIf="post.facebookImage" (click)="removeImage('facebookImage')">Remove facebook image</button>
+        </div>
+        <div>
+            <label for="preview-image">Preview Image</label>
+            <input *ngIf="!post.previewImage" #previewImage name="preview-image" type="file" accept=".png, .jpg, .jpeg, .svg" (change)="uploadImage($event, 'previewImage')">
+            <div *ngIf="!post.previewImage">Best ratio: 23x16</div>
+            <div *ngIf="post.previewImage" class="elementPreview">
+                <img [src]="'images/' + post.previewImage" class="imagePreview"/>
+            </div>
+            <button *ngIf="post.previewImage" (click)="post.previewImage = ''">Remove preview image</button>
         </div>
         <div style="display: none">
             <label for="content-images">Content Images</label>
-            <input #contentImages name="content-images" type="file" accept=".png, .jpg, .jpeg" (change)="uploadContentImages($event)"
+            <input #contentImages name="content-images" type="file" accept=".png, .jpg, .jpeg, .svg" (change)="uploadContentImages($event)"
                 multiple>
         </div>
 

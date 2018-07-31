@@ -2,7 +2,7 @@
   <div *ngFor="let post of posts; index as i" class="postPreviewWrap">
     <div class="clickable">{{post.title}}</div>
     <div [routerLink]="'/admin/editor/' + post.titleURL" routerLinkActive="active" class="postPreview clickable">
-      <img [src]="'images/' + post.cover" class="imagePreview" />
+      <img [src]="'images/' + post.previewImage" class="imagePreview" />
     </div>
     <div class="controls">
       <span>{{i | number:'2.0-0'}}</span>

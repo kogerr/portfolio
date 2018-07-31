@@ -39,7 +39,6 @@ button:disabled, button[disabled] {
 .postPreview {
     margin: 0.5em 0;
     height: 200px;
-    background-color: #232323;
 }
 
 .imagePreview {
