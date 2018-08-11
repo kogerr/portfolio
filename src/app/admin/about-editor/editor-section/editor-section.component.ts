@@ -17,6 +17,8 @@ export class EditorSectionComponent<T extends { index: number, edit?: boolean }>
     return Object.keys(o).filter(e => e !== 'index' && e !== 'edit');
   }
 
+  isArray = (o) => Array.isArray(o);
+
   updateIfSuccess = data => { if (data.success) { this.update.emit(); } };
 
   removeElement(value: any): void {
