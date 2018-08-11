@@ -22,6 +22,9 @@ export class Post {
 export interface ContentElement {
     type: ContentType;
     width?: number;
+    autoplay?: boolean;
+    loop?: boolean;
+    controls?: boolean;
 }
 
 export enum ContentType {

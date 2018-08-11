@@ -25,6 +25,7 @@ export class EditorComponent implements OnDestroy, OnInit {
   remaining: number;
   openTextElement = false;
   textUnderEdition: string;
+  contentType = ContentType;
 
   ngOnInit(): void {
 
@@ -66,12 +67,12 @@ export class EditorComponent implements OnDestroy, OnInit {
       err => { delete this.post[image]; this.error = err; });
   }
 
-  uploadContentImages(event: HTMLInputEvent): void {
+  uploadContent(event: HTMLInputEvent, type: ContentType): void {
     let files = event.target.files;
     for (let i = 0; i < files.length; i++) {
       this.dataService.postImage(files[i]).subscribe(data => {
-        let image = { name: data.name, type: ContentType.image, width: 100 };
-        this.post.contents.push(image);
+        let contentElement = { name: data.name, type, width: 100 };
+        this.post.contents.push(contentElement);
       });
     }
   }

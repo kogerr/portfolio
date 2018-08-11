@@ -61,13 +61,16 @@
         </div>
         <div style="display: none">
             <label for="content-images">Content Images</label>
-            <input #contentImages name="content-images" type="file" accept=".png, .jpg, .jpeg, .svg" (change)="uploadContentImages($event)"
+            <input #contentImages name="content-images" type="file" accept=".png, .jpg, .jpeg, .svg" (change)="uploadContent($event, contentType.image)"
+                multiple>
+            <input #contentVideo name="content-video" type="file" accept=".mp4, .webm, .ogg" (change)="uploadContent($event, contentType.video)"
                 multiple>
         </div>
 
         <div *ngFor="let element of post.contents; index as i" class="contentElementWrap">
             <div class="elementPreview">
                 <img *ngIf="element.type == 'image'" [src]="'images/' + element.name"  class="imagePreview" />
+                <video *ngIf="element.type == 'video'" [src]="'images/' + element.name"  class="imagePreview"></video>
                 <div *ngIf="element.type == 'text'" [innerHTML]="element.text"></div>
             </div>
             <div class="elementControls">
@@ -76,9 +79,14 @@
                 <button *ngIf="element.type == 'text'" (click)="editElement(i)">Edit</button>
                 <button><img src="assets/arrow_up.svg" class="icon" alt="up" (click)="moveElementUp(i)"></button>
                 <button><img src="assets/arrow_down.svg" class="icon" alt="down" (click)="moveElementDown(i)"></button>
-                <span *ngIf="element.type == 'image'">Width</span>
-                <input *ngIf="element.type == 'image'" name="width" type="range" min="1" max="100" [(ngModel)]="element.width" style="width:100%">
-                <span *ngIf="element.type == 'image'">{{element.width}}%</span>
+                <span *ngIf="element.type != 'text'">Width</span>
+                <input *ngIf="element.type != 'text'" name="width" type="range" min="1" max="100" [(ngModel)]="element.width" style="width:100%">
+                <span *ngIf="element.type != 'text'">{{element.width}}%</span>
+            </div>
+            <div *ngIf="element.type === 'video'" class="elementControls">
+                <input type="checkbox" name="autoplay" checked [(ngModel)]="element.autoplay" style="width:auto">Autoplay
+                <input type="checkbox" name="loop" checked [(ngModel)]="element.loop" style="width:auto">Loop
+                <input type="checkbox" name="controls" [(ngModel)]="element.controls" style="width:auto">Controls
             </div>
         </div>
         
@@ -100,7 +108,7 @@
                 <img src="assets/plus.svg" class="plus" alt="+">
                 <div>Image</div>
             </div>
-            <div class="control-item">
+            <div class="control-item" (click)="contentVideo.click()">
                 <img src="assets/plus.svg" class="plus" alt="+">
                 <div>Video</div>
             </div>

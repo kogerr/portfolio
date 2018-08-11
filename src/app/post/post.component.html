@@ -29,6 +29,8 @@
         <div *ngIf="element.type == 'text'" class="concept text-area">
             <div class="column2-grid" [innerHTML]="element.text"></div>
         </div>
+        <video *ngIf="element.type == 'video'" [src]="'images/' + element.name" [autoplay]="element.autoplay"
+            [loop]="element.loop" [controls]="element.controls" [style.width]="element.width + '%'" ></video>
     </div>
     <div class="post-footer">
         <img src="assets/arrow_left_black.svg" (click)="redirectPrevious()">
