@@ -21,6 +21,7 @@ import { ContactEditorComponent } from './contact-editor/contact-editor.componen
 import { AboutEditorComponent } from './about-editor/about-editor.component';
 import { AddElementComponent } from './add-element/add-element.component';
 import { EditorSectionComponent } from './about-editor/editor-section/editor-section.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,7 @@ import { EditorSectionComponent } from './about-editor/editor-section/editor-sec
   ],
   declarations: [EditorComponent, LoginComponent, LogComponent,
     TitleValidatorDirective, MenuComponent, PostlistComponent, SlidelistComponent,
-    ContactEditorComponent, AboutEditorComponent, AddElementComponent, EditorSectionComponent],
+    ContactEditorComponent, AboutEditorComponent, AddElementComponent, EditorSectionComponent, RegistrationComponent],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthenticationInterceptor,

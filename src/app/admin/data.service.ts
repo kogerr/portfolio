@@ -13,6 +13,7 @@ const slidesURL = 'api/slides/';
 const aboutURL = 'api/about/';
 const contactURL = 'api/contact/';
 const loginURL = 'api/login/';
+const registrationURL = 'api/login/register';
 const logURL = 'api/log/';
 
 interface SuccessFlag {
@@ -83,6 +84,10 @@ export class AdminDataService {
 
     login(email: string, password: string): Observable<LoginResponse> {
         return this.http.post<LoginResponse>(loginURL, { email, password });
+    }
+
+    register(email: string, password: string): Observable<LoginResponse> {
+        return this.http.post<LoginResponse>(registrationURL, { email, password });
     }
 
     getLogs(): Observable<Array<any>> {

@@ -18,7 +18,11 @@ export class LoginComponent {
       this.authService.login(this.email, this.password)
         .then((res) => {
           if (res.success) {
-            this.router.navigate([this.authService.redirectUrl]);
+            if (this.authService.redirectUrl) {
+              this.router.navigate([this.authService.redirectUrl]);
+            } else {
+              this.router.navigate(['/admin']);
+            }
           } else {
             this.error = 'Failure on authentication. Please try again.';
             this.email = undefined;

@@ -9,6 +9,7 @@ import { AuthGuard } from './auth-guard.service';
 import { SlidelistComponent } from './slidelist/slidelist.component';
 import { ContactEditorComponent } from './contact-editor/contact-editor.component';
 import { AboutEditorComponent } from './about-editor/about-editor.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 const routes: Routes = [
   { path: '', component: MenuComponent, canActivate: [AuthGuard] },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'log', component: LogComponent, canActivate: [AuthGuard] },
   { path: 'postlist', component: PostlistComponent, canActivate: [AuthGuard] },
+  { path: 'register', component: RegistrationComponent },
   { path: 'slidelist', component: SlidelistComponent, canActivate: [AuthGuard] }
 ];
 
