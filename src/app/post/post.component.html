@@ -24,17 +24,19 @@
         <img src="assets/v-shape.svg">
     </a>
     <img [src]="'images/' + post.cover" class="cover" />
-    <div *ngFor="let element of post.contents" [style.display]="element.type == 'text' ? 'block' : 'inline'">
-        <img *ngIf="element.type == 'image'" [src]="'images/' + element.name" [style.width]="element.width + '%'" />
-        <div *ngIf="element.type == 'text'" class="concept text-area">
-            <div class="column2-grid" [innerHTML]="element.text"></div>
+    <div class="margin-wrap">
+        <div *ngFor="let element of post.contents" [style.display]="element.type == 'text' ? 'block' : 'inline'">
+            <img *ngIf="element.type == 'image'" [src]="'images/' + element.name" [style.width]="element.width + '%'" />
+            <div *ngIf="element.type == 'text'" class="concept text-area">
+                <div class="column2-grid" [innerHTML]="element.text"></div>
+            </div>
+            <video *ngIf="element.type == 'video'" [src]="'images/' + element.name" [autoplay]="element.autoplay" [loop]="element.loop"
+                [controls]="element.controls" [style.width]="element.width + '%'"></video>
         </div>
-        <video *ngIf="element.type == 'video'" [src]="'images/' + element.name" [autoplay]="element.autoplay"
-            [loop]="element.loop" [controls]="element.controls" [style.width]="element.width + '%'" ></video>
-    </div>
-    <div class="post-footer">
-        <img src="assets/arrow_left_black.svg" (click)="redirectPrevious()">
-        <div (click)="redirect()" class="more">More Work</div>
-        <img src="assets/arrow_right_black.svg" (click)="redirectNext()">
+        <div class="post-footer">
+            <img src="assets/arrow_left_black.svg" (click)="redirectPrevious()">
+            <div (click)="redirect()" class="more">More Work</div>
+            <img src="assets/arrow_right_black.svg" (click)="redirectNext()">
+        </div>
     </div>
 </div>

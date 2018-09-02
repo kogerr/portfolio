@@ -4,9 +4,11 @@
     padding: 10.7vw 0 6.25vw 6.25vw
 }
 
+.margin-wrap {
+    margin: 2.08vw;
+}
+
 .text-area {
-    width: 95.83%;
-    margin: auto;
     background-color: white;
     box-sizing: border-box;
     color: #929292;
@@ -70,8 +72,6 @@ h2 {
 
 .post-footer {
     display: grid;
-    width: 95.83%;
-    margin: 0 auto 2.08vw auto;
     box-sizing: border-box;
     height: 120px;
     background-color: #fff000;
@@ -96,4 +96,8 @@ h2 {
 
 .image {
     display: inline;
+}
+
+img, video {
+    vertical-align: bottom;
 }

@@ -61,7 +61,7 @@
         </div>
         <div style="display: none">
             <label for="content-images">Content Images</label>
-            <input #contentImages name="content-images" type="file" accept=".png, .jpg, .jpeg, .svg" (change)="uploadContent($event, contentType.image)"
+            <input #contentImages name="content-images" type="file" accept=".png, .jpg, .jpeg, .svg, .gif" (change)="uploadContent($event, contentType.image)"
                 multiple>
             <input #contentVideo name="content-video" type="file" accept=".mp4, .webm, .ogg" (change)="uploadContent($event, contentType.video)"
                 multiple>
