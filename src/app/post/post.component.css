@@ -5,7 +5,7 @@
 }
 
 .margin-wrap {
-    margin: 2.08vw;
+    margin: 2.08vw 2.08vw 0 2.08vw;
 }
 
 .text-area {
@@ -43,13 +43,6 @@ h2 {
     font-size: 18px;
 }
 
-@media only screen and (max-width: 1200px) {
-    .columned-text {
-        grid-template-columns: 1fr;
-        grid-gap: 5vw;
-    }
-}
-
 .dropdown {
     display: grid;
     width: 100%;
@@ -72,6 +65,7 @@ h2 {
 
 .post-footer {
     display: grid;
+    margin: 0 2.08vw 2.08vw 2.08vw;
     box-sizing: border-box;
     height: 120px;
     background-color: #fff000;
@@ -100,4 +94,17 @@ h2 {
 
 img, video {
     vertical-align: bottom;
+}
+
+@media only screen and (max-width: 1200px) {
+    .columned-text {
+        grid-template-columns: 1fr;
+        grid-gap: 5vw;
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    .post-footer {
+        margin: 2.08vw 0 0 0;
+    }
 }
