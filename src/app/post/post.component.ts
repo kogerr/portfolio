@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, AfterViewChecked } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { DataService } from '../data.service';
@@ -11,8 +11,9 @@ const origialTitle = 'Portfolio';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
-export class PostComponent implements OnInit, OnDestroy {
+export class PostComponent implements OnInit, AfterViewChecked, OnDestroy {
   post: Post;
+  videos: Array<HTMLVideoElement>;
 
   constructor(private dataService: DataService, private route: ActivatedRoute,
     private titleService: Title, private router: Router, private metatagService: MetatagService) { }
@@ -22,10 +23,25 @@ export class PostComponent implements OnInit, OnDestroy {
       this.dataService.getPost(p.titleURL).subscribe(data => {
         this.post = data;
         this.titleService.setTitle(data.title);
-        this.metatagService.update({ title: data.title, url: data.titleURL,
-            description: data.facebookDescription, image: data.facebookImage });
+        this.metatagService.update({
+          title: data.title, url: data.titleURL, description: data.facebookDescription, image: data.facebookImage
+        });
       });
     });
+  }
+
+  ngAfterViewChecked(): void {
+    this.videos = Array.from(window.document.getElementsByTagName('video'));
+  }
+
+  @HostListener('window:scroll')
+  onScroll(): void {
+    this.videos.filter(e => this.isInView(e)).forEach(e => e.play());
+  }
+
+  isInView(element: HTMLElement): boolean {
+    let [bottom, top]: [number, number] = [element.getBoundingClientRect().bottom, element.getBoundingClientRect().top];
+    return bottom < window.innerHeight || (bottom > window.innerHeight && top <= 0);
   }
 
   redirectNext(): void {
