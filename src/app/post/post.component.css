@@ -1,6 +1,6 @@
 .post-info {
     display: grid;
-    grid-template-rows: 32% auto;
+    grid-row-gap: 40px;
     padding: 10.7vw 0 6.25vw 6.25vw
 }
 
@@ -101,10 +101,27 @@ img, video {
         grid-template-columns: 1fr;
         grid-gap: 5vw;
     }
+
+    .column2-grid {
+        grid-template-columns: 2fr 1fr;
+    }
 }
 
 @media only screen and (max-width: 960px) {
     .post-footer {
         margin: 2.08vw 0 0 0;
+    }
+
+    .column2-grid {
+        grid-template-columns: 1fr;
+        grid-row-gap: 40px;
+    }
+
+    .post-info {
+        padding: 10.7vw 6.25vw 6.25vw 6.25vw;
+    }
+
+    .margin-wrap > img {
+        padding-bottom: 40px;
     }
 }

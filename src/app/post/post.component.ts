@@ -45,6 +45,14 @@ export class PostComponent implements OnInit, OnDestroy {
     this.router.navigate(['/work/' + titleUrl]);
   }
 
+  getWidth(width: number): string {
+    if (window.innerWidth > 796) {
+      return width + '%';
+    } else {
+      return '100%';
+    }
+  }
+
   ngOnDestroy(): void {
     this.titleService.setTitle(origialTitle);
   }
