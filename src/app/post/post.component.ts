@@ -14,6 +14,7 @@ const origialTitle = 'Portfolio';
 export class PostComponent implements OnInit, AfterViewChecked, OnDestroy {
   post: Post;
   videos: Array<HTMLVideoElement>;
+  startedVideos = new Array<HTMLVideoElement>();
 
   constructor(private dataService: DataService, private route: ActivatedRoute,
     private titleService: Title, private router: Router, private metatagService: MetatagService) { }
@@ -36,10 +37,17 @@ export class PostComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   @HostListener('window:scroll')
   onScroll(): void {
-    this.videos.filter(e => this.isInView(e)).forEach(e => e.play());
+    this.videos.filter(e => this.isInView(e) && this.startedVideos.indexOf(e) < 0).forEach(e => {
+      e.play();
+      this.startedVideos.push(e);
+    });
+    this.videos.filter(e => !this.isInView(e) && this.startedVideos.indexOf(e) >= 0).forEach(e => {
+      e.pause();
+      this.startedVideos.splice(this.startedVideos.indexOf(e), 1);
+    });
   }
 
-  isInView(element: HTMLElement): boolean {
+  isInView(element: HTMLVideoElement): boolean {
     let [bottom, top]: [number, number] = [element.getBoundingClientRect().bottom, element.getBoundingClientRect().top];
     return bottom < window.innerHeight || (bottom > window.innerHeight && top <= 0);
   }

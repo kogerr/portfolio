@@ -31,7 +31,7 @@
                 <div class="column2-grid" [innerHTML]="element.text"></div>
             </div>
             <video *ngIf="element.type == 'video'" [src]="'images/' + element.name" [autoplay]="element.autoplay" [loop]="element.loop"
-                [controls]="element.controls" [style.width]="element.width + '%'"></video>
+                [controls]="element.controls" [style.width]="getWidth(element.width)"></video>
         </div>
     </div>
     <div class="post-footer">
