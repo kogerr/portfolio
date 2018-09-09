@@ -92,36 +92,3 @@ button:hover {
     height: 1em;
     cursor: pointer;
 }
-
-.images {
-    display: grid;
-    grid-template-columns: 40% 20% 40%;
-    align-items: center;
-    justify-content: space-between;
-    justify-items: center;
-}
-
-.image-wrap {
-    width: 100%;
-    position: relative;
-}
-
-.image-wrap > img {
-    width: 100%;
-}
-
-.overlay-icon {
-    position: absolute;
-    top: 5%;
-    right: 5%;
-    height: 2em;
-    cursor: pointer;
-}
-
-::-webkit-file-upload-button {
-    background-color: #fff000;
-    padding: 0.5em 1em;
-    border: none;
-    font: inherit;
-    color: #232323;
-}
