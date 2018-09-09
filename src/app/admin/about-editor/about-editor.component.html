@@ -7,6 +7,22 @@
       <div class="icon" (click)="saveIntro(intro.innerHTML)">Save</div>
     </button>
   </div>
+
+  <h3>Images</h3>
+  <div class="images">
+    <div *ngIf="content.images[0]" class="image-wrap">
+      <img [src]="'images/' + content.images[0]" alt="first image">
+      <img src="assets/x.svg" (click)="deleteImage(0)" class="overlay-icon" style="width: 2em">
+    </div>
+    <img *ngIf="content.images.length === 2" src="assets/arrow_right_black.svg" (click)="swapImages()" class="icon">
+    <div *ngIf="content.images[1]" class="image-wrap">
+        <img [src]="'images/' + content.images[1]" alt="second image">
+        <img src="assets/x.svg" (click)="deleteImage(1)" class="overlay-icon" style="width: 2em">
+    </div>
+    <input *ngIf="content.images.length < 2" name="content-images" type="file" accept=".png, .jpg, .jpeg, .svg, .gif" (change)="uploadImage($event)"
+      [multiple]="!content.images.length">
+  </div>
+
   <h3>Clients</h3>
   <editor-section field="clients" [content]="content.clients" (update)="update()"></editor-section>
   <h3>Exhibitions</h3>

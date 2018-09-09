@@ -5,6 +5,7 @@ export interface About {
     printPublications: PossiblyClickable[];
     onlinePublications: PossiblyClickable[];
     awards: HeaderAndLines[];
+    images: string[];
 }
 
 export interface IndexedText {
