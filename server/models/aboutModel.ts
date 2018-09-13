@@ -28,7 +28,8 @@ let aboutSchema = new Schema({
     exhibitions: [indexedText],
     printPublications: [possiblyClickable],
     onlinePublications: [possiblyClickable],
-    awards: [headerAndLines]
+    awards: [headerAndLines],
+    images: [String]
 }
 );
 

@@ -1,5 +1,5 @@
 <div *ngIf="content" class="margin-wrapper">
-  <div class="full-box"></div>
+  <div class="full-box"><img [src]="'images/' + content.images[0]"></div>
 
   <div class="text-area">
     <div class="ars-poetica column2" [innerHTML]="content.intro"></div>
@@ -11,7 +11,7 @@
       <div *ngFor="let client of content.clients">{{client.text}}</div>
     </div>
   </div>
-  <div class="full-box"></div>
+  <div class="full-box"><img [src]="'images/' + content.images[1]"></div>
 
   <div class="text-area">
     <h2>Awards</h2>

@@ -1,11 +1,11 @@
 .post-info {
     display: grid;
-    grid-template-rows: 32% auto;
+    grid-row-gap: 40px;
     padding: 10.7vw 0 6.25vw 6.25vw
 }
 
 .margin-wrap {
-    margin: 2.08vw;
+    margin: 2.08vw 2.08vw 0 2.08vw;
 }
 
 .text-area {
@@ -43,13 +43,6 @@ h2 {
     font-size: 18px;
 }
 
-@media only screen and (max-width: 1200px) {
-    .columned-text {
-        grid-template-columns: 1fr;
-        grid-gap: 5vw;
-    }
-}
-
 .dropdown {
     display: grid;
     width: 100%;
@@ -72,6 +65,7 @@ h2 {
 
 .post-footer {
     display: grid;
+    margin: 0 2.08vw 2.08vw 2.08vw;
     box-sizing: border-box;
     height: 120px;
     background-color: #fff000;
@@ -100,4 +94,34 @@ h2 {
 
 img, video {
     vertical-align: bottom;
+}
+
+@media only screen and (max-width: 1200px) {
+    .columned-text {
+        grid-template-columns: 1fr;
+        grid-gap: 5vw;
+    }
+
+    .column2-grid {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    .post-footer {
+        margin: 2.08vw 0 0 0;
+    }
+
+    .column2-grid {
+        grid-template-columns: 1fr;
+        grid-row-gap: 40px;
+    }
+
+    .post-info {
+        padding: 10.7vw 6.25vw 6.25vw 6.25vw;
+    }
+
+    .margin-wrap > img {
+        padding-bottom: 40px;
+    }
 }

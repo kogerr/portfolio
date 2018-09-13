@@ -7,6 +7,10 @@
       <div class="icon" (click)="saveIntro(intro.innerHTML)">Save</div>
     </button>
   </div>
+
+  <h3>Images</h3>
+  <images-section [images]="content.images" (update)="update()"></images-section>
+
   <h3>Clients</h3>
   <editor-section field="clients" [content]="content.clients" (update)="update()"></editor-section>
   <h3>Exhibitions</h3>

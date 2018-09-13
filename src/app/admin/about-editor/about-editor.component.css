@@ -89,5 +89,6 @@ button:hover {
 
 .icon {
     padding: 0.5em 1em;
-    height: 1em;    
+    height: 1em;
+    cursor: pointer;
 }

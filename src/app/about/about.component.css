@@ -4,7 +4,6 @@
 
 .full-box {
     width: 100%;
-    height: 33.33vw;
     background-color: #232323;
 }
 
@@ -60,4 +59,9 @@ h2 {
 a {
     color: #929292;
     text-decoration: underline;
+}
+
+img {
+    width:100%;
+    vertical-align: bottom;
 }
