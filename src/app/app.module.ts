@@ -14,6 +14,7 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { CarouselSlideComponent } from './carousel-slide/carousel-slide.component';
 import { AboutComponent } from './about/about.component';
 import { MetatagService } from './metatag.service';
+import { MobileMenuComponent } from './header/mobile-menu/mobile-menu.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MetatagService } from './metatag.service';
     FooterComponent,
     CarouselComponent,
     CarouselSlideComponent,
-    AboutComponent],
+    AboutComponent,
+    MobileMenuComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [DataService, MetatagService],
   bootstrap: [AppComponent]

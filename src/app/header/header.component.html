@@ -17,18 +17,20 @@
     <header [class]="fullHeader ? 'full-header' : 'short-header'">
 
         <a id="logo-wrap" routerLink="/">
-            <img [src]="fullHeader ? 'assets/logo.svg' : 'assets/logo_small.svg'" alt="">
+            <img [src]="fullHeader || mobileView() ? 'assets/logo.svg' : 'assets/logo_small.svg'" alt="">
         </a>
 
-        <div class="items">
-            <a routerLink="/work" routerLinkActive="active">Work</a>
-            <span>|</span>
-            <a routerLink="/about" routerLinkActive="active">About</a>
-            <span>|</span>
-            <a [routerLink]="" (click)="switchContactHeader()">Contact</a>
+        <div *ngIf="!mobileView()" class="menu">
+            <div class="items">
+                <a routerLink="/work" routerLinkActive="active">Work</a>
+                <span>|</span>
+                <a routerLink="/about" routerLinkActive="active">About</a>
+                <span>|</span>
+                <a [routerLink]="" (click)="switchContactHeader()">Contact</a>
+            </div>
+            <div [class.line-hide]="!fullHeader" class="line"></div>
         </div>
-        <div [class.line-hide]="!fullHeader" class="line"></div>
-
+        <mobile-menu *ngIf="mobileMenu"></mobile-menu>
     </header>
 </div>
 <div [class]="fullHeader ? 'full-header' : 'short-header'"></div>

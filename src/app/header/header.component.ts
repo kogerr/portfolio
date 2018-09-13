@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
   onScroll($event: Event): void {
     let breakPointY = window.innerWidth * breakPoint;
     if (!this.fullHeader) { breakPointY -= 40; }
-    this.fullHeader = window.scrollY < breakPointY && window.innerWidth > 560;
+    this.fullHeader = window.scrollY < breakPointY && window.innerWidth > 960;
     if (!this.ongoingAnimation && this.contactInfo) {
       this.switchContactHeader();
     }
@@ -45,5 +45,9 @@ export class HeaderComponent implements OnInit {
     this.scrollLock();
     this.ongoingAnimation = true;
     setTimeout(() => this.ongoingAnimation = false, 1000);
+  }
+
+  mobileView(): boolean {
+    return window.innerWidth <= 960;
   }
 }
