@@ -1,8 +1,26 @@
 :host {
     position: fixed;
-    height: 100vh;
     width: 70vw;
     background-color: #FFF000;
     /* z-index: 2; */
     right: 0;
+    padding: 6vw;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.item {
+    font-weight: bold;
+    font-size: 5vh;
+    height: 8vh;
+}
+
+.top {
+    height: 20vw;
+}
+
+.x {
+    width: 6vw;
+    right: 0;
+    float: right;
 }

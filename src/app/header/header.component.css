@@ -146,6 +146,11 @@ a {
     text-decoration: none;
 }
 
+.mobile-menu-button {
+    width: 6vw;
+    padding: 0 6vw;
+}
+
 @media (max-width: 600px) {
     .contact-header {
         grid-template-rows: 1fr 4fr 1fr;

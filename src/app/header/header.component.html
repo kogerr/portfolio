@@ -30,7 +30,8 @@
             </div>
             <div [class.line-hide]="!fullHeader" class="line"></div>
         </div>
-        <mobile-menu *ngIf="mobileMenu"></mobile-menu>
+        <img *ngIf="mobileView()" src="assets/x.svg" class="menu mobile-menu-button" alt="menu" (click)="mobileMenu = true">
+        <mobile-menu *ngIf="mobileMenu" (close)="mobileMenu = false"></mobile-menu>
     </header>
 </div>
 <div [class]="fullHeader ? 'full-header' : 'short-header'"></div>

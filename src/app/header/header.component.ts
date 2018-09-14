@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   fullHeader = true;
   contactInfo = false;
   ongoingAnimation = false;
+  mobileMenu = false;
 
   constructor(private dataService: DataService) { }
 
@@ -31,6 +32,7 @@ export class HeaderComponent implements OnInit {
     if (!this.ongoingAnimation && this.contactInfo) {
       this.switchContactHeader();
     }
+    this.mobileMenu = false;
   }
 
   scrollLock(): void {
