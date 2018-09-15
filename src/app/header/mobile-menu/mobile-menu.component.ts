@@ -17,11 +17,11 @@ export class MobileMenuComponent implements OnInit {
     let i = 0;
     let interval = setInterval(() => {
       this.height = i + 'vh';
-      i += 2;
+      i += 4;
       if (i > 100) {
         clearInterval(interval);
       }
-    }, 3);
+    }, 1);
   }
 
   closeMenu(): void {

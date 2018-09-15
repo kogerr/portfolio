@@ -1,26 +1,47 @@
 :host {
-    position: fixed;
+    min-height: 100vh;
+    position: absolute;
     width: 70vw;
     background-color: #FFF000;
     /* z-index: 2; */
     right: 0;
-    padding: 6vw;
+    padding: 5vw 4.6875vw 5vw 7.5vw;
     box-sizing: border-box;
     overflow: hidden;
 }
 
 .item {
     font-weight: bold;
-    font-size: 5vh;
-    height: 8vh;
+    height: 60px;
+    font-size: 33px;
+    color: #191919;
 }
 
 .top {
-    height: 20vw;
+    height: 18.75vw;
 }
 
 .x {
-    width: 6vw;
+    width: 5.675vw;
     right: 0;
     float: right;
+}
+
+.line {
+    background-color: #232323;
+    width: 57.8125vw;
+    height: 2px;
+    margin: 0 0 60px 0;
+}
+
+.textbox {
+    width: 48vw;
+    font-size: 21px;
+    color: #191919;
+    line-height: 35.5px;
+}
+
+.textbox2 {
+    text-decoration: underline;
+    margin-top: 10vw;
 }
