@@ -8,10 +8,10 @@
 <div class="line"></div>
 <div class="textbox">
   <u>For new work inquiries, please contact:</u><br><br>
-  info@botondvoros.com<br>
-  +36 70 228 5187
+  {{content.mail}}<br>
+  {{content.phone}}
 </div>
 <div class="textbox textbox2">
-  Behance<br>
-  LinkedIn<br>
+  <a [href]="content.behance" target="_blank" style="text-decoration: underline">Behance</a><br>
+  <a [href]="content.linkedIn" target="_blank" style="text-decoration: underline">LinkedIn</a>
 </div>

@@ -1,4 +1,10 @@
 .content-background {
     background: linear-gradient(  #F0F0F0 16.6vw, white 16.6vw);
-    min-height: calc(100vh - 300px);
+    min-height: calc(100vh - 9.375vw - 120px);
+}
+
+@media (max-width: 640px) {
+    .content-background {
+        min-height: calc(100vh - 34.375vw);
+    }
 }

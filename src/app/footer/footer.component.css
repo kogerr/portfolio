@@ -1,37 +1,40 @@
 footer {
-    padding: 0 2.083vw;
+    padding: 2.083vw 4.166vw calc(7.291vw - 40px) 4.166vw;
     display: grid;
-    grid-template-rows: 22.5% 22.5% auto;
+    grid-template-columns: 5.416vw auto min-content;
     background-color: #F0F0F0;
-    height: 180px;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: 2.1% 5.7% auto auto;
-    grid-row: 2;
-    font-size: 24pt;
-}
-
-.footer-items {
-    margin: auto 2vw auto auto;
+    height: 9.375vw;
+    box-sizing: border-box;
+    align-items: center;
+    font-size: 21px;
 }
 
 .footer-items a, .footer-items span {
     margin: auto 0 auto 1.4vw;
     color: #969696;
-    font-size: 24px;
 }
 
 .footer-mail {
-    margin: auto auto auto 0;
-    font-size: 24px;
     font-weight: normal;
     color: #232323;
 }
 
 .arrow {
-    width: 25px;
-    margin: auto auto auto 0;
+    height: 40px;
     cursor: pointer;
+}
+
+
+@media (max-width: 640px) {
+    footer {
+        height: 18.75vw;
+        padding: 4.6875vw 4.6875vw 7.8125vw 4.6875vw;
+        grid-template-columns: 8.5vw auto min-content;
+        font-size: 2.5vw;
+    }
+
+    .arrow {
+        height: 6.25vw;
+    }
+    
 }

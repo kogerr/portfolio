@@ -1,4 +1,5 @@
-import { Component, Output, EventEmitter, OnInit, HostBinding } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, HostBinding } from '@angular/core';
+import { Contact } from '../../models/contact';
 
 @Component({
   selector: 'mobile-menu',
@@ -6,6 +7,7 @@ import { Component, Output, EventEmitter, OnInit, HostBinding } from '@angular/c
   styleUrls: ['./mobile-menu.component.css']
 })
 export class MobileMenuComponent implements OnInit {
+  @Input() content: Contact;
   @Output() close = new EventEmitter<boolean>();
   @HostBinding('style.height') height = '0vh';
 

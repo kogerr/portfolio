@@ -1,5 +1,5 @@
 <div class="fix-holder">
-    <div *ngIf="content" class="contact-header" [class.contact-header-hide]="!contactInfo">
+    <div *ngIf="content && !mobileView()" class="contact-header" [class.contact-header-hide]="!contactInfo">
         <div id="content" class="contact-header-content">
             <span style="text-decoration: underline">For new work inquiries, please contact:</span>
             <span></span>
@@ -17,7 +17,8 @@
     <header [class]="fullHeader ? 'full-header' : 'short-header'">
 
         <a id="logo-wrap" routerLink="/">
-            <img [src]="fullHeader || mobileView() ? 'assets/logo.svg' : 'assets/logo_small.svg'" alt="">
+            <img *ngIf="!mobileView()" class="logo" [src]="fullHeader ? 'assets/logo.svg' : 'assets/logo_small.svg'" alt="">
+            <img *ngIf="mobileView()" class="mobile-logo" src="assets/logo.svg" alt="">
         </a>
 
         <div *ngIf="!mobileView()" class="menu">
@@ -30,9 +31,9 @@
             </div>
             <div [class.line-hide]="!fullHeader" class="line"></div>
         </div>
-        <img *ngIf="mobileView()" src="assets/x.svg" class="menu mobile-menu-button" alt="menu" (click)="mobileMenu = true">
-        <mobile-menu *ngIf="mobileMenu" (close)="mobileMenu = false"></mobile-menu>
+        <img *ngIf="mobileView()" src="assets/3lines.svg" class="menu mobile-menu-button" alt="menu" (click)="mobileMenu = true">
+        <mobile-menu *ngIf="mobileMenu" [content]="content" (close)="mobileMenu = false"></mobile-menu>
     </header>
 </div>
 <div [class]="fullHeader ? 'full-header' : 'short-header'"></div>
-<div class="contact-header" [class.contact-header-hide]="!contactInfo"></div>
+<div *ngIf="!mobileView()" class="contact-header" [class.contact-header-hide]="!contactInfo"></div>

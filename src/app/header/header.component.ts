@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   fullHeader = true;
   contactInfo = false;
   ongoingAnimation = false;
+  mobileMenu = false;
 
   constructor(private dataService: DataService) { }
 
@@ -25,9 +26,13 @@ export class HeaderComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   onScroll($event: Event): void {
+    if (this.mobileView()) {
+      this.mobileMenu = false;
+      return;
+    }
     let breakPointY = window.innerWidth * breakPoint;
     if (!this.fullHeader) { breakPointY -= 40; }
-    this.fullHeader = window.scrollY < breakPointY && window.innerWidth > 960;
+    this.fullHeader = window.scrollY < breakPointY;
     if (!this.ongoingAnimation && this.contactInfo) {
       this.switchContactHeader();
     }
@@ -48,6 +53,6 @@ export class HeaderComponent implements OnInit {
   }
 
   mobileView(): boolean {
-    return window.innerWidth <= 960;
+    return window.innerWidth <= 640;
   }
 }

@@ -1,6 +1,5 @@
 :host {
-    min-height: 100vh;
-    position: absolute;
+    position: fixed;
     width: 70vw;
     background-color: #FFF000;
     /* z-index: 2; */
@@ -12,8 +11,8 @@
 
 .item {
     font-weight: bold;
-    height: 60px;
-    font-size: 33px;
+    height: 9.375vw;
+    font-size: 5.15625vw;
     color: #191919;
 }
 
@@ -31,17 +30,21 @@
     background-color: #232323;
     width: 57.8125vw;
     height: 2px;
-    margin: 0 0 60px 0;
+    margin: 0 0  9.375vw 0;
 }
 
 .textbox {
     width: 48vw;
-    font-size: 21px;
+    font-size: 3.28125vw;
     color: #191919;
-    line-height: 35.5px;
+    line-height: 5.675vw;
 }
 
 .textbox2 {
-    text-decoration: underline;
-    margin-top: 10vw;
+    margin-top: 20vw;
+}
+
+a {
+    text-decoration: none;
+    color: #212121;
 }
