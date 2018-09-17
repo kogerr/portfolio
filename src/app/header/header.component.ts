@@ -1,6 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { Contact } from '../models/contact';
-import { DataService } from '../data.service';
 
 const breakPoint = 0.182;
 
@@ -9,20 +8,12 @@ const breakPoint = 0.182;
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
-  content: Contact;
+export class HeaderComponent {
+  @Input() content: Contact;
   fullHeader = true;
   contactInfo = false;
   ongoingAnimation = false;
   mobileMenu = false;
-
-  constructor(private dataService: DataService) { }
-
-  ngOnInit(): void {
-    this.dataService.getContact().subscribe(data => {
-      this.content = data;
-    });
-  }
 
   @HostListener('window:scroll', ['$event'])
   onScroll($event: Event): void {
