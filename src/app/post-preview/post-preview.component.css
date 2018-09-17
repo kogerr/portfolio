@@ -2,6 +2,7 @@
     height: 100%;
     width: 100%;
     position: relative;
+    letter-spacing: 1px;
 }
 
 img {
@@ -12,14 +13,16 @@ img {
 .preivew-text {
     position: absolute;
     height: 100%;
-    padding: 0 2.083vw;
+    width: 100%;
+    padding: 25.833vw 2.083vw 3.333vw 2.083vw;
+    box-sizing: border-box;
     display: grid;
-    grid-template-rows: auto 7% 15.625%;
+    grid-template-rows: 3fr 2fr;
 }
 
 h3 {
     margin: 0;
-    font-size: 36px;
+    font-size: 29px;
     color: white;
     font-weight: normal;
     grid-row: 3;
@@ -28,7 +31,6 @@ h3 {
 h2 {
     margin: 0;
     font-size: 33px;
-    grid-row: 3;
 }
 
 .preivew-text .subtitle {
@@ -38,7 +40,7 @@ h2 {
 
 .subtitle, .client {
     text-transform: uppercase;
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .overlay {
@@ -49,16 +51,12 @@ h2 {
     top: 0; left:0;
     background: #FFF000;
     box-sizing: border-box;
-    padding: 0 2.083vw;
+    padding: 5vw 2.083vw 3.333vw 2.083vw;
     transition: opacity 0.5s;
     -webkit-transition: opacity 0.5s;
     display: grid;
-    grid-template-rows: 14.625% 7% 15.625% auto 7% 15.625%;
+    grid-template-rows: 10% 20.541% auto 10% 6.52%;
     cursor: pointer;
-}
-
-.overlay .subtitle {
-    grid-row: 2;
 }
 
 .overlay:hover {
@@ -67,17 +65,11 @@ h2 {
 
 .preview-line {
     height: 2px;
-    width: 53%;
-    grid-row: 4;
+    width: 23vw;
     background-color: #232323;
 }
 
-.client {
-    grid-row: 5;
-}
-
 .year {
-    grid-row: 6;
-    font-size: 30px;
+    font-size: 29px;
     font-weight: bold;
 }

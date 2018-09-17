@@ -6,15 +6,20 @@
 }
 
 #works {
-    margin: 2.083vw 2.083vw;
+    margin: 2.083vw;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-auto-rows: 33.33vw;
 }
 
-@media only screen and (max-width: 960px) {
+@media only screen and (max-width: 640px) {
     #works {
         grid-template-columns: 1fr;
-        grid-auto-rows: 66.66vw;
+        grid-auto-rows: 62.5vw;
+        grid-row-gap: 4.6875vw;
+        margin: 4.6875vw;
+    }
+    #cover {
+        margin: 0 4.6875vw;
     }
 }
