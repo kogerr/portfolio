@@ -125,3 +125,65 @@ img, video {
         padding-bottom: 40px;
     }
 }
+
+
+@media (max-width: 640px) {
+    .post-info {
+        padding: 9.375vw 4.6875vw;
+        grid-row-gap: 10vw;
+    }
+
+    .column2-grid {
+        grid-row-gap: 18.75vw;
+    }
+
+    .concept {
+        padding: 4.6875vw 0;
+    }
+
+    h2 {
+        font-size: 6vw;
+    }
+
+    .subtitle {
+        font-size: 2.8125vw;
+    }
+
+    .text-area {
+        font-size: 3.281vw;
+    }
+
+    .highlighted-info {
+        font-size: inherit;
+    }
+
+    .margin-wrap {
+        margin: 4.6875vw;
+        display: grid;
+        grid-row-gap: 4.6875vw;
+    }
+
+    .post-footer {
+        margin: 0;
+        height: 15.625vw;
+        grid-template-columns: min-content min-content min-content;
+    }
+
+    .post-footer img {
+        margin: auto 4.6875vw;
+        width: 6.25vw;
+    }
+
+    .dropdown {
+        display: none;
+    }
+
+    .cover {
+        width: 90.625%;
+        margin: 0 4.6875vw;
+    }
+
+    .more {
+        font-size: 3.281vw
+    }
+}

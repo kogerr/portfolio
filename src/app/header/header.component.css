@@ -157,9 +157,6 @@ a {
 }
 
 @media (max-width: 640px) {
-    /*#logo-wrap > img {
-        background: url('assets/logo_small.svg');
-    }*/
     .line {
         display: none;
     }
