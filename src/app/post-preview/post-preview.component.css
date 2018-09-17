@@ -25,7 +25,6 @@ h3 {
     font-size: 29px;
     color: white;
     font-weight: normal;
-    grid-row: 3;
 }
 
 h2 {
@@ -35,7 +34,6 @@ h2 {
 
 .preivew-text .subtitle {
     color: #929292;
-    grid-row: 2;
 }
 
 .subtitle, .client {
@@ -72,4 +70,27 @@ h2 {
 .year {
     font-size: 29px;
     font-weight: bold;
+}
+
+@media (max-width: 640px) {
+    .overlay {
+        grid-template-rows: 4.6875vw 9.375vw auto;
+        padding: 4.6875vw;
+    }
+
+    .year, .client, .preivew-text {
+        display: none;
+    }
+
+    .preview-line {
+        width: 100%;
+    }
+
+    h2 {
+        font-size: 5vw;
+    }
+
+    .subtitle {
+        font-size: 2.5vw;
+    }
 }
