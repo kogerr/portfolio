@@ -30,7 +30,7 @@ footer {
         height: 18.75vw;
         padding: 4.6875vw 4.6875vw 7.8125vw 4.6875vw;
         grid-template-columns: 8.5vw auto min-content;
-        font-size: 2.5vw;
+        font-size: 2.8125vw;
     }
 
     .arrow {

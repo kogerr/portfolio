@@ -5,7 +5,7 @@
     <div class="ars-poetica column2" [innerHTML]="content.intro"></div>
   </div>
 
-  <div class="text-area">
+  <div class="text-area cheat">
     <h2>Clients</h2>
     <div class="clients spaceylines">
       <div *ngFor="let client of content.clients">{{client.text}}</div>
@@ -16,17 +16,17 @@
   <div class="text-area">
     <h2>Awards</h2>
     <div class="column2-grid spaceylines">
-      <div *ngFor="let award of content.awards" [style.grid-row]="'span ' + (award.lines.length + 2)">
+      <div *ngFor="let award of content.awards; last as isLast" [style.grid-row]="'span ' + (award.lines.length + 1)">
         <div>{{award.header | uppercase }}</div>
         <div *ngFor="let line of award.lines">{{line}}</div>
-        <div style="white-space: pre-wrap;">{{' '}}</div>
+        <div *ngIf="!isLast" style="white-space: pre-wrap;">{{' '}}</div>
       </div>
     </div>
   </div>
 
   <div class="text-area">
     <h2>Publications</h2>
-    <div class="column2-grid spaceylines">
+    <div class="column2-grid spaceylines publications">
       <div>
         <div class="subtitle">print</div>
         <div *ngFor="let publication of content.printPublications">
@@ -51,7 +51,7 @@
 
   <div class="text-area">
     <h2>Exhibitions</h2>
-    <div class="column2-grid spaceylines">
+    <div class="column2-grid spaceylines exhibitions">
       <div *ngFor="let exhibition of content.exhibitions" [class.clickable]="exhibition.link">
         {{exhibition.text}}
       </div>

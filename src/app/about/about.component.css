@@ -30,7 +30,7 @@ h2 {
 }
 
 .spaceylines {
-    line-height: 2.1em;
+    line-height: 2em;
 }
 
 .column2-grid {
@@ -64,4 +64,57 @@ a {
 img {
     width:100%;
     vertical-align: bottom;
+}
+
+@media (max-width: 640px) {
+    .ars-poetica {
+        font-size: 4.6875vw;
+    }
+
+    .margin-wrapper {
+        margin: 0 4.6875vw 4.6875vw 4.6875vw;
+        display: grid;
+        grid-row-gap: 12.66vw;
+    }
+
+    .text-area {
+        margin: 0;
+        font-size: 3.75vw;
+    }
+
+    .column2 {
+        column-count: inherit;
+        column-gap: inherit;
+    }
+
+    .column2-grid {
+        grid-template-columns: none;
+    }
+
+    .clients {
+        grid-template-columns: none;
+    }
+
+    .cheat {
+        margin: -12vw 0 0 0;
+    }
+
+    .full-box {
+        margin: 4.6875vw 0 0 0;
+    }
+
+    h2 {
+        font-size: 5.675vw;
+        margin: 0;
+        padding-bottom: 5.5vw;
+    }
+
+    .publications {
+        grid-row-gap: 9.375vw;
+    }
+
+    .ars-poetica > br {
+        display: none;
+    }
+
 }
