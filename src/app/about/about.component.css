@@ -10,14 +10,14 @@
 .text-area {
     background-color: white;
     box-sizing: border-box;
-    color: #929292;
+    color: #969696;
     line-height: 180%;
     margin: 6.25vw 8.33vw 6.25vw 6.25vw;
-    font-size: 23px;
+    font-size: 24px;
 }
 
 h2 {
-    font-size: 33px;
+    font-size: 36px;
     color: #232323;
     margin: 3px 0;
     padding-bottom: 33px;
@@ -57,7 +57,7 @@ h2 {
 }
 
 a {
-    color: #929292;
+    color: #969696;
     text-decoration: underline;
 }
 

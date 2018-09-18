@@ -1,7 +1,7 @@
 .post-info {
     display: grid;
-    grid-row-gap: 40px;
-    padding: 10.7vw 0 6.25vw 6.25vw
+    grid-row-gap: 25px;
+    padding: 10.7vw 6.25vw 6.25vw 6.25vw
 }
 
 .margin-wrap {
@@ -11,19 +11,19 @@
 .text-area {
     background-color: white;
     box-sizing: border-box;
-    color: #929292;
+    color: #969696;
     font-size: 20px;
     line-height: 180%;
 }
 
 h2 {
-    font-size: 33px;
+    font-size: 36px;
     color: #232323;
-    margin: 3px 0;
+    margin: 3px 0 5px 0;
 }
 
 .subtitle {
-    font-size: 17px;
+    font-size: 18px;
     text-transform: uppercase;
 }
 
@@ -40,7 +40,7 @@ h2 {
 .highlighted-info {
     color: #232323;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .dropdown {
@@ -60,7 +60,7 @@ h2 {
 }
 
 .concept {
-    padding: 4.8vw 6.25vw;
+    padding: 4.5vw 6.25vw;
 }
 
 .post-footer {
@@ -84,7 +84,7 @@ h2 {
     min-width: 10em;
     text-align: center;
     font-weight: bold;
-    font-size: 23px;
+    font-size: 24px;
     cursor: pointer;
 }
 

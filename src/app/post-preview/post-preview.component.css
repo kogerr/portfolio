@@ -22,23 +22,24 @@ img {
 
 h3 {
     margin: 0;
-    font-size: 29px;
+    font-size: 30px;
     color: white;
     font-weight: normal;
 }
 
 h2 {
     margin: 0;
-    font-size: 33px;
+    font-size: 36px;
 }
 
 .preivew-text .subtitle {
-    color: #929292;
+    color: #ffffff;
+    opacity: 0.5;
 }
 
 .subtitle, .client {
     text-transform: uppercase;
-    font-size: 17px;
+    font-size: 18px;
 }
 
 .overlay {
@@ -68,7 +69,7 @@ h2 {
 }
 
 .year {
-    font-size: 29px;
+    font-size: 30px;
     font-weight: bold;
 }
 
