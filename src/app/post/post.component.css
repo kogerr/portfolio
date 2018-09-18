@@ -1,7 +1,8 @@
 .post-info {
     display: grid;
     grid-row-gap: 25px;
-    padding: 10.7vw 6.25vw 6.25vw 6.25vw
+    padding: 10.7vw 6.25vw 6.25vw 6.25vw;
+    margin: 0 2.083vw;
 }
 
 .margin-wrap {
@@ -96,6 +97,20 @@ img, video {
     vertical-align: bottom;
 }
 
+@-webkit-keyframes bounce {
+    0%, 100% {transform: translateY(-0.3vw)}
+    50% {transform: translateY(+0.3vw)}
+  } 
+@keyframes bounce {
+    0%, 100% {transform: translateY(-0.3vw)}
+    50% {transform: translateY(+0.3vw)}
+} 
+
+.bounce {
+    animation: bounce 1s infinite;
+    -webkit-animation: bounce 1s infinite;
+}
+
 @media only screen and (max-width: 1200px) {
     .columned-text {
         grid-template-columns: 1fr;
@@ -119,6 +134,7 @@ img, video {
 
     .post-info {
         padding: 10.7vw 6.25vw 6.25vw 6.25vw;
+        margin: 0;
     }
 
     .margin-wrap > img {

@@ -20,8 +20,8 @@
         </div>
 
     </div>
-    <a [routerLink]="post.link" class="dropdown">
-        <img src="assets/v-shape.svg">
+    <a [routerLink]="" class="dropdown" (click)="scrollDown()">
+        <img src="assets/v-shape.svg" class="bounce">
     </a>
     <img [src]="'images/' + post.cover" class="cover" />
     <div class="margin-wrap">

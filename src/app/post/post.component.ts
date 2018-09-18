@@ -77,6 +77,10 @@ export class PostComponent implements OnInit, AfterViewChecked, OnDestroy {
     }
   }
 
+  scrollDown(): void {
+    window.document.getElementsByClassName('margin-wrap')[0].scrollIntoView();
+  }
+
   ngOnDestroy(): void {
     this.titleService.setTitle(origialTitle);
   }
