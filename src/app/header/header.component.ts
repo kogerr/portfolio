@@ -36,6 +36,6 @@ export class HeaderComponent {
   dropDown(): void {
     this.contactInfo = true;
     this.ongoingAnimation = true;
-    setTimeout(() => { this.ongoingAnimation = false; }, 500);
+    setTimeout(() => { this.ongoingAnimation = false; }, 800);
   }
 }
