@@ -12,28 +12,28 @@
                 <a [href]="content.linkedIn" target="_blank" style="text-decoration: underline">LinkedIn</a>
             </div>
         </div>
-        <img src="assets/x.svg" class="closingX" (click)="switchContactHeader()" />
+        <img src="assets/x.svg" class="closingX" (click)="contactInfo = false" />
     </div>
     <header [class]="fullHeader ? 'full-header' : 'short-header'">
 
         <a id="logo-wrap" routerLink="/">
-            <img *ngIf="!mobileView()" class="logo" [src]="fullHeader ? 'assets/logo.svg' : 'assets/logo_small.svg'" alt="">
-            <img *ngIf="mobileView()" class="mobile-logo" src="assets/logo.svg" alt="">
+            <img class="logo" [src]="fullHeader ? 'assets/logo.svg' : 'assets/logo_small.svg'" alt="">
+            <img class="mobile-logo" src="assets/logo.svg" alt="">
         </a>
 
-        <div *ngIf="!mobileView()" class="menu">
+        <div class="menu">
             <div class="items">
                 <a routerLink="/work" routerLinkActive="active">Work</a>
                 <span>|</span>
                 <a routerLink="/about" routerLinkActive="active">About</a>
                 <span>|</span>
-                <a [routerLink]="" (click)="switchContactHeader()">Contact</a>
+                <span (click)="contactInfo = true">Contact</span>
             </div>
             <div [class.line-hide]="!fullHeader" class="line"></div>
         </div>
-        <img *ngIf="mobileView()" src="assets/3lines.svg" class="menu mobile-menu-button" alt="menu" (click)="mobileMenu = true">
+        <img src="assets/3lines.svg" class="mobile-menu-button" alt="menu" (click)="mobileMenu = true">
         <mobile-menu *ngIf="mobileMenu" [content]="content" (close)="mobileMenu = false"></mobile-menu>
     </header>
 </div>
 <div [class]="fullHeader ? 'full-header' : 'short-header'"></div>
-<div *ngIf="!mobileView()" class="contact-header" [class.contact-header-hide]="!contactInfo"></div>
+<div class="contact-header" [class.contact-header-hide]="!contactInfo"></div>

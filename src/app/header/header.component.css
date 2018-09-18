@@ -53,7 +53,7 @@ a.active {
 .items {
     margin-left: auto;
     margin-right: 0;
-    padding: 25px 2.083vw 30px;
+    padding: 25px 2.083vw 35px;
     width: min-content;
 }
 
@@ -63,7 +63,7 @@ a.active {
 }
 
 .items span, .items a {
-    margin: 0 0 0 1.3vw;
+    margin: 0 0 0 1.5vw;
 }
 
 .line {
@@ -81,14 +81,17 @@ a.active {
 }
 
 .contact-header {
+    position: fixed;
     background: #FFF000;
     height: 360px;
+    width: 100%;
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
     opacity: 1;
     display: grid;
     grid-template-rows: 15.3% 40% auto;
     grid-template-columns: 8.33% auto 14.375%;
+    z-index: 1;
 }
 
 .contact-header-hide {
@@ -147,19 +150,43 @@ a {
 }
 
 .mobile-menu-button {
+    display: none;
+    float: right;
     height: 5.625vw;
     padding: 5vw 2.6045vw 5vw 4.6875vw;
 }
 
 .mobile-logo {
+    display: none;
     margin: 3.125vw 2.6045vw;
     height: 9.375vw;
 }
 
 @media (max-width: 640px) {
+    .contact-header {
+        display: none;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .mobile-menu-button {
+        display: block;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .mobile-logo {
+        display: inline;
+    }
+
     .line {
         display: none;
     }
+
     .full-header {
         height: 15.625vw;
     }
