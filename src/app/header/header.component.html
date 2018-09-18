@@ -1,5 +1,5 @@
 <div class="fix-holder">
-    <div *ngIf="content && !mobileView()" class="contact-header" [class.contact-header-hide]="!contactInfo">
+    <div *ngIf="content" class="contact-header" [class.contact-header-hide]="!contactInfo">
         <div id="content" class="contact-header-content">
             <span style="text-decoration: underline">For new work inquiries, please contact:</span>
             <span></span>
@@ -27,7 +27,7 @@
                 <span>|</span>
                 <a routerLink="/about" routerLinkActive="active">About</a>
                 <span>|</span>
-                <span (click)="contactInfo = true">Contact</span>
+                <span (click)="dropDown()">Contact</span>
             </div>
             <div [class.line-hide]="!fullHeader" class="line"></div>
         </div>

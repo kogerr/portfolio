@@ -36,7 +36,7 @@ header img {
     height: 480px;
 }
 
-.short-header img {
+.short-header > * > .logo {
     margin: 0;
     height: 80px;
 }
@@ -81,10 +81,8 @@ a.active {
 }
 
 .contact-header {
-    position: fixed;
     background: #FFF000;
     height: 360px;
-    width: 100%;
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
     opacity: 1;

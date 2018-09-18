@@ -13,6 +13,7 @@ export class HeaderComponent {
   fullHeader = true;
   contactInfo = false;
   mobileMenu = false;
+  ongoingAnimation = false;
 
   @HostListener('window:scroll', ['$event'])
   onScroll($event: Event): void {
@@ -23,10 +24,18 @@ export class HeaderComponent {
     let breakPointY = window.innerWidth * breakPoint;
     if (!this.fullHeader) { breakPointY -= 40; }
     this.fullHeader = window.scrollY < breakPointY;
-    this.contactInfo = false;
+    if (!this.ongoingAnimation) {
+      this.contactInfo = false;
+    }
   }
 
   mobileView(): boolean {
     return window.innerWidth <= 640;
+  }
+
+  dropDown(): void {
+    this.contactInfo = true;
+    this.ongoingAnimation = true;
+    setTimeout(() => { this.ongoingAnimation = false; }, 500);
   }
 }
