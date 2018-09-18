@@ -8,8 +8,8 @@
 <div class="line"></div>
 <div class="textbox">
   <u>For new work inquiries, please contact:</u><br><br>
-  {{content.mail}}<br>
-  {{content.phone}}
+  <a [href]="'mailto:' + content.mail">{{content.mail}}</a><br>
+  <a [href]="'tel:' + content.phone">{{content.phone}}</a>
 </div>
 <div class="textbox textbox2">
   <a [href]="content.behance" target="_blank" style="text-decoration: underline">Behance</a><br>
