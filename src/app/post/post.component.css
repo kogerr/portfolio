@@ -195,6 +195,7 @@ img, video {
     }
 
     .cover {
+        display: none;
         width: 90.625%;
         margin: 0 4.6875vw;
     }

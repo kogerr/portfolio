@@ -1,5 +1,7 @@
 import { Component, HostListener, Input } from '@angular/core';
 import { Contact } from '../models/contact';
+import { Router, NavigationStart } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 const breakPoint = 0.182;
 
@@ -14,6 +16,12 @@ export class HeaderComponent {
   contactInfo = false;
   mobileMenu = false;
   ongoingAnimation = false;
+  yellow = false;
+
+  constructor(private router: Router) {
+    router.events.pipe(filter(e => e instanceof NavigationStart))
+      .subscribe(e => this.handleRouteChange(e as NavigationStart));
+  }
 
   @HostListener('window:scroll', ['$event'])
   onScroll($event: Event): void {
@@ -38,4 +46,9 @@ export class HeaderComponent {
     this.ongoingAnimation = true;
     setTimeout(() => { this.ongoingAnimation = false; }, 800);
   }
+
+  handleRouteChange(navigationStart: NavigationStart): any {
+    this.yellow = navigationStart.url.startsWith('/work/');
+  }
+
 }

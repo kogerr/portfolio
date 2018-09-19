@@ -188,4 +188,8 @@ a {
     .full-header {
         height: 15.625vw;
     }
+
+    .yellow {
+        background-color: #fff000;
+    }
 }

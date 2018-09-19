@@ -5,7 +5,7 @@ import { DataService } from '../data.service';
 import { Post } from '../models/post';
 import { MetatagService } from '../metatag.service';
 
-const origialTitle = 'Portfolio';
+const origialTitle = 'Botond Vörös';
 
 @Component({
   templateUrl: './post.component.html',

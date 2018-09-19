@@ -14,7 +14,7 @@
         </div>
         <img src="assets/x.svg" class="closingX" (click)="contactInfo = false" />
     </div>
-    <header [class]="fullHeader ? 'full-header' : 'short-header'">
+    <header [class]="fullHeader ? 'full-header' : 'short-header'" [class.yellow]="yellow">
 
         <a id="logo-wrap" routerLink="/">
             <img class="logo" [src]="fullHeader ? 'assets/logo.svg' : 'assets/logo_small.svg'" alt="">
@@ -27,7 +27,7 @@
                 <span>|</span>
                 <a routerLink="/about" routerLinkActive="active">About</a>
                 <span>|</span>
-                <span (click)="dropDown()">Contact</span>
+                <span style="cursor:pointer" (click)="dropDown()">Contact</span>
             </div>
             <div [class.line-hide]="!fullHeader" class="line"></div>
         </div>

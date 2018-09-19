@@ -19,7 +19,9 @@
         grid-row-gap: 4.6875vw;
         margin: 4.6875vw;
     }
+
     #cover {
+        display: none;
         margin: 0 4.6875vw;
     }
 }

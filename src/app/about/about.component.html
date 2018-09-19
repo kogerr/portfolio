@@ -16,8 +16,8 @@
   <div class="text-area">
     <h2>Awards</h2>
     <div class="column2-grid spaceylines">
-      <div *ngFor="let award of content.awards; last as isLast" [style.grid-row]="'span ' + (award.lines.length + 1)">
-        <div>{{award.header | uppercase }}</div>
+      <div *ngFor="let award of content.awards; last as isLast" [style.grid-row]="'span ' + (award.lines.length + 2)">
+        <div>{{award.title | uppercase }}</div>
         <div *ngFor="let line of award.lines">{{line}}</div>
         <div *ngIf="!isLast" style="white-space: pre-wrap;">{{' '}}</div>
       </div>

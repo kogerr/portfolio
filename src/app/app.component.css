@@ -6,5 +6,6 @@
 @media (max-width: 640px) {
     .content-background {
         min-height: calc(100vh - 34.375vw);
+        background: none;
     }
 }
