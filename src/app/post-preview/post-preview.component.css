@@ -16,8 +16,6 @@ img {
     width: 100%;
     padding: 25.833vw 2.083vw 3.333vw 2.083vw;
     box-sizing: border-box;
-    display: grid;
-    grid-template-rows: 3fr 2fr;
 }
 
 h3 {
@@ -40,6 +38,7 @@ h2 {
 .subtitle, .client {
     text-transform: uppercase;
     font-size: 18px;
+    height: 2.5vw;
 }
 
 .overlay {
