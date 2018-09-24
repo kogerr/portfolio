@@ -128,7 +128,7 @@ textarea {
 .elementControls {
     width: 100%;
     display: grid;
-    grid-template-columns: min-content min-content min-content min-content min-content 1fr min-content;
+    grid-template-columns: repeat(7, min-content);
     grid-column-gap: 0.5em;
     align-items: center;
 }

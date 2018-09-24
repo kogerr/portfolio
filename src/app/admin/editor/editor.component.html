@@ -80,8 +80,8 @@
                 <button><img src="assets/arrow_up.svg" class="icon" alt="up" (click)="moveElementUp(i)"></button>
                 <button><img src="assets/arrow_down.svg" class="icon" alt="down" (click)="moveElementDown(i)"></button>
                 <span *ngIf="element.type != 'text'">Width</span>
-                <input *ngIf="element.type != 'text'" name="width" type="range" min="1" max="100" [(ngModel)]="element.width" style="width:100%">
-                <span *ngIf="element.type != 'text'">{{element.width}}%</span>
+                <input *ngIf="element.type != 'text'" name="width" type="number" min="1" max="100" [(ngModel)]="element.width" style="width:3em;padding:0;">
+                <span *ngIf="element.type != 'text'">%</span>
             </div>
             <div *ngIf="element.type === 'video'" class="elementControls">
                 <input type="checkbox" name="autoplay" checked [(ngModel)]="element.autoplay" style="width:auto">Autoplay
