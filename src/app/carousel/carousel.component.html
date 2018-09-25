@@ -1,10 +1,6 @@
 <div id="slide-wrap" *ngIf="slides">
     <app-carousel-slide [slide]="current" [style.right]="offset ? '100%' : '0%'"  [class.transition]="transition"></app-carousel-slide>
     <app-carousel-slide [slide]="next" [style.left]="offset ? '0%' : '100%'" [class.transition]="transition"></app-carousel-slide>
-    <div class="carousel-overlay" style="left: 0" (click)="moveBackward()">
-        <img src="assets/arrow_left_white.svg" class="carousel-arrow">
-      </div>
-      <div class="carousel-overlay" style="right: 0"  (click)="moveForward()">
-        <img src="assets/arrow_right_white.svg" class="carousel-arrow">
-    </div>
+    <img src="assets/arrow_left_white.svg" class="carousel-arrow" (click)="moveBackward()">
+    <img src="assets/arrow_right_white.svg" style="right: 0" class="carousel-arrow" (click)="moveForward()">
 </div>

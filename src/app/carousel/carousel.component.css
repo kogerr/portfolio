@@ -16,25 +16,14 @@ app-carousel-slide {
     -webkit-transition: left 1s, right 1s;
 }
 
-.carousel-overlay {
-    position: absolute;
-    opacity: 0;
-    width: 10%; height:100%;
-    box-sizing: border-box;
-    transition: opacity 100ms;
-    -webkit-transition: opacity 100ms;
-    cursor: pointer;
-}
-
-.carousel-overlay:hover {
-    opacity: 1;
-}
-
 .carousel-arrow {
-    opacity: inherit;
+    cursor: pointer;
     height: 10%;
-    margin: auto;
-    top: 40%;
-    position: relative;
-    display: block;
+    opacity: 0;
+    position: absolute;
+    padding: 14.8vw 3vw;
+}
+
+.carousel-arrow:hover {
+    opacity: 1;
 }
