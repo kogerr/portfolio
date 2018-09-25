@@ -1,26 +1,48 @@
 export class CircularList<T> {
-    constructor(collection?: Array<T>) {
-        this.items = collection || new Array<T>();
+    constructor(collection: Array<T>) {
+        this.index = CircularList.arrayToLinkedList<T>(collection);
     }
 
-    items: Array<T>;
-    index = -1;
+    index: Node<T>;
+
+    private static arrayToLinkedList<S>(array: Array<S>): Node<S> {
+        let first = {value: array[0], next: null, previous: null};
+        let current = first;
+        for (let i = 1; i < array.length; i++) {
+            let newNode = {value: array[i], next: null, previous: current};
+            current.next = newNode;
+            current = newNode;
+        }
+        current.next = first;
+        first.previous = current;
+        return first;
+    }
+
+    current(): T {
+        return this.index.value;
+    }
 
     next(): T {
-        if (this.index + 1 < this.items.length) {
-            this.index++;
-        } else {
-            this.index = 0;
-        }
-        return this.items[this.index];
+        return this.index.next.value;
     }
 
     previous(): T {
-        if (this.index > 0) {
-            this.index--;
-        } else {
-            this.index = this.items.length - 1;
-        }
-        return this.items[this.index];
+        return this.index.previous.value;
     }
+
+    stepForward(): T {
+        this.index = this.index.next;
+        return this.index.next.value;
+    }
+
+    stepBack(): T {
+        this.index = this.index.previous;
+        return this.index.previous.value;
+    }
+}
+
+interface Node<T> {
+    value: T;
+    next: Node<T>;
+    previous: Node<T>;
 }

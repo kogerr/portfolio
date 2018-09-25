@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Slide } from '../models/slide';
 import { CircularList } from './CircularList';
 import { DataService } from '../data.service';
+import { DisplayedSlide } from './DisplayedSlide';
 
 const roundInterval = 3000;
 
@@ -12,9 +13,7 @@ const roundInterval = 3000;
 })
 export class CarouselComponent implements OnInit {
   slides: CircularList<Slide>;
-  current: Slide;
-  next: Slide;
-  offset = false;
+  currentSlides: Array<DisplayedSlide>;
   transition = false;
   periodicAnimation: NodeJS.Timer;
 
@@ -23,29 +22,35 @@ export class CarouselComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.loadSlides().subscribe(data => {
       this.slides = new CircularList(data);
-      this.current = this.slides.next();
-      this.next = this.current;
-      this.setPeriodicAnimation();
+      this.setFirstSlides();
     });
   }
 
+  setFirstSlides(): void {
+    let i = -200;
+    this.currentSlides = [this.slides.index.previous.value, this.slides.index.value, this.slides.index.next.value]
+      .map(s => new DisplayedSlide(s, i += 100));
+    this.setPeriodicAnimation();
+  }
+
   animateForward(): void {
-    this.next = this.slides.next();
     this.transition = true;
-    this.offset = true;
-    setTimeout(() => {
-      this.transition = false;
-      this.current = this.next;
-      this.offset = false;
-    }, 1000);
+    this.currentSlides.splice(0, 1);
+    this.currentSlides[0].moveTo(-100);
+    this.currentSlides[1].moveTo(0);
+    let newSlide = new DisplayedSlide(this.slides.stepForward(), 100);
+    this.currentSlides.push(newSlide);
+    setTimeout(() => { this.transition = false; }, 1000);
   }
 
   animateBackward(): void {
-    this.next = this.current;
-    this.offset = true;
-    this.current = this.slides.previous();
-    setTimeout(() => { this.transition = true; this.offset = false; }, 50);
-    setTimeout(() => { this.transition = false; }, 1050);
+    this.transition = true;
+    this.currentSlides.splice(this.currentSlides.length - 1, 1);
+    this.currentSlides[0].moveTo(0);
+    this.currentSlides[1].moveTo(100);
+    let newSlide = new DisplayedSlide(this.slides.stepBack(), -100);
+    this.currentSlides = [newSlide, this.currentSlides[0], this.currentSlides[1]];
+    setTimeout(() => { this.transition = false; }, 1000);
   }
 
   setPeriodicAnimation(): void {
