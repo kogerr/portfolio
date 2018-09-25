@@ -9,11 +9,8 @@ app-carousel-slide {
     position: absolute;
     width: 100%;
     height: 100%;
-}
-
-.transition {
-    transition: left 1s, right 1s;
-    -webkit-transition: left 1s, right 1s;
+    transition: left 1s;
+    -webkit-transition: left 1s;
 }
 
 .carousel-arrow {

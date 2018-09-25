@@ -36,8 +36,8 @@ export class CarouselComponent implements OnInit {
   animateForward(): void {
     this.transition = true;
     this.currentSlides.splice(0, 1);
-    this.currentSlides[0].moveTo(-100);
-    this.currentSlides[1].moveTo(0);
+    this.currentSlides[0].position = -100;
+    this.currentSlides[1].position = 0;
     let newSlide = new DisplayedSlide(this.slides.stepForward(), 100);
     this.currentSlides.push(newSlide);
     setTimeout(() => { this.transition = false; }, 1000);
@@ -46,8 +46,8 @@ export class CarouselComponent implements OnInit {
   animateBackward(): void {
     this.transition = true;
     this.currentSlides.splice(this.currentSlides.length - 1, 1);
-    this.currentSlides[0].moveTo(0);
-    this.currentSlides[1].moveTo(100);
+    this.currentSlides[0].position = 0;
+    this.currentSlides[1].position = 100;
     let newSlide = new DisplayedSlide(this.slides.stepBack(), -100);
     this.currentSlides = [newSlide, this.currentSlides[0], this.currentSlides[1]];
     setTimeout(() => { this.transition = false; }, 1000);
