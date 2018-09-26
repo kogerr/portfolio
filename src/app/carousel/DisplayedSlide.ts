@@ -25,4 +25,9 @@ export class DisplayedSlide {
         }, 10);
     }
 
+    shiftBy(difference: number): DisplayedSlide {
+        this.position += difference;
+        return this;
+    }
+
 }

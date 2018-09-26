@@ -3,8 +3,10 @@ import { Slide } from '../models/slide';
 import { CircularList } from './CircularList';
 import { DataService } from '../data.service';
 import { DisplayedSlide } from './DisplayedSlide';
+import { CarouselDisplay } from './CarouselDisplay';
 
 const roundInterval = 3000;
+const transitionTime =  1000;
 
 @Component({
   selector: 'app-carousel',
@@ -12,8 +14,7 @@ const roundInterval = 3000;
   styleUrls: ['./carousel.component.css']
 })
 export class CarouselComponent implements OnInit {
-  slides: CircularList<Slide>;
-  currentSlides: Array<DisplayedSlide>;
+  display: CarouselDisplay;
   transition = false;
   periodicAnimation: NodeJS.Timer;
 
@@ -21,36 +22,17 @@ export class CarouselComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.loadSlides().subscribe(data => {
-      this.slides = new CircularList(data);
-      this.setFirstSlides();
+      this.display = new CarouselDisplay(data, transitionTime);
+      this.setPeriodicAnimation();
     });
   }
 
-  setFirstSlides(): void {
-    let i = -200;
-    this.currentSlides = [this.slides.index.previous.value, this.slides.index.value, this.slides.index.next.value]
-      .map(s => new DisplayedSlide(s, i += 100));
-    this.setPeriodicAnimation();
-  }
-
   animateForward(): void {
-    this.transition = true;
-    this.currentSlides.splice(0, 1);
-    this.currentSlides[0].position = -100;
-    this.currentSlides[1].position = 0;
-    let newSlide = new DisplayedSlide(this.slides.stepForward(), 100);
-    this.currentSlides.push(newSlide);
-    setTimeout(() => { this.transition = false; }, 1000);
+    this.display.next();
   }
 
   animateBackward(): void {
-    this.transition = true;
-    this.currentSlides.splice(this.currentSlides.length - 1, 1);
-    this.currentSlides[0].position = 0;
-    this.currentSlides[1].position = 100;
-    let newSlide = new DisplayedSlide(this.slides.stepBack(), -100);
-    this.currentSlides = [newSlide, this.currentSlides[0], this.currentSlides[1]];
-    setTimeout(() => { this.transition = false; }, 1000);
+    this.display.previous();
   }
 
   setPeriodicAnimation(): void {
@@ -58,7 +40,7 @@ export class CarouselComponent implements OnInit {
   }
 
   moveForward(): void {
-    if (!this.transition) {
+    if (!this.display.locked) {
       clearInterval(this.periodicAnimation);
       this.animateForward();
       this.setPeriodicAnimation();
@@ -66,10 +48,11 @@ export class CarouselComponent implements OnInit {
   }
 
   moveBackward(): void {
-    if (!this.transition) {
+    if (!this.display.locked) {
       clearInterval(this.periodicAnimation);
       this.animateBackward();
       this.setPeriodicAnimation();
     }
   }
+
 }
