@@ -1,4 +1,4 @@
-<div id="slide-wrap" *ngIf="slides">
+<div id="slide-wrap" *ngIf="display">
     <app-carousel-slide *ngFor="let slide of display.values" [slide]="slide" [style.left]="slide.position + '%'"></app-carousel-slide>
     <img src="assets/arrow_left_white.svg" class="carousel-arrow" (click)="moveBackward()">
     <img src="assets/arrow_right_white.svg" style="right: 0" class="carousel-arrow" (click)="moveForward()">

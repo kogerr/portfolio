@@ -35,7 +35,7 @@ export class CarouselDisplay {
             this.values.splice(this.values.length - 1, 1);
             this.values.forEach(e => e.shiftBy(100));
             let newSlide = new DisplayedSlide(this.list.stepBack(), -100);
-            this.values.push(newSlide);
+            this.values = [newSlide, ...this.values];
             setTimeout(() => { this.locked = false; }, this.lockTime);
         }
     }

@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Slide } from '../models/slide';
-import { CircularList } from './CircularList';
 import { DataService } from '../data.service';
-import { DisplayedSlide } from './DisplayedSlide';
 import { CarouselDisplay } from './CarouselDisplay';
 
 const roundInterval = 3000;
-const transitionTime =  1000;
+const transitionTime = 1000;
 
 @Component({
   selector: 'app-carousel',

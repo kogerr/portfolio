@@ -8,7 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthenticationInterceptor } from './auth.interceptor';
 import { DataService } from '../data.service';
 import { AdminDataService } from './data.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { LogComponent } from './log/log.component';
 import { TitleValidatorDirective } from './title.validator';

@@ -18,13 +18,13 @@ export class HeaderComponent {
   ongoingAnimation = false;
   yellow = false;
 
-  constructor(private router: Router) {
+  constructor(router: Router) {
     router.events.pipe(filter(e => e instanceof NavigationStart))
       .subscribe(e => this.handleRouteChange(e as NavigationStart));
   }
 
-  @HostListener('window:scroll', ['$event'])
-  onScroll($event: Event): void {
+  @HostListener('window:scroll')
+  onScroll(): void {
     if (this.mobileView()) {
       this.mobileMenu = false;
       return;
