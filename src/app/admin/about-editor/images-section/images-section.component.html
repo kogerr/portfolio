@@ -1,12 +1,12 @@
 <div class="images">
   <div *ngIf="images[0]" class="image-wrap">
     <img [src]="'images/' + images[0]" alt="first image">
-    <img src="assets/x.svg" (click)="deleteImage(0)" class="overlay-icon" style="width: 2em">
+    <img src="assets/x_white.svg" (click)="deleteImage(0)" class="overlay-icon" style="width: 2em">
   </div>
   <img *ngIf="images.length === 2" src="assets/arrow_right_black.svg" (click)="swapImages()" class="icon">
   <div *ngIf="images[1]" class="image-wrap">
     <img [src]="'images/' + images[1]" alt="second image">
-    <img src="assets/x.svg" (click)="deleteImage(1)" class="overlay-icon" style="width: 2em">
+    <img src="assets/x_white.svg" (click)="deleteImage(1)" class="overlay-icon" style="width: 2em">
   </div>
   <input *ngIf="images.length < 2" name="content-images" type="file" accept=".png, .jpg, .jpeg, .svg, .gif" (change)="uploadImage($event)"
     [multiple]="!images.length">

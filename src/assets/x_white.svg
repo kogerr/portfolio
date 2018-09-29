@@ -4,11 +4,14 @@
 	 viewBox="0 0 37.4 37.4" style="enable-background:new 0 0 37.4 37.4;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:none;stroke:#191919;stroke-width:2;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
 </style>
 <g>
 	<g>
 		<line class="st0" x1="0.7" y1="0.7" x2="36.7" y2="36.7"/>
 		<line class="st0" x1="36.7" y1="0.7" x2="0.7" y2="36.7"/>
+        <line class="st1" x1="0.2" y1="0.7" x2="36.2" y2="36.7"/>
+		<line class="st1" x1="36.2" y1="0.7" x2="0.2" y2="36.7"/>
 	</g>
 </g>
 </svg>
