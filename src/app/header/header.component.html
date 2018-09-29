@@ -1,19 +1,5 @@
 <div class="fix-holder">
-    <div *ngIf="content" class="contact-header" [class.contact-header-hide]="!contactInfo">
-        <div id="content" class="contact-header-content">
-            <span style="text-decoration: underline">For new work inquiries, please contact:</span>
-            <span></span>
-            <div>
-                <a [href]="'mailto:' + content.mail" class="header-mail">{{content.mail}}</a>
-                <a [href]="'tel:' + content.phone" class="header-mail">{{content.phone}}</a>
-            </div>
-            <div>
-                <a [href]="content.behance" target="_blank" style="text-decoration: underline">Behance</a>
-                <a [href]="content.linkedIn" target="_blank" style="text-decoration: underline">LinkedIn</a>
-            </div>
-        </div>
-        <img src="assets/x.svg" class="closingX" (click)="contactInfo = false" />
-    </div>
+    <header-contact [content]="content" [class.contact-header-hide]="!contactInfo" (close)="contactInfo = false"></header-contact>
     <header [class]="fullHeader ? 'full-header' : 'short-header'" [class.yellow]="yellow">
 
         <a id="logo-wrap" routerLink="/">
@@ -36,4 +22,4 @@
     </header>
 </div>
 <div [class]="fullHeader ? 'full-header' : 'short-header'"></div>
-<div class="contact-header" [class.contact-header-hide]="!contactInfo"></div>
+<div [class]="contactInfo ? 'contact-header-show' : 'contact-header-hide'" style="transition:height 0.5s"></div>

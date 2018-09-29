@@ -1,0 +1,11 @@
+
+  <span style="text-decoration: underline">For new work inquiries, please contact:</span>
+  <img src="assets/x.svg" class="closingX" (click)="close.emit()" />
+  <div class="contact-details">
+    <a [href]="'mailto:' + content.mail" class="header-mail">{{content.mail}}</a>
+    <a [href]="'tel:' + content.phone" class="header-mail">{{content.phone}}</a>
+  </div>
+  <div class="contact-details">
+    <a [href]="content.behance" target="_blank" style="text-decoration: underline">Behance</a>
+    <a [href]="content.linkedIn" target="_blank" style="text-decoration: underline">LinkedIn</a>
+  </div>

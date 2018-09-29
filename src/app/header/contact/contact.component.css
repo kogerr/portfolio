@@ -1,0 +1,30 @@
+:host {
+    display: grid;
+    padding: calc(1vw + 40.8px) calc(15vw - 48.75px) 8.125vw 8.333vw;
+    overflow: hidden;
+    background: #FFF000;
+    transition: height 0.5s, padding 0.5s;
+    -webkit-transition: height 0.5s, padding 0.5s;
+    height: calc(9.125vw + 184.8px);
+    box-sizing: border-box;
+    grid-template-columns: auto 31.25vw;
+    grid-template-rows: 1fr 1fr;
+    font-size: 20px;
+    z-index: 1;
+}
+
+.closingX {
+    width: 36px;
+    cursor: pointer;
+    justify-self: right;
+}
+
+a {
+    color: #191919;
+    text-decoration: none;
+}
+
+.contact-details {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}

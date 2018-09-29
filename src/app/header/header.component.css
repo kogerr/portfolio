@@ -80,66 +80,18 @@ a.active {
     width: 0;
 }
 
-.contact-header {
-    background: #FFF000;
-    height: 360px;
-    transition: all 0.5s;
-    -webkit-transition: all 0.5s;
-    opacity: 1;
-    display: grid;
-    grid-template-rows: 15.3% 40% auto;
-    grid-template-columns: 8.33% auto 14.375%;
-    z-index: 1;
+.contact-header-show {
+    height: calc(9.125vw + 184.8px);
 }
 
 .contact-header-hide {
     height: 0;
-}
-
-.contact-header-hide > .contact-header-content > div, .contact-header-hide > .contact-header-content > span, .contact-header-hide > img, .contact-header-hide > .contact-header-content > div > a {
-    height: 0;
-    opacity: 0;
-}
-
-.contact-header-content > span, .contact-header-content > a, .contact-header > img, .contact-header-content > div {
-    transition: opacity, 0.8s;
-    -webkit-transition: opacity, 0.8s;
-    transition: height, 0.5s;
-    -webkit-transition: height, 0.5s;
-}
-
-.contact-header-content > div {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 a {
     color: #191919;
-}
-
-
-.contact-header-content {
-    grid-column: 2;
-    grid-row: 2;
-    display: grid;
-    grid-template-columns: 62% 38%;
-    grid-template-rows: 1fr 1fr;
-    font-size: 20px;
-}
-
-.closingX {
-    width: 36px;
-    grid-column: 3;
-    grid-row: 2;
-    transition: opacity, 0.8s;
-    -webkit-transition: opacity, 0.8s;
-    transition: height, 0.5s;
-    -webkit-transition: height, 0.5s;
-    cursor: pointer;
-}
-
-.header-mail {
-    text-decoration: none;
 }
 
 .logo {
@@ -161,7 +113,7 @@ a {
 }
 
 @media (max-width: 640px) {
-    .contact-header {
+    header-contact, .contact-header-show {
         display: none;
     }
 

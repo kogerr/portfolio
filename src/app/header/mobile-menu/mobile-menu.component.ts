@@ -26,8 +26,4 @@ export class MobileMenuComponent implements OnInit {
     }, 1);
   }
 
-  closeMenu(): void {
-    this.close.emit();
-  }
-
 }
