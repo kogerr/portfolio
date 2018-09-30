@@ -38,6 +38,7 @@ export class EditorSectionComponent<T extends IndexedText | PossiblyClickable | 
 
   updateElements(): void {
     this.content.forEach(this.removeEdit);
+    this.removeEmptyElements();
     this.dataService.updateAbout({ [this.field]: this.content }).subscribe(this.updateIfSuccess);
   }
 
@@ -56,4 +57,11 @@ export class EditorSectionComponent<T extends IndexedText | PossiblyClickable | 
   }
 
   removeEdit = e => delete e.edit;
+
+  removeEmptyElements(): void {
+    this.content.forEach(e => this.properties(e).filter(p => this.isArray(e[p])).forEach(p => {
+      e[p] = e[p].filter(x => x !== '');
+    })
+    );
+  }
 }
