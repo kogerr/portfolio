@@ -1,12 +1,17 @@
 <div *ngFor="let element of content; index as i" class="element">
-  <div *ngFor="let property of properties(element)">
+  <div *ngFor="let property of properties(element)" style="display: grid">
     <div *ngIf="!element.edit && !isArray(element[property])" (click)="element.edit = true" class="field">{{element[property]}}</div>
-    <input *ngIf="element.edit && !isArray(element[property])" type="text" [(ngModel)]="element[property]">
+    <input *ngIf="element.edit && !isArray(element[property])" [type]="property === 'url' ? 'url' : 'text'"
+      [placeholder]="property" [(ngModel)]="element[property]">
     <div *ngIf="!element.edit && isArray(element[property])">
-      <div *ngFor="let member of element[property]; index as i" (click)="element.edit = true" style="padding:0 0.5em">{{member}}</div>
+      <div *ngFor="let member of element[property]; index as i" (click)="element.edit = true" class="field" style="color: inherit">{{member}}</div>
     </div>
     <div *ngIf="element.edit && isArray(element[property])">
-      <input *ngFor="let member of element[property]; index as i" type="text" [(ngModel)]="element[property][i]">
+      <input *ngFor="let member of element[property]; index as i" type="text" [ngModel]="element[property][i]" (change)="element[property][i]=$event.target.value">
+    </div>
+    <div *ngIf="element.edit && isArray(element[property])" style="justify-self: center">
+      <img src="assets/plus.svg" class="icon" alt="add line" (click)="element[property].push('')">
+      <img *ngIf="element[property].length" class="icon" src="assets/minus.svg" alt="remove line" (click)="element[property].splice(element[property].length - 1, 1)">
     </div>
   </div>
   <div class="controls">

@@ -1,5 +1,5 @@
 <div class="fix-holder">
-    <header-contact [content]="content" [class.contact-header-hide]="!contactInfo" (close)="contactInfo = false"></header-contact>
+    <header-contact *ngIf="content" [content]="content" [class.contact-header-hide]="!contactInfo" (close)="contactInfo = false"></header-contact>
     <header [class]="fullHeader ? 'full-header' : 'short-header'" [class.yellow]="yellow">
 
         <a id="logo-wrap" routerLink="/">

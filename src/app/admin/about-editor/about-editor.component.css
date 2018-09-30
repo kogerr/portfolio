@@ -2,7 +2,7 @@
     background-color: #F0F0F0;
     color: #969696;
     overflow: hidden;
-    padding: 2.083vw;
+    padding: 0 2.083vw;
     box-sizing: border-box;
 }
 
@@ -71,7 +71,6 @@ button:hover {
 
 .editor-section {
     display: grid;
-    /* -ms-grid-columns: (320px)[auto-fill]; */
     grid-template-columns: repeat(auto-fill, 274px);
     grid-gap: 1em;
     justify-content: space-between;

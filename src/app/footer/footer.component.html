@@ -1,4 +1,4 @@
-<footer>
+<footer *ngIf="content">
     <img src="assets/arrow_up.svg" class="arrow" (click)="scrollUp()" />
     <a [href]="'mailto:' + content.mail" class="footer-mail">{{content.mail}}</a>
     <div class="footer-items">

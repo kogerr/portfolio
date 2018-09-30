@@ -16,11 +16,16 @@
 }
 
 .overlay-icon {
+    padding: 4px;
+    background-color: #fff000;
     position: absolute;
-    top: 5%;
-    right: 5%;
-    height: 2em;
+    top: 1vw;
+    right: 1vw;
     cursor: pointer;
+}
+
+.overlay-icon:hover {
+    background-color: white;
 }
 
 ::-webkit-file-upload-button {

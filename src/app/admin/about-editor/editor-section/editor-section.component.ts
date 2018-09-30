@@ -1,15 +1,17 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { AdminDataService } from '../../data.service';
+import { PossiblyClickable, HeaderAndLines, IndexedText } from '../../../models/about.interface';
 
 @Component({
   selector: 'editor-section',
   templateUrl: './editor-section.component.html',
   styleUrls: ['./editor-section.component.css']
 })
-export class EditorSectionComponent<T extends { index: number, edit?: boolean }> {
+export class EditorSectionComponent<T extends IndexedText | PossiblyClickable | HeaderAndLines> {
   @Input() field: string;
   @Input() content: Array<T>;
   @Output() update = new EventEmitter<boolean>();
+  @Input() type: new (o: T) => T;
 
   constructor(private dataService: AdminDataService) { }
 
@@ -45,10 +47,12 @@ export class EditorSectionComponent<T extends { index: number, edit?: boolean }>
     this.dataService.addAboutElement({ [this.field]: update }).subscribe(this.updateIfSuccess);
   }
 
-  newElement(): T {
-    let newElement = { index: this.content.length, edit: true };
-    this.properties(this.content[0]).forEach(p => newElement[p] = '');
-    return (newElement as T);
+  newElement(): IndexedText | PossiblyClickable | HeaderAndLines {
+    let newElement = new this.type({ index: this.content.length } as T);
+    newElement.index = this.content.length;
+    // tslint:disable-next-line:no-string-literal
+    newElement['edit'] = true;
+    return newElement;
   }
 
   removeEdit = e => delete e.edit;

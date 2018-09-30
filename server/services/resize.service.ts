@@ -1,7 +1,6 @@
 import * as Jimp from 'jimp';
 
-function calculateSize(width: number, height: number, proportions: { w: number, h: number })
-    : { width: number, height: number } {
+function calculateSize(width: number, height: number, proportions: { w: number, h: number }): { width: number, height: number } {
     if (width / proportions.w * proportions.h < height) {
         return { width, height: width / proportions.w * proportions.h };
     } else {
@@ -9,8 +8,7 @@ function calculateSize(width: number, height: number, proportions: { w: number, 
     }
 }
 
-export default function(filePath: string, newPath: string, proportions: { w: number, h: number })
-    : Promise<{ success: boolean }> {
+export default function(filePath: string, newPath: string, proportions: { w: number, h: number }): Promise<{ success: boolean }> {
     return new Promise((resolve, reject) => {
         Jimp.read(filePath, (err, image) => {
             if (err) {

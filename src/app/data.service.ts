@@ -5,6 +5,7 @@ import { Post } from './models/post';
 import { Slide } from './models/slide';
 import { About } from './models/about.interface';
 import { Contact } from './models/contact';
+import { map } from 'rxjs/operators';
 
 const postsURL = 'api/posts/';
 const slidesURL = 'api/slides/';
@@ -62,7 +63,7 @@ export class DataService {
      * Loads the contents of the about page.
      */
     getAbout(): Observable<About> {
-        return this.http.get<About>(aboutURL);
+        return this.http.get<About>(aboutURL).pipe(map(e => new About(e)));
     }
 
     /**

@@ -12,13 +12,13 @@
   <images-section [images]="content.images" (update)="update()"></images-section>
 
   <h3>Clients</h3>
-  <editor-section field="clients" [content]="content.clients" (update)="update()"></editor-section>
+  <editor-section field="clients" [content]="content.clients" [type]="indexedTextType" (update)="update()"></editor-section>
   <h3>Exhibitions</h3>
-  <editor-section field="exhibitions" [content]="content.exhibitions" (update)="update()"></editor-section>
+  <editor-section field="exhibitions" [content]="content.exhibitions" [type]="indexedTextType" (update)="update()"></editor-section>
   <h3>Print Publications</h3>
-  <editor-section field="printPublications" [content]="content.printPublications" (update)="update()"></editor-section>
+  <editor-section field="printPublications" [content]="content.printPublications" [type]="possiblyClickableType" (update)="update()"></editor-section>
   <h3>Online Publications</h3>
-  <editor-section field="onlinePublications" [content]="content.onlinePublications" (update)="update()"></editor-section>
+  <editor-section field="onlinePublications" [content]="content.onlinePublications" [type]="possiblyClickableType" (update)="update()"></editor-section>
   <h3>Awards</h3>
-  <editor-section field="awards" [content]="content.awards" (update)="update()"></editor-section>
+  <editor-section field="awards" [content]="content.awards" (update)="update()" [type]="headerAndLinesType"></editor-section>
 </div>

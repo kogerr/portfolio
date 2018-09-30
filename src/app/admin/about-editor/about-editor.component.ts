@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminDataService } from '../data.service';
 import { DataService as CommonDataService } from '../../data.service';
-import { About } from '../../models/about.interface';
+import { About, IndexedText, HeaderAndLines, PossiblyClickable } from '../../models/about.interface';
 
 @Component({
   selector: 'app-about-editor',
@@ -10,6 +10,9 @@ import { About } from '../../models/about.interface';
 })
 export class AboutEditorComponent implements OnInit {
   content: About;
+  indexedTextType = IndexedText;
+  possiblyClickableType = PossiblyClickable;
+  headerAndLinesType = HeaderAndLines;
 
   constructor(private dataService: AdminDataService, private commonDataService: CommonDataService) { }
 
