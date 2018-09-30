@@ -5,7 +5,8 @@
 
 @media (max-width: 640px) {
     .content-background {
-        min-height: calc(100vh - 34.375vw);
+        min-height: calc(100vh - 34.425vw);
         background: none;
+        overflow: hidden;
     }
 }

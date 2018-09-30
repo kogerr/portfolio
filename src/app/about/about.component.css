@@ -76,6 +76,11 @@ img {
         column-count: inherit;
         column-gap: inherit;
     }
+
+    .clients {
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 6.25vw;
+    }
 }
 
 @media (max-width: 640px) {
