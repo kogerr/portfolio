@@ -16,6 +16,7 @@ import { AboutComponent } from './about/about.component';
 import { MetatagService } from './metatag.service';
 import { MobileMenuComponent } from './header/mobile-menu/mobile-menu.component';
 import { ContactComponent } from './header/contact/contact.component';
+import { PreloaderComponent } from './preloader/preloader.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ContactComponent } from './header/contact/contact.component';
     CarouselSlideComponent,
     AboutComponent,
     MobileMenuComponent,
-    ContactComponent],
+    ContactComponent,
+    PreloaderComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [DataService, MetatagService],
   bootstrap: [AppComponent]

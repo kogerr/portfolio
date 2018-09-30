@@ -8,5 +8,6 @@ import * as tokenService from '../services/token.service';
 let router: express.Router = express.Router();
 router.route('/').post(tokenService.checkToken, upload.single('image'), imageCtrl.returnSavedFileName);
 router.route('/:filename').delete(tokenService.checkToken, imageCtrl.deleteImage).patch(tokenService.checkToken, imageCtrl.crop);
+router.route('/preload').get(imageCtrl.getPreloaderImages);
 
 export default router;

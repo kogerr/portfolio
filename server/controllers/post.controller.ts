@@ -1,6 +1,7 @@
 import * as postDao from '../data-access/post.dao';
 import * as responseCacher from '../services/cache/metadata.cacher';
 import * as postCacher from '../services/cache/post.cacher';
+import * as preloaderCacher from '../services/cache/preloader.cacher';
 import * as logger from '../services/logger';
 import { Request, Response } from 'express';
 
@@ -151,4 +152,5 @@ export function cacherTest(req: Request, res: Response): void {
 function updateCache(): void {
     responseCacher.update();
     postCacher.update();
+    preloaderCacher.update();
 }

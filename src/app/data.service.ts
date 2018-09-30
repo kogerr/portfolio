@@ -11,6 +11,7 @@ const postsURL = 'api/posts/';
 const slidesURL = 'api/slides/';
 const aboutURL = 'api/about/';
 const contactURL = 'api/contact/';
+const preloadURL = 'api/images/preload';
 
 @Injectable()
 export class DataService {
@@ -71,5 +72,9 @@ export class DataService {
      */
     getContact(): Observable<Contact> {
         return this.http.get<Contact>(contactURL);
+    }
+
+    getPreloadImages(): Observable<Array<string>> {
+        return this.http.get<Array<string>>(preloadURL);
     }
 }

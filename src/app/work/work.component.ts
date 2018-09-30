@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Post } from '../models/post';
 import { DataService } from '../data.service';
 
@@ -10,15 +9,12 @@ import { DataService } from '../data.service';
 })
 
 export class WorkComponent implements OnInit {
-  posts: Post[];
+  posts: Array<Post>;
 
   ngOnInit(): void {
     this.dataService.loadPosts().subscribe((data) => { this.posts = data; });
   }
 
-  constructor(private dataService: DataService, private router: Router) { }
+  constructor(private dataService: DataService) { }
 
-  redirect(titleURL: string): void {
-    this.router.navigate(['/work/' + titleURL]);
-  }
 }

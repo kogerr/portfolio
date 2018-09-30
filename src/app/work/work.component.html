@@ -2,5 +2,6 @@
     <app-carousel></app-carousel>
 </div>
 <div id="works">
-    <post-preview *ngFor="let post of posts" [post]="post" (click)="redirect(post.titleURL)"></post-preview>
+    <post-preview *ngFor="let post of posts" [post]="post" [routerLink]="post.titleURL"></post-preview>
 </div>
+<app-preloader *ngIf="posts"></app-preloader>

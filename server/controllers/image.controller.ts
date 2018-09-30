@@ -1,4 +1,5 @@
 import * as storageService from '../services/storage.service';
+import * as preloaderCacher from '../services/cache/preloader.cacher';
 import resize from '../services/resize.service';
 import { Request, Response } from 'express';
 import * as logger from '../services/logger';
@@ -40,4 +41,15 @@ export function crop(req: Request, res: Response): void {
         res.statusCode = 501;
         res.send(err);
     });
+}
+
+export function getPreloaderImages(req: Request, res: Response): void {
+    let cachedPreloaderImages = preloaderCacher.getImages();
+    if (cachedPreloaderImages && cachedPreloaderImages.length) {
+        res.statusCode = 200;
+        res.send(cachedPreloaderImages);
+    } else {
+        res.statusCode = 404;
+        res.send();
+    }
 }
