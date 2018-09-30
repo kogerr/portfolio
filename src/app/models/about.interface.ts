@@ -1,15 +1,21 @@
 export class About {
     constructor(other: About) {
-        this.intro = other.intro;
-        this.exhibitions = other.exhibitions.map(e => new IndexedText(e));
-        this.clients = other.clients.map(e => new IndexedText(e));
-        this.printPublications = other.printPublications.map(e => new PossiblyClickable(e));
-        this.onlinePublications = other.onlinePublications.map(e => new PossiblyClickable(e));
-        this.awards = other.awards.map(e => new HeaderAndLines(e));
+        this.intro = Array.isArray(other.intro) ? other.intro.map(e => new IndexedText(e))
+            : new Array<IndexedText>();
+        this.exhibitions = Array.isArray(other.exhibitions) ? other.exhibitions.map(e => new IndexedText(e))
+            : new Array<IndexedText>();
+        this.clients = Array.isArray(other.clients) ? other.clients.map(e => new IndexedText(e))
+            : new Array<IndexedText>();
+        this.printPublications = Array.isArray(other.printPublications) ? other.printPublications.map(e => new PossiblyClickable(e))
+            : new Array<PossiblyClickable>();
+        this.onlinePublications = Array.isArray(other.onlinePublications) ? other.onlinePublications.map(e => new PossiblyClickable(e))
+            : new Array<PossiblyClickable>();
+        this.awards = Array.isArray(other.clients) ? other.awards.map(e => new HeaderAndLines(e))
+            : new Array<HeaderAndLines>();
         this.images = other.images;
     }
 
-    intro: string;
+    intro: Array<IndexedText>;
     exhibitions: Array<IndexedText>;
     clients: Array<IndexedText>;
     printPublications: Array<PossiblyClickable>;

@@ -1,8 +1,9 @@
 <div *ngFor="let element of content; index as i" class="element">
   <div *ngFor="let property of properties(element)" style="display: grid">
     <div *ngIf="!element.edit && !isArray(element[property])" (click)="element.edit = true" class="field">{{element[property]}}</div>
-    <input *ngIf="element.edit && !isArray(element[property])" [type]="property === 'url' ? 'url' : 'text'"
+    <input *ngIf="element.edit && !isArray(element[property]) && element[property].length < 40" [type]="property === 'url' ? 'url' : 'text'"
       [placeholder]="property" [(ngModel)]="element[property]">
+    <textarea *ngIf="element.edit && element[property].length >= 40" type="text" [placeholder]="property" [(ngModel)]="element[property]"></textarea>
     <div *ngIf="!element.edit && isArray(element[property])">
       <div *ngFor="let member of element[property]; index as i" (click)="element.edit = true" class="field" style="color: inherit">{{member}}</div>
     </div>

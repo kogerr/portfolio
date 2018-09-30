@@ -1,12 +1,7 @@
 <div *ngIf="content" class="wrapper">
 
   <h3>Intro</h3>
-  <div class="intro-wrap">
-    <div contenteditable #intro class="intro" [innerHTML]="content.intro"></div>
-    <button>
-      <div class="icon" (click)="saveIntro(intro.innerHTML)">Save</div>
-    </button>
-  </div>
+  <editor-section field="intro" [content]="content.intro" [type]="indexedTextType" (update)="update()" class="intro-column-override"></editor-section>
 
   <h3>Images</h3>
   <images-section [images]="content.images" (update)="update()"></images-section>

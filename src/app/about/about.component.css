@@ -23,6 +23,11 @@ h2 {
     padding-bottom: 33px;
 }
 
+.intro-paragraph {
+    -webkit-column-break-inside: avoid;
+    padding-bottom: 1.333em;
+}
+
 .clients {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -66,6 +71,13 @@ img {
     vertical-align: bottom;
 }
 
+@media (max-width: 1024px) {
+    .column2 {
+        column-count: inherit;
+        column-gap: inherit;
+    }
+}
+
 @media (max-width: 640px) {
     .ars-poetica {
         font-size: 4.6875vw;
@@ -82,21 +94,12 @@ img {
         font-size: 3.75vw;
     }
 
-    .column2 {
-        column-count: inherit;
-        column-gap: inherit;
-    }
-
     .column2-grid {
         grid-template-columns: none;
     }
 
     .clients {
         grid-template-columns: none;
-    }
-
-    .cheat {
-        margin: -12vw 0 0 0;
     }
 
     .full-box {

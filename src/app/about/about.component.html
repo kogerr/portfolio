@@ -2,10 +2,12 @@
   <div class="full-box"><img [src]="'images/' + content.images[0]"></div>
 
   <div class="text-area">
-    <div class="ars-poetica column2" [innerHTML]="content.intro"></div>
+    <div class="ars-poetica column2">
+      <div *ngFor="let paragraph of content.intro" class="intro-paragraph">{{paragraph.text}}</div>
+    </div>
   </div>
 
-  <div class="text-area cheat">
+  <div class="text-area">
     <h2>Clients</h2>
     <div class="clients spaceylines">
       <div *ngFor="let client of content.clients">{{client.text}}</div>
@@ -30,7 +32,7 @@
       <div>
         <div class="subtitle">print</div>
         <div *ngFor="let publication of content.printPublications">
-          <a *ngIf="publication.url" [href]="publication.url">
+          <a *ngIf="publication.url" target="_blank" [href]="publication.url">
             {{publication.text}}
           </a>
           <span *ngIf="!publication.url">{{publication.text}}</span>
@@ -39,7 +41,7 @@
       <div>
         <div class="subtitle">online</div>
         <div *ngFor="let publication of content.onlinePublications">
-          <a *ngIf="publication.url" [href]="publication.url">
+          <a *ngIf="publication.url" target="_blank" [href]="publication.url">
             {{publication.text}}
           </a>
           <span *ngIf="!publication.url">{{publication.text}}</span>
@@ -52,7 +54,7 @@
   <div class="text-area">
     <h2>Exhibitions</h2>
     <div class="column2-grid spaceylines exhibitions">
-      <div *ngFor="let exhibition of content.exhibitions" [class.clickable]="exhibition.link">
+      <div *ngFor="let exhibition of content.exhibitions">
         {{exhibition.text}}
       </div>
     </div>

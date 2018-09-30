@@ -32,6 +32,10 @@ h3 {
     padding: 2em 8.33vw 2em 6.25vw;
 }
 
+.intro-column-override {
+    grid-template-columns: repeat(auto-fill, 395px);
+}
+
 .intro {
     font-size: 30px;
     font-weight: bold;
@@ -89,4 +93,10 @@ button:hover {
     padding: 0.5em 1em;
     height: 1em;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 1280px) {
+    .intro-column-override {
+        justify-content: unset;
+    }
 }

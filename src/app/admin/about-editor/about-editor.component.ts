@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminDataService } from '../data.service';
 import { DataService as CommonDataService } from '../../data.service';
 import { About, IndexedText, HeaderAndLines, PossiblyClickable } from '../../models/about.interface';
 
@@ -14,7 +13,7 @@ export class AboutEditorComponent implements OnInit {
   possiblyClickableType = PossiblyClickable;
   headerAndLinesType = HeaderAndLines;
 
-  constructor(private dataService: AdminDataService, private commonDataService: CommonDataService) { }
+  constructor(private commonDataService: CommonDataService) { }
 
   ngOnInit(): void {
     this.update();
@@ -25,10 +24,5 @@ export class AboutEditorComponent implements OnInit {
   }
 
   updateIfSuccess = data => { if (data.success) { this.update(); } };
-
-  saveIntro(text: string): void {
-    let cleanedText = text.replace(/<div><br><\/div>/g, '<br>').replace(/<div>/g, '<br>').replace(/<\/div>/g, '');
-    this.dataService.updateAbout({ intro: cleanedText }).subscribe(this.updateIfSuccess);
-  }
 
 }
