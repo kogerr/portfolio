@@ -23,8 +23,15 @@ export class EditorSectionComponent<T extends IndexedText | PossiblyClickable | 
 
   updateIfSuccess = data => { if (data.success) { this.update.emit(); } };
 
+  resetIndices(): void {
+    let i = 0;
+    this.content.forEach(e => e.index = i++);
+    this.updateElements();
+  }
+
   removeElement(value: any): void {
-    this.dataService.removeAboutElement({ [this.field]: value }).subscribe(this.updateIfSuccess);
+    this.content.splice(this.content.indexOf(value), 1);
+    this.resetIndices();
   }
 
   swapElements(first: number, second: number): void {
