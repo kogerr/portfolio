@@ -35,8 +35,8 @@
         </div>
     </div>
     <div class="post-footer">
-        <img src="assets/arrow_left_black.svg" (click)="redirectPrevious()">
-        <div (click)="redirect()" class="more">More Work</div>
-        <img src="assets/arrow_right_black.svg" (click)="redirectNext()">
+        <img src="assets/arrow_left_black.svg" [routerLink]="'/work/' + previousTitleURL">
+        <div routerLink="/work/" class="more">More Work</div>
+        <img src="assets/arrow_right_black.svg" [routerLink]="'/work/' + nextTitleURL">
     </div>
 </div>

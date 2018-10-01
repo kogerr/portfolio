@@ -15,6 +15,8 @@ export class PostComponent implements OnInit, AfterViewChecked, OnDestroy {
   post: Post;
   videos: Array<HTMLVideoElement>;
   startedVideos = new Array<HTMLVideoElement>();
+  previousTitleURL = '';
+  nextTitleURL = '';
 
   constructor(private dataService: DataService, private route: ActivatedRoute,
     private titleService: Title, private router: Router, private metatagService: MetatagService) { }
@@ -24,6 +26,7 @@ export class PostComponent implements OnInit, AfterViewChecked, OnDestroy {
       this.dataService.getPost(p.titleURL).subscribe(data => {
         this.post = data;
         this.titleService.setTitle(data.title);
+        this.setPrevAndNext(250);
         this.metatagService.update({
           title: data.title, url: data.titleURL, description: data.facebookDescription, image: data.facebookImage
         });
@@ -52,23 +55,6 @@ export class PostComponent implements OnInit, AfterViewChecked, OnDestroy {
     return bottom < window.innerHeight || (bottom > window.innerHeight && top <= 0);
   }
 
-  redirectNext(): void {
-    this.dataService.getNextPostTitleUrl(this.post.titleURL).subscribe(data => {
-      this.redirect(data.titleURL);
-    });
-  }
-
-  redirectPrevious(): void {
-    this.dataService.getPreviousPostTitleUrl(this.post.titleURL).subscribe(data => {
-      this.redirect(data.titleURL);
-    });
-  }
-
-  redirect(titleUrl: string = ''): void {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    this.router.navigate(['/work/' + titleUrl]);
-  }
-
   getWidth(width: number): string {
     if (window.innerWidth > 796) {
       return width + '%';
@@ -79,6 +65,18 @@ export class PostComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   scrollDown(): void {
     window.document.getElementsByClassName('margin-wrap')[0].scrollIntoView();
+  }
+
+  setPrevAndNext(delay?: number): void {
+    let set = () => { this.dataService.getSurroundingPostTitleUrls(this.post.titleURL).subscribe(data => {
+      [this.previousTitleURL, this.nextTitleURL] = [data.previous, data.previous];
+    });
+    };
+    if (delay) {
+      setTimeout(() => set(), delay);
+    } else {
+      set();
+    }
   }
 
   ngOnDestroy(): void {
