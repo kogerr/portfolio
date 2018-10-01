@@ -39,6 +39,7 @@ export class EditorSectionComponent<T extends IndexedText | PossiblyClickable | 
       let previousIndex = this.content[first].index;
       this.content[first].index = this.content[second].index;
       this.content[second].index = previousIndex;
+      this.content = this.content.sort((a, b) => a.index - b.index);
       this.updateElements();
     }
   }
