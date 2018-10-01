@@ -10,6 +10,6 @@ export class FooterComponent {
   @Input() content: Contact;
 
   scrollUp(): void {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

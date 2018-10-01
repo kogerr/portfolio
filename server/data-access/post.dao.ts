@@ -99,7 +99,7 @@ export function getPreviousPostTitleUrl(titleURL: string): Promise<{ titleURL: s
                 reject(err);
             }
             let postsSorted = sortByIndex(docs);
-            let i = postsSorted.findIndex((e) => e.titleURL === titleURL) + 1;
+            let i = postsSorted.findIndex((e) => e.titleURL === titleURL) - 1;
             let targetPost = postsSorted[i];
             if (!targetPost) {
                 targetPost = postsSorted[0];
@@ -116,7 +116,7 @@ export function getNextPostTitleUrl(titleURL: string): Promise<{ titleURL: strin
                 reject(err);
             }
             let postsSorted = sortByIndex(docs);
-            let i = postsSorted.findIndex((e) => e.titleURL === titleURL) - 1;
+            let i = postsSorted.findIndex((e) => e.titleURL === titleURL) + 1;
             let targetPost = postsSorted[i];
             if (!targetPost) {
                 targetPost = postsSorted[postsSorted.length - 1];

@@ -4,4 +4,4 @@
 <div id="works">
     <post-preview *ngFor="let post of posts" [post]="post" [routerLink]="post.titleURL"></post-preview>
 </div>
-<app-preloader *ngIf="posts"></app-preloader>
+<app-preloader *ngIf="posts" [posts]="posts"></app-preloader>
