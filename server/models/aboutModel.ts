@@ -4,6 +4,7 @@ import { About } from './frontModels';
 let Schema = mongoose.Schema;
 
 let possiblyClickable = new Schema({
+    index: Number,
     text: String,
     url: String
 }, { _id: false }
