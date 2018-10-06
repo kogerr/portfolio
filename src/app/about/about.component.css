@@ -85,21 +85,22 @@ img {
     color: #969696;
 }
 
-.exhibitions div:nth-child(3n) {
-    background-color: #f0f0f0;
-}
-
-.exhibitions div:nth-child(3n + 1) {
-    background-color: #f7f7f7;
-}
-
-.exhibitions div:nth-child(3n+2) {
-    background-color: #f4f4f4;
-}
 
 @media (min-width: 641px) {
     .margin-wrapper .text-area:nth-child(even) {
         background-color: #f0f0f0;
+    }
+
+    .exhibitions div:nth-child(3n) {
+        background-color: #f0f0f0;
+    }
+    
+    .exhibitions div:nth-child(3n + 1) {
+        background-color: #f7f7f7;
+    }
+    
+    .exhibitions div:nth-child(3n+2) {
+        background-color: #f4f4f4;
     }
 }
 
@@ -112,6 +113,14 @@ img {
     .clients {
         grid-template-columns: 1fr 1fr;
         grid-column-gap: 6.25vw;
+    }
+
+    .exhibitions div:nth-child(even) {
+        background-color: #f8f8f8;
+    }
+    
+    .exhibitions div:nth-child(odd) {
+        background-color: #f0f0f0;
     }
 }
 
