@@ -8,7 +8,7 @@
   </div>
 
   <div class="text-area">
-    <h2>Clients</h2>
+    <h2>Selected Clients</h2>
     <div class="clients spaceylines">
       <div *ngFor="let client of content.clients">{{client.text}}</div>
     </div>
@@ -19,7 +19,7 @@
     <h2>Awards</h2>
     <div class="column2-grid spaceylines">
       <div *ngFor="let award of content.awards; last as isLast" [style.grid-row]="'span ' + (award.lines.length + (isLast ? 1 : 2))">
-        <div>{{award.header | uppercase }}</div>
+        <div class="award-header">{{award.header | uppercase }}</div>
         <div *ngFor="let line of award.lines">{{line}}</div>
         <div *ngIf="!isLast" style="white-space: pre-wrap;">{{' '}}</div>
       </div>
@@ -29,8 +29,8 @@
   <div class="text-area">
     <h2>Publications</h2>
     <div class="column2-grid spaceylines publications">
-      <div>
-        <div class="subtitle">print</div>
+      <div class="publications-column">
+        <h4>print</h4>
         <div *ngFor="let publication of content.printPublications">
           <a *ngIf="publication.url" target="_blank" [href]="publication.url">
             {{publication.text}}
@@ -38,8 +38,8 @@
           <span *ngIf="!publication.url">{{publication.text}}</span>
         </div>
       </div>
-      <div>
-        <div class="subtitle">online</div>
+      <div class="publications-column">
+        <h4>online</h4>
         <div *ngFor="let publication of content.onlinePublications">
           <a *ngIf="publication.url" target="_blank" [href]="publication.url">
             {{publication.text}}

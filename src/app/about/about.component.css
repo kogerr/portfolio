@@ -12,7 +12,7 @@
     box-sizing: border-box;
     color: #969696;
     line-height: 180%;
-    margin: 6.25vw 8.33vw 6.25vw 6.25vw;
+    padding: 6.25vw 8.33vw 6.25vw 6.25vw;
     font-size: 24px;
 }
 
@@ -21,6 +21,13 @@ h2 {
     color: #232323;
     margin: 3px 0;
     padding-bottom: 33px;
+}
+
+h4 {
+    text-transform: uppercase;
+    color: #232323;
+    font-weight: normal;
+    margin: 0;
 }
 
 .intro-paragraph {
@@ -49,11 +56,6 @@ h2 {
     column-gap: 6.25vw;
 }
 
-.subtitle {
-    text-transform: uppercase;
-    color: #232323;
-}
-
 .ars-poetica {
     font-size: 30px;
     font-weight: bold;
@@ -62,13 +64,43 @@ h2 {
 }
 
 a {
-    color: #969696;
+    color: inherit;
     text-decoration: underline;
 }
 
 img {
     width:100%;
     vertical-align: bottom;
+}
+
+.award-header {
+    color: #232323;
+}
+
+.publications-column div:nth-child(odd) {
+    color: #232323;
+}
+
+.publications-column div:nth-child(even) {
+    color: #969696;
+}
+
+.exhibitions div:nth-child(3n) {
+    background-color: #f0f0f0;
+}
+
+.exhibitions div:nth-child(3n + 1) {
+    background-color: #f7f7f7;
+}
+
+.exhibitions div:nth-child(3n+2) {
+    background-color: #f4f4f4;
+}
+
+@media (min-width: 641px) {
+    .margin-wrapper .text-area:nth-child(even) {
+        background-color: #f0f0f0;
+    }
 }
 
 @media (max-width: 1024px) {
@@ -95,7 +127,7 @@ img {
     }
 
     .text-area {
-        margin: 0;
+        padding: 0;
         font-size: 3.75vw;
     }
 

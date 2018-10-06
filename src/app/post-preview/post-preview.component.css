@@ -57,7 +57,7 @@ h2 {
     cursor: pointer;
 }
 
-.overlay:hover {
+.overlay:hover, .overlay:focus {
     opacity: 1;
 }
 
@@ -80,16 +80,24 @@ h2 {
         -webkit-transition: opacity 0.25s;
     }
 
-    .year, .client, .preivew-text {
+    .year, .client {
         display: none;
+    }
+
+    .preivew-text {
+        padding: 46.7vw 4.6875vw 4.6875vw 4.6875vw;
     }
 
     .preview-line {
         width: 100%;
     }
 
-    h2 {
+    h2, h3 {
         font-size: 5.625vw;
+    }
+
+    h3 {
+        margin: 2vw 0 0 0;
     }
 
     .subtitle {

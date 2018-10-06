@@ -49,6 +49,7 @@ export class HeaderComponent {
 
   handleRouteChange(navigationStart: NavigationStart): any {
     window.scroll(0, 0);
+    this.mobileMenu = false;
     this.yellow = navigationStart.url.startsWith('/work/');
   }
 
