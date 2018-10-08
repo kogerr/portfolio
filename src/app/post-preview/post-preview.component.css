@@ -57,7 +57,7 @@ h2 {
     cursor: pointer;
 }
 
-.overlay:hover, .overlay:focus {
+.overlay:hover {
     opacity: 1;
 }
 

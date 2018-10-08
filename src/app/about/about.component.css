@@ -66,6 +66,11 @@ h4 {
 a {
     color: inherit;
     text-decoration: underline;
+    transition: letter-spacing 3s;
+}
+
+a:hover {
+    letter-spacing: 0.05vw;
 }
 
 img {
@@ -74,17 +79,12 @@ img {
 }
 
 .award-header {
-    color: #232323;
+    color: #5a5a5a;
 }
 
 .publications-column div:nth-child(odd) {
-    color: #232323;
+    color: #5a5a5a;
 }
-
-.publications-column div:nth-child(even) {
-    color: #969696;
-}
-
 
 @media (min-width: 641px) {
     .margin-wrapper .text-area:nth-child(even) {
@@ -92,15 +92,11 @@ img {
     }
 
     .exhibitions div:nth-child(3n) {
-        background-color: #f0f0f0;
+        color: #5a5a5a;
     }
     
     .exhibitions div:nth-child(3n + 1) {
-        background-color: #f7f7f7;
-    }
-    
-    .exhibitions div:nth-child(3n+2) {
-        background-color: #f4f4f4;
+        color: #bebebe;
     }
 }
 
@@ -157,13 +153,9 @@ img {
     .ars-poetica > br {
         display: none;
     }
-
-    .exhibitions div:nth-child(even) {
-        background-color: #f8f8f8;
-    }
     
     .exhibitions div:nth-child(odd) {
-        background-color: #f0f0f0;
+        color: #5a5a5a;
     }
 
 }
