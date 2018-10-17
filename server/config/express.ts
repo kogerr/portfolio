@@ -22,6 +22,7 @@ app.use(minify());
 
 app.use(express.static('dist'));
 app.use('/images', express.static('images'));
+app.use('/.well-known/acme-challenge', express.static('cert'));
 
 app.get('/work/*', (req: Request, res: Response): void => {
     let isForFacebook = (request: Request): boolean =>
