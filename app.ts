@@ -7,12 +7,18 @@ import * as mongoose from 'mongoose';
 import { AddressInfo } from 'net';
 import * as logger from './server/services/logger';
 
-let options: https.ServerOptions = {
-    key: fs.readFileSync('./server/keys/sslkey.pem', 'utf8'),
-    cert: fs.readFileSync('./server/keys/sslcert.pem', 'utf8')
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/botondvoros.com/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/botondvoros.com/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/botondvoros.com/chain.pem', 'utf8');
+
+const credentials = {
+	key: privateKey,
+	cert: certificate,
+	ca: ca
 };
 
-let httpsServer: https.Server = https.createServer(options, app).listen(443, () => {
+
+let httpsServer: https.Server = https.createServer(credentials, app).listen(443, () => {
     let port = (httpsServer.address() as AddressInfo).port;
     console.log('Listening on port ' + port);
 });
