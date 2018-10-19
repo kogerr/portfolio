@@ -5,8 +5,8 @@ import * as fs from 'fs';
 import { Post } from '../../models/frontModels';
 import * as logger from '../logger';
 
-const workBaseURL = 'http://199.247.23.37/work/';
-const imagesBaseURL = 'http://199.247.23.37/images/';
+const workBaseURL = 'https://botondvoros.com/work/';
+const imagesBaseURL = 'https://botondvoros.com/images/';
 let templateText: string;
 
 fs.readFile('./server/services/metadata/template.json', (err, data) => {

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { MetatagInfo } from './models/metatag-info';
-const workBaseURL = 'http://199.247.23.37/work/';
-const coverBaseURL = 'http://199.247.23.37/images/';
+const workBaseURL = 'https://botondvoros.com/work/';
+const coverBaseURL = 'https://botondvoros.com/images/';
 
 @Injectable()
 export class MetatagService {
