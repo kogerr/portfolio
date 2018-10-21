@@ -8,7 +8,9 @@ const algorithm = 'RS256';
 const expiresIn = 7200;
 
 export function issueToken(email: string): string {
-    return jwt.sign({}, privateKey, {
+    console.log(privateKey);
+    console.log(publicKey);
+    return jwt.sign({}, { key: privateKey, passphrase: 'portfolio' }, {
         algorithm,
         expiresIn,
         subject: email,
