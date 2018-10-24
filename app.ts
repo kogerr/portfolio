@@ -8,16 +8,11 @@ import { AddressInfo } from 'net';
 import * as logger from './server/services/logger';
 import { IncomingMessage, ServerResponse } from 'http';
 
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/botondvoros.com/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/botondvoros.com/cert.pem', 'utf8');
+const key = fs.readFileSync('/etc/letsencrypt/live/botondvoros.com/privkey.pem', 'utf8');
+const cert = fs.readFileSync('/etc/letsencrypt/live/botondvoros.com/cert.pem', 'utf8');
 const ca = fs.readFileSync('/etc/letsencrypt/live/botondvoros.com/chain.pem', 'utf8');
 
-const credentials = {
-	key: privateKey,
-	cert: certificate,
-	ca: ca
-};
-
+const credentials = { key, cert, ca };
 
 let httpsServer: https.Server = https.createServer(credentials, app).listen(443, () => {
     let port = (httpsServer.address() as AddressInfo).port;
@@ -25,11 +20,11 @@ let httpsServer: https.Server = https.createServer(credentials, app).listen(443,
 });
 
 let httpsRedirect = (req: IncomingMessage, res: ServerResponse) => {
-    res.writeHead(301, { "Location": "https://" + req.headers.host + req.url });
+    res.writeHead(301, { 'Location': 'https://' + req.headers.host + req.url });
     res.end();
 };
 
-let httpServer: http.Server = http.createServer(httpsRedirect).listen(80);
+http.createServer(httpsRedirect).listen(80);
 
 (<any>mongoose).Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/portfolio', { useNewUrlParser: true }).then(
