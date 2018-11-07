@@ -26,6 +26,30 @@ let httpsRedirect = (req: IncomingMessage, res: ServerResponse) => {
 
 http.createServer(httpsRedirect).listen(80);
 
+
+let logRequests = (request: IncomingMessage, response: ServerResponse) => {
+    console.log('REQUEST ON NON-HTTP PORT AT: ' + new Date());
+    console.log('request.url: ' + request.url);
+    console.log('request.connection.localPort: ' + request.connection.localPort);
+    console.log('request.method: ' + request.method);
+    console.log('headers: ' + JSON.stringify(request.headers));
+
+    let body = new Array<any>();
+    request.on('data', (chunk: Buffer | string) => {
+        body.push(chunk);
+    }).on('end', () => {
+        console.log('body: ' + Buffer.concat(body).toString());
+    });
+
+    response.writeHead(200);
+    response.end();
+};
+
+http.createServer(logRequests).listen(25);
+http.createServer(logRequests).listen(26);
+https.createServer(credentials, logRequests).listen(587);
+
+
 (<any>mongoose).Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/portfolio', { useNewUrlParser: true }).then(
     () => { console.log('Connected to mongodb'); },

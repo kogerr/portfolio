@@ -8,6 +8,10 @@
 # dependencies
 /node_modules
 
+# certs
+/cert
+/server/keys
+
 # IDEs and editors
 /.idea
 .project
