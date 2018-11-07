@@ -7,7 +7,7 @@ import * as mongoose from 'mongoose';
 import { AddressInfo } from 'net';
 import * as logger from './server/services/logger';
 import { IncomingMessage, ServerResponse } from 'http';
-import { SMTPServer } from 'smtp-server';
+import {smtpServer} from './server/services/smpt-listener';
 
 const key = fs.readFileSync('/etc/letsencrypt/live/botondvoros.com/privkey.pem', 'utf8');
 const cert = fs.readFileSync('/etc/letsencrypt/live/botondvoros.com/cert.pem', 'utf8');
@@ -27,30 +27,10 @@ let httpsRedirect = (req: IncomingMessage, res: ServerResponse) => {
 
 http.createServer(httpsRedirect).listen(80);
 
-
-let logRequests = (request: IncomingMessage, response: ServerResponse) => {
-    console.log('REQUEST ON NON-HTTP PORT AT: ' + new Date());
-    console.log('request.url: ' + request.url);
-    console.log('request.connection.localPort: ' + request.connection.localPort);
-    console.log('request.method: ' + request.method);
-    console.log('headers: ' + JSON.stringify(request.headers));
-
-    let body = new Array<any>();
-    request.on('data', (chunk: Buffer | string) => {
-        body.push(chunk);
-    }).on('end', () => {
-        console.log('body: ' + Buffer.concat(body).toString());
-    });
-
-    response.writeHead(200);
-    response.end();
+let listeningListener = () => {
+    console.log('SMTP server listening');
 };
-
-http.createServer(logRequests).listen(26);
-https.createServer(credentials, logRequests).listen(587);
-
-let s = new SMTPServer({authOptional: true});
-s.listen(25);
+smtpServer.listen(25, listeningListener);
 
 (<any>mongoose).Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/portfolio', { useNewUrlParser: true }).then(
