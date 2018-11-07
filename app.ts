@@ -7,6 +7,7 @@ import * as mongoose from 'mongoose';
 import { AddressInfo } from 'net';
 import * as logger from './server/services/logger';
 import { IncomingMessage, ServerResponse } from 'http';
+import { SMTPServer } from 'smtp-server';
 
 const key = fs.readFileSync('/etc/letsencrypt/live/botondvoros.com/privkey.pem', 'utf8');
 const cert = fs.readFileSync('/etc/letsencrypt/live/botondvoros.com/cert.pem', 'utf8');
@@ -45,10 +46,11 @@ let logRequests = (request: IncomingMessage, response: ServerResponse) => {
     response.end();
 };
 
-http.createServer(logRequests).listen(25);
 http.createServer(logRequests).listen(26);
 https.createServer(credentials, logRequests).listen(587);
 
+let s = new SMTPServer({authOptional: true});
+s.listen(25);
 
 (<any>mongoose).Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/portfolio', { useNewUrlParser: true }).then(
