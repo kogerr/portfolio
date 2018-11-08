@@ -32,6 +32,10 @@ let listeningListener = () => {
 };
 smtpServer.listen(25, listeningListener);
 
+smtpServer.on('error', err => {
+    console.log('smtpServer error %s', err.message);
+});
+
 (<any>mongoose).Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/portfolio', { useNewUrlParser: true }).then(
     () => { console.log('Connected to mongodb'); },

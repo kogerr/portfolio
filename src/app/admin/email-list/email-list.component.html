@@ -1,0 +1,9 @@
+<div *ngFor="let email of emails" class="email-item">
+	<div class="email-header">
+		<div *ngIf="email.from">From: {{email.from}}</div>
+		<div *ngIf="email.to">To: {{email.to}}</div>
+		<div *ngIf="email.subject">Subject: {{email.subject}}</div>
+	</div>
+	<div *ngIf="!email.htmlContent && email.textContent" [innerText]="email.textContent" class="email-content"></div>
+	<div *ngIf="email.htmlContent" [innerHTML]="email.htmlContent" class="email-content"></div>
+</div>

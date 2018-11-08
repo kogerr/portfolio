@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, HostListener, AfterViewChecked } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { DataService } from '../data.service';
 import { Post } from '../models/post';
@@ -19,7 +19,7 @@ export class PostComponent implements OnInit, AfterViewChecked, OnDestroy {
   nextTitleURL = '';
 
   constructor(private dataService: DataService, private route: ActivatedRoute,
-    private titleService: Title, private router: Router, private metatagService: MetatagService) { }
+    private titleService: Title, private metatagService: MetatagService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(p => {

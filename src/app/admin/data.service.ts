@@ -5,6 +5,7 @@ import { Post, ContentImage } from '../models/post';
 import { Slide } from '../models/slide';
 import { HeaderAndLines, PossiblyClickable, IndexedText } from '../models/about.interface';
 import { LoginResponse } from '../models/login-response';
+import {Email} from '../models/email.interface';
 
 const postsURL = 'api/posts/';
 const indicesURL = 'api/posts/indices';
@@ -15,6 +16,7 @@ const contactURL = 'api/contact/';
 const loginURL = 'api/login/';
 const registrationURL = 'api/login/register';
 const logURL = 'api/log/';
+const emailURL = 'api/email/';
 
 interface SuccessFlag {
     success: boolean;
@@ -117,4 +119,13 @@ export class AdminDataService {
     newSlide(imageURL: string): Observable<Slide> {
         return this.http.post<Slide>(slidesURL, { imageURL });
     }
+
+    getEmails(): Observable<Array<Email>> {
+        return this.http.get<Array<Email>>(emailURL);
+    }
+
+    deleteEmail(id: string): Observable<SuccessFlag> {
+        return this.http.delete<SuccessFlag>(emailURL + '/' + id);
+    }
+
 }

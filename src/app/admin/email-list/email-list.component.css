@@ -1,0 +1,28 @@
+:host {
+    min-height: calc(100vh - 300px);
+    padding: 6.25vw;
+    margin: 0 2.083vw;
+    color: #969696;
+    overflow: hidden;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1em;
+    justify-content: space-evenly;
+    background-color: #fff;
+    font-size: 20px;
+    line-height: 180%;
+}
+
+.email-item {
+    border: solid 0.1vw #f0f0f0;
+}
+
+.email-header {
+    background-color: #f0f0f0;
+    padding: 2.083vw;
+}
+
+.email-content {
+    padding: 2.083vw;
+}

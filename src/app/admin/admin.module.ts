@@ -23,6 +23,7 @@ import { AddElementComponent } from './add-element/add-element.component';
 import { EditorSectionComponent } from './about-editor/editor-section/editor-section.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ImagesSectionComponent } from './about-editor/images-section/images-section.component';
+import { EmailListComponent } from './email-list/email-list.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,7 @@ import { ImagesSectionComponent } from './about-editor/images-section/images-sec
   declarations: [EditorComponent, LoginComponent, LogComponent,
     TitleValidatorDirective, MenuComponent, PostlistComponent, SlidelistComponent,
     ContactEditorComponent, AboutEditorComponent, AddElementComponent, EditorSectionComponent,
-    RegistrationComponent, ImagesSectionComponent],
+    RegistrationComponent, ImagesSectionComponent, EmailListComponent],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthenticationInterceptor,

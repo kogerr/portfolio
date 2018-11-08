@@ -1,5 +1,4 @@
 import EmailModel, {EmailDocument} from '../models/emailModel';
-import {Email} from '../models/frontModels';
 
 export function getEmails(): Promise<Array<EmailDocument>> {
     return new Promise((resolve, reject) => {
@@ -12,7 +11,7 @@ export function getEmails(): Promise<Array<EmailDocument>> {
     });
 }
 
-export function saveEmail(email: Email): Promise<EmailDocument> {
+export function saveEmail(email: any): Promise<EmailDocument> {
     return new Promise((resolve, reject) => {
         let newEmail = new EmailModel(email);
         newEmail.save((error, product) => {
