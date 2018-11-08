@@ -1,12 +1,24 @@
 import * as emailDao from '../data-access/email.dao';
 import * as logger from '../services/logger';
 import { Request, Response } from 'express';
+import {Email} from '../models/frontModels';
+import {parseMail} from '../services/email-parser';
+
+function convertMail(document: any): Email | any {
+    if (document.content) {
+        let {subject, htmlContent, textContent}:
+            { subject: string, htmlContent: string, textContent: string } = parseMail(document.content);
+        return {from: document.from, to: document.to, subject, htmlContent, textContent};
+    } else {
+        return {error: document};
+    }
+}
 
 export function getEmails(req: Request, res: Response): void {
     emailDao.getEmails()
         .then((data) => {
             res.statusCode = 200;
-            res.send(data);
+            res.send(data.map(mail => convertMail(mail)));
         }).catch((err) => {
         logger.error(err);
         res.statusCode = 404;
