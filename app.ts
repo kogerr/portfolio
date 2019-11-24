@@ -27,15 +27,6 @@ let httpsRedirect = (req: IncomingMessage, res: ServerResponse) => {
 
 http.createServer(httpsRedirect).listen(80);
 
-let listeningListener = () => {
-    console.log('SMTP server listening');
-};
-smtpServer.listen(25, listeningListener);
-
-smtpServer.on('error', err => {
-    console.log('smtpServer error %s', err.message);
-});
-
 (<any>mongoose).Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/portfolio', { useNewUrlParser: true }).then(
     () => { console.log('Connected to mongodb'); },
