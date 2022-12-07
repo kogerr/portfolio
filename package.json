@@ -30,7 +30,7 @@
     "@types/jwt-decode": "^2.2.1",
     "compressible": "^2.0.15",
     "compression": "^1.7.2",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "express-jwt": "^5.3.1",
     "express-minify": "^1.0.0",
     "jasmine": "^3.1.0",
