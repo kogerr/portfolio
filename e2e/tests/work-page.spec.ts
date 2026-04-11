@@ -45,17 +45,7 @@ test.describe("Work page", () => {
 
     await page.goto("/work");
     await carousel.expectVisible();
-
-    // Carousel slides are animated so direct clicks are unreliable.
-    // Instead, verify the slide links have valid hrefs pointing to posts.
-    const slideLinks = page.locator("app-carousel-slide a");
-    const count = await slideLinks.count();
-    expect(count).toBeGreaterThan(0);
-
-    for (let i = 0; i < count; i++) {
-      const href = await slideLinks.nth(i).getAttribute("href");
-      expect(href).toMatch(/^\/work\/.+/);
-    }
+    await carousel.expectAllSlideLinksValid();
   });
 
   // TC-20
@@ -63,11 +53,7 @@ test.describe("Work page", () => {
     const work = new WorkPage(page);
 
     await page.goto("/work");
-
-    // Hover over "Arrival Training" preview
-    const preview = page.locator("post-preview").filter({ hasText: "Arrival Training" });
-    await preview.hover();
-
+    await work.hoverPost("Arrival Training");
     await work.expectPostPreviewDetails(
       "Arrival Training",
       "Branding / Illustration",

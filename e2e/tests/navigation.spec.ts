@@ -38,7 +38,7 @@ test.describe("404 page", () => {
     await notFound.expectVisible();
 
     // Header still present
-    await expect(page.locator("#logo-wrap")).toBeVisible();
+    await header.expectLogoVisible();
   });
 });
 

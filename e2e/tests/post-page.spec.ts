@@ -12,11 +12,7 @@ test.describe("Post page", () => {
     await page.goto("/work/literature-illustrations");
     await post.expectCoverImageVisible();
     await post.expectContentImageCount(15);
-
-    // At least one text section visible
-    const textSections = page.locator(".margin-wrap .concept");
-    const count = await textSections.count();
-    expect(count).toBeGreaterThanOrEqual(1);
+    await post.expectTextSectionCountAtLeast(1);
   });
 
   // TC-07

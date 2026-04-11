@@ -64,4 +64,13 @@ export class PostPage {
     async expectPageTitle(title: string): Promise<void> {
         await expect(this.page).toHaveTitle(title);
     }
+
+    async expectTextSectionCountAtLeast(min: number): Promise<void> {
+        const count = await this.contentTexts.count();
+        expect(count).toBeGreaterThanOrEqual(min);
+    }
+
+    async expectTextSectionVisible(): Promise<void> {
+        await expect(this.contentTexts.first()).toBeVisible();
+    }
 }

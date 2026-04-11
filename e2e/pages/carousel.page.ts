@@ -26,4 +26,18 @@ export class CarouselPage {
     async expectSlideCount(count: number): Promise<void> {
         await expect(this.slides).toHaveCount(count);
     }
+
+    async getFirstSlidePosition(): Promise<number> {
+        return this.slides.first().evaluate((el) => el.getBoundingClientRect().left);
+    }
+
+    async expectAllSlideLinksValid(): Promise<void> {
+        const slideLinks = this.page.locator("app-carousel-slide a");
+        const count = await slideLinks.count();
+        expect(count).toBeGreaterThan(0);
+        for (let i = 0; i < count; i++) {
+            const href = await slideLinks.nth(i).getAttribute("href");
+            expect(href).toMatch(/^\/work\/.+/);
+        }
+    }
 }

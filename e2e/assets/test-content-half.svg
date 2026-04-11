@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="1035" viewBox="0 0 920 1035">
+  <rect width="920" height="1035" fill="#3a3a3a"/>
+  <rect x="15" y="15" width="890" height="1005" fill="none" stroke="#555" stroke-width="2" stroke-dasharray="10,5"/>
+  <text x="460" y="490" text-anchor="middle" font-family="sans-serif" font-size="36" fill="#888">TEST CONTENT 50%</text>
+  <text x="460" y="545" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#666">920 × 1035 · ~8:9</text>
+</svg>

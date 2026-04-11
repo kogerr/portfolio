@@ -13,16 +13,8 @@ test.describe("Contact panel", () => {
     await header.expectContactVisible();
     await header.expectContactEmail("info@botondvoros.com");
     await header.expectContactPhone("+36 70 228 5187");
-
-    // Check Behance and LinkedIn hrefs
-    const behance = page.locator('header-contact a:text("Behance")');
-    await expect(behance).toHaveAttribute(
-      "href",
-      /behance\.net\/botondvoros/
-    );
-
-    const linkedin = page.locator('header-contact a:text("LinkedIn")');
-    await expect(linkedin).toHaveAttribute("href", /linkedin\.com/);
+    await header.expectContactBehanceHref(/behance\.net\/botondvoros/);
+    await header.expectContactLinkedInHref(/linkedin\.com/);
   });
 
   // TC-03
@@ -50,8 +42,6 @@ test.describe("Contact panel", () => {
     await page.evaluate(() => window.scrollBy(0, 400));
     await page.waitForTimeout(600);
 
-    // After scroll, the contact-header-hide class sets height:0 + overflow:hidden.
-    // Check via the class on the header-contact element.
-    await expect(page.locator("header-contact")).toHaveClass(/contact-header-hide/);
+    await header.expectContactClosedByClass();
   });
 });

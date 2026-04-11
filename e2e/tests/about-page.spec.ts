@@ -16,30 +16,11 @@ test.describe("About page", () => {
     await about.expectAwardsHeadingVisible();
     await about.expectAwardCountAtLeast(48);
 
-    // Publications heading and content
-    await expect(
-      page.getByRole("heading", { name: "Publications" })
-    ).toBeVisible();
-    const printPubs = page
-      .locator(".publications-column")
-      .first()
-      .locator("div");
-    const printCount = await printPubs.count();
-    expect(printCount).toBeGreaterThanOrEqual(1);
+    await about.expectPublicationsHeadingVisible();
+    await about.expectPrintPublicationsCountAtLeast(1);
+    await about.expectOnlinePublicationsCountAtLeast(1);
 
-    const onlineLinks = page
-      .locator(".publications-column")
-      .last()
-      .locator("a");
-    const onlineCount = await onlineLinks.count();
-    expect(onlineCount).toBeGreaterThanOrEqual(1);
-
-    // Exhibitions
-    await expect(
-      page.getByRole("heading", { name: "Exhibitions" })
-    ).toBeVisible();
-    const exhibitions = page.locator(".exhibitions div");
-    const exhibCount = await exhibitions.count();
-    expect(exhibCount).toBeGreaterThanOrEqual(50);
+    await about.expectExhibitionsHeadingVisible();
+    await about.expectExhibitionCountAtLeast(50);
   });
 });

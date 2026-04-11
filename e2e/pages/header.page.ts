@@ -62,4 +62,20 @@ export class HeaderPage {
     async expectAboutLinkActive(): Promise<void> {
         await expect(this.aboutLink).toHaveClass(/active/);
     }
+
+    async expectContactBehanceHref(pattern: RegExp): Promise<void> {
+        await expect(this.contactBehance).toHaveAttribute("href", pattern);
+    }
+
+    async expectContactLinkedInHref(pattern: RegExp): Promise<void> {
+        await expect(this.contactLinkedIn).toHaveAttribute("href", pattern);
+    }
+
+    async expectContactClosedByClass(): Promise<void> {
+        await expect(this.contactPanel).toHaveClass(/contact-header-hide/);
+    }
+
+    async expectLogoVisible(): Promise<void> {
+        await expect(this.logo).toBeVisible();
+    }
 }

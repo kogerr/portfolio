@@ -10,24 +10,18 @@ test.describe("Carousel", () => {
     await carousel.expectVisible();
     await carousel.expectSlideCount(3);
 
-    // Record initial slide transform/position
-    const getSlideTransform = () =>
-      page.locator("app-carousel-slide").first().evaluate((el) => {
-        return el.getBoundingClientRect().left;
-      });
-
-    const initialPosition = await getSlideTransform();
+    const initialPosition = await carousel.getFirstSlidePosition();
 
     await carousel.clickNext();
     await page.waitForTimeout(600);
 
-    const afterNext = await getSlideTransform();
+    const afterNext = await carousel.getFirstSlidePosition();
     expect(afterNext).not.toBe(initialPosition);
 
     await carousel.clickPrevious();
     await page.waitForTimeout(600);
 
-    const afterPrev = await getSlideTransform();
+    const afterPrev = await carousel.getFirstSlidePosition();
     expect(afterPrev).toBeCloseTo(initialPosition, 0);
   });
 });

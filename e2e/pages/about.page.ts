@@ -50,6 +50,29 @@ export class AboutPage {
         expect(count).toBeGreaterThanOrEqual(min);
     }
 
+    async expectPublicationsHeadingVisible(): Promise<void> {
+        await expect(this.publicationsHeading).toBeVisible();
+    }
+
+    async expectPrintPublicationsCountAtLeast(min: number): Promise<void> {
+        const count = await this.printPublications.count();
+        expect(count).toBeGreaterThanOrEqual(min);
+    }
+
+    async expectOnlinePublicationsCountAtLeast(min: number): Promise<void> {
+        const count = await this.onlinePublications.count();
+        expect(count).toBeGreaterThanOrEqual(min);
+    }
+
+    async expectExhibitionsHeadingVisible(): Promise<void> {
+        await expect(this.exhibitionsHeading).toBeVisible();
+    }
+
+    async expectExhibitionCountAtLeast(min: number): Promise<void> {
+        const count = await this.exhibitionItems.count();
+        expect(count).toBeGreaterThanOrEqual(min);
+    }
+
     async expectSectionsPresent(): Promise<void> {
         await expect(this.clientsHeading).toBeVisible();
         await expect(this.awardsHeading).toBeVisible();

@@ -23,6 +23,10 @@ export class WorkPage {
         await expect(this.postPreviews.filter({ hasText: title })).toBeVisible();
     }
 
+    async hoverPost(title: string): Promise<void> {
+        await this.postPreviews.filter({ hasText: title }).hover();
+    }
+
     async expectPostPreviewDetails(title: string, type: string, year: string): Promise<void> {
         const preview = this.postPreviews.filter({ hasText: title });
         await expect(preview.locator(".overlay h2")).toHaveText(title);
