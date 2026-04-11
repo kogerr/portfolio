@@ -16,6 +16,8 @@
     "build": "unset npm_config_prefix && source ~/.nvm/nvm.sh && nvm use 10 && npx ng build --prod && nvm use default",
     "start": "ng build && mongod & node app",
     "watch": "unset npm_config_prefix && source ~/.nvm/nvm.sh && nvm use 10 && npx ng build --watch & npx ts-node app.local.ts",
+    "test": "playwright test",
+    "test:headed": "playwright test --workers=1 --headed",
     "tslint": "tslint -c tslint.json -p tsconfig.json"
   },
   "private": true,
@@ -50,6 +52,7 @@
     "@angular/cli": "6.2.4",
     "@angular/compiler-cli": "^6.0.9",
     "@angular/language-service": "^6.0.9",
+    "@playwright/test": "^1.59.1",
     "@types/jasmine": "^2.8.8",
     "@types/jasminewd2": "~2.0.2",
     "@types/mongoose": "^5.2.3",
