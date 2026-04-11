@@ -13,8 +13,9 @@
   },
   "main": "app.js",
   "scripts": {
+    "build": "unset npm_config_prefix && source ~/.nvm/nvm.sh && nvm use 10 && npx ng build --prod && nvm use default",
     "start": "ng build && mongod & node app",
-    "watch": "ng build --watch & mongod & nodemon app",
+    "watch": "unset npm_config_prefix && source ~/.nvm/nvm.sh && nvm use 10 && npx ng build --watch & npx ts-node app.local.ts",
     "tslint": "tslint -c tslint.json -p tsconfig.json"
   },
   "private": true,
