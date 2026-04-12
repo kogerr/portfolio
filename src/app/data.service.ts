@@ -79,8 +79,8 @@ export class DataService {
     }
 
     private findSurroundingPostTitleUrls = (posts, titleURL) => {
-        let postsSorted = posts.sort((a, b) => a.index - b.index);
-        let index = postsSorted.findIndex((e) => e.titleURL === titleURL);
+        const postsSorted = posts.sort((a, b) => a.index - b.index);
+        const index = postsSorted.findIndex((e) => e.titleURL === titleURL);
         let next = postsSorted[index + 1];
         if (!next) {
             next = postsSorted[0];
@@ -123,7 +123,7 @@ export class DataService {
 
     updatePostCache(delay?: number): void {
         clearTimeout(this.timeout);
-        let update = () => this.http.get<Post[]>(postsURL).subscribe(data => this.postCache = data);
+        const update = () => this.http.get<Post[]>(postsURL).subscribe(data => this.postCache = data);
         if (delay) {
             this.timeout = setTimeout(() => update(), delay);
         } else {

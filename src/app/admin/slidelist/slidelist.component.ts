@@ -27,7 +27,7 @@ export class SlidelistComponent implements OnInit {
 
   changeLink(index: number): void {
     this.slides[index].link = this.posts.find(e => e.title === this.slides[index].title).titleURL;
-    let slide = this.slides[index];
+    const slide = this.slides[index];
     this.updateSlideByImageURL(slide.imageURL, { title: slide.title, link: slide.link });
   }
 
@@ -40,7 +40,7 @@ export class SlidelistComponent implements OnInit {
   }
 
   removeSlide(index: number): void {
-    let imageURL = this.slides[index].imageURL;
+    const imageURL = this.slides[index].imageURL;
     this.dataService.deleteSlide(imageURL).subscribe(() => {
       this.dataService.deleteImage(imageURL).subscribe(() => {
         this.slides.splice(index, 1);
@@ -51,7 +51,7 @@ export class SlidelistComponent implements OnInit {
 
   moveSlideUp(index: number): void {
     if (index > 0) {
-      let previous = this.slides[index - 1];
+      const previous = this.slides[index - 1];
       this.slides[index - 1] = this.slides[index];
       this.slides[index] = previous;
       this.slides[index].index++;
@@ -62,7 +62,7 @@ export class SlidelistComponent implements OnInit {
 
   moveSlideDown(index: number): void {
     if (index < this.slides.length - 1) {
-      let next = this.slides[index + 1];
+      const next = this.slides[index + 1];
       this.slides[index + 1] = this.slides[index];
       this.slides[index] = next;
       this.slides[index].index--;
@@ -72,12 +72,12 @@ export class SlidelistComponent implements OnInit {
   }
 
   openInNewTab(url: string): void {
-    let win = window.open(url, '_blank');
+    const win = window.open(url, '_blank');
     win.focus();
   }
 
   updateIndex(index: number[]): void {
-    let indexPairs = new Array<{ index: number, imageURL: string }>();
+    const indexPairs = new Array<{ index: number, imageURL: string }>();
     index.forEach(i => {
       indexPairs.push({ index: this.slides[i].index, imageURL: this.slides[i].imageURL });
     });
@@ -86,7 +86,7 @@ export class SlidelistComponent implements OnInit {
 
   shiftIndices(from: number): void {
     if (from < this.slides.length) {
-      let indexPairs = new Array<{ index: number, imageURL: string }>();
+      const indexPairs = new Array<{ index: number, imageURL: string }>();
       for (let i = from; i < this.slides.length; i++) {
         this.slides[i].index--;
         indexPairs.push({ index: this.slides[i].index, imageURL: this.slides[i].imageURL });

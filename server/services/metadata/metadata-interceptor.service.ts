@@ -8,7 +8,7 @@ const workRegex = /\/work\/(.*)/;
 function generateFromDb(titleURL: string): Promise<string> {
     return new Promise((resolve, reject) => {
         postDao.getPostByTitleURL(titleURL).then((post) => {
-            let response = generateTemplate(post);
+            const response = generateTemplate(post);
             metaDataCacher.saveMetaData(post);
             resolve(response);
         }).catch((err) => reject(err));
@@ -18,8 +18,8 @@ function generateFromDb(titleURL: string): Promise<string> {
 export default function(req: Request, res: Response): void {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/html');
-    let titleURL = req.url.match(workRegex)[1];
-    let response = metaDataCacher.getMetaData(titleURL);
+    const titleURL = req.url.match(workRegex)[1];
+    const response = metaDataCacher.getMetaData(titleURL);
     if (!response) {
         generateFromDb(titleURL)
             .then((data) => res.send(data))

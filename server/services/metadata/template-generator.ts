@@ -18,10 +18,10 @@ fs.readFile('./server/services/metadata/template.json', (err, data) => {
 });
 
 export default function(post: Post): string {
-    let title = post.title;
-    let description = post.facebookDescription;
-    let fullImageURL = imagesBaseURL + post.facebookImage;
-    let fullTitleURL = workBaseURL + post.titleURL;
-    let metaDatatemplate = eval(templateText);
+    const title = post.title;
+    const description = post.facebookDescription;
+    const fullImageURL = imagesBaseURL + post.facebookImage;
+    const fullTitleURL = workBaseURL + post.titleURL;
+    const metaDatatemplate = eval(templateText);
     return metaDatatemplate;
 }

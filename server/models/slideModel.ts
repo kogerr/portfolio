@@ -1,9 +1,9 @@
 'use strict';
 import * as mongoose from 'mongoose';
 import { Slide } from './frontModels';
-let Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-let slideSchema = new Schema({
+const slideSchema = new Schema({
     index: Number,
     title: String,
     imageURL: String,

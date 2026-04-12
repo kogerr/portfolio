@@ -22,7 +22,7 @@ export function saveSlide(slide: Slide): Promise<SlideDocument> {
             } else {
                 slide.index = count;
             }
-            let newSlide = new SlideModel(slide);
+            const newSlide = new SlideModel(slide);
             newSlide.save((error, product) => {
                 if (error) {
                     reject(error);

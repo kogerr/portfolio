@@ -26,7 +26,7 @@ export class PostlistComponent implements OnInit {
 
   movePostUp(index: number): void {
     if (index > 0) {
-      let previous = this.posts[index - 1];
+      const previous = this.posts[index - 1];
       this.posts[index - 1] = this.posts[index];
       this.posts[index] = previous;
       this.posts[index].index++;
@@ -37,7 +37,7 @@ export class PostlistComponent implements OnInit {
 
   movePostDown(index: number): void {
     if (index < this.posts.length - 1) {
-      let next = this.posts[index + 1];
+      const next = this.posts[index + 1];
       this.posts[index + 1] = this.posts[index];
       this.posts[index] = next;
       this.posts[index].index--;
@@ -47,7 +47,7 @@ export class PostlistComponent implements OnInit {
   }
 
   updateIndex(index: number[]): void {
-    let indexPairs = new Array<{ index: number, titleURL: string }>();
+    const indexPairs = new Array<{ index: number, titleURL: string }>();
     index.forEach(i => {
       indexPairs.push({ index: this.posts[i].index, titleURL: this.posts[i].titleURL });
     });
@@ -55,7 +55,7 @@ export class PostlistComponent implements OnInit {
   }
 
   shiftIndices(from: number): void {
-    let indexPairs = new Array<{ index: number, titleURL: string }>();
+    const indexPairs = new Array<{ index: number, titleURL: string }>();
     for (let i = from; i < this.posts.length; i++) {
       this.posts[i].index--;
       indexPairs.push({ index: this.posts[i].index, titleURL: this.posts[i].titleURL });

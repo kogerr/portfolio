@@ -1,29 +1,29 @@
 'use strict';
 import * as mongoose from 'mongoose';
 import { About } from './frontModels';
-let Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-let possiblyClickable = new Schema({
+const possiblyClickable = new Schema({
     index: Number,
     text: String,
     url: String
 }, { _id: false }
 );
 
-let headerAndLines = new Schema({
+const headerAndLines = new Schema({
     index: Number,
     header: String,
     lines: [String]
 }, { _id: false }
 );
 
-let indexedText = new Schema({
+const indexedText = new Schema({
     index: Number,
     text: String
 }, { _id: false }
 );
 
-let aboutSchema = new Schema({
+const aboutSchema = new Schema({
     intro: [indexedText],
     clients: [indexedText],
     exhibitions: [indexedText],

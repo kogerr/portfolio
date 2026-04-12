@@ -11,7 +11,7 @@ export function savePost(post: Post): Promise<PostDocument> {
             } else {
                 post.index = count;
             }
-            let newPost = new PostModel(post);
+            const newPost = new PostModel(post);
             newPost.save((error, product) => {
                 if (error) {
                     reject(error);
@@ -37,7 +37,7 @@ export function updatePost(post: Post): Promise<{ titleURL: string }> {
 }
 
 export function updateIndices(indexPairs: { index: number, titleURL: string }[]): Promise<Array<UpdateResponse>> {
-    let promises = new Array<Promise<UpdateResponse>>();
+    const promises = new Array<Promise<UpdateResponse>>();
     indexPairs.forEach(e => {
         promises.push(
             castMongoosePromise(PostModel.update({ titleURL: e.titleURL }, { index: e.index }).exec())
@@ -98,8 +98,8 @@ export function getPreviousPostTitleUrl(titleURL: string): Promise<{ titleURL: s
             if (err) {
                 reject(err);
             }
-            let postsSorted = sortByIndex(docs);
-            let i = postsSorted.findIndex((e) => e.titleURL === titleURL) - 1;
+            const postsSorted = sortByIndex(docs);
+            const i = postsSorted.findIndex((e) => e.titleURL === titleURL) - 1;
             let targetPost = postsSorted[i];
             if (!targetPost) {
                 targetPost = postsSorted[0];
@@ -115,8 +115,8 @@ export function getNextPostTitleUrl(titleURL: string): Promise<{ titleURL: strin
             if (err) {
                 reject(err);
             }
-            let postsSorted = sortByIndex(docs);
-            let i = postsSorted.findIndex((e) => e.titleURL === titleURL) + 1;
+            const postsSorted = sortByIndex(docs);
+            const i = postsSorted.findIndex((e) => e.titleURL === titleURL) + 1;
             let targetPost = postsSorted[i];
             if (!targetPost) {
                 targetPost = postsSorted[postsSorted.length - 1];

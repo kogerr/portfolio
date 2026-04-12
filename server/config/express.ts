@@ -13,7 +13,7 @@ import { Request, Response, Express } from 'express';
 const indexPath = 'dist/index.html';
 const fbUserAgent = 'facebookexternalhit';
 
-let app: Express = express();
+const app: Express = express();
 
 app.use(bodyParser.json());
 app.use('/api', routes);
@@ -25,7 +25,7 @@ app.use('/images', express.static('images'));
 app.use('/.well-known', express.static('cert', { dotfiles: 'allow' }));
 
 app.get('/work/*', (req: Request, res: Response): void => {
-    let isForFacebook = (request: Request): boolean =>
+    const isForFacebook = (request: Request): boolean =>
         (request.headers['user-agent'] as string).startsWith(fbUserAgent);
     if (isForFacebook(req)) {
         addMetaData(req, res);

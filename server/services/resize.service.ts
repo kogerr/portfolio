@@ -14,9 +14,9 @@ export default function(filePath: string, newPath: string, proportions: { w: num
             if (err) {
                 reject(err);
             }
-            let width = image.bitmap.width;
-            let height = image.bitmap.height;
-            let newSize = calculateSize(width, height, proportions);
+            const width = image.bitmap.width;
+            const height = image.bitmap.height;
+            const newSize = calculateSize(width, height, proportions);
             image.cover(newSize.width, newSize.height).write(newPath, (error) => {
                 if (error) {
                     reject(error);

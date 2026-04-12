@@ -8,7 +8,7 @@ import loginRoutes from './login.route';
 import logRoutes from './log.route';
 import emailRoutes from './email.route';
 
-let router: express.Router = express.Router();
+const router: express.Router = express.Router();
 
 router.use('/posts', postRoutes);
 router.use('/images', imageRoutes);

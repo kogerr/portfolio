@@ -7,7 +7,7 @@ import * as logger from '../services/logger';
 const directory = 'images/';
 
 export function returnSavedFileName(req: Request, res: Response): void {
-    let response = { name: req.file.filename };
+    const response = { name: req.file.filename };
     if (response.name) {
         res.statusCode = 201;
     } else {
@@ -29,10 +29,10 @@ export function deleteImage(req: Request, res: Response): void {
 }
 
 export function crop(req: Request, res: Response): void {
-    let filePath = directory + req.params.filename;
-    let newName = storageService.generateFilename(req.params.filename);
-    let newPath = directory + newName;
-    let proportions = req.body;
+    const filePath = directory + req.params.filename;
+    const newName = storageService.generateFilename(req.params.filename);
+    const newPath = directory + newName;
+    const proportions = req.body;
     resize(filePath, newPath, proportions).then(() => {
         res.statusCode = 200;
         res.send({ name: newName });
@@ -44,7 +44,7 @@ export function crop(req: Request, res: Response): void {
 }
 
 export function getPreloaderImages(req: Request, res: Response): void {
-    let cachedPreloaderImages = preloaderCacher.getImages();
+    const cachedPreloaderImages = preloaderCacher.getImages();
     if (cachedPreloaderImages && cachedPreloaderImages.length) {
         res.statusCode = 200;
         res.send(cachedPreloaderImages);

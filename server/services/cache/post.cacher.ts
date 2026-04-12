@@ -22,12 +22,12 @@ export function savePost(post: Post): void {
 }
 
 export function updatePost(post: Post): void {
-    let postIndex = postCache.findIndex((e) => e.titleURL === post.titleURL);
+    const postIndex = postCache.findIndex((e) => e.titleURL === post.titleURL);
     postCache[postIndex] = post;
 }
 
 export function getPost(titleURL: string): Post | boolean {
-    let post = postCache.find((e) => e.titleURL === titleURL);
+    const post = postCache.find((e) => e.titleURL === titleURL);
     return post === undefined ? false : post;
 }
 

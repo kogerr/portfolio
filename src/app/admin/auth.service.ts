@@ -23,8 +23,8 @@ export class AuthService {
     }
 
     private setSession(token: string): void {
-        let decodedToken: DecodedToken = decode(token);
-        let expiresAt = decodedToken.exp * 1000;
+        const decodedToken: DecodedToken = decode(token);
+        const expiresAt = decodedToken.exp * 1000;
 
         localStorage.setItem('id_token', token);
         localStorage.setItem('expires_at', expiresAt.toString());
@@ -41,7 +41,7 @@ export class AuthService {
     }
 
     getExpiration(): number {
-        let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+        const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
         return expiresAt;
     }
 

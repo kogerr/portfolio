@@ -13,7 +13,7 @@ export function getEmails(): Promise<Array<EmailDocument>> {
 
 export function saveEmail(email: any): Promise<EmailDocument> {
     return new Promise((resolve, reject) => {
-        let newEmail = new EmailModel(email);
+        const newEmail = new EmailModel(email);
         newEmail.save((error, product) => {
             if (error) {
                 reject(error);

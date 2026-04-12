@@ -51,7 +51,7 @@ export class PostComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   isInView(element: HTMLVideoElement): boolean {
-    let [bottom, top]: [number, number] = [element.getBoundingClientRect().bottom, element.getBoundingClientRect().top];
+    const [bottom, top]: [number, number] = [element.getBoundingClientRect().bottom, element.getBoundingClientRect().top];
     return bottom < window.innerHeight || (bottom > window.innerHeight && top <= 0);
   }
 
@@ -68,7 +68,7 @@ export class PostComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   setPrevAndNext(delay?: number): void {
-    let set = () => { this.dataService.getSurroundingPostTitleUrls(this.post.titleURL).subscribe(data => {
+    const set = () => { this.dataService.getSurroundingPostTitleUrls(this.post.titleURL).subscribe(data => {
       [this.previousTitleURL, this.nextTitleURL] = [data.previous, data.previous];
     });
     };

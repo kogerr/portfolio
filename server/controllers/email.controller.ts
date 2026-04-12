@@ -6,7 +6,7 @@ import {parseMail} from '../services/email-parser';
 
 function convertMail(document: any): Email | any {
     if (document.content) {
-        let {subject, htmlContent, textContent}:
+        const {subject, htmlContent, textContent}:
             { subject: string, htmlContent: string, textContent: string } = parseMail(document.content);
         return {from: document.from, to: document.to, subject, htmlContent, textContent};
     } else {

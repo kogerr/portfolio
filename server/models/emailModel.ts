@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
-let Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-let emailSchema = new Schema({
+const emailSchema = new Schema({
     from: String,
     to: String,
     content: String

@@ -15,12 +15,12 @@ const ca = fs.readFileSync('/etc/letsencrypt/live/botondvoros.com/chain.pem', 'u
 
 const credentials = { key, cert, ca };
 
-let httpsServer: https.Server = https.createServer(credentials, app).listen(443, () => {
-    let port = (httpsServer.address() as AddressInfo).port;
+const httpsServer: https.Server = https.createServer(credentials, app).listen(443, () => {
+    const port = (httpsServer.address() as AddressInfo).port;
     console.log('Listening on port ' + port);
 });
 
-let httpsRedirect = (req: IncomingMessage, res: ServerResponse) => {
+const httpsRedirect = (req: IncomingMessage, res: ServerResponse) => {
     res.writeHead(301, { 'Location': 'https://' + req.headers.host + req.url });
     res.end();
 };

@@ -6,10 +6,10 @@ export class CircularList<T> {
     index: Node<T>;
 
     private static arrayToLinkedList<S>(array: Array<S>): Node<S> {
-        let first = {value: array[0], next: null, previous: null};
+        const first = {value: array[0], next: null, previous: null};
         let current = first;
         for (let i = 1; i < array.length; i++) {
-            let newNode = {value: array[i], next: null, previous: current};
+            const newNode = {value: array[i], next: null, previous: current};
             current.next = newNode;
             current = newNode;
         }

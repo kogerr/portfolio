@@ -23,7 +23,7 @@ export class CarouselDisplay {
             this.locked = true;
             this.values.splice(0, 1);
             this.values.forEach(e => e.shiftBy(-100));
-            let newSlide = new DisplayedSlide(this.list.stepForward(), 100);
+            const newSlide = new DisplayedSlide(this.list.stepForward(), 100);
             this.values.push(newSlide);
             setTimeout(() => { this.locked = false; }, this.lockTime);
         }
@@ -34,7 +34,7 @@ export class CarouselDisplay {
             this.locked = true;
             this.values.splice(this.values.length - 1, 1);
             this.values.forEach(e => e.shiftBy(100));
-            let newSlide = new DisplayedSlide(this.list.stepBack(), -100);
+            const newSlide = new DisplayedSlide(this.list.stepBack(), -100);
             this.values = [newSlide, ...this.values];
             setTimeout(() => { this.locked = false; }, this.lockTime);
         }

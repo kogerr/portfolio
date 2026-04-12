@@ -15,6 +15,6 @@ export function issueToken(email: string): string {
     });
 }
 
-export let checkToken: expressJwt.RequestHandler = expressJwt({
+export const checkToken: expressJwt.RequestHandler = expressJwt({
     secret: publicKey,
 });

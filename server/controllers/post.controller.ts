@@ -34,7 +34,7 @@ export function updatePost(req: Request, res: Response): void {
 export function updateIndices(req: Request, res: Response): void {
     postDao.updateIndices(req.body)
         .then(data => {
-            let success = data.every(e => e.ok === 1);
+            const success = data.every(e => e.ok === 1);
             res.statusCode = 200;
             res.send({ success });
             updateCache();
@@ -46,7 +46,7 @@ export function updateIndices(req: Request, res: Response): void {
 }
 
 export function getPosts(req: Request, res: Response): void {
-    let cachedPosts = postCacher.getPosts();
+    const cachedPosts = postCacher.getPosts();
     if (cachedPosts && cachedPosts.length) {
         res.statusCode = 200;
         res.send(cachedPosts);
@@ -64,7 +64,7 @@ export function getPosts(req: Request, res: Response): void {
 }
 
 export function getPostByTitleURL(req: Request, res: Response): void {
-    let cachedPost = postCacher.getPost(req.params.titleURL);
+    const cachedPost = postCacher.getPost(req.params.titleURL);
     if (cachedPost) {
         res.statusCode = 200;
         res.send(cachedPost);
@@ -131,15 +131,15 @@ export function saveMetaData(req: Request, res: Response): void {
 }
 
 export function cacherTest(req: Request, res: Response): void {
-    let cacheStart = process.hrtime();
+    const cacheStart = process.hrtime();
     postCacher.getPosts();
-    let cacheTime = process.hrtime(cacheStart)[1];
+    const cacheTime = process.hrtime(cacheStart)[1];
 
-    let dbStart = process.hrtime();
+    const dbStart = process.hrtime();
     postDao.getPosts()
         .then(() => {
-            let dbTime = process.hrtime(dbStart)[1];
-            let difference = dbTime - cacheTime;
+            const dbTime = process.hrtime(dbStart)[1];
+            const difference = dbTime - cacheTime;
             res.statusCode = 200;
             res.send({ cacheTime, dbTime, difference });
         }).catch((err) => {

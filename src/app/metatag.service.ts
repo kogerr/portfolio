@@ -21,8 +21,8 @@ export class MetatagService {
     }
 
     private tranformData(metatagInfo: MetatagInfo): MetatagInfo {
-        let url = workBaseURL + metatagInfo.url;
-        let image = coverBaseURL + metatagInfo.image;
+        const url = workBaseURL + metatagInfo.url;
+        const image = coverBaseURL + metatagInfo.image;
         return { title: metatagInfo.title, url, description: metatagInfo.description, image };
     }
 

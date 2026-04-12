@@ -14,10 +14,10 @@ export class DisplayedSlide {
     link: string;
 
     moveTo(newPosition: number): void {
-        let initial = this.position;
-        let step = (newPosition - initial) / 100;
+        const initial = this.position;
+        const step = (newPosition - initial) / 100;
 
-        let i = setInterval(() => {
+        const i = setInterval(() => {
             this.position += step;
             if (this.position === newPosition) {
                 clearInterval(i);

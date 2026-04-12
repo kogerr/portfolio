@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 export function titleValidator(dataService: AdminDataService): AsyncValidatorFn {
     return function (control: AbstractControl): Promise<ValidationErrors> {
-        let validationError: ValidationErrors = { 'occupiedTitle': { value: control.value } };
+        const validationError: ValidationErrors = { 'occupiedTitle': { value: control.value } };
         return new Promise<ValidationErrors>(resolve => {
             dataService.checkPost(control.value).subscribe(
                 data => resolve(data.found ? validationError : null)

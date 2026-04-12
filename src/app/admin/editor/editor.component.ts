@@ -68,10 +68,10 @@ export class EditorComponent implements OnDestroy, OnInit {
   }
 
   uploadContent(event: HTMLInputEvent, type: ContentType): void {
-    let files = event.target.files;
+    const files = event.target.files;
     for (let i = 0; i < files.length; i++) {
       this.dataService.postImage(files[i]).subscribe(data => {
-        let contentElement = { name: data.name, type, width: 100 };
+        const contentElement = { name: data.name, type, width: 100 };
         this.post.contents.push(contentElement);
       });
     }
@@ -111,7 +111,7 @@ export class EditorComponent implements OnDestroy, OnInit {
 
   countdownNavigate(milliseconds: number): void {
     this.remaining = milliseconds;
-    let redirect = window.setInterval(() => {
+    const redirect = window.setInterval(() => {
       this.remaining--;
       if (this.remaining <= 0) {
         window.clearInterval(redirect);
@@ -128,7 +128,7 @@ export class EditorComponent implements OnDestroy, OnInit {
 
   generateTitleURL(): void {
     let titleURL = this.post.title.toLowerCase();
-    let vowels = {
+    const vowels = {
       accented: ['é', 'á', 'ű', 'ő', 'ú', 'ö', 'ü', 'ó', 'í'],
       normal: ['e', 'a', 'u', 'o', 'u', 'o', 'u', 'o', 'i']
     };
@@ -143,8 +143,8 @@ export class EditorComponent implements OnDestroy, OnInit {
   }
 
   saveTextElement(): void {
-    let text = this.textUnderEdition.replace(/\n/g, '<br/>');
-    let textElement = { text, type: ContentType.text };
+    const text = this.textUnderEdition.replace(/\n/g, '<br/>');
+    const textElement = { text, type: ContentType.text };
     this.post.contents.push(textElement);
     this.openTextElement = false;
     this.textUnderEdition = '';
@@ -152,7 +152,7 @@ export class EditorComponent implements OnDestroy, OnInit {
 
   removeElement(index: number): void {
     if (this.post.contents[index].type === ContentType.image) {
-      let name = (this.post.contents[index] as ContentImage).name;
+      const name = (this.post.contents[index] as ContentImage).name;
       this.dataService.deleteImage(name).subscribe(() => { });
     }
     this.post.contents.splice(index, 1);
@@ -160,7 +160,7 @@ export class EditorComponent implements OnDestroy, OnInit {
 
   moveElementUp(index: number): void {
     if (index > 0) {
-      let previous = this.post.contents[index - 1];
+      const previous = this.post.contents[index - 1];
       this.post.contents[index - 1] = this.post.contents[index];
       this.post.contents[index] = previous;
     }
@@ -168,7 +168,7 @@ export class EditorComponent implements OnDestroy, OnInit {
 
   moveElementDown(index: number): void {
     if (index < this.post.contents.length - 1) {
-      let next = this.post.contents[index + 1];
+      const next = this.post.contents[index + 1];
       this.post.contents[index + 1] = this.post.contents[index];
       this.post.contents[index] = next;
     }

@@ -36,7 +36,7 @@ export class EditorSectionComponent<T extends IndexedText | PossiblyClickable | 
 
   swapElements(first: number, second: number): void {
     if (this.content[first] && this.content[second]) {
-      let previousIndex = this.content[first].index;
+      const previousIndex = this.content[first].index;
       this.content[first].index = this.content[second].index;
       this.content[second].index = previousIndex;
       this.content = this.content.sort((a, b) => a.index - b.index);
@@ -51,13 +51,13 @@ export class EditorSectionComponent<T extends IndexedText | PossiblyClickable | 
   }
 
   addElement(value: { text: string }): void {
-    let index: number = this.content.length;
-    let update = Object.assign({ index }, value);
+    const index: number = this.content.length;
+    const update = Object.assign({ index }, value);
     this.dataService.addAboutElement({ [this.field]: update }).subscribe(this.updateIfSuccess);
   }
 
   newElement(): IndexedText | PossiblyClickable | HeaderAndLines {
-    let newElement = new this.type({ index: this.content.length } as T);
+    const newElement = new this.type({ index: this.content.length } as T);
     newElement.index = this.content.length;
     // tslint:disable-next-line:no-string-literal
     newElement['edit'] = true;

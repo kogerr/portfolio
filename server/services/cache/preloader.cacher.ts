@@ -10,8 +10,8 @@ update();
  */
 export function update(): void {
     postDao.getPosts().then(posts => {
-        let coverImages = posts.map(p => p.cover);
-        let contentImages = posts.map(p => p.contents.filter(c => c.type === ContentType.image)[0])
+        const coverImages = posts.map(p => p.cover);
+        const contentImages = posts.map(p => p.contents.filter(c => c.type === ContentType.image)[0])
             .filter(x => x).map(i => (i as ContentImage).name);
         preloaderCache = [...coverImages, ...contentImages];
     }).catch((err) => {

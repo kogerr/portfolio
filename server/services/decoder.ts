@@ -1,9 +1,9 @@
-export let decodeQuotedPrintable = (input: string) => {
+export const decodeQuotedPrintable = (input: string) => {
     return input
         .replace(/[\t\x20]$/gm, '')
         .replace(/=(?:\r\n?|\n|$)/g, '')
         .replace(/=([a-fA-F0-9]{2})/g, ($0, $1) => {
-            let codePoint = parseInt($1, 16);
+            const codePoint = parseInt($1, 16);
             return String.fromCharCode(codePoint);
         });
 };
@@ -139,8 +139,8 @@ const indexByPointer = {
     '127': '\u02D9'
 };
 
-export let decodeLatin2 = (input: string) => {
-    let length = input.length;
+export const decodeLatin2 = (input: string) => {
+    const length = input.length;
     let index = -1;
     let byteValue: number;
     let pointer: number;

@@ -19,12 +19,12 @@ function fillMetaDataTemplateCache(): void {
 }
 
 export function saveMetaData(post: Post): void {
-    let metaDataTemplate = generateTemplate(post);
+    const metaDataTemplate = generateTemplate(post);
     metaDataTemplateCache.set(post.titleURL, metaDataTemplate);
 }
 
 export function getMetaData(titleURL: string): string | boolean {
-    let template = metaDataTemplateCache.get(titleURL);
+    const template = metaDataTemplateCache.get(titleURL);
     return template === undefined ? false : template;
 }
 

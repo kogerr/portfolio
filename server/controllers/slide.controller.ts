@@ -4,7 +4,7 @@ import * as slideCacher from '../services/cache/slide.cacher';
 import { Request, Response } from 'express';
 
 export function getSlides(req: Request, res: Response): void {
-    let cachedPosts = slideCacher.getSlides();
+    const cachedPosts = slideCacher.getSlides();
     if (cachedPosts && cachedPosts.length) {
         res.statusCode = 200;
         res.send(cachedPosts);
@@ -37,7 +37,7 @@ export function saveSlide(req: Request, res: Response): void {
 export function updateSlide(req: Request, res: Response): void {
     slideDao.updateSlide(req.params.imageURL, req.body)
         .then(data => {
-            let success = data.ok === 1;
+            const success = data.ok === 1;
             res.statusCode = 200;
             res.send({ success });
             slideCacher.update();
@@ -51,7 +51,7 @@ export function updateSlide(req: Request, res: Response): void {
 export function deleteSlide(req: Request, res: Response): void {
     slideDao.deleteSlide(req.params.imageURL)
         .then(data => {
-            let success = data.ok === 1;
+            const success = data.ok === 1;
             res.statusCode = 200;
             res.send({ success });
             slideCacher.update();

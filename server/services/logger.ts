@@ -1,5 +1,5 @@
 /* tslint:disable:no-console */
-let errorLogCache = [];
+const errorLogCache = [];
 
 export function error(message?: any, ...optionalParams: any[]): void {
     errorLogCache.push(message);

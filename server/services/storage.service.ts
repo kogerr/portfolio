@@ -14,17 +14,17 @@ function determineDestination(req: Request, file: Express.Multer.File,
 
 function determineFilename(req: Request, file: Express.Multer.File,
     callback: (error: Error | null, destination: string) => void): void {
-    let filename = exports.generateFilename(file.originalname);
+    const filename = exports.generateFilename(file.originalname);
     callback(null, filename);
 }
 
 export function generateFilename(originalname: string): string {
-    let extension = originalname.substr(originalname.lastIndexOf('.'));
+    const extension = originalname.substr(originalname.lastIndexOf('.'));
     return shortid.generate() + extension;
 }
 
 export function deleteImage(filename: string): Promise<{ success: boolean }> {
-    let file = path.join(appRoot.path, imagesDirectory) + filename;
+    const file = path.join(appRoot.path, imagesDirectory) + filename;
     return new Promise((resolve, reject) => {
         fs.unlink(file, (err) => {
             if (err) {
@@ -35,7 +35,7 @@ export function deleteImage(filename: string): Promise<{ success: boolean }> {
     });
 }
 
-export let storage: multer.StorageEngine = multer.diskStorage({
+export const storage: multer.StorageEngine = multer.diskStorage({
     destination: determineDestination,
     filename: determineFilename,
 });

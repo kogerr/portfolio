@@ -3,7 +3,7 @@ import { deleteID } from './dao_utils';
 
 export function addUser(email: string, password: string): Promise<UserDocument> {
     return new Promise((resolve, reject) => {
-        let newUser = new UserModel({email, password});
+        const newUser = new UserModel({email, password});
         newUser.save((err, product) => {
             if (err) {
                 reject(err);

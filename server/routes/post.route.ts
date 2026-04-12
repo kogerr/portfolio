@@ -2,7 +2,7 @@ import * as express from 'express';
 import * as postCtrl from '../controllers/post.controller';
 import * as tokenService from '../services/token.service';
 
-let router: express.Router = express.Router();
+const router: express.Router = express.Router();
 router.route('/')
     .get(postCtrl.getPosts)
     .put(tokenService.checkToken, postCtrl.savePost);

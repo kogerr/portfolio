@@ -52,7 +52,7 @@ export class AdminDataService {
      * @returns the name of the uploaded file
      */
     postImage(file: File): Observable<{ name: string }> {
-        let formData = new FormData();
+        const formData = new FormData();
         formData.append('image', file);
         return this.http.post<{ name: string }>(imagesURL, formData);
     }
@@ -74,7 +74,7 @@ export class AdminDataService {
     }
 
     removeAboutElement(element: { [type: string]: IndexedText | PossiblyClickable | HeaderAndLines }): Observable<SuccessFlag> {
-        let httpOptions = {
+        const httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' }), body: element
         };
         return this.http.delete<SuccessFlag>(aboutURL, httpOptions);

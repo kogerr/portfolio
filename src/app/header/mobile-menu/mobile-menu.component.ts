@@ -17,7 +17,7 @@ export class MobileMenuComponent implements OnInit {
 
   rollDown(): void {
     let i = 0;
-    let interval = setInterval(() => {
+    const interval = setInterval(() => {
       this.height = i + 'vh';
       i += 4;
       if (i > 100) {

@@ -1,9 +1,9 @@
 'use strict';
 import * as mongoose from 'mongoose';
 import { Contact } from './frontModels';
-let Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-let contactSchema = new Schema({
+const contactSchema = new Schema({
     mail: String,
     phone: String,
     linkedIn: String,

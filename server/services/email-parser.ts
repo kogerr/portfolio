@@ -1,11 +1,11 @@
 import { decodeQuotedPrintable, decodeLatin2} from './decoder';
 
-export let parseMail = (raw: string) => {
-    let latin2 = raw.includes('8859-2');
+export const parseMail = (raw: string) => {
+    const latin2 = raw.includes('8859-2');
     let subject = findBetween(raw, '\r\nSubject', '\r\n');
-    let aroundHtmlContent = findBetween(raw, 'Content-Type: text/html;', '--\r\n');
+    const aroundHtmlContent = findBetween(raw, 'Content-Type: text/html;', '--\r\n');
     let htmlContent = findBetween(aroundHtmlContent, '</head>', '</html>');
-    let aroundTextContent = findBetween(raw, 'Content-Type: text/plain;', 'Content-Type: text/html;');
+    const aroundTextContent = findBetween(raw, 'Content-Type: text/plain;', 'Content-Type: text/html;');
     let textContent = findBetween(aroundTextContent, 'quoted-printable', '\r\n--');
 
     [subject, htmlContent, textContent] = [subject, htmlContent, textContent].map(text => {
@@ -27,10 +27,10 @@ export let parseMail = (raw: string) => {
     return {subject, htmlContent, textContent};
 };
 
-let findBetween = (raw: string, startString: string, endString: string) => {
+const findBetween = (raw: string, startString: string, endString: string) => {
     if (raw && raw.match(startString)) {
-        let startIndex = raw.indexOf(startString) + startString.length;
-        let endIndex = raw.indexOf(endString, startIndex);
+        const startIndex = raw.indexOf(startString) + startString.length;
+        const endIndex = raw.indexOf(endString, startIndex);
         return raw.substring(startIndex, endIndex);
     }
 };

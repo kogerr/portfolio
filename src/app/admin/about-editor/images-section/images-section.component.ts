@@ -29,7 +29,7 @@ export class ImagesSectionComponent {
   }
 
   uploadImage(event: HTMLInputEvent): void {
-    let files = event.target.files;
+    const files = event.target.files;
     for (let i = 0; i < files.length; i++) {
       this.dataService.postImage(files[i]).subscribe(data => {
         this.images.push(data.name);

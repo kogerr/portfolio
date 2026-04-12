@@ -8,7 +8,7 @@ const algorithm = 'sha256';
  * @return {*} hashed data
  */
 export default function(data: string): string {
-    let hmac = crypto.createHmac(algorithm, salt);
+    const hmac = crypto.createHmac(algorithm, salt);
     hmac.update(data);
     return hmac.digest('hex');
 }

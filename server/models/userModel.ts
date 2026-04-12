@@ -1,8 +1,8 @@
 'use strict';
 import * as mongoose from 'mongoose';
-let Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-let userSchema = new Schema({
+const userSchema = new Schema({
     email: String,
     password: String,
 });

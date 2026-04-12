@@ -18,7 +18,7 @@ export function updateAbout(update: any): Promise<UpdateResponse> | Promise<Upda
 }
 
 export function addElement(update: { [type: string]: IndexedText | PossiblyClickable | HeaderAndLines }): Promise<UpdateResponse> {
-    let field = Object.keys(update)[0];
+    const field = Object.keys(update)[0];
     if (update[field].index) {
         return castMongoosePromise(AboutModel.updateOne({},
             { $push: { [field]: { $each: [update[field]], $sort: { index: 1 } } } }).exec());
@@ -32,6 +32,6 @@ export function removeElement(update: { [type: string]: string | PossiblyClickab
 }
 
 export function sortField(update: any): Promise<UpdateResponse> {
-    let field = Object.keys(update)[0];
+    const field = Object.keys(update)[0];
     return castMongoosePromise(AboutModel.updateOne({}, { $push: { [field]: { $each: [ ], $sort: { index: 1 } } } }).exec());
 }

@@ -19,7 +19,7 @@ export class PreloaderComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.timeout) {
-      let update = () => this.dataService.getPreloadImages().subscribe((data) => { this.images = data; });
+      const update = () => this.dataService.getPreloadImages().subscribe((data) => { this.images = data; });
       this.timeout = setTimeout(() => update(), delay);
     }
   }
@@ -27,8 +27,8 @@ export class PreloaderComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   setImages(posts: Array<Post>): void {
-    let coverImages = posts.map(p => p.cover);
-    let contentImages = posts.map(p => p.contents.filter(c => c.type === ContentType.image)[0])
+    const coverImages = posts.map(p => p.cover);
+    const contentImages = posts.map(p => p.contents.filter(c => c.type === ContentType.image)[0])
         .filter(x => x).map(i => (i as ContentImage).name);
     this.timeout = setTimeout(() => this.images = [...coverImages, ...contentImages], delay);
   }

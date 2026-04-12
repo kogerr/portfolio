@@ -48,7 +48,7 @@ export class ContactEditorComponent implements OnInit {
 
   @HostListener('window:contextmenu', ['$event'])
   preventRightClick(event: MouseEvent): void {
-    let coordinates = 'x: ' + event.x + ' y: ' + event.y;
+    const coordinates = 'x: ' + event.x + ' y: ' + event.y;
     this.displaySuccess('coordinates', coordinates);
     event.preventDefault();
   }
