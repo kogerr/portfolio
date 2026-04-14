@@ -28,7 +28,7 @@ export function updatePost(post: Post): Promise<{ titleURL: string }> {
         PostModel.update({ titleURL: post.titleURL }, post,
             (err, raw) => {
                 if (err) {
-                    reject(err);
+                    return reject(err);
                 }
                 resolve({ titleURL: raw.titleURL });
             }
@@ -50,7 +50,7 @@ export function getPosts(): Promise<Array<PostDocument>> {
     return new Promise((resolve, reject) => {
         PostModel.find((err, docs) => {
             if (err) {
-                reject(err);
+                return reject(err);
             }
             resolve(sortByIndex(docs.map((post) => deleteID(post))));
         });
@@ -61,7 +61,7 @@ export function getPostByTitleURL(titleURL: string): Promise<PostDocument> {
     return new Promise((resolve, reject) => {
         PostModel.findOne({ titleURL }, (err, data) => {
             if (err) {
-                reject(err);
+                return reject(err);
             }
             resolve(deleteID(data));
         });
@@ -96,7 +96,7 @@ export function getPreviousPostTitleUrl(titleURL: string): Promise<{ titleURL: s
     return new Promise((resolve, reject) => {
         PostModel.find((err, docs) => {
             if (err) {
-                reject(err);
+                return reject(err);
             }
             const postsSorted = sortByIndex(docs);
             const i = postsSorted.findIndex((e) => e.titleURL === titleURL) - 1;
@@ -113,7 +113,7 @@ export function getNextPostTitleUrl(titleURL: string): Promise<{ titleURL: strin
     return new Promise((resolve, reject) => {
         PostModel.find((err, docs) => {
             if (err) {
-                reject(err);
+                return reject(err);
             }
             const postsSorted = sortByIndex(docs);
             const i = postsSorted.findIndex((e) => e.titleURL === titleURL) + 1;

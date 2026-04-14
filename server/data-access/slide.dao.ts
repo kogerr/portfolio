@@ -7,7 +7,7 @@ export function getSlides(): Promise<Array<SlideDocument>> {
     return new Promise((resolve, reject) => {
         SlideModel.find((err, docs) => {
             if (err) {
-                reject(err);
+                return reject(err);
             }
             resolve(sortByIndex(docs.map((slide) => deleteID(slide))));
         });

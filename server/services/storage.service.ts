@@ -24,11 +24,12 @@ export function generateFilename(originalname: string): string {
 }
 
 export function deleteImage(filename: string): Promise<{ success: boolean }> {
-    const file = path.join(appRoot.path, imagesDirectory) + filename;
+    const sanitized = path.basename(filename);
+    const file = path.join(appRoot.path, imagesDirectory, sanitized);
     return new Promise((resolve, reject) => {
         fs.unlink(file, (err) => {
             if (err) {
-                reject(err);
+                return reject(err);
             }
             resolve({ success: true });
         });

@@ -7,7 +7,16 @@ import * as mongoose from 'mongoose';
 import { AddressInfo } from 'net';
 import * as logger from './server/services/logger';
 import { IncomingMessage, ServerResponse } from 'http';
-import {smtpServer} from './server/services/smpt-listener';
+import { smtpServer } from './server/services/smpt-listener';
+
+process.on('unhandledRejection', (reason: any, promise: Promise<any>) => {
+    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+});
+
+process.on('uncaughtException', (err: Error) => {
+    console.error('Uncaught Exception:', err);
+    setTimeout(() => process.exit(1), 100);
+});
 
 const key = fs.readFileSync('/etc/letsencrypt/live/botondvoros.com/privkey.pem', 'utf8');
 const cert = fs.readFileSync('/etc/letsencrypt/live/botondvoros.com/cert.pem', 'utf8');

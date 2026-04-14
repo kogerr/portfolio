@@ -14,8 +14,12 @@
   "main": "app.js",
   "scripts": {
     "build": "unset npm_config_prefix && source ~/.nvm/nvm.sh && nvm use 10 && npx ng build --prod && nvm use default",
+    "build:server": "tsc -p tsconfig.server.json",
+    "build:all": "npm run build && npm run build:server",
     "start": "ng build && mongod & node app",
+    "start:prod": "node dist-server/app.js",
     "watch": "unset npm_config_prefix && source ~/.nvm/nvm.sh && nvm use 10 && npx ng build --watch & npx ts-node app.local.ts",
+    "typecheck:server": "tsc -p tsconfig.server.json --noEmit",
     "test": "playwright test",
     "test:headed": "playwright test --workers=1 --headed",
     "tslint": "tslint -c tslint.json -p tsconfig.json"
@@ -37,7 +41,6 @@
     "express-jwt": "^5.3.1",
     "express-minify": "^1.0.0",
     "jasmine": "^3.1.0",
-    "jimp": "^0.2.28",
     "jsonwebtoken": "^8.3.0",
     "jwt-decode": "^2.2.0",
     "mongoose": "5.2.5",

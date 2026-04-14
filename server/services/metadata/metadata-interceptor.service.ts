@@ -1,30 +1,26 @@
 import * as postDao from '../../data-access/post.dao';
-import * as metaDataCacher from '../cache/metadata.cacher';
 import generateTemplate from './template-generator';
 import { Request, Response } from 'express';
 
 const workRegex = /\/work\/(.*)/;
 
-function generateFromDb(titleURL: string): Promise<string> {
-    return new Promise((resolve, reject) => {
-        postDao.getPostByTitleURL(titleURL).then((post) => {
-            const response = generateTemplate(post);
-            metaDataCacher.saveMetaData(post);
-            resolve(response);
-        }).catch((err) => reject(err));
-    });
-}
-
 export default function(req: Request, res: Response): void {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/html');
-    const titleURL = req.url.match(workRegex)[1];
-    const response = metaDataCacher.getMetaData(titleURL);
-    if (!response) {
-        generateFromDb(titleURL)
-            .then((data) => res.send(data))
-            .catch((err) => res.send(err));
-    } else {
-        res.send(metaDataCacher.getMetaData(titleURL));
+    const match = req.url.match(workRegex);
+    if (!match) {
+        res.statusCode = 404;
+        res.send('Not found');
+        return;
     }
+    const titleURL = match[1];
+    postDao.getPostByTitleURL(titleURL)
+        .then((post) => {
+            const response = generateTemplate(post);
+            res.send(response);
+        })
+        .catch((err) => {
+            res.statusCode = 500;
+            res.send('Error generating metadata');
+        });
 }

@@ -1,14 +1,20 @@
 import * as logger from '../services/logger';
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 
-export function getErrorLogs(req: Request, res: Response): void {
+export function getErrorLogs(req: Request, res: Response, next: NextFunction): void {
     try {
         const errorLogs = logger.getErrorLog();
-        res.statusCode = 200;
-        res.send(errorLogs);
+        res.status(200).json(errorLogs);
     } catch (err) {
-        logger.error(err);
-        res.statusCode = 404;
-        res.send(err);
+        next(err);
+    }
+}
+
+export function clearErrorLogs(req: Request, res: Response, next: NextFunction): void {
+    try {
+        logger.clearErrorLog();
+        res.status(200).json({ success: true });
+    } catch (err) {
+        next(err);
     }
 }

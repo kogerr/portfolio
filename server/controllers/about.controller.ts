@@ -1,4 +1,3 @@
-import * as aboutCacher from '../services/cache/about.cacher';
 import * as aboutDao from '../data-access/about.dao';
 import { Request, Response } from 'express';
 import * as logger from '../services/logger';
@@ -9,21 +8,15 @@ function isIndexed(update: any): boolean {
 }
 
 export function getAbout(req: Request, res: Response): void {
-    const cachedAbout = aboutCacher.getAbout();
-    if (cachedAbout) {
-        res.statusCode = 200;
-        res.send(cachedAbout);
-    } else {
-        aboutDao.getAbout()
-            .then((data) => {
-                res.statusCode = 200;
-                res.send(data);
-            }).catch((err) => {
-                logger.error(err);
-                res.statusCode = 404;
-                res.send(err);
-            });
-    }
+    aboutDao.getAbout()
+        .then((data) => {
+            res.statusCode = 200;
+            res.send(data);
+        }).catch((err) => {
+            logger.error(err);
+            res.statusCode = 500;
+            res.send({ error: 'Failed to retrieve about data' });
+        });
 }
 
 export function updateAbout(req: Request, res: Response): void {
@@ -31,9 +24,13 @@ export function updateAbout(req: Request, res: Response): void {
         .then(data => {
             const success = data.ok === 1;
             res.statusCode = 200;
-            const finish = () => { res.send({ success }); aboutCacher.update(); };
+            const finish = () => { res.send({ success }); };
             if (isIndexed(req.body)) {
-                aboutDao.sortField(req.body).then(finish);
+                aboutDao.sortField(req.body).then(finish).catch((sortErr) => {
+                    logger.error(sortErr);
+                    res.statusCode = 500;
+                    res.send({ error: 'Failed to sort field' });
+                });
             } else {
                 finish();
             }
@@ -50,7 +47,6 @@ export function addElement(req: Request, res: Response): void {
             const success = data.ok === 1;
             res.statusCode = 200;
             res.send({ success });
-            aboutCacher.update();
         }).catch((err) => {
             logger.error(err);
             res.statusCode = 500;
@@ -64,7 +60,6 @@ export function removeElement(req: Request, res: Response): void {
             const success = data.ok === 1;
             res.statusCode = 200;
             res.send({ success });
-            aboutCacher.update();
         }).catch((err) => {
             logger.error(err);
             res.statusCode = 500;

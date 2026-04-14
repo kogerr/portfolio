@@ -1,8 +1,8 @@
 import * as storageService from '../services/storage.service';
-import * as preloaderCacher from '../services/cache/preloader.cacher';
-import resize from '../services/resize.service';
+import * as postDao from '../data-access/post.dao';
 import { Request, Response } from 'express';
 import * as logger from '../services/logger';
+import { ContentType, ContentImage } from '../../src/app/models/post';
 
 const directory = 'images/';
 
@@ -28,28 +28,20 @@ export function deleteImage(req: Request, res: Response): void {
         });
 }
 
-export function crop(req: Request, res: Response): void {
-    const filePath = directory + req.params.filename;
-    const newName = storageService.generateFilename(req.params.filename);
-    const newPath = directory + newName;
-    const proportions = req.body;
-    resize(filePath, newPath, proportions).then(() => {
-        res.statusCode = 200;
-        res.send({ name: newName });
-    }).catch((err) => {
-        logger.error(err);
-        res.statusCode = 501;
-        res.send(err);
-    });
-}
-
 export function getPreloaderImages(req: Request, res: Response): void {
-    const cachedPreloaderImages = preloaderCacher.getImages();
-    if (cachedPreloaderImages && cachedPreloaderImages.length) {
-        res.statusCode = 200;
-        res.send(cachedPreloaderImages);
-    } else {
-        res.statusCode = 404;
-        res.send();
-    }
+    postDao.getPosts()
+        .then((posts) => {
+            const coverImages = posts.map(p => p.cover);
+            const contentImages = posts
+                .map(p => p.contents.filter(c => c.type === ContentType.image)[0])
+                .filter(x => x)
+                .map(i => (i as ContentImage).name);
+            const images = [...coverImages, ...contentImages];
+            res.statusCode = 200;
+            res.send(images);
+        }).catch((err) => {
+            logger.error(err);
+            res.statusCode = 500;
+            res.send({ error: 'Failed to retrieve preloader images' });
+        });
 }

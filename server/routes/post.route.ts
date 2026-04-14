@@ -20,7 +20,4 @@ router.route('/:titleURL/next')
     .get(postCtrl.getNextPostTitleUrl);
 router.route('/metadata/')
     .post(postCtrl.saveMetaData);
-router.route('/cache/test')
-    .get(postCtrl.cacherTest);
-
 export default router;

@@ -5,7 +5,7 @@ export function getContact(): Promise<ContactDocument> {
     return new Promise((resolve, reject) => {
         ContactModel.findOne((err, docs) => {
             if (err) {
-                reject(err);
+                return reject(err);
             }
             resolve(deleteID(docs));
         });

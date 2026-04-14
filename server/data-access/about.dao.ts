@@ -6,7 +6,7 @@ export function getAbout(): Promise<AboutDocument> {
     return new Promise((resolve, reject) => {
         AboutModel.findOne((err, docs) => {
             if (err) {
-                reject(err);
+                return reject(err);
             }
             resolve(deleteID(docs));
         });

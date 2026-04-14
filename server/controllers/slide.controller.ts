@@ -1,24 +1,17 @@
 import * as slideDao from '../data-access/slide.dao';
 import * as logger from '../services/logger';
-import * as slideCacher from '../services/cache/slide.cacher';
 import { Request, Response } from 'express';
 
 export function getSlides(req: Request, res: Response): void {
-    const cachedPosts = slideCacher.getSlides();
-    if (cachedPosts && cachedPosts.length) {
-        res.statusCode = 200;
-        res.send(cachedPosts);
-    } else {
-        slideDao.getSlides()
-            .then((data) => {
-                res.statusCode = 200;
-                res.send(data);
-            }).catch((err) => {
-                logger.error(err);
-                res.statusCode = 404;
-                res.send(err);
-            });
-    }
+    slideDao.getSlides()
+        .then((data) => {
+            res.statusCode = 200;
+            res.send(data);
+        }).catch((err) => {
+            logger.error(err);
+            res.statusCode = 500;
+            res.send({ error: 'Failed to retrieve slides' });
+        });
 }
 
 export function saveSlide(req: Request, res: Response): void {
@@ -26,7 +19,6 @@ export function saveSlide(req: Request, res: Response): void {
         .then(data => {
             res.statusCode = 200;
             res.send(data);
-            slideCacher.update();
         }).catch((err) => {
             logger.error(err);
             res.statusCode = 500;
@@ -40,7 +32,6 @@ export function updateSlide(req: Request, res: Response): void {
             const success = data.ok === 1;
             res.statusCode = 200;
             res.send({ success });
-            slideCacher.update();
         }).catch((err) => {
             logger.error(err);
             res.statusCode = 500;
@@ -54,7 +45,6 @@ export function deleteSlide(req: Request, res: Response): void {
             const success = data.ok === 1;
             res.statusCode = 200;
             res.send({ success });
-            slideCacher.update();
         }).catch((err) => {
             logger.error(err);
             res.statusCode = 500;

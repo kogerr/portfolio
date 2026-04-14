@@ -21,7 +21,9 @@ const onData = (stream: Readable, session: SMTPServerSession, callback: (err?: E
     stream.on('data', collectContent);
 
     stream.on('end', () => {
-        emailDao.saveEmail({from, to, content}).then(data => console.log(data));
+        emailDao.saveEmail({from, to, content})
+            .then(data => console.log(data))
+            .catch(err => console.error('Failed to save email:', err));
         callback();
     });
 };

@@ -4,7 +4,7 @@ export function getEmails(): Promise<Array<EmailDocument>> {
     return new Promise((resolve, reject) => {
         EmailModel.find((err, docs) => {
             if (err) {
-                reject(err);
+                return reject(err);
             }
             resolve(docs);
         });

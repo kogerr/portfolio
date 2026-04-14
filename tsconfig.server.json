@@ -1,0 +1,38 @@
+{
+    "compilerOptions": {
+        "target": "es2018",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "outDir": "./dist-server",
+        "rootDir": ".",
+        "sourceMap": true,
+        "declaration": false,
+        "strict": false,
+        "skipLibCheck": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "mongodb": ["node_modules/@types/mongodb"]
+        },
+        "types": [
+            "node",
+            "mongoose",
+            "smtp-server"
+        ],
+        "lib": [
+            "es2018"
+        ]
+    },
+    "include": [
+        "app.ts",
+        "server/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "dist-server",
+        "src",
+        "e2e"
+    ]
+}

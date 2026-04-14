@@ -1,5 +1,5 @@
 import * as logger from '../services/logger';
-import { Document, Promise as MongoosePromise } from 'mongoose';
+import { Document } from 'mongoose';
 
 export interface IndexedDocument extends Document {
     index: number;
@@ -38,7 +38,7 @@ export function sortByIndex<T extends IndexedDocument>(docs: Array<T>): Array<T>
     return sortedDocs;
 }
 
-export function castMongoosePromise<T>(mongoosePromise: MongoosePromise<T>): Promise<T> {
+export function castMongoosePromise<T>(mongoosePromise: any): Promise<T> {
     return new Promise((resolve, reject) => {
         mongoosePromise.then(data => resolve(data), err => reject(err));
     });

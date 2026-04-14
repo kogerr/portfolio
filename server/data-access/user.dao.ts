@@ -6,7 +6,7 @@ export function addUser(email: string, password: string): Promise<UserDocument> 
         const newUser = new UserModel({email, password});
         newUser.save((err, product) => {
             if (err) {
-                reject(err);
+                return reject(err);
             }
             resolve(deleteID(product));
         });
@@ -17,7 +17,7 @@ export function checkUser(email: string, password: string): Promise<{ found: boo
     return new Promise((resolve, reject) => {
         UserModel.find({ email, password }, (err, docs) => {
             if (err) {
-                reject(err);
+                return reject(err);
             }
             if (docs.length) {
                 resolve({ found: true });

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Post, ContentImage } from '../models/post';
+import { Post } from '../models/post';
 import { Slide } from '../models/slide';
 import { HeaderAndLines, PossiblyClickable, IndexedText } from '../models/about.interface';
 import { LoginResponse } from '../models/login-response';
@@ -59,10 +59,6 @@ export class AdminDataService {
 
     deleteImage(filename: string): Observable<SuccessFlag> {
         return this.http.delete<SuccessFlag>(imagesURL + filename);
-    }
-
-    resizeImage(filename: string, proportions: { w: number, h: number }): Observable<ContentImage> {
-        return this.http.patch<ContentImage>(imagesURL + filename, proportions);
     }
 
     updateAbout(update: any): Observable<SuccessFlag> {
