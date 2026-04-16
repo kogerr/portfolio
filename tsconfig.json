@@ -15,7 +15,8 @@
       "es2018",
       "dom"
     ],
-    "module": "commonjs"
+    "module": "commonjs",
+    "skipLibCheck": true
   },
   "include": [
     "app.ts",

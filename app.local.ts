@@ -13,14 +13,15 @@ process.on('uncaughtException', (err: Error) => {
     setTimeout(() => process.exit(1), 100);
 });
 
-const PORT = 3000;
+const PORT = parseInt(process.env.PORT || '3000', 10);
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/portfolio';
 
 http.createServer(app).listen(PORT, () => {
     console.log(`Listening on http://localhost:${PORT}`);
 });
 
 (mongoose as any).Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/portfolio', { useNewUrlParser: true }).then(
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true }).then(
     () => { console.log('Connected to mongodb'); },
     err => { logger.error(err.message); }
 );

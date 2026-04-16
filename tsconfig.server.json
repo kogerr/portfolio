@@ -26,6 +26,7 @@
     },
     "include": [
         "app.ts",
+        "app.local.ts",
         "server/**/*.ts"
     ],
     "exclude": [
